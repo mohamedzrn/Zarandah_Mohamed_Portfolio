@@ -1,0 +1,90 @@
+@media screen and (min-width: 1200px) {
+    #portfolio{
+        height: 130px;
+    }
+    #portfoliodesc{
+        height: 206px;
+    }
+    #portimage1, #portimage2, #portimage3{
+        margin-top: 350px;
+        height: 500px;
+    }
+    #portimage4, #portimage5, #portimage6{
+        height: 500px;
+    }
+    #aboutmetitle{
+        margin-top: 210px;
+        height: 103px;
+    }
+    #aboutmedesc{
+        height: 123px;
+    }
+    #explore-btn3{
+        width: 8vw;
+        justify-self: center;
+        margin-top: 35px;
+        margin-bottom: 225px;
+        height: 50px;
+    }
+}
+
+@media screen and (min-width: 380px) and (max-width: 1199px) {
+    #portfolio{
+        height: 52px;
+    }
+    #portfoliodesc{
+        height: 208px
+    }
+    #portimage1{
+        width: 75vw;
+        justify-self: center;
+        margin-top: 100px;
+        height: 400px;
+    }
+    #portimage2{
+        width: 75vw;
+        justify-self: center;
+        margin-top: 50px;
+        height: 400px;
+    }
+    #portimage3{
+        width: 75vw;
+        justify-self: center;
+        margin-top: 50px;
+        height: 400px;
+    }
+    #portimage4{
+        width: 75vw;
+        justify-self: center;
+        margin-top: 50px;
+        height: 400px;
+    }
+    #portimage5{
+        width: 75vw;
+        justify-self: center;
+        margin-top: 50px;
+        height: 400px;
+    }
+    #portimage6{
+        width: 75vw;
+        justify-self: center;
+        margin-top: 50px;
+        height: 400px;
+    }
+    #aboutmetitle{
+        width: 75vw;
+        justify-self: center;
+        height: 52px;
+        margin-top: 164px;
+    }
+    #aboutmedesc{
+        height: 118px;
+    }
+    #explore-btn3{
+        width: 20vw;
+        justify-self: center;
+        margin-top: 23px;
+        margin-bottom: 129px;
+        height: 38px;
+    }
+}
