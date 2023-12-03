@@ -1,0 +1,71 @@
+@media screen and (min-width: 1200px) {
+    #image-1{
+        margin-top: 50px;
+        margin-right: -16px;
+        height: 550px;
+    }
+    #about-me{
+        margin-top: 80px;
+        height: 500px;
+    }
+    #more-description{
+        margin-top: 200px;
+        height: 850px;
+    }
+    #image-2{
+        margin-top: 350px;
+        margin-right: -16px;
+        height: 550px;
+    }
+    #services{
+        margin-top: 300px;
+        margin-right: -16px;
+        height: 500px;
+    }
+    #projects{
+        margin-top: 150px;
+        height: 370px;
+    }
+    #explore-btn2{
+        width: 8vw;
+        justify-self: center;
+        margin-top: 35px;
+        margin-bottom: 225px;
+        height: 50px;
+    }   
+}
+
+@media screen and (min-width: 380px) and (max-width: 1199px) {
+    #about-me{
+        margin-top: 30px;
+        height: 121px;
+    }
+    #image-1{
+        margin-top: 30px;
+        height: 450px;
+    }
+    #more-description{
+        margin-top: 120px;
+        height: 990px;
+    }
+    #image-2{
+        display: none;
+    }
+    #services{
+        margin-top: 100px;;
+        height: 628px;
+    }
+    #projects{
+        width: 80vw;
+        justify-self: center;
+        margin-top: 100px;
+        height: 274px;
+    }
+    #explore-btn2{
+        width: 20vw;
+        justify-self: center;
+        margin-top: 25px;
+        margin-bottom: 115px;
+        height: 38px;
+    }   
+}

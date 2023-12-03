@@ -1,0 +1,218 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  font-family: "Cormorant Garamond", serif;
+}
+
+h2 {
+  font-family: "PT Sans Caption", sans-serif;
+}
+
+h3 {
+  font-family: "PT Sans Caption", sans-serif;
+}
+
+body {
+  background-color: #F5EBE0;
+}
+
+@media screen and (min-width: 1200px) {
+  #image-1 {
+    margin-top: 50px;
+    margin-right: -16px;
+    height: 550px;
+  }
+  #about-me {
+    margin-top: 80px;
+    height: 500px;
+  }
+  #more-description {
+    margin-top: 200px;
+    height: 850px;
+  }
+  #image-2 {
+    margin-top: 350px;
+    margin-right: -16px;
+    height: 550px;
+  }
+  #services {
+    margin-top: 300px;
+    margin-right: -16px;
+    height: 500px;
+  }
+  #projects {
+    margin-top: 150px;
+    height: 370px;
+  }
+  #explore-btn2 {
+    width: 8vw;
+    justify-self: center;
+    margin-top: 35px;
+    margin-bottom: 225px;
+    height: 50px;
+  }
+}
+@media screen and (min-width: 380px) and (max-width: 1199px) {
+  #about-me {
+    margin-top: 30px;
+    height: 121px;
+  }
+  #image-1 {
+    margin-top: 30px;
+    height: 450px;
+  }
+  #more-description {
+    margin-top: 120px;
+    height: 990px;
+  }
+  #image-2 {
+    display: none;
+  }
+  #services {
+    margin-top: 100px;
+    height: 628px;
+  }
+  #projects {
+    width: 80vw;
+    justify-self: center;
+    margin-top: 100px;
+    height: 274px;
+  }
+  #explore-btn2 {
+    width: 20vw;
+    justify-self: center;
+    margin-top: 25px;
+    margin-bottom: 115px;
+    height: 38px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  #portfolio {
+    height: 130px;
+  }
+  #portfoliodesc {
+    height: 206px;
+  }
+  #portimage1, #portimage2, #portimage3 {
+    margin-top: 350px;
+    height: 500px;
+  }
+  #portimage4, #portimage5, #portimage6 {
+    height: 500px;
+  }
+  #aboutmetitle {
+    margin-top: 210px;
+    height: 103px;
+  }
+  #aboutmedesc {
+    height: 123px;
+  }
+  #explore-btn3 {
+    width: 8vw;
+    justify-self: center;
+    margin-top: 35px;
+    margin-bottom: 225px;
+    height: 50px;
+  }
+}
+@media screen and (min-width: 380px) and (max-width: 1199px) {
+  #portfolio {
+    height: 52px;
+  }
+  #portfoliodesc {
+    height: 208px;
+  }
+  #portimage1 {
+    width: 75vw;
+    justify-self: center;
+    margin-top: 100px;
+    height: 400px;
+  }
+  #portimage2 {
+    width: 75vw;
+    justify-self: center;
+    margin-top: 50px;
+    height: 400px;
+  }
+  #portimage3 {
+    width: 75vw;
+    justify-self: center;
+    margin-top: 50px;
+    height: 400px;
+  }
+  #portimage4 {
+    width: 75vw;
+    justify-self: center;
+    margin-top: 50px;
+    height: 400px;
+  }
+  #portimage5 {
+    width: 75vw;
+    justify-self: center;
+    margin-top: 50px;
+    height: 400px;
+  }
+  #portimage6 {
+    width: 75vw;
+    justify-self: center;
+    margin-top: 50px;
+    height: 400px;
+  }
+  #aboutmetitle {
+    width: 75vw;
+    justify-self: center;
+    height: 52px;
+    margin-top: 164px;
+  }
+  #aboutmedesc {
+    height: 118px;
+  }
+  #explore-btn3 {
+    width: 20vw;
+    justify-self: center;
+    margin-top: 23px;
+    margin-bottom: 129px;
+    height: 38px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  #hero-con {
+    height: fit-content;
+    padding-top: 100px;
+    align-content: center;
+  }
+  #heroText {
+    height: 223px;
+  }
+  #subheroText {
+    height: 210px;
+    /* margin-bottom: 400px; */
+  }
+  #explore-btn {
+    height: 50px;
+    margin-bottom: 200px;
+  }
+}
+@media screen and (min-width: 380px) and (max-width: 1199px) {
+  #hero-con {
+    height: fit-content;
+    padding-top: 80px;
+    align-content: center;
+  }
+  #heroText {
+    height: 102px;
+  }
+  #subheroText {
+    height: 272px;
+  }
+  #explore-btn {
+    margin-top: 30px;
+    height: 38px;
+  }
+}/*# sourceMappingURL=main.css.map */
