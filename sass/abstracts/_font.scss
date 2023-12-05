@@ -1,0 +1,15 @@
+@use 'mixins' as m;
+
+
+@include m.fontFace(ptsansregular, "../fonts/PTSansCaption-Regular");
+
+// body {
+//     font-family: 'Poppins', sans-serif;
+// }
+
+// p,
+// h1,
+// h2,
+// h3 {
+//     font-family: 'PT Sans Caption', sans-serif;
+// }
