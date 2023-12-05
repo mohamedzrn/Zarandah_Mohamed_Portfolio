@@ -12,103 +12,105 @@
     }
 
     #portimage1,
-    #portimage2,
-    #portimage3 {
+    #portimage2 {
         margin-top: 350px;
         height: 500px;
     }
 
-    #portimage4,
-    #portimage5,
-    #portimage6 {
+    #portimage3,
+    #portimage4 {
+        margin-top: 1rem;
         height: 500px;
     }
 
     #aboutmetitle {
-        margin-top: 210px;
-        height: 103px;
+        text-align: center;
+        margin-top: 15rem;
+        font-size: 5rem;
     }
 
     #aboutmedesc {
-        height: 123px;
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 1.5rem;
     }
 
     #explore-btn3 {
-        width: 8vw;
         justify-self: center;
-        margin-top: 35px;
-        margin-bottom: 225px;
-        height: 50px;
+        align-self: center;
+        text-align: center;
+        font-size: 1.1rem;
+        margin-top: 30px;
+        height: 3rem;
+        background-color: #885A5A;
+        color: #F5EBE0;
+        text-decoration: none;
     }
 }
 
 @media screen and (min-width: 380px) and (max-width: 1199px) {
     #portfolio {
-        height: 52px;
+        font-size: 3.5rem;
     }
 
     #portfoliodesc {
-        height: 208px
+        line-height: 1.8rem;
+        font-size: 1.6rem;
     }
 
     #portimage1 {
         width: 75vw;
         justify-self: center;
         margin-top: 100px;
-        height: 400px;
+        height: auto;
     }
 
     #portimage2 {
         width: 75vw;
         justify-self: center;
-        margin-top: 50px;
-        height: 400px;
+        margin-top: 5rem;
+        height: auto;
     }
 
     #portimage3 {
         width: 75vw;
         justify-self: center;
-        margin-top: 50px;
-        height: 400px;
+        margin-top: 5rem;
+        height: auto;
     }
 
     #portimage4 {
         width: 75vw;
         justify-self: center;
-        margin-top: 50px;
-        height: 400px;
-    }
-
-    #portimage5 {
-        width: 75vw;
-        justify-self: center;
-        margin-top: 50px;
-        height: 400px;
-    }
-
-    #portimage6 {
-        width: 75vw;
-        justify-self: center;
-        margin-top: 50px;
-        height: 400px;
+        margin-top: 5rem;
+        height: auto;
     }
 
     #aboutmetitle {
-        width: 75vw;
         justify-self: center;
-        height: 52px;
+        font-size: 3rem;
         margin-top: 164px;
     }
 
     #aboutmedesc {
-        height: 118px;
+        justify-self: center;
+        align-self: center;
+        text-align: center;
+        font-size: 1.6rem;
+        line-height: 1.8rem;
+        margin-top: 1rem;
     }
 
     #explore-btn3 {
-        width: 20vw;
         justify-self: center;
-        margin-top: 23px;
-        margin-bottom: 129px;
-        height: 38px;
+        align-self: center;
+        text-align: center;
+        width: 20vw;
+        font-size: 1.1rem;
+        margin-top: 30px;
+        height: 3rem;
+        background-color: #885A5A;
+        color: #F5EBE0;
+        text-decoration: none;
     }
 }
