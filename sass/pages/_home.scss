@@ -36,24 +36,31 @@
         align-content: center;
     }
 
-    #heroText h1 {
+    #heroText {
         font-size: 4rem;
     }
 
-    #subheroTitle h2 {
-        font-size: 1.5rem;
+    #subheroTitle {
+        font-size: 1.7rem;
         margin-top: 4rem;
     }
 
-    #subheroText p {
-        font-size: 1rem;
-        margin-top: 1rem;
+    #subheroText {
+        line-height: 1.8rem;
+        font-size: 1.3rem;
+        margin-top: 1.5rem;
     }
 
     #explore-btn {
+        justify-self: center;
+        align-self: center;
+        text-align: center;
+        width: 20vw;
+        font-size: 1.1rem;
         margin-top: 30px;
-        height: 38px;
+        height: 3rem;
         background-color: #885A5A;
         color: #F5EBE0;
+        text-decoration: none;
     }
 }
