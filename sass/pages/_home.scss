@@ -4,16 +4,28 @@
         padding-top: 100px;
         align-content: center;
     }
-    #heroText{
-        height: 223px;
+
+    #heroText h1 {
+        font-size: 6rem;
     }
-    #subheroText{
-        height: 210px;
-        /* margin-bottom: 400px; */
+
+    #subheroTitle h2 {
+        font-size: 2rem;
+        margin-top: 4rem;
     }
-    #explore-btn{
-        height: 50px;
-        margin-bottom: 200px;
+
+    #subheroText p {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+    }
+
+    #explore-btn {
+        font-size: 1.1rem;
+        margin-top: 30px;
+        height: 3rem;
+        background-color: #885A5A;
+        color: #F5EBE0;
+        text-decoration: none;
     }
 }
 
@@ -23,14 +35,25 @@
         padding-top: 80px;
         align-content: center;
     }
-    #heroText{
-        height: 102px;
+
+    #heroText h1 {
+        font-size: 4rem;
     }
-    #subheroText{
-        height: 272px;
+
+    #subheroTitle h2 {
+        font-size: 1.5rem;
+        margin-top: 4rem;
     }
-    #explore-btn{
+
+    #subheroText p {
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+
+    #explore-btn {
         margin-top: 30px;
         height: 38px;
+        background-color: #885A5A;
+        color: #F5EBE0;
     }
 }

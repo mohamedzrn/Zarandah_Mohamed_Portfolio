@@ -1,25 +1,39 @@
 @media screen and (min-width: 1200px) {
-    #portfolio{
-        height: 130px;
+    #portfolio h1 {
+        font-size: 6rem;
+        margin-top: 6rem;
+        line-height: 8rem;
     }
-    #portfoliodesc{
-        height: 206px;
+
+    #portfoliodesc p {
+        font-size: 1.7rem;
+        margin-top: 1rem;
+        line-height: 2rem;
     }
-    #portimage1, #portimage2, #portimage3{
+
+    #portimage1,
+    #portimage2,
+    #portimage3 {
         margin-top: 350px;
         height: 500px;
     }
-    #portimage4, #portimage5, #portimage6{
+
+    #portimage4,
+    #portimage5,
+    #portimage6 {
         height: 500px;
     }
-    #aboutmetitle{
+
+    #aboutmetitle {
         margin-top: 210px;
         height: 103px;
     }
-    #aboutmedesc{
+
+    #aboutmedesc {
         height: 123px;
     }
-    #explore-btn3{
+
+    #explore-btn3 {
         width: 8vw;
         justify-self: center;
         margin-top: 35px;
@@ -29,58 +43,68 @@
 }
 
 @media screen and (min-width: 380px) and (max-width: 1199px) {
-    #portfolio{
+    #portfolio {
         height: 52px;
     }
-    #portfoliodesc{
+
+    #portfoliodesc {
         height: 208px
     }
-    #portimage1{
+
+    #portimage1 {
         width: 75vw;
         justify-self: center;
         margin-top: 100px;
         height: 400px;
     }
-    #portimage2{
+
+    #portimage2 {
         width: 75vw;
         justify-self: center;
         margin-top: 50px;
         height: 400px;
     }
-    #portimage3{
+
+    #portimage3 {
         width: 75vw;
         justify-self: center;
         margin-top: 50px;
         height: 400px;
     }
-    #portimage4{
+
+    #portimage4 {
         width: 75vw;
         justify-self: center;
         margin-top: 50px;
         height: 400px;
     }
-    #portimage5{
+
+    #portimage5 {
         width: 75vw;
         justify-self: center;
         margin-top: 50px;
         height: 400px;
     }
-    #portimage6{
+
+    #portimage6 {
         width: 75vw;
         justify-self: center;
         margin-top: 50px;
         height: 400px;
     }
-    #aboutmetitle{
+
+    #aboutmetitle {
         width: 75vw;
         justify-self: center;
         height: 52px;
         margin-top: 164px;
     }
-    #aboutmedesc{
+
+    #aboutmedesc {
         height: 118px;
     }
-    #explore-btn3{
+
+    #explore-btn3 {
         width: 20vw;
         justify-self: center;
         margin-top: 23px;

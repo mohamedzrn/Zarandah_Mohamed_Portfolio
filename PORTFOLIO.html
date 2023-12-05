@@ -11,29 +11,45 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=PT+Sans+Caption&family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/82048953c6.js" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
     <title>ZRN - Portfolio</title>
 </head>
 
 <body>
     <h1 class="hidden">Welcome to my Portfolio Section</h1>
+    <!-- Header -->
     <header class="grid-con" id="main-header">
         <h2 class="hidden">Top Navigation</h2>
 
-        <a href="index.html" class="col-span-1 col-start-1 col-end-2 l-col-start-1 l-col-end-2">
+        <a href="index.html" class="col-span-1 col-start-1 col-end-2 l-col-start-1 l-col-end-2 ">
             <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom">
         </a>
 
         <div class="box col-span-1 col-start-3 col-end-4 l-col-start-11 l-col-end-12 " id="screen-mode">MODE</div>
-        <div class="box col-span-1 col-start-4 col-end-4  l-col-start-12 l-col-end-13" id="menu">MENU</div>
+        
+            <button class="col-span-1 col-start-4 col-end-4  l-col-start-12 l-col-end-13" id="hamburger"><i class="fa-sharp fa-solid fa-ellipsis fa-2xl"></i></button>
+           <nav class="mainNav m-col-span-4 m-col-end-13" id="burger-con">
+                <menu id="burger-menu">
+                    <li><a class="boxButton" href="index.html">HOME</a></li>
+                    <li><a class="boxButton" href="portfolio.html">PORTFOLIO</a></li>
+                    <li><a class="boxButton" href="about.html">ABOUT</a></li>
+                </menu>
+            </nav>
     </header>
 
     <main>
         <section class="grid-con" id="hero-con">
-            <div class="box col-span-full col-start-1 col-end-4 l-col-start-2 l-col-end-8" id="portfolio">PORTFOLIO TITLE</div>
-            <div class="box col-span-full col-start-1 col-end-5 l-col-start-2 l-col-end-10" id="portfoliodesc">PORTFOLIO DESCRIPTION</div>
+            <div class="col-span-full col-start-1 col-end-4 l-col-start-3 l-col-end-9" id="portfolio">
+                <h1>PORTFOLIO</h1>
+            </div>
+            <div class="col-span-full col-start-1 col-end-5 l-col-start-3 l-col-end-9" id="portfoliodesc">
+                <p>Here is a collection of my work, from little to huge size, that brings brands and creative ambitions to life. A wide variety, including self-made projects, and interactive websites.</p>
+            </div>
 
-            <div class="box col-span-full l-col-start-1 l-col-end-5" id="portimage1">image1</div>
+            <div class="col-span-full l-col-start-1 l-col-end-5" id="portimage1">
+                <img src="image/project-banner.png" alt="Description of the image">
+            </div>
             <div class="box col-span-full l-col-start-5 l-col-end-9" id="portimage2">image2</div>
             <div class="box col-span-full l-col-start-9 l-col-end-13" id="portimage3">image3</div>
             <div class="box col-span-full l-col-start-1 l-col-end-5" id="portimage4">image4</div>
@@ -47,6 +63,6 @@
             </a>
         </section>
     </main>
-
 </body>
+<script src="js/main.js"></script>
 </html>

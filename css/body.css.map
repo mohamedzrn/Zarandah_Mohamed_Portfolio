@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../scss/base/body.scss","../scss/abstracts/colors.scss"],"names":[],"mappings":"AAEA;EACI,kBCHe","file":"body.css"}
+{"version":3,"sourceRoot":"","sources":["../sass/base/body.scss","../sass/abstracts/_colors.scss"],"names":[],"mappings":"AAEA,KACI,iBCHe","file":"body.css"}

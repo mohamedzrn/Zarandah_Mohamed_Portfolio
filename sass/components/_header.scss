@@ -1,0 +1,61 @@
+/* header */
+
+.logo-custom {
+    margin-top: .75rem;
+}
+
+.headerCon {
+    height: fit-content;
+}
+
+.mainNav {
+    margin: 35px 0 25px 0px;
+    margin-inline-start: 0;
+    padding-inline-start: 0;
+}
+
+
+#hamburger {
+    display: block;
+    transition: all .5s ease;
+    background: none;
+    border: none;
+    height: fit-content;
+    width: fit-content;
+    margin: auto 0;
+
+    i {
+        font-size: 3rem;
+    }
+}
+
+
+
+#hamburger.expanded {
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+#burger-con {
+    display: none;
+}
+
+#burger-con.slide-toggle {
+    display: grid;
+}
+
+menu {
+    list-style-type: none;
+    display: inline-flex;
+    padding-inline-start: 0;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+menu li {
+    padding-bottom: 5px;
+    display: grid;
+    margin-left: 0;
+    justify-content: stretch;
+    margin-right: 30px;
+}
