@@ -1,15 +1,5 @@
-$font-family-primary: 'PT Sans Caption', sans-serif;
-$font-family-secondary: 'PT Sans Caption', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=PT+Sans+Caption&family=Poppins&display=swap');
 
-
-body,
-p {
-    font-family: $font-family-primary;
-    font-weight: 100;
-}
-
-h1,
-h3,
-h2 {
-    font-family: $font-family-secondary;
-}
+$font-body: 'Cormorant Garamond', serif;
+$font-heading: 'PT Sans Caption', sans-serif;
+$font-paragraph: 'Poppins', sans-serif;

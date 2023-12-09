@@ -1,17 +1,21 @@
-body,
-p {
-  font-family: "PT Sans Caption", sans-serif;
-  font-weight: 100;
-}
-
-h1,
-h3,
-h2 {
-  font-family: "PT Sans Caption", sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=PT+Sans+Caption&family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=PT+Sans+Caption&family=Poppins&display=swap");
+body {
+  background-color: #f5ebe0;
 }
 
 body {
-  background-color: #f5ebe0;
+  font-family: "Cormorant Garamond", serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "PT Sans Caption", sans-serif;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
 }
 
 @media screen and (min-width: 1200px) {
@@ -265,6 +269,9 @@ body {
   #heroText h1 {
     font-size: 6rem;
   }
+  #heroText1 h1 {
+    font-size: 6rem;
+  }
   #subheroTitle h2 {
     font-size: 2rem;
     margin-top: 4rem;
@@ -289,6 +296,9 @@ body {
     align-content: center;
   }
   #heroText {
+    font-size: 4rem;
+  }
+  #heroText1 {
     font-size: 4rem;
   }
   #subheroTitle {
