@@ -1,3 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=PT+Sans+Caption&family=Poppins&display=swap");
 body {
   background-color: #f5ebe0;
+}
+
+body {
+  font-family: "Cormorant Garamond", serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "PT Sans Caption", sans-serif;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
 }/*# sourceMappingURL=index.css.map */

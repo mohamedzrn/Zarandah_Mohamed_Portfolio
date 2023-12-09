@@ -9,6 +9,10 @@
         font-size: 6rem;
     }
 
+    #heroText1 h1 {
+        font-size: 6rem;
+    }
+
     #subheroTitle h2 {
         font-size: 2rem;
         margin-top: 4rem;
@@ -30,6 +34,8 @@
 }
 
 @media screen and (min-width: 380px) and (max-width: 1199px) {
+
+
     #hero-con {
         height: fit-content;
         padding-top: 80px;
@@ -37,6 +43,10 @@
     }
 
     #heroText {
+        font-size: 4rem;
+    }
+
+    #heroText1 {
         font-size: 4rem;
     }
 
