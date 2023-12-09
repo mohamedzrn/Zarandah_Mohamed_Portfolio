@@ -2,11 +2,14 @@ $font-family-primary: 'PT Sans Caption', sans-serif;
 $font-family-secondary: 'PT Sans Caption', sans-serif;
 
 
-body, p {
+body,
+p {
     font-family: $font-family-primary;
     font-weight: 100;
 }
 
-h1, h3, h2 {
+h1,
+h3,
+h2 {
     font-family: $font-family-secondary;
 }
