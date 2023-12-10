@@ -4,7 +4,157 @@
 require_once('connect.php');
 
 //run queries to pull back content
-$query = 'SELECT movie_id,movie_name,movie_year,rating_name FROM tbl_movies,tbl_rating WHERE tbl_movies.rating_id=tbl_rating.rating_id';
+$query = 'SELECT
+'media' AS table_name,
+media_type,
+media_url,
+NULL AS name,
+NULL AS title,
+NULL AS email,
+NULL AS phone,
+NULL AS website,
+NULL AS location,
+NULL AS summary,
+NULL AS project_title,
+NULL AS project_description,
+NULL AS project_link,
+NULL AS main_media_url,
+NULL AS service_name,
+NULL AS service_description,
+NULL AS platform,
+NULL AS social_link_url,
+NULL AS toolbox_name,
+NULL AS toolbox_description
+FROM media
+
+UNION ALL
+
+SELECT
+'personal_info' AS table_name,
+NULL,
+NULL,
+name,
+title,
+email,
+phone,
+website,
+location,
+summary,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL
+FROM personal_info
+
+UNION ALL
+
+SELECT
+'projects' AS table_name,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+title,
+description,
+link,
+main_media_url,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL
+FROM projects
+
+UNION ALL
+
+SELECT
+'services' AS table_name,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+service_name,
+description,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL
+FROM services
+
+UNION ALL
+
+SELECT
+'social_links' AS table_name,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+platform,
+social_link_url,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL
+FROM social_links
+
+UNION ALL
+
+SELECT
+'toolbox' AS table_name,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+NULL,
+toolbox_name,
+toolbox_description
+FROM toolbox;
+';
 $results = mysqli_query($connect,$query);
 ?>
 <head>
@@ -24,7 +174,7 @@ margin-bottom:50px;
 <?php
 while($row = mysqli_fetch_array($results)) {
 
-echo '<div class="movie_list"><h2>'.$row['movie_name'].' ('.$row['movie_year'].')</h2><p>'.$row['rating_name'].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://localhost:8888/php_week_10/details.php?id='.$row['movie_id'].'">more...</a></p></div>';
+echo '';
 
 }
 ?>
