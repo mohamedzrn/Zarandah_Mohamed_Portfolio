@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=PT+Sans+Caption&family=Poppins&display=swap');
-
-$font-body: 'Cormorant Garamond', serif;
-$font-heading: 'PT Sans Caption', sans-serif;
-$font-paragraph: 'Poppins', sans-serif;
+@font-face {
+  font-family: "PTSansCaption-Regular";
+  src: url("../fonts/PTSansCaption-Regular.woff") format("woff"); /* Older Browsers */
+}

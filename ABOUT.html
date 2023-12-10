@@ -1,112 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/Flip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/Observer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/Draggable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/MotionPathPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/EaselPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/PixiPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/TextPlugin.min.js"></script>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/grid.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <title>ZRN - Home</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=1.0, width=device-width">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/grid.css">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=PT+Sans+Caption&family=Poppins&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/82048953c6.js" crossorigin="anonymous"></script>
-    <script src="js/script.js"></script>
-    <title>ZRN - About</title>
-</head>
-
-<body>
+  <body>
     <h1 class="hidden">Welcome to my About Me Section</h1>
-<!-- Header -->
-<header class="grid-con" id="main-header">
-    <h2 class="hidden">Top Navigation</h2>
+    <!-- Header -->
+    <header class="grid-con" id="main-header">
+      <h2 class="hidden">Top Navigation</h2>
 
-    <a href="index.html" class="col-span-1 col-start-1 col-end-2 l-col-start-1 l-col-end-2 ">
-        <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom">
-    </a>
+      <a
+        href="index.html"
+        class="col-span-1 col-start-1 col-end-2 l-col-start-1 l-col-end-2"
+      >
+        <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom" />
+      </a>
 
-    <div class="box col-span-1 col-start-3 col-end-4 l-col-start-11 l-col-end-12 " id="screen-mode">MODE</div>
-    
-        <button class="col-span-1 col-start-4 col-end-4  l-col-start-12 l-col-end-13" id="hamburger"><i class="fa-sharp fa-solid fa-ellipsis fa-2xl"></i></button>
-       <nav class="mainNav m-col-span-4 m-col-end-13" id="burger-con">
-            <menu id="burger-menu">
-                <li><a class="boxButton" href="index.html">HOME</a></li>
-                <li><a class="boxButton" href="portfolio.html">PORTFOLIO</a></li>
-                <li><a class="boxButton" href="about.html">ABOUT</a></li>
-            </menu>
-        </nav>
-</header>
-
+      <button
+        class="col-span-1 col-start-4 col-end-4 l-col-start-12 l-col-end-13"
+        id="hamburger"
+      >
+        <i class="fa-sharp fa-solid fa-ellipsis fa-2xl"></i>
+      </button>
+      <nav class="mainNav m-col-span-4 m-col-end-13" id="burger-con">
+        <menu id="burger-menu">
+          <li><a class="boxButton" href="index.html">HOME</a></li>
+          <li><a class="boxButton" href="portfolio.html">PORTFOLIO</a></li>
+          <li><a class="boxButton" href="about.html">ABOUT</a></li>
+        </menu>
+      </nav>
+    </header>
 
     <main>
-        <section class="grid-con" id="hero-con">
-            <!-- Hero Title -->
-            <div class="col-span-full l-col-start-2 l-col-end-8" id="about-me">
-                <h1>ABOUT ME</h1>
-                <h3>Welcome to the intersection of artistry and technology.</h3>
-            </div>
+      <canvas class="background-animation"></canvas>
 
-            <!-- Hero Image -->
-            <div class="col-span-full l-col-start-9 l-col-end-12" id="image-1">
-                <img src="image/me-1.jpg" alt="Kavorka-makeup-banner">
-            </div>
+      <section class="grid-con hero-con">
+        <!-- Hero Title -->
+        <div class="col-span-full l-col-start-2 l-col-end-8" id="about-me">
+          <h1 class="cipher">ABOUT ME</h1>
+          <h3>Welcome to the intersection of artistry and technology.</h3>
+        </div>
 
-            <!-- Hero description -->
-            <div class="col-span-full l-col-start-2 l-col-end-8" id="about-me-description">
-                <p>Embark on a journey through my digital world where creativity meets code. Explore the fusion of innovative development and imaginative design in my portfolio of web and software projects.</p>
-            </div>
-            
-            <!-- Hero Text 2 -->
-            <div class="col-span-full l-col-start-2 l-col-end-8" id="more-description">
-                <div><p>Welcome to my world of creative technology, where innovation and design intertwine. As a passionate Creative Developer, I bring your ideas to life through a seamless blend of cutting-edge technology and artistic expression. From interactive websites to immersive apps, dynamic 3D models, and beyond, I offer a spectrum of technical services that cater to projects both large and small. Explore the convergence of imagination and code, where every project is a unique masterpiece, designed for interaction and feedback.</p></div>
-                <div class="more"><p>I'm driven to explore the uncharted and stretch my creative limits. My goal is to embrace new challenges and experiences with every project, pushing the boundaries of what's possible in the realm of technology. Join me on this ever-evolving creative journey.</p></div>
-            </div>
+        <!-- Hero Image -->
+        <div class="col-span-full l-col-start-9 l-col-end-12" id="image-1">
+          <img src="image/me-1.jpg" alt="Kavorka-makeup-banner" />
+        </div>
 
-            <!-- Hero Image 2 -->
-            <div class="col-span-full l-col-start-9 l-col-end-12" id="image-2">
-                <img src="image/me-2.jpg" alt="Kavorka-makeup-banner">
-            </div>
+        <!-- Hero description -->
+        <div
+          class="col-span-full l-col-start-2 l-col-end-8"
+          id="about-me-description"
+        >
+          <p>
+            Embark on a journey through my digital world where creativity meets
+            code. Explore the fusion of innovative development and imaginative
+            design in my portfolio of web and software projects.
+          </p>
+        </div>
 
-            <!-- Services-->
-            <div class="col-span-full col-start-1 col-end-4 l-col-start-2 l-col-end-5" id="services">
-                <h1>SERVICES</h1>
-                <ul>
-                    <li>. Video-Editor</li>
-                    <li>. Front-End Dev</li>
-                    <li>. UX/UI Design</li>
-                    <li>. Creative Development</li>
-                    <li>. 3D Modeling</li>
-                </ul>
-            </div>
+        <!-- Hero Text 2 -->
+        <div
+          class="col-span-full l-col-start-2 l-col-end-8"
+          id="more-description"
+        >
+          <div>
+            <p class="cipher">
+              Welcome to my world of creative technology, where innovation and
+              design intertwine. As a passionate Creative Developer, I bring
+              your ideas to life through a seamless blend of cutting-edge
+              technology and artistic expression. From interactive websites to
+              immersive apps, dynamic 3D models, and beyond, I offer a spectrum
+              of technical services that cater to projects both large and small.
+              Explore the convergence of imagination and code, where every
+              project is a unique masterpiece, designed for interaction and
+              feedback.
+            </p>
+          </div>
+          <div class="more">
+            <p class="cipher">
+              I'm driven to explore the uncharted and stretch my creative
+              limits. My goal is to embrace new challenges and experiences with
+              every project, pushing the boundaries of what's possible in the
+              realm of technology. Join me on this ever-evolving creative
+              journey.
+            </p>
+          </div>
+        </div>
 
-            <!--toolbox-->
-            <div class="col-span-full col-start-1 col-end-4 l-col-start-9 l-col-end-12" id="toolbox">
-               <h1>TOOLBOX</h1>
-                <ul>
-                    <li>. HTML</li>
-                    <li>. CSS</li>
-                    <li>. SCSS</li>
-                    <li>. JS</li>
-                    <li>. MY SQL</li>
-                    <li>. ADOBE SUITE</li>
-                </ul> 
-            </div>
+        <!-- Hero Image 2 -->
+        <div class="col-span-full l-col-start-9 l-col-end-12" id="image-2">
+          <img src="image/me-2.jpg" alt="Kavorka-makeup-banner" />
+        </div>
 
-            
+        <!-- Services-->
+        <div
+          class="col-span-full col-start-1 col-end-4 l-col-start-2 l-col-end-5"
+          id="services"
+        >
+          <h1>SERVICES</h1>
+          <ul>
+            <li>. Video-Editor</li>
+            <li>. Front-End Dev</li>
+            <li>. UX/UI Design</li>
+            <li>. Creative Development</li>
+            <li>. 3D Modeling</li>
+          </ul>
+        </div>
 
-            <!-- Projects-->
-            <div class="col-span-full col-start-1 col-end-5 l-col-start-4 l-col-end-10" id="projects">
-                <h1>PROJECTS</h1>
-                <p>A collection of my work bringing brands and creative visions to life, from small to large scale. A wide range from interactive Web, to Enterprise solutions, to self-made projects.</p>
-            </div>
+        <!--toolbox-->
+        <div
+          class="col-span-full col-start-1 col-end-4 l-col-start-9 l-col-end-12"
+          id="toolbox"
+        >
+          <h1>TOOLBOX</h1>
+          <ul>
+            <li>. HTML</li>
+            <li>. CSS</li>
+            <li>. SCSS</li>
+            <li>. JS</li>
+            <li>. MY SQL</li>
+            <li>. ADOBE SUITE</li>
+          </ul>
+        </div>
 
-            <a href="portfolio.html" id="explore-btn2" class="box col-span-full l-col-start-6 l-col-end-8">
-                EXPLORE
-            </a>
-            
-        </section>
+        <!-- Projects-->
+        <div
+          class="col-span-full col-start-1 col-end-5 l-col-start-4 l-col-end-10"
+          id="projects"
+        >
+          <h1>PROJECTS</h1>
+          <p class="cipher">
+            A collection of my work bringing brands and creative visions to
+            life, from small to large scale. A wide range from interactive Web,
+            to Enterprise solutions, to self-made projects.
+          </p>
+        </div>
+
+        <a
+          href="portfolio.html"
+          id="explore-btn2"
+          class="box col-span-full l-col-start-6 l-col-end-8"
+        >
+          EXPLORE
+        </a>
+      </section>
     </main>
-
-</body>
+  </body>
+  <script src="js/main.js"></script>
 </html>

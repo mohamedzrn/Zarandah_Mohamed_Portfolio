@@ -1,5 +1,15 @@
-@use '../abstracts/colors.scss';
+@use "../abstracts/colors.scss";
 
 body {
-    background-color: colors.$background-color;
+  background-color: colors.$background-color;
+  main {
+    canvas {
+      position: fixed;
+      z-index: 1;
+    }
+    section {
+      position: relative;
+      z-index: 100;
+    }
+  }
 }

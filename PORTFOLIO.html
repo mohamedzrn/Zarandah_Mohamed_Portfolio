@@ -1,77 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/Flip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/Observer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/Draggable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/MotionPathPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/EaselPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/PixiPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/TextPlugin.min.js"></script>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/grid.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>ZRN - Home</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=1.0, width=device-width">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/grid.css">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=PT+Sans+Caption&family=Poppins&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/82048953c6.js" crossorigin="anonymous"></script>
-    <script src="js/script.js"></script>
-    <title>ZRN - Portfolio</title>
-</head>
-
-<body>
+  <body>
     <h1 class="hidden">Welcome to my Portfolio Section</h1>
     <!-- Header -->
     <header class="grid-con" id="main-header">
-        <h2 class="hidden">Top Navigation</h2>
+      <h2 class="hidden">Top Navigation</h2>
 
-        <a href="index.html" class="col-span-1 col-start-1 col-end-2 l-col-start-1 l-col-end-2 ">
-            <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom">
-        </a>
+      <a
+        href="index.html"
+        class="col-span-1 col-start-1 col-end-2 l-col-start-1 l-col-end-2"
+      >
+        <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom" />
+      </a>
 
-        <div class="box col-span-1 col-start-3 col-end-4 l-col-start-11 l-col-end-12 " id="screen-mode">MODE</div>
-        
-            <button class="col-span-1 col-start-4 col-end-4  l-col-start-12 l-col-end-13" id="hamburger"><i class="fa-sharp fa-solid fa-ellipsis fa-2xl"></i></button>
-           <nav class="mainNav m-col-span-4 m-col-end-13" id="burger-con">
-                <menu id="burger-menu">
-                    <li><a class="boxButton" href="index.html">HOME</a></li>
-                    <li><a class="boxButton" href="portfolio.html">PORTFOLIO</a></li>
-                    <li><a class="boxButton" href="about.html">ABOUT</a></li>
-                </menu>
-            </nav>
+      <button
+        class="col-span-1 col-start-4 col-end-4 l-col-start-12 l-col-end-13"
+        id="hamburger"
+      >
+        <i class="fa-sharp fa-solid fa-ellipsis fa-2xl"></i>
+      </button>
+      <nav class="mainNav m-col-span-4 m-col-end-13" id="burger-con">
+        <menu id="burger-menu">
+          <li><a class="boxButton" href="index.html">HOME</a></li>
+          <li><a class="boxButton" href="portfolio.html">PORTFOLIO</a></li>
+          <li><a class="boxButton" href="about.html">ABOUT</a></li>
+        </menu>
+      </nav>
     </header>
 
     <main>
-        <section class="grid-con" id="hero-con">
-            <div class="col-span-full col-start-1 col-end-4 l-col-start-3 l-col-end-9" id="portfolio">
-                <h1>PORTFOLIO</h1>
-            </div>
-            <div class="col-span-full col-start-1 col-end-5 l-col-start-3 l-col-end-9" id="portfoliodesc">
-                <p>Here is a collection of my work, from little to huge size, that brings brands and creative ambitions to life. A wide variety, including self-made projects, and interactive websites.</p>
-            </div>
+      <canvas class="background-animation"></canvas>
+      <section class="grid-con hero-con">
+        <div
+          class="col-span-full col-start-1 col-end-4 l-col-start-3 l-col-end-9"
+          id="portfolio"
+        >
+          <h1 class="cipher">PORTFOLIO</h1>
+        </div>
+        <div
+          class="col-span-full col-start-1 col-end-5 l-col-start-3 l-col-end-9"
+          id="portfoliodesc"
+        >
+          <p class="cipher">
+            Here is a collection of my work, from little to huge size, that
+            brings brands and creative ambitions to life. A wide variety,
+            including self-made projects, and interactive websites.
+          </p>
+        </div>
 
-            <div class="col-span-full l-col-start-2 l-col-end-7" id="portimage1">
-                <img src="image/kavorka-banner.png" alt="Kavorka-makeup-banner">
-            </div>
-            <div class="col-span-full l-col-start-8 l-col-end-13" id="portimage2">
-                <img src="image/mhz-banner.png" alt="MHZ-earbud-banner">
-            </div>
-            <div class="col-span-full l-col-start-2 l-col-end-7" id="portimage3">
-                <img src="image/quatro-banner.png" alt="Quatro-drink-banner">
-            </div>
-            <div class="col-span-full l-col-start-8 l-col-end-13" id="portimage4">
-                <img src="image/csl-banner.png" alt="CSL-website-banner">
-            </div>
+        <div
+          class="col-span-full l-col-start-2 l-col-end-7 images"
+          id="portimage1"
+        >
+          <img src="image/kavorka-banner.png" alt="Kavorka-makeup-banner" />
+        </div>
+        <div
+          class="col-span-full l-col-start-8 l-col-end-13 images"
+          id="portimage2"
+        >
+          <img src="image/mhz-banner.png" alt="MHZ-earbud-banner" />
+        </div>
+        <div
+          class="col-span-full l-col-start-2 l-col-end-7 images"
+          id="portimage3"
+        >
+          <img src="image/quatro-banner.png" alt="Quatro-drink-banner" />
+        </div>
+        <div
+          class="col-span-full l-col-start-8 l-col-end-13 images"
+          id="portimage4"
+        >
+          <img src="image/csl-banner.png" alt="CSL-website-banner" />
+        </div>
 
-            <div class="col-span-full" id="aboutmetitle">
-                <h1>ABOUT ME</h1>
-            </div>
+        <div class="col-span-full" id="aboutmetitle">
+          <h1>ABOUT ME</h1>
+        </div>
 
-            <div class="col-span-full l-col-start-4 l-col-end-10" id="aboutmedesc">
-                <p>Learn more about who I am and the type of mindsets I bring to creative challenges and projects.</p>
-            </div>
-            <a href="about.html" id="explore-btn3" class="box col-span-full  l-col-start-6 l-col-end-8">
-                EXPLORE
-            </a>
-        </section>
+        <div class="col-span-full l-col-start-4 l-col-end-10" id="aboutmedesc">
+          <p class="cipher">
+            Learn more about who I am and the type of mindsets I bring to
+            creative challenges and projects.
+          </p>
+        </div>
+        <a
+          href="about.html"
+          id="explore-btn3"
+          class="box col-span-full l-col-start-6 l-col-end-8"
+        >
+          EXPLORE
+        </a>
+      </section>
     </main>
-</body>
-<script src="js/main.js"></script>
+  </body>
+  <script src="js/main.js"></script>
 </html>

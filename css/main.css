@@ -1,21 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=PT+Sans+Caption&family=Poppins&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=PT+Sans+Caption&family=Poppins&display=swap");
+@font-face {
+  font-family: "PTSansCaption-Regular";
+  src: url("../fonts/PTSansCaption-Regular.woff") format("woff"); /* Older Browsers */
+}
 body {
   background-color: #f5ebe0;
 }
-
-body {
-  font-family: "Cormorant Garamond", serif;
+body main canvas {
+  position: fixed;
+  z-index: 1;
 }
-
-h1,
-h2,
-h3 {
-  font-family: "PT Sans Caption", sans-serif;
-}
-
-p {
-  font-family: "Poppins", sans-serif;
+body main section {
+  position: relative;
+  z-index: 100;
 }
 
 @media screen and (min-width: 1200px) {
@@ -80,8 +76,8 @@ p {
     font-size: 1.1rem;
     margin-top: 30px;
     height: 3rem;
-    background-color: #885A5A;
-    color: #F5EBE0;
+    background-color: #885a5a;
+    color: #f5ebe0;
     text-decoration: none;
     margin-bottom: 80px;
   }
@@ -154,8 +150,8 @@ p {
     font-size: 1.1rem;
     margin-top: 30px;
     height: 3rem;
-    background-color: #885A5A;
-    color: #F5EBE0;
+    background-color: #885a5a;
+    color: #f5ebe0;
     text-decoration: none;
   }
 }
@@ -171,12 +167,12 @@ p {
     line-height: 2rem;
   }
   #portimage1,
-  #portimage2 {
+#portimage2 {
     margin-top: 350px;
     height: 500px;
   }
   #portimage3,
-  #portimage4 {
+#portimage4 {
     margin-top: 1rem;
     height: 500px;
   }
@@ -197,8 +193,8 @@ p {
     font-size: 1.1rem;
     margin-top: 30px;
     height: 3rem;
-    background-color: #885A5A;
-    color: #F5EBE0;
+    background-color: #885a5a;
+    color: #f5ebe0;
     text-decoration: none;
   }
 }
@@ -255,26 +251,32 @@ p {
     font-size: 1.1rem;
     margin-top: 30px;
     height: 3rem;
-    background-color: #885A5A;
-    color: #F5EBE0;
+    background-color: #885a5a;
+    color: #f5ebe0;
     text-decoration: none;
   }
 }
+.dud {
+  color: #885a5a;
+}
+
 @media screen and (min-width: 1200px) {
-  #hero-con {
+  .hero-con {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
     height: fit-content;
     padding-top: 100px;
     align-content: center;
   }
-  #heroText h1 {
-    font-size: 6rem;
-  }
-  #heroText1 h1 {
-    font-size: 6rem;
-  }
   #subheroTitle h2 {
-    font-size: 2rem;
+    font-size: 5rem;
     margin-top: 4rem;
+  }
+  .text {
+    padding-top: 80px;
+    font-weight: 100px;
+    font-size: 3rem;
+    color: #474747;
   }
   #subheroText p {
     font-size: 1.2rem;
@@ -284,26 +286,28 @@ p {
     font-size: 1.1rem;
     margin-top: 30px;
     height: 3rem;
-    background-color: #885A5A;
-    color: #F5EBE0;
+    background-color: #885a5a;
+    color: #f5ebe0;
     text-decoration: none;
   }
 }
 @media screen and (min-width: 380px) and (max-width: 1199px) {
-  #hero-con {
+  .hero-con {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
     height: fit-content;
     padding-top: 80px;
     align-content: center;
   }
-  #heroText {
-    font-size: 4rem;
-  }
-  #heroText1 {
-    font-size: 4rem;
-  }
   #subheroTitle {
-    font-size: 1.7rem;
+    font-size: 3rem;
     margin-top: 4rem;
+  }
+  .text {
+    padding-top: 80px;
+    font-weight: 100px;
+    font-size: 1.5rem;
+    color: #474747;
   }
   #subheroText {
     line-height: 1.8rem;
@@ -318,24 +322,32 @@ p {
     font-size: 1.1rem;
     margin-top: 30px;
     height: 3rem;
-    background-color: #885A5A;
-    color: #F5EBE0;
+    background-color: #885a5a;
+    color: #f5ebe0;
     text-decoration: none;
   }
 }
+.hero-con {
+  font-family: "PTSansCaption-Regular";
+}
+
 /* header */
 .logo-custom {
   margin-top: 0.75rem;
 }
 
 .headerCon {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
 }
 
 .mainNav {
   margin: 35px 0 25px 0px;
-  margin-inline-start: 0;
-  padding-inline-start: 0;
+  -webkit-margin-start: 0;
+          margin-inline-start: 0;
+  -webkit-padding-start: 0;
+          padding-inline-start: 0;
 }
 
 #hamburger {
@@ -343,7 +355,11 @@ p {
   transition: all 0.5s ease;
   background: none;
   border: none;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   margin: auto 0;
 }
@@ -367,7 +383,8 @@ p {
 menu {
   list-style-type: none;
   display: inline-flex;
-  padding-inline-start: 0;
+  -webkit-padding-start: 0;
+          padding-inline-start: 0;
   flex-direction: column;
   justify-content: stretch;
 }
