@@ -167,12 +167,12 @@ body main section {
     line-height: 2rem;
   }
   #portimage1,
-#portimage2 {
+  #portimage2 {
     margin-top: 350px;
     height: 500px;
   }
   #portimage3,
-#portimage4 {
+  #portimage4 {
     margin-top: 1rem;
     height: 500px;
   }
@@ -262,8 +262,6 @@ body main section {
 
 @media screen and (min-width: 1200px) {
   .hero-con {
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
     height: fit-content;
     padding-top: 100px;
     align-content: center;
@@ -293,8 +291,6 @@ body main section {
 }
 @media screen and (min-width: 380px) and (max-width: 1199px) {
   .hero-con {
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
     height: fit-content;
     padding-top: 80px;
     align-content: center;
@@ -337,17 +333,13 @@ body main section {
 }
 
 .headerCon {
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
 }
 
 .mainNav {
   margin: 35px 0 25px 0px;
-  -webkit-margin-start: 0;
-          margin-inline-start: 0;
-  -webkit-padding-start: 0;
-          padding-inline-start: 0;
+  margin-inline-start: 0;
+  padding-inline-start: 0;
 }
 
 #hamburger {
@@ -355,11 +347,7 @@ body main section {
   transition: all 0.5s ease;
   background: none;
   border: none;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   margin: auto 0;
 }
@@ -383,8 +371,7 @@ body main section {
 menu {
   list-style-type: none;
   display: inline-flex;
-  -webkit-padding-start: 0;
-          padding-inline-start: 0;
+  padding-inline-start: 0;
   flex-direction: column;
   justify-content: stretch;
 }
