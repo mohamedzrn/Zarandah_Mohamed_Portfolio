@@ -1,76 +1,75 @@
+.dud {
+  color: #885a5a;
+}
 @media screen and (min-width: 1200px) {
-    #hero-con {
-        height: fit-content;
-        padding-top: 100px;
-        align-content: center;
-    }
+  .hero-con {
+    height: fit-content;
+    padding-top: 100px;
+    align-content: center;
+  }
 
-    #heroText h1 {
-        font-size: 6rem;
-    }
+  #subheroTitle h2 {
+    font-size: 5rem;
+    margin-top: 4rem;
+  }
 
-    #heroText1 h1 {
-        font-size: 6rem;
-    }
+  .text {
+    padding-top: 80px;
+    font-weight: 100px;
+    font-size: 3rem;
+    color: #474747;
+  }
 
-    #subheroTitle h2 {
-        font-size: 2rem;
-        margin-top: 4rem;
-    }
+  #subheroText p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+  }
 
-    #subheroText p {
-        font-size: 1.2rem;
-        margin-top: 1rem;
-    }
-
-    #explore-btn {
-        font-size: 1.1rem;
-        margin-top: 30px;
-        height: 3rem;
-        background-color: #885A5A;
-        color: #F5EBE0;
-        text-decoration: none;
-    }
+  #explore-btn {
+    font-size: 1.1rem;
+    margin-top: 30px;
+    height: 3rem;
+    background-color: #885a5a;
+    color: #f5ebe0;
+    text-decoration: none;
+  }
 }
 
 @media screen and (min-width: 380px) and (max-width: 1199px) {
+  .hero-con {
+    height: fit-content;
+    padding-top: 80px;
+    align-content: center;
+  }
 
+  #subheroTitle {
+    font-size: 3rem;
+    margin-top: 4rem;
+  }
 
-    #hero-con {
-        height: fit-content;
-        padding-top: 80px;
-        align-content: center;
-    }
+  .text {
+    padding-top: 80px;
+    font-weight: 100px;
+    font-size: 1.5rem;
+    color: #474747;
+  }
 
-    #heroText {
-        font-size: 4rem;
-    }
+  #subheroText {
+    line-height: 1.8rem;
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+  }
 
-    #heroText1 {
-        font-size: 4rem;
-    }
-
-    #subheroTitle {
-        font-size: 1.7rem;
-        margin-top: 4rem;
-    }
-
-    #subheroText {
-        line-height: 1.8rem;
-        font-size: 1.3rem;
-        margin-top: 1.5rem;
-    }
-
-    #explore-btn {
-        justify-self: center;
-        align-self: center;
-        text-align: center;
-        width: 20vw;
-        font-size: 1.1rem;
-        margin-top: 30px;
-        height: 3rem;
-        background-color: #885A5A;
-        color: #F5EBE0;
-        text-decoration: none;
-    }
+  #explore-btn {
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    width: 20vw;
+    font-size: 1.1rem;
+    margin-top: 30px;
+    height: 3rem;
+    background-color: #885a5a;
+    color: #f5ebe0;
+    text-decoration: none;
+  }
 }
