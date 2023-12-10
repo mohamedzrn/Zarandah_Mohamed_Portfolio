@@ -1,5 +1,4 @@
 <?php
-
-$connect = new mysqli('localhost', 'root', '', 'bookstore');
-
+//connect to the database
+$connect = new mysqli('localhost','root','root','moviedb');
 ?>
