@@ -2,14 +2,20 @@
 
 body {
   background-color: colors.$background-color;
+
   main {
     canvas {
       position: fixed;
-      z-index: 1;
+      z-index: 3;
     }
+
+    header {
+      z-index: 2;
+    }
+
     section {
       position: relative;
-      z-index: 100;
+      z-index: 50;
     }
   }
 }

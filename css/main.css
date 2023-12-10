@@ -7,11 +7,14 @@ body {
 }
 body main canvas {
   position: fixed;
-  z-index: 1;
+  z-index: 3;
+}
+body main header {
+  z-index: 2;
 }
 body main section {
   position: relative;
-  z-index: 100;
+  z-index: 50;
 }
 
 @media screen and (min-width: 1200px) {
@@ -166,6 +169,24 @@ body main section {
     margin-top: 1rem;
     line-height: 2rem;
   }
+  /* Add styles for the button */
+  button {
+    background-color: #885a5a;
+    border: none;
+    color: #f5ebe0;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 4rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+  }
+  button:hover {
+    background-color: #6c3f3f;
+  }
   #portimage1,
   #portimage2 {
     margin-top: 350px;
@@ -205,6 +226,23 @@ body main section {
   #portfoliodesc {
     line-height: 1.8rem;
     font-size: 1.6rem;
+  }
+  a button {
+    background-color: #885a5a;
+    border: none;
+    color: #f5ebe0;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 4rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+  }
+  a button:hover {
+    background-color: #6c3f3f;
   }
   #portimage1 {
     width: 75vw;
@@ -327,59 +365,182 @@ body main section {
   font-family: "PTSansCaption-Regular";
 }
 
-/* header */
-.logo-custom {
-  margin-top: 0.75rem;
+#menu {
+  font-family: "PTSansCaption-Regular";
 }
 
-.headerCon {
-  height: fit-content;
+@media screen and (min-width: 1200px) {
+  .logo-custom {
+    display: inline-block;
+    padding-top: 1.2rem;
+    max-width: max-content;
+  }
+  #menuToggle {
+    display: block;
+    position: fixed;
+    top: 30px;
+    right: 50px;
+    z-index: 100;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  #menuToggle a {
+    text-decoration: none;
+    color: #232323;
+    transition: color 0.3s ease;
+  }
+  #menuToggle input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    right: -5px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+    -webkit-touch-callout: none;
+  }
+  #menuToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background: #885a5a;
+    border-radius: 3px;
+    z-index: 1;
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+  }
+  #menuToggle span:first-child {
+    transform-origin: 0% 0%;
+  }
+  #menuToggle span:nth-last-child(2) {
+    transform-origin: 0% 100%;
+  }
+  #menuToggle input:checked ~ span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #232323;
+  }
+  #menuToggle input:checked ~ span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+  }
+  #menuToggle input:checked ~ span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+  }
+  #menu {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    margin: -100px 0 0 150px;
+    padding: 50px;
+    padding-top: 125px;
+    background-color: #f5ebe0;
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+    right: 0;
+    transform: translate(100%, 0%);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  }
+  #menu li {
+    padding: 10px 0;
+    font-size: 22px;
+  }
+  #menuToggle input:checked ~ ul {
+    transform: none;
+  }
 }
-
-.mainNav {
-  margin: 35px 0 25px 0px;
-  margin-inline-start: 0;
-  padding-inline-start: 0;
-}
-
-#hamburger {
-  display: block;
-  transition: all 0.5s ease;
-  background: none;
-  border: none;
-  height: fit-content;
-  width: fit-content;
-  margin: auto 0;
-}
-#hamburger i {
-  font-size: 3rem;
-}
-
-#hamburger.expanded {
-  position: absolute;
-  transform: translate(-50%, -50%);
-}
-
-#burger-con {
-  display: none;
-}
-
-#burger-con.slide-toggle {
-  display: grid;
-}
-
-menu {
-  list-style-type: none;
-  display: inline-flex;
-  padding-inline-start: 0;
-  flex-direction: column;
-  justify-content: stretch;
-}
-
-menu li {
-  padding-bottom: 5px;
-  display: grid;
-  margin-left: 0;
-  justify-content: stretch;
-  margin-right: 30px;
+@media screen and (min-width: 380px) and (max-width: 1199px) {
+  .logo-custom {
+    display: inline-block;
+    padding-top: 1.2rem;
+    max-width: max-content;
+  }
+  .mainNav {
+    margin: 35px 0 25px 0px;
+    margin-inline-start: 0;
+    padding-inline-start: 0;
+  }
+  #menuToggle {
+    display: block;
+    position: fixed;
+    top: 30px;
+    right: 50px;
+    z-index: 100;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  #menuToggle a {
+    text-decoration: none;
+    color: #232323;
+    transition: color 0.3s ease;
+  }
+  #menuToggle input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    right: -5px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+    -webkit-touch-callout: none;
+  }
+  #menuToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background: #885a5a;
+    border-radius: 3px;
+    z-index: 1;
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+  }
+  #menuToggle span:first-child {
+    transform-origin: 0% 0%;
+  }
+  #menuToggle span:nth-last-child(2) {
+    transform-origin: 0% 100%;
+  }
+  #menuToggle input:checked ~ span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #232323;
+  }
+  #menuToggle input:checked ~ span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+  }
+  #menuToggle input:checked ~ span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+  }
+  #menu {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    margin: -100px 0 0 150px;
+    padding: 50px;
+    padding-top: 125px;
+    background-color: #f5ebe0;
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+    right: 0;
+    transform: translate(100%, 0%);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  }
+  #menu li {
+    padding: 10px 0;
+    font-size: 22px;
+  }
+  #menuToggle input:checked ~ ul {
+    transform: none;
+  }
 }/*# sourceMappingURL=main.css.map */

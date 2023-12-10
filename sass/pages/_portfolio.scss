@@ -11,6 +11,28 @@
     line-height: 2rem;
   }
 
+
+  /* Add styles for the button */
+  button {
+    background-color: #885a5a;
+    border: none;
+    color: #f5ebe0;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 4rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #6c3f3f;
+  }
+
+
   #portimage1,
   #portimage2 {
     margin-top: 350px;
@@ -56,6 +78,26 @@
   #portfoliodesc {
     line-height: 1.8rem;
     font-size: 1.6rem;
+  }
+
+
+  a button {
+    background-color: #885a5a;
+    border: none;
+    color: #f5ebe0;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 4rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+  }
+
+  a button:hover {
+    background-color: #6c3f3f;
   }
 
   #portimage1 {
