@@ -23,6 +23,12 @@ Portfolio website made throughout the year 2023
    - Harness the power of HTML to structure and organize the content on my portfolio, implementing smooth scrolling animations and intuitive navigation to provide visitors with a seamless journey through my showcased projects and accomplishments.
 ---
 
+ Updated upstream
+* HTML5
+* CSS3
+* JavaScript 
+* SCSS (Sass)
+* Git
 **[Instagram]:** [Link to Instagram]
 **[Twitter]:** [Link to Twitter]
 **[Facebook]:** [Link to Facebook]
@@ -32,7 +38,7 @@ Portfolio website made throughout the year 2023
 ### Team Members:
 
 Mohamed H Zarandah: 
-    ![Mohamed Zarandah](images/me-1.jpg)
+    ![Mohamed Zarandah](image/me-1.jpg)
     
     {Roles: "Product Design | Web Design/Development | Content Management | Editor",
 
