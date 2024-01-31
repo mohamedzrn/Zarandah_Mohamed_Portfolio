@@ -32,7 +32,7 @@ Portfolio website made throughout the year 2023
 ### Team Members:
 
 Mohamed H Zarandah: 
-    ![Mohamed Zarandah](images/pic-of-me.jpg)
+    ![Mohamed Zarandah](images/me-1.jpg)
     
     {Roles: "Product Design | Web Design/Development | Content Management | Editor",
 
