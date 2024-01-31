@@ -1,25 +1,34 @@
-# Mohamed's Portfolio 
-Portfolio website made throughout the year of 2023
+### Mohamed's Portfolio
+Portfolio website made throughout the year 2023
 
+<br>
 
-This was a website built to showcase my technical skills, web design skills, and last but not least my creativity as a Creative Developer
+# Portfolio Site
+ This was a website built to showcase my technical skills, web design skills, and last but not least my creativity as a Creative Developer
 
+<br>
 
+## Usage
 
-## Project timeline and technologies used
+1. **CSS:*
+   - Leverage CSS to artistically design and style my portfolio, ensuring a visually appealing presentation that effectively communicates my skills and expertise.
 
-Build a website to ahowcase what you are and what you have worked/working on
+2. **JS:**
+   - Employ JavaScript to create an interactive and dynamic user experience on my portfolio, showcasing my proficiency by incorporating features like an immersive 3D model viewer for a more engaging presentation of my projects.
 
+3. **PHP:**
+   - Showcase my backend development skills by using PHP to create functional and interactive elements within my portfolio, demonstrating my ability to implement advanced features and enhance the overall user experience.
 
-### Technologies Used
+4. **HTML:**
+   - Harness the power of HTML to structure and organize the content on my portfolio, implementing smooth scrolling animations and intuitive navigation to provide visitors with a seamless journey through my showcased projects and accomplishments.
+---
 
-<<<<<<< Updated upstream
+ Updated upstream
 * HTML5
 * CSS3
 * JavaScript 
 * SCSS (Sass)
 * Git
-=======
 **[Instagram]:** [Link to Instagram]
 **[Twitter]:** [Link to Twitter]
 **[Facebook]:** [Link to Facebook]
@@ -49,6 +58,19 @@ If you find me good enough for your needs, Reach out by email, and don't forget 
 * Illustrator
 * After Effects
 * Visual Studio Code
->>>>>>> Stashed changes
 * GitHub
-* Node JS
+
+## History
+main
+1. ZRN-START
+2. ZRN-PROGRESS-1
+3. ZRN-PROGRESS-2
+4. ZRN-PROGRESS-3
+
+## Credits
+
+Mohamed Zarandah #1005140
+<br>
+
+## License
+MIT
