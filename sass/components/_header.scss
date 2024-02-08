@@ -1,8 +1,7 @@
 @media screen and (min-width: 1200px) {
-    .logo-custom {
-        display: inline-block;
-        padding-top: 1.2rem;
-        max-width: max-content;
+    .logotype {
+        height: 30px;
+        width: 100%;
     }
 
     #menuToggle {
@@ -118,10 +117,9 @@
 
 @media screen and (min-width: 380px) and (max-width: 1199px) {
 
-    .logo-custom {
-        display: inline-block;
-        padding-top: 1.2rem;
-        max-width: max-content;
+    .logotype {
+        height: 30px;
+        width: 100%;
     }
 
     .mainNav {

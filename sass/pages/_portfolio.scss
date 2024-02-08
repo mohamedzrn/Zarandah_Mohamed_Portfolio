@@ -101,28 +101,68 @@
   }
 
   #portimage1 {
-    width: 75vw;
+    width: fit-content;
     justify-self: center;
     margin-top: 100px;
     height: auto;
   }
 
+  .img-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .img-wrapper>img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .img-wrapper>.content {
+    position: absolute;
+    width: fit-content;
+    inset: 0;
+    font-size: 2rem;
+    padding: 1rem;
+    background: rgba(121, 82, 82, 0.604);
+    color: #f5ebe0;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+  }
+
+  .img-wrapper>img,
+  .img-wrapper>.content {
+    transition: 200ms ease-in-out;
+  }
+
+  .img-wrapper:hover>img.blur {
+    filter: blur(5px);
+  }
+
+  .img-wrapper>.content.fade {
+    opacity: 0;
+  }
+
+  .img-wrapper:hover>.content.fade {
+    opacity: 1;
+  }
+
   #portimage2 {
-    width: 75vw;
+    width: fit-content;
     justify-self: center;
     margin-top: 5rem;
     height: auto;
   }
 
   #portimage3 {
-    width: 75vw;
+    width: fit-content;
     justify-self: center;
     margin-top: 5rem;
     height: auto;
   }
 
   #portimage4 {
-    width: 75vw;
+    width: fit-content;
     justify-self: center;
     margin-top: 5rem;
     height: auto;

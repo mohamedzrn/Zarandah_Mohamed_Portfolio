@@ -2,11 +2,11 @@
 (function () {
   "use strict";
 
-  const links = document.querySelectorAll("p.cipher, a.cipher");
+  const links = document.querySelectorAll("h2.cipher, h1.cipher");
   const solveMilliseconds = 80;
   const charactersSelectionMilliseconds = 400;
-  const delayMilliseconds = 25;
-  const characters = [..."ABCDEFGHIJKLMNOPQRSTUVWXUZ1234567890*#@/*!%&^"];
+  const delayMilliseconds = 20;
+  const characters = [..."!@#$%^&*"];
 
   const randomArrayElement = (arr) => {
     return arr[(arr.length * Math.random()) | 0];
@@ -66,182 +66,6 @@
   }
 })();
 
-//video-player
-// const playerCon = document.querySelector("#player-container");
-// const player = document.querySelector("video");
-// const videoControls = document.querySelector("#video-controls");
-// const playButton = document.querySelector("#play-button");
-// const pauseButton = document.querySelector("#pause-button");
-// const stopButton = document.querySelector("#stop-button");
-// const volumeSlider = document.querySelector("#change-vol");
-// const fullScreen = document.querySelector("#full-screen");
-
-// player.controls = false;
-// videoControls.classList.remove("hidden");
-
-// function playVideo() {
-//   player.play();
-// }
-
-// function pauseVideo() {
-//   player.pause();
-// }
-
-// function stopVideo() {
-//   player.pause();
-//   player.currentTime = 1;
-// }
-
-// function changeVolume() {
-//   player.volume = volumeSlider.value;
-//   console.log(volumeSlider.value);
-// }
-
-// function togglefullScreen() {
-//   if (document.fullscreenElement) {
-//     document.exitFullscreen();
-//   } else if (document.webkitFullscreenElement) {
-//     document.webkitExitFullscreen();
-//   } else if (playerCon.webkitRequestFullscreen) {
-//     playerCon.webkitfullscreeen();
-//   } else {
-//     playerCon.requestFullscreen();
-//   }
-// }
-
-// function hideControls() {
-//   if (player.paused) {
-//     return;
-//   }
-//   videoControls.classList.add("hide");
-// }
-
-// function showControls() {
-//   videoControls.classList.remove("hide");
-// }
-
-// playButton.addEventListener("click", playVideo);
-// pauseButton.addEventListener("click", pauseVideo);
-// stopButton.addEventListener("click", stopVideo);
-// volumeSlider.addEventListener("change", changeVolume);
-
-// fullScreen.addEventListener("click", toggleFullScreen);
-// videoControls.addEventListener("mouseenter", showControls);
-// videoControls.addEventListener("mouseleave", hideControls);
-// player.addEventListener("mouseenter", showControls);
-// player.addEventListener("mouseleave", hideControls);
-
-//PARTICLE-ANIMATOR
-
-let canvas = document.querySelector(".background-animation");
-let ctx = canvas.getContext("2d");
-
-function radian(deg) {
-  return (deg * Math.PI) / 180;
-}
-
-function makeCanvasFullscreen() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-
-makeCanvasFullscreen();
-
-window.addEventListener("resize", () => {
-  makeCanvasFullscreen();
-});
-
-function clearCanvas() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-let maxPnChange = 20;
-
-class Circle {
-  constructor(r, thickness) {
-    this.r = r;
-    this.thickness = thickness;
-    this.points = [];
-    this.makePoints();
-  }
-
-  makePoints() {
-    this.points = [];
-
-    for (let i = 0; i < 360; i += 0.5) {
-      let deg = radian(i);
-      let xChange = Math.sin(deg) * this.r;
-      let yChange = Math.cos(deg) * this.r;
-
-      this.points.push({
-        deg: deg,
-        r: this.r,
-        xChange: xChange,
-        yChange: yChange,
-        xPn: 0,
-        yPn: 0,
-        mouse: {
-          x: 0,
-          y: 0,
-        },
-      });
-    }
-
-    return this.points;
-  }
-
-  updatePoints(rotate = 0.06) {
-    this.points.forEach((point, index) => {
-      point.deg += rotate;
-
-      point.xChange = Math.sin(point.deg) * point.r;
-      point.yChange = Math.cos(point.deg) * point.r;
-
-      point.xPn += Math.random() * 2 - 1;
-      point.yPn += Math.random() * 2 - 1;
-
-      point.xPn = Math.max(Math.min(point.xPn, maxPnChange), -maxPnChange);
-      point.yPn = Math.max(Math.min(point.yPn, maxPnChange), -maxPnChange);
-
-      this.points[index] = point;
-    });
-  }
-
-  draw(color = "#885a5a") {
-    clearCanvas();
-
-    this.points.forEach((point) => {
-      ctx.beginPath();
-      ctx.fillStyle = color;
-      let x = point.mouse.x + point.xChange + point.xPn;
-      let y = point.mouse.y + point.yChange + point.yPn;
-      ctx.arc(x, y, this.thickness, 2 * Math.PI, false);
-      ctx.fill();
-      ctx.closePath();
-    });
-  }
-}
-
-shape = new Circle(80, 1.4);
-
-document.body.onmousemove = (e) => {
-  let mouse = {
-    x: e.clientX,
-    y: e.clientY,
-  };
-
-  shape.points.forEach((point, index) => {
-    setTimeout(() => {
-      shape.points[index].mouse = mouse;
-    }, (point.yPn + point.xPn + maxPnChange * 2) * 15);
-  });
-};
-
-setInterval(() => {
-  shape.draw();
-  shape.updatePoints();
-}, 20);
-
 //Text-Scramble-Effect
 class TextScramble {
   constructor(el) {
@@ -257,8 +81,8 @@ class TextScramble {
     for (let i = 0; i < length; i++) {
       const from = oldText[i] || "";
       const to = newText[i] || "";
-      const start = Math.floor(Math.random() * 40);
-      const end = start + Math.floor(Math.random() * 40);
+      const start = Math.floor(Math.random() * 20);
+      const end = start + Math.floor(Math.random() * 20);
       // Add a default value for char
       const char = this.randomChar();
       this.queue.push({ from, to, start, end, char });
@@ -299,7 +123,7 @@ class TextScramble {
   }
 }
 
-const phrases = ["FUTURE TO BE,", "CREATIVE DEVELOPER ;)"];
+const phrases = ["CREATIVE DEVELOPER ;) ", "WEB-DESIGNER ;)", "3D-DESIGNER ;)", "VIDEO-EDITOR ;)"];
 
 const el = document.querySelector(".text");
 const fx = new TextScramble(el);
@@ -307,7 +131,7 @@ const fx = new TextScramble(el);
 let counter = 0;
 const next = () => {
   fx.setText(phrases[counter]).then(() => {
-    setTimeout(next, 800);
+    setTimeout(next, 1222);
   });
   counter = (counter + 1) % phrases.length;
 };
