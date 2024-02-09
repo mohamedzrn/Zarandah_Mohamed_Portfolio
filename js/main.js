@@ -137,3 +137,37 @@ const next = () => {
 };
 
 next();
+
+// case study 1 
+
+document.addEventListener('DOMContentLoaded', function () {
+  const gallery = document.querySelector('.gallery');
+  const images = gallery.querySelectorAll('img');
+  let currentIndex = 0;
+
+  function showImage(index) {
+      images.forEach((image, i) => {
+          image.style.display = i === index ? 'block' : 'none';
+      });
+  }
+
+  function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+  }
+
+  function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(currentIndex);
+  }
+
+  showImage(currentIndex);
+
+  const nextButton = document.getElementById('nextButton');
+  const prevButton = document.getElementById('prevButton');
+
+  if (nextButton && prevButton) {
+      nextButton.addEventListener('click', nextImage);
+      prevButton.addEventListener('click', prevImage);
+  }
+});
