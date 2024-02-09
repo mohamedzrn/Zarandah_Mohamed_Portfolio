@@ -1,0 +1,155 @@
+.description,
+.media,
+.latin-roots,
+.natural-ingredients,
+.traditional-beauty,
+.product-highlights,
+.customer-reviews {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2,
+h3 {
+    color: #333;
+}
+
+p {
+    color: #555;
+}
+
+img {
+    width: 20vw;
+    height: max-content;
+}
+
+.gallery {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.product-carousel {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.product-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.product {
+    width: 300px;
+    margin-right: 20px;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+}
+
+.review {
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Additional styles for the "Contact Us" section */
+#contact-us-con {
+    background-color: #ebd06d;
+    padding-bottom: 30px;
+    border-radius: 50px 50px 0 50px;
+}
+
+#contact-us-con h2 {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+#contact-us-subhead {
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#contact-us-body {
+    line-height: 1.5em;
+}
+
+#bottom-nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+#bottom-nav ul li {
+    margin-bottom: 23px;
+}
+
+#bottom-nav ul li a {
+    color: #000;
+    transition: all 0.3s ease;
+}
+
+#bottom-nav ul li a:hover {
+    border-bottom: solid 1px #517d59;
+    color: #517d59;
+}
+
+#social-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-self: end;
+    margin-top: 30px;
+}
+
+#social-bottom img {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 20px;
+}
+
+footer p {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+footer p span {
+    font-weight: bolder;
+}
+
+.hero-con,
+#menu,
+#contact-us-page-con,
+#contact-us-page-title,
+a {
+    font-family: "PTSansCaption-Regular";
+}
