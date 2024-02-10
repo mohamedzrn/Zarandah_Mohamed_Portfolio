@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<?php
+require_once('includes/connect.php');
+$stmt = $connection->prepare('SELECT * FROM projects ORDER BY title ASC');
+$stmt->execute();
+?>
+
+<head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -19,35 +26,28 @@
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <title>ZRN - Video-sec</title>
+    <title>ZRN - Project Case</title>
   </head>
+<body>
 
-  <body>
-    <h1 class="hidden">Welcome to my Portfolio Section</h1>
-    <!-- Header -->
     <header class="grid-con" id="main-header">
-      <h2 class="hidden">Top Navigation</h2>
 
-      <a
-        href="index.html"
-        class="col-span-1 col-start-1 col-end-2 l-col-start-1 l-col-end-2"
-      >
-        <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom" />
+      <a href="index.html"
+        class="col-span-1 col-start-1 col-end-2 l-col-start-1 l-col-end-2">
+        <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom">
       </a>
 
       <nav
         class="col-span-1 col-start-12 col-end-13 l-col-start-1 l-col-end-2"
-        role="navigation"
-      >
+        role="navigation">
         <div id="menuToggle">
-          <input type="checkbox" />
-
+          <input type="checkbox">
           <span></span>
           <span></span>
           <span></span>
 
           <ul id="menu">
-            <a href="index.html"><li>Home</li></a>
+          <a href="index.html"><li>Home</li></a>
             <a href="ABOUT.html"><li>About</li></a>
             <a href="projects.php"><li>Portfolio</li></a>
             <a href="contact.html"><li>Contact</li></a>
@@ -57,46 +57,24 @@
       </nav>
     </header>
 
-    <div class="grid-con">
-      <section class="col-span-full" id="player-container">
-        <video controls poster="">
-          <source src="video/reel.mp4" type="video/mp4" />
-          <source src="video/video.webm" type="video/webm" />
-          <p>
-            You're using a very old browser, that doesn;t support video
-            playback.
-          </p>
-        </video>
-        <div class="video-controls hidden" id="video-controls">
-          <button id="play-button">
-            <i class="fa fa-play-circle-o"></i>
-          </button>
-          <button id="pause-button">
-            <i class="fa fa-pause-circle-o"></i>
-          </button>
-          <button id="stop-button">
-            <i class="fa fa-stop-circle-o"></i>
-          </button>
-          <i class="fa fa-volume-up"></i>
-          <input
-            type="range"
-            id="change-vol"
-            step="0.05"
-            min="0"
-            max="1"
-            value="1"
-          />
-          <button id="full-screen">
-            <i class="fa fa-arrows-alt"></i>
-          </button>
-        </div>
-      </section>
-    </div>
-    <a
-      class="col-span-full col-start-1 col-end-3 l-col-start-7 l-col-end-13"
-      href="PORTFOLIO.html"
-      ><button>Back To the Portfolio Page.</button></a
-    >
-    <script src="js/main.js"></script>
-  </body>
+<?php
+
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+  echo  '<section class="project-con"><h3>'.$row['title'].'</h3><a href="project_detail.php?id='.
+$row['project_id'].
+'"><img class="thumbnail" src="image/'.    
+        $row['image_url'].   
+        '" alt="Project Thumbnail"></a><p>'.   
+        $row['description'].  
+        '</p></section>';
+
+}
+
+$stmt = null;
+
+?> 
+
+
+</body>
 </html>
