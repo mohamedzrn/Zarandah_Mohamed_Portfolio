@@ -30,9 +30,28 @@
     font-size: 1.1rem;
     margin-top: 30px;
     height: 3rem;
+    width: 7rem;
     background-color: #885a5a;
     color: #f5ebe0;
     text-decoration: none;
+  }
+
+  .container1 {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  footer {
+    text-align: center;
+  }
+  
+  #tagline {
+    display: flex;
+    align-items: center;
+    padding-left: 50rem;
+    padding-top: 5rem;
   }
 }
 
@@ -66,7 +85,7 @@
     justify-self: center;
     align-self: center;
     text-align: center;
-    width: 20vw;
+    max-width: auto;
     font-size: 1.1rem;
     margin-top: 30px;
     height: 3rem;
