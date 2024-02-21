@@ -31,11 +31,10 @@ $stmt->execute();
 <body>
 
     <header class="grid-con" id="main-header">
-
-      <a href="index.html"
-        class="col-span-1 col-start-1 col-end-2 l-col-start-1 l-col-end-2">
-        <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom">
-      </a>
+      
+    <a href="index.html" class="col-span-1 col-start-1 col-end-3 l-col-start-1 l-col-end-2">
+      <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom" />
+    </a>
 
       <nav
         class="col-span-1 col-start-12 col-end-13 l-col-start-1 l-col-end-2"

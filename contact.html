@@ -26,11 +26,11 @@
       <h2 class="hidden">Top Navigation</h2>
 
       <a
-        href="index.html"
-        class="col-span-1 col-start-1 col-end-2 l-col-start-1 l-col-end-2"
-      >
-        <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom" />
-      </a>
+      href="index.html"
+      class="col-span-1 col-start-1 col-end-3 l-col-start-1 l-col-end-2"
+    >
+      <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom" />
+    </a>
 
       <nav
         class="col-span-1 col-start-12 col-end-13 l-col-start-1 l-col-end-2"
@@ -55,6 +55,11 @@
     </header>
 
     <main>
+
+      <div class="contact-container">
+        <div class="right-col">
+      </div>
+      
       <div id="contact-us-page-con">
         <article class="grid-con">
           <h2 class="col-span-full" id="contact-us-page-title">Contact Me</h2>
@@ -62,44 +67,20 @@
             Ask Anything!
           </p>
           <p class="col-span-full" id="contact-us-page-body">
-            Welcome to the contact page! I highly value your feedback and
-            inquiries, and am always ready to assist you in any way possible.
-            Whether you have a question about my products or services or simply
-            want to provide with feedback, this is the place to do it. my
-            customer support team is available around the clock to help you with
-            any issues you may encounter. Please don't hesitate to get in touch
-            using any of the methods listed below. Looking forward to hearing
-            from you!
+            I highly value your feedback and inquiries, and am always ready to assist you in any way possible. Whether you have a question about my products or services or simply want to provide with feedback, this is the place to do it. my customer support team is available around the clock to help you with any issues you may encounter. Please don't hesitate to get in touch using any of the methods listed below. Looking forward to hearing from you!
           </p>
         </article>
-
-        <div id="form-con">
-          <form method="post" action="sendmail.php">
-            <label for="first_name">First Name: </label>
-            <input type="text" name="first_name" id="first_name" />
-
-            <br /><br />
-
-            <label for="last_name">Last Name: </label>
-            <input type="text" name="last_name" id="last_name" />
-
-            <br /><br />
-
-            <label for="email">Email: </label>
-            <input type="text" name="email" id="email" />
-
-            <br /><br />
-
-            <label for="comments">Comments: </label>
-            <textarea name="comments" id="comments">comment here</textarea>
-
-            <br /><br />
-
-            <input type="submit" value="send" />
-            <br /><br />
-            <br /><br />
-          </form>
-        </div>
+        
+        <form id="contact-form" method="post">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+          <label for="message">Message</label>
+          <textarea rows="6" placeholder="Your Message" id="message" name="message" required></textarea>
+          <button type="submit" id="submit" name="submit">Send</button>
+        </form>
+      </div>
       </div>
     </main>
 
@@ -114,7 +95,7 @@
         <img src="image/instagram.svg" alt="instageam" />
         <img src="image/twitter.svg" alt="twitter" />
       </section>
-      <p class="col-span-full">Copyright &#64; 2023 <span>ZRN</span></p>
+      <p class="col-span-full">Copyright &#64; 2024 <span>ZRN</span></p>
     </footer>
 
     <script src="js/main.js"></script>
