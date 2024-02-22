@@ -160,30 +160,31 @@ footer {
     transition: all 0.3s ease;
 }
 
-#bottom-nav ul li a:hover {
-    border-bottom: solid 1px #517d59;
-    color: #517d59;
+.right-col {
+    padding: 5rem;
 }
 
-#social-bottom {
-    display: flex;
-    flex-direction: column;
-    justify-self: end;
-    margin-top: 30px;
+input,
+textarea {
+    color: black;
+    font-weight: 500;
+    background: #f5ebe0;
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    outline: none;
 }
 
-#social-bottom img {
-    width: 32px;
-    height: 32px;
-    margin-bottom: 20px;
-}
-
-footer h2 {
+#explore-btn4 {
+    justify-self: center;
+    align-self: center;
     text-align: center;
+    width: auto;
+    font-size: 1.1rem;
     margin-top: 30px;
-    margin-bottom: 50px;
-}
-
-footer p span {
-    font-weight: bolder;
+    height: 3rem;
+    background-color: #885a5a;
+    color: #f5ebe0;
+    text-decoration: none;
 }
