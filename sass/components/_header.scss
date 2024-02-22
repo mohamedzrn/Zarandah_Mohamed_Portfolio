@@ -1,13 +1,20 @@
-#fixed-navigation {
+#main-header {
     position: fixed;
-    top: 0;
     width: 100%;
+    background-color: #f5ebe0;
     z-index: 1000;
-    /* Adjust z-index as needed */
 }
 
+.logo-custom {
+    padding: 10px;
+}
 
 @media screen and (min-width: 1200px) {
+
+    #main-header {
+        height: 70px;
+    }
+
     .logotype {
         height: 30px;
         width: 100%;
@@ -19,14 +26,11 @@
         top: 30px;
         right: 50px;
         z-index: 100;
-        -webkit-user-select: none;
-        user-select: none;
     }
 
     #menuToggle a {
         text-decoration: none;
         color: #232323;
-
         transition: color 0.3s ease;
     }
 
@@ -58,9 +62,7 @@
         border-radius: 3px;
         z-index: 1;
         transform-origin: 4px 0px;
-        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-            background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-            opacity 0.55s ease;
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
     }
 
     #menuToggle input:checked~span {
@@ -81,19 +83,15 @@
     #menu {
         position: fixed;
         width: 100vw;
-        height: 100vh;
+        height: 100rem;
         margin: -100px 0 0 150px;
         padding: 50px;
         padding-top: 125px;
-
         background-color: #f5ebe0;
         list-style-type: none;
         -webkit-font-smoothing: antialiased;
-        /* to stop flickering of text in safari */
-
         right: 0;
         transform: translate(100%, 0%);
-
         transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
     }
 
@@ -111,9 +109,14 @@
 
 @media screen and (min-width: 380px) and (max-width: 1199px) {
 
+    #main-header {
+        height: 60px;
+        /* Adjust height as needed */
+    }
+
     .logo-custom {
         padding: 10px;
-        width: 75%;
+        width: 50%;
     }
 
     .logotype {
@@ -211,19 +214,15 @@
     #menu {
         position: fixed;
         width: 100vw;
-        height: 100vh;
+        height: 100rem;
         margin: -100px 0 0 150px;
         padding: 50px;
         padding-top: 125px;
-
         background-color: #f5ebe0;
         list-style-type: none;
         -webkit-font-smoothing: antialiased;
-        /* to stop flickering of text in safari */
-
         right: 0;
         transform: translate(100%, 0%);
-
         transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
     }
 
