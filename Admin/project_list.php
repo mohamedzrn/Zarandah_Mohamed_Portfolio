@@ -2,6 +2,12 @@
 <html lang="en">
 
 <?php
+session_start();
+
+if(!$_SESSION['username']) {
+  header( 'Location: login_form.php');
+}
+
 require_once('../includes/connect.php');
 $stmt = $connection->prepare('SELECT id,title FROM projects ORDER BY title ASC');
 $stmt->execute();
@@ -36,11 +42,12 @@ $stmt = null;
     <label for="title">project title: </label>
     <input name="title" type="text" required><br><br>
     <label for="thumb">project thumbnail: </label>
-    <input name="thumb" type="text" required><br><br>
+    <input name="thumb" type="file" required><br><br>
     <label for="desc">project description: </label>
     <textarea name="desc" required></textarea><br><br>
     <input name="submit" type="submit" value="Add">
 </form>
-
+<br><br><br>
+<a href="logout.php">log out</a>
 </body>
 </html>
