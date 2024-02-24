@@ -15,23 +15,6 @@ $stmt->execute();
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <style>
-              @media screen and (min-width: 1200px) {
-                #portfolio h1 {
-                font-size: 6rem;
-                margin-top: 6rem;
-                line-height: 8rem;
-                }
-              }
-
-              @media screen and (min-width: 380px) and (max-width: 1199px) {
-                #portfolio {
-                font-size: 3.5rem;
-                }
-              }
-    </style>
-
     <title>ZRN - Project Case</title>
   </head>
 <body>
@@ -61,23 +44,52 @@ $stmt->execute();
     </nav>
   </header>
 
-<?php
 
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      <section class="grid-con hero-con">
+        <div class="col-span-full col-start-1 col-end-4 l-col-start-3 l-col-end-9" id="portfolio">
+          <h1 class="cipher">PORTFOLIO</h1>
+        </div>
+        <div class="col-span-full col-start-1 col-end-5 l-col-start-3 l-col-end-9" id="portfoliodesc">
+          <p>
+            Here is a collection of my work, from little to huge size, that
+            brings brands and creative ambitions to life. A wide variety,
+            including self-made projects, and interactive websites.
+          </p>
+        </div>
+      </section>
+        
+    <?php
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo '<section class="grid-con hero-con project-con" style="padding: 10px; margin-bottom: 20px;">
+        <h3 class="hidden">'.$row['title'].'</h3>
+        <a href="project_detail.php?id='.$row['id'].'">
+          <img class="thumbnail" src="image/'.$row['image_url'].'" alt="Project Thumbnail" style="max-width: 1000px; height: auto; margin-left: 15rem; padding-top: 6rem;">
+        </a>
+        <p style="margin-left: 45rem; display: flex; font-style: italic; width: 1000px; font-size: 1.7rem; margin-top: 1rem; line-height: 2.5rem; align-content: stretch; justify-content: space-evenly; align-items: center;">
+            '.$row['description'].'
+        </p>
+      </section>';
+    }
+    $stmt = null;
+    ?>
 
-  echo  '<section class="project-con"><h3>'.$row['title'].'</h3><a href="project_detail.php?id='.
-$row['id'].
-'"><img class="thumbnail" src="image/'.    
-        $row['image_url'].   
-        '" alt="Project Thumbnail"></a><p>'.   
-        $row['description'].  
-        '</p></section>';
-}
+        <section class="grid-con hero-con">
 
-$stmt = null;
+          <div class="col-span-full" id="aboutmetitle">
+            <h1 class="cipher">ABOUT ME</h1>
+          </div>
 
-?> 
+          <div class="col-span-full l-col-start-4 l-col-end-10" id="aboutmedesc">
+            <p>
+              Learn more about who I am and the type of mindsets I bring to
+              creative challenges and projects.
+            </p>
+          </div>
+          <a href="about.html" id="explore-btn3" class="box col-span-full l-col-start-6 l-col-end-8">
+            EXPLORE
+          </a>
+        </section>
 
-
+    </main>
 </body>
 </html>
