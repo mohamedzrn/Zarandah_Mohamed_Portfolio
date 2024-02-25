@@ -3,6 +3,7 @@
     width: 100%;
     background-color: #f5ebe0;
     z-index: 1000;
+    height: 70px;
 }
 
 .logo-custom {
@@ -11,9 +12,7 @@
 
 @media screen and (min-width: 1200px) {
 
-    #main-header {
-        height: 70px;
-    }
+
 
     .logotype {
         height: 30px;
@@ -108,11 +107,6 @@
 //MOBILE VERSION BELOW
 
 @media screen and (min-width: 380px) and (max-width: 1199px) {
-
-    #main-header {
-        height: 60px;
-        /* Adjust height as needed */
-    }
 
     .logo-custom {
         padding: 10px;

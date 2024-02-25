@@ -60,18 +60,64 @@ $stmt->execute();
         
     <?php
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    echo '<section class="grid-con hero-con project-con" style="padding: 10px; margin-bottom: 20px;">
+    echo '<section class=" hero-con project-con" style="padding: 10px; margin-bottom: 20px;">
         <h3 class="hidden">'.$row['title'].'</h3>
         <a href="project_detail.php?id='.$row['id'].'">
-          <img class="thumbnail" src="image/'.$row['image_url'].'" alt="Project Thumbnail" style="max-width: 1000px; height: auto; margin-left: 15rem; padding-top: 6rem;">
+          <img class="thumbnail" src="image/'.$row['image_url'].'" alt="Project Thumbnail"">
         </a>
-        <p style="margin-left: 45rem; display: flex; font-style: italic; width: 1000px; font-size: 1.7rem; margin-top: 1rem; line-height: 2.5rem; align-content: stretch; justify-content: space-evenly; align-items: center;">
-            '.$row['description'].'
+        <p class="desc">
+            <class=desc>'.$row['description'].'
         </p>
       </section>';
     }
     $stmt = null;
     ?>
+
+
+    <style>
+/* Add your common styles here */
+
+/* Media query for phones */
+@media only screen and (min-width: 380px) and (max-width: 1199px) {
+    .thumbnail {
+    max-width: fit-content;
+    padding-left: 5rem;
+    margin-top: 100px;
+    }
+
+    .desc {
+      margin-top: 2rem;
+      width: 30rem;
+      font-size: 1.5rem; 
+      line-height: 2rem; 
+      text-align: center;
+      margin-left: 5rem;
+    }
+
+}
+
+/* Media query for desktops */
+@media only screen and (min-width: 1200px) {
+  .thumbnail {
+    max-width: fit-content;
+    padding-left: 5rem;
+    margin-top: 100px;
+    }
+
+    .desc {
+      margin-left: 45rem;
+      display: flex;
+      font-style: italic;
+      width: 1000px;
+      font-size: 1.7rem;
+      margin-bottom: 10rem;
+      line-height: 2.5rem;
+      align-content: stretch;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+}
+</style>
 
         <section class="grid-con hero-con">
 
