@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 10, 2024 at 03:46 AM
--- Server version: 8.0.31
--- PHP Version: 8.0.26
+-- Generation Time: Feb 26, 2024 at 11:09 AM
+-- Server version: 8.2.0
+-- PHP Version: 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,38 @@ SET time_zone = "+00:00";
 --
 -- Database: `zarandah_m_portfolio`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+DROP TABLE IF EXISTS `contacts`;
+CREATE TABLE IF NOT EXISTS `contacts` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `fname` varchar(255) NOT NULL,
+  `lname` varchar(255) DEFAULT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `fname`, `lname`, `phone_number`, `email`, `message`, `created_at`) VALUES
+(1, 'moha', NULL, NULL, 'mohamed@gmail.com', 'hello', '2024-02-26 10:59:42'),
+(2, 'moha', NULL, NULL, 'mohamed@gmail.com', 'hello', '2024-02-26 11:01:38'),
+(3, 'moha', NULL, NULL, 'mohamed@gmail.com', 'hello', '2024-02-26 11:03:36'),
+(4, 'moha', NULL, NULL, 'mohamed@gmail.com', 'hello', '2024-02-26 11:03:53'),
+(5, 'moha', NULL, NULL, 'mohamed@gmail.com', 'hello', '2024-02-26 11:04:05'),
+(6, 'moha', NULL, NULL, 'mohamed@gmail.com', 'hello', '2024-02-26 11:04:13'),
+(7, 'moha', NULL, NULL, 'mohamed@gmail.com', 'hello', '2024-02-26 11:04:29'),
+(8, 'moha', NULL, NULL, 'mohamed@gmail.com', 'hello', '2024-02-26 11:07:32');
 
 -- --------------------------------------------------------
 
@@ -53,13 +85,13 @@ INSERT INTO `media` (`id`, `project_id`, `image_filename`) VALUES
 DROP TABLE IF EXISTS `personal_info`;
 CREATE TABLE IF NOT EXISTS `personal_info` (
   `ID` int NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `TITLE` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `EMAIL` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `PHONE` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `WEBSITE` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `LOCATION` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `SUMMARY` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `NAME` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `TITLE` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `EMAIL` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `PHONE` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `WEBSITE` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `LOCATION` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `SUMMARY` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -79,14 +111,14 @@ INSERT INTO `personal_info` (`ID`, `NAME`, `TITLE`, `EMAIL`, `PHONE`, `WEBSITE`,
 DROP TABLE IF EXISTS `projects`;
 CREATE TABLE IF NOT EXISTS `projects` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `link` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `link` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `image_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `notnot_id` int NOT NULL,
-  `reviews` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `highlights` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `about` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reviews` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `highlights` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `about` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -108,8 +140,8 @@ INSERT INTO `projects` (`id`, `title`, `description`, `link`, `image_url`, `notn
 DROP TABLE IF EXISTS `services`;
 CREATE TABLE IF NOT EXISTS `services` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `service_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `service_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -129,8 +161,8 @@ INSERT INTO `services` (`id`, `service_name`, `description`) VALUES
 DROP TABLE IF EXISTS `social_links`;
 CREATE TABLE IF NOT EXISTS `social_links` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `platform` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `platform` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -151,8 +183,8 @@ INSERT INTO `social_links` (`id`, `platform`, `url`, `user_id`) VALUES
 DROP TABLE IF EXISTS `toolbox`;
 CREATE TABLE IF NOT EXISTS `toolbox` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `toolbox_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `toolbox_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

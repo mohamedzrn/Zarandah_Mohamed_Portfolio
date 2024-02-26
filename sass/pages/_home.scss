@@ -9,9 +9,8 @@
       position: fixed;
       align-items: center;
       background-image: url('/image/homepage-bkg.png');
-      background-position: top left;
       margin-top: 5rem;
-      background-size: 50% auto;
+      background-size: 50rem;
       background-repeat: no-repeat;
     }
 
@@ -48,6 +47,18 @@
       text-decoration: none;
     }
 
+    #explore-btn1 {
+      justify-self: center;
+      max-width: auto;
+      font-size: 1.1rem;
+      margin-top: 30px;
+      height: 3rem;
+      background-color: #885a5a;
+      color: #f5ebe0;
+      text-decoration: none;
+      margin-left: 3rem;
+    }
+
     .container1 {
       display: flex;
       min-height: 100vh;
@@ -71,17 +82,6 @@
 @media screen and (min-width: 380px) and (max-width: 1199px) {
 
   main {
-    section.banner {
-      color: #FFF;
-      position: fi;
-      min-height: 100vh;
-      align-items: center;
-      background-image: url('/image/homepage-bkg.png');
-      background-position: left;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-
     .hero-con {
       height: fit-content;
       padding-top: 80px;
@@ -107,6 +107,19 @@
     }
 
     #explore-btn {
+      justify-self: center;
+      align-self: center;
+      text-align: center;
+      max-width: auto;
+      font-size: 1.1rem;
+      margin-top: 30px;
+      height: 3rem;
+      background-color: #885a5a;
+      color: #f5ebe0;
+      text-decoration: none;
+    }
+
+    #explore-btn1 {
       justify-self: center;
       align-self: center;
       text-align: center;
