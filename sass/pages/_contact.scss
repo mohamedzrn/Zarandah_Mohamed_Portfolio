@@ -180,11 +180,15 @@ textarea {
     justify-self: center;
     align-self: center;
     text-align: center;
-    width: auto;
+    width: 6rem;
     font-size: 1.1rem;
     margin-top: 30px;
     height: 3rem;
     background-color: #885a5a;
     color: #f5ebe0;
     text-decoration: none;
+}
+
+#form-con {
+    padding: 3rem;
 }

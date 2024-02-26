@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-require_once('includes/connect.php');
+require_once('connect.php');
 $stmt = $connection->prepare('SELECT * FROM projects ORDER BY title ASC');
 $stmt->execute();
 ?>
@@ -37,85 +37,68 @@ $stmt->execute();
         <a href="index.html"><li>Home</li></a>
           <a href="ABOUT.html"><li>About</li></a>
           <a href="projects.php"><li>Portfolio</li></a>
-          <a href="contact.html"><li>Contact</li></a>
+          <a href="contact.php"><li>Contact</li></a>
           <a href="video-player.html"><li>Video-sec</li></a>
         </ul>
       </div>
     </nav>
   </header>
-
-
-      <section class="grid-con hero-con">
-        <div class="col-span-full col-start-1 col-end-4 l-col-start-3 l-col-end-9" id="portfolio">
-          <h1 class="cipher">PORTFOLIO</h1>
-        </div>
-        <div class="col-span-full col-start-1 col-end-5 l-col-start-3 l-col-end-9" id="portfoliodesc">
-          <p>
-            Here is a collection of my work, from little to huge size, that
-            brings brands and creative ambitions to life. A wide variety,
-            including self-made projects, and interactive websites.
-          </p>
-        </div>
-      </section>
         
+  <div class="hero-con col-span-full l-col-start-2 l-col-end-7 flex-container">
     <?php
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    echo '<section class=" hero-con project-con" style="padding: 10px; margin-bottom: 20px;">
-        <h3 class="hidden">'.$row['title'].'</h3>
-        <a href="project_detail.php?id='.$row['id'].'">
-          <img class="thumbnail" src="image/'.$row['image_url'].'" alt="Project Thumbnail"">
-        </a>
-        <p class="desc">
-            <class=desc>'.$row['description'].'
-        </p>
-      </section>';
+        echo '<div class="portimage" id="portimage'.$row['id'].'">   
+            <a href="project_detail.php?id='.$row['id'].'">
+                <div class="img-wrapper">
+                    <img class="img-bkg" src="image/'.$row['image_url'].'" alt="'.$row['title'].'">
+                    <div class="content fade">'.$row['description'].'</div>
+                </div>
+            </a>
+        </div>';
     }
     $stmt = null;
     ?>
+</div>
+
 
 
     <style>
 /* Add your common styles here */
 
 /* Media query for phones */
-@media only screen and (min-width: 380px) and (max-width: 1199px) {
-    .thumbnail {
-    max-width: fit-content;
-    padding-left: 5rem;
-    margin-top: 100px;
-    }
+@media only screen and (min-width: 380px) and (max-width: 1020px) {
 
-    .desc {
-      margin-top: 2rem;
-      width: 30rem;
-      font-size: 1.5rem; 
-      line-height: 2rem; 
-      text-align: center;
-      margin-left: 5rem;
-    }
+.flex-container {
+  padding: 4rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+}
 
+@media only screen and (min-width: 1021px) and (max-width: 1199px) {
+
+  .img-bkg {
+    width: 40rem;
+  }
+
+.flex-container {
+  padding: 6rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
 }
 
 /* Media query for desktops */
 @media only screen and (min-width: 1200px) {
-  .thumbnail {
-    max-width: fit-content;
-    padding-left: 5rem;
-    margin-top: 100px;
-    }
-
-    .desc {
-      margin-left: 45rem;
-      display: flex;
-      font-style: italic;
-      width: 1000px;
-      font-size: 1.7rem;
-      margin-bottom: 10rem;
-      line-height: 2.5rem;
-      align-content: stretch;
-      justify-content: space-evenly;
-      align-items: center;
-    }
+  .flex-container {
+    display: flex;
+    padding: 4rem !important;
+    justify-content: space-between;
+}
 }
 </style>
 
@@ -136,6 +119,5 @@ $stmt->execute();
           </a>
         </section>
 
-    </main>
 </body>
 </html>
