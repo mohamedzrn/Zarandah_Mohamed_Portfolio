@@ -1,3 +1,14 @@
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+// create the scrollSmoother before your scrollTriggers
+ScrollSmoother.create({
+  smooth: 10, // how long (in seconds) it takes to "catch up" to the native scroll position
+  effects: true, // looks for data-speed and data-lag attributes on elements
+  smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+});
+
+
+
 // LETTER-CIPHER
 (function () {
   "use strict";
@@ -66,7 +77,7 @@
   }
 })();
 
-//Text-Scramble-Effect
+// Text-Scramble-Effect
 class TextScramble {
   constructor(el) {
     this.el = el;
@@ -138,27 +149,26 @@ const next = () => {
 
 next();
 
-// case study 1 
-
+// Case Study 1
 document.addEventListener('DOMContentLoaded', function () {
   const gallery = document.querySelector('.gallery');
   const images = gallery.querySelectorAll('img');
   let currentIndex = 0;
 
   function showImage(index) {
-      images.forEach((image, i) => {
-          image.style.display = i === index ? 'block' : 'none';
-      });
+    images.forEach((image, i) => {
+      image.style.display = i === index ? 'block' : 'none';
+    });
   }
 
   function nextImage() {
-      currentIndex = (currentIndex + 1) % images.length;
-      showImage(currentIndex);
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage(currentIndex);
   }
 
   function prevImage() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      showImage(currentIndex);
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage(currentIndex);
   }
 
   showImage(currentIndex);
@@ -167,9 +177,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const prevButton = document.getElementById('prevButton');
 
   if (nextButton && prevButton) {
-      nextButton.addEventListener('click', nextImage);
-      prevButton.addEventListener('click', prevImage);
+    nextButton.addEventListener('click', nextImage);
+    prevButton.addEventListener('click', prevImage);
   }
 });
+
 
 
