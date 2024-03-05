@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 05, 2024 at 12:40 AM
+-- Generation Time: Mar 05, 2024 at 12:48 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `contacts` (
   `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `contacts`
@@ -54,7 +54,8 @@ INSERT INTO `contacts` (`id`, `fname`, `lname`, `phone_number`, `email`, `messag
 (8, 'moha', NULL, NULL, 'mohamed@gmail.com', 'hello', '2024-02-26 11:07:32'),
 (9, 'dasdasd', NULL, NULL, 'sadasdasd@hotmail.com', 'asdasdasd', '2024-03-05 00:36:19'),
 (10, 'dasdasd', NULL, NULL, 'sadasdasd@hotmail.com', 'asdasdasd', '2024-03-05 00:36:39'),
-(11, 'dasdasd', NULL, NULL, 'sadasdasd@hotmail.com', 'asdasdasd', '2024-03-05 00:39:05');
+(11, 'dasdasd', NULL, NULL, 'sadasdasd@hotmail.com', 'asdasdasd', '2024-03-05 00:39:05'),
+(12, 'dasdasd', NULL, NULL, 'sadasdasd@hotmail.com', 'asdasdasd', '2024-03-05 00:47:18');
 
 -- --------------------------------------------------------
 
@@ -210,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
