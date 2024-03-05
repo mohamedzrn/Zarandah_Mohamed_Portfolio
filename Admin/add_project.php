@@ -8,13 +8,13 @@ $filename = $_FILES['thumb']['name'];
 
 $query = "INSERT INTO projects (title,description,image_url) VALUES (?,?,?)";
 
-$stmt = $connection->prepare($query);
+$stmt = $connect->prepare($query);
 $stmt->bindParam(1, $_POST['title'], PDO::PARAM_STR);
 $stmt->bindParam(2, $_POST['desc'], PDO::PARAM_STR);
 $stmt->bindParam(3, $filename, PDO::PARAM_STR);
 
 $stmt->execute();
-$last_id = $connection->lastInsertId();
+$last_id = $connect->lastInsertId();
 $stmt = null;
 header('Location: project_list.php');
 ?>

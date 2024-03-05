@@ -20,6 +20,9 @@ $stmt->execute();
     <link rel="stylesheet" href="../css/main.css" type="text/css">
 
     <style>
+
+        
+
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f5ebe0;
@@ -28,14 +31,27 @@ $stmt->execute();
         }
 
         h3 {
+            font-size:  25px;
             color: #333;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
         }
 
         .project-list {
             background-color: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            max-width: 45rem;
             padding: 10px;
             border: 1px solid #ccc;
-            margin: 5px 0;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin-left: 36rem;
         }
 
         form {
@@ -44,6 +60,8 @@ $stmt->execute();
             padding: 20px;
             background-color: #fff;
             border: 1px solid #ccc;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
         }
 
         label {
@@ -55,6 +73,7 @@ $stmt->execute();
         input[type="text"],
         input[type="file"],
         textarea {
+            background: none;
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
@@ -70,8 +89,13 @@ $stmt->execute();
         }
 
         a {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
             color: #337ab7;
             text-decoration: none;
+            padding-left:  5rem;
         }
 
         a:hover {

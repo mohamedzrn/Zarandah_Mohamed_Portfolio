@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 require_once('./includes/connect.php');
-$stmt = $connection->prepare('SELECT * FROM projects ORDER BY title ASC');
+$stmt = $connect->prepare('SELECT * FROM projects ORDER BY title ASC');
 $stmt->execute();
 ?>
 
