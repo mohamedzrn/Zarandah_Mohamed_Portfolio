@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 04, 2024 at 11:15 PM
+-- Generation Time: Mar 05, 2024 at 12:40 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -30,14 +30,14 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `contacts`;
 CREATE TABLE IF NOT EXISTS `contacts` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `fname` varchar(255) NOT NULL,
-  `lname` varchar(255) DEFAULT NULL,
-  `phone_number` varchar(20) DEFAULT NULL,
-  `email` varchar(255) NOT NULL,
-  `message` text NOT NULL,
+  `fname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_number` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `contacts`
@@ -51,7 +51,10 @@ INSERT INTO `contacts` (`id`, `fname`, `lname`, `phone_number`, `email`, `messag
 (5, 'moha', NULL, NULL, 'mohamed@gmail.com', 'hello', '2024-02-26 11:04:05'),
 (6, 'moha', NULL, NULL, 'mohamed@gmail.com', 'hello', '2024-02-26 11:04:13'),
 (7, 'moha', NULL, NULL, 'mohamed@gmail.com', 'hello', '2024-02-26 11:04:29'),
-(8, 'moha', NULL, NULL, 'mohamed@gmail.com', 'hello', '2024-02-26 11:07:32');
+(8, 'moha', NULL, NULL, 'mohamed@gmail.com', 'hello', '2024-02-26 11:07:32'),
+(9, 'dasdasd', NULL, NULL, 'sadasdasd@hotmail.com', 'asdasdasd', '2024-03-05 00:36:19'),
+(10, 'dasdasd', NULL, NULL, 'sadasdasd@hotmail.com', 'asdasdasd', '2024-03-05 00:36:39'),
+(11, 'dasdasd', NULL, NULL, 'sadasdasd@hotmail.com', 'asdasdasd', '2024-03-05 00:39:05');
 
 -- --------------------------------------------------------
 
@@ -207,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
