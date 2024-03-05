@@ -2,7 +2,7 @@
 <?php
 require_once('./includes/connect.php');
 $query = 'SELECT GROUP_CONCAT(image_filename) AS images, description, title, reviews, about, highlights FROM projects, media WHERE projects.id = project_id AND projects.id = :projectId';
-$stmt = $connection->prepare($query);
+$stmt = $connect->prepare($query);
 $projectId = $_GET['id'];
 $stmt->bindParam(':projectId', $projectId, PDO::PARAM_INT);
 $stmt->execute();
