@@ -9,7 +9,7 @@ if(!$_SESSION['username']) {
 }
 
 require_once('../includes/connect.php');
-$stmt = $connection->prepare('SELECT id,title FROM projects ORDER BY title ASC');
+$stmt = $connect->prepare('SELECT id,title FROM projects ORDER BY title ASC');
 $stmt->execute();
 ?>
 
