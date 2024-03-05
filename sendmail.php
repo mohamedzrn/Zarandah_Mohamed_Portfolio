@@ -1,6 +1,6 @@
 <?php
 
-require_once('connect.php');
+require_once('./includes/connect.php');
 
 // Check if the request is coming with POST method
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -32,15 +32,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if(empty($errors)) {
-        // Use prepared statement to avoid SQL injection
-        $query = "INSERT INTO contacts (fname, email, message) VALUES (?, ?, ?)";
-        $stmt = mysqli_prepare($connect, $query);
+        try {
+            // Use prepared statement to avoid SQL injection
+            $query = "INSERT INTO contacts (fname, email, message) VALUES (?, ?, ?)";
+            $stmt = $connect->prepare($query);
 
-        // Bind parameters
-        mysqli_stmt_bind_param($stmt, "sss", $full_name, $email, $msg);
+            // Bind parameters
+            $stmt->bindParam(1, $full_name, PDO::PARAM_STR);
+            $stmt->bindParam(2, $email, PDO::PARAM_STR);
+            $stmt->bindParam(3, $msg, PDO::PARAM_STR);
 
-        // Execute the statement
-        if(mysqli_stmt_execute($stmt)) {
+            // Execute the statement
+            $stmt->execute();
+
             // Format and send these values in an email
             $to = 'mohammedzrn13@gmail.com';
             $subject = 'Message from your Portfolio site!';
@@ -49,15 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $message .= "Email: " . $email . "\n";
             $message .= "Message: " . $msg . "\n";
 
-            mail($to, $subject, $message);
-
             echo 'Thank you for contacting us!';
-        } else {
-            echo 'Error: ' . mysqli_error($connect);
+        } catch (PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
         }
-
-        // Close the statement
-        mysqli_stmt_close($stmt);
     } else {
         // Handle your errors appropriately
         echo json_encode($errors);
@@ -68,5 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Close the connection
-mysqli_close($connect);
+$connect = null;
+
 ?>

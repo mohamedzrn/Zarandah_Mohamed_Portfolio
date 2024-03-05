@@ -75,8 +75,8 @@
 
         <div id="form-con">
         <form method="post" action="sendmail.php">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="user_name" required>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="user_name" required>
 
         <label for="email">Email:</label>
         <input type="email" id="email" name="user_email" required>
