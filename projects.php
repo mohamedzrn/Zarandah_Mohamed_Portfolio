@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-require_once('connect.php');
+require_once('connect_remote.php');
 $stmt = $connection->prepare('SELECT * FROM projects ORDER BY title ASC');
 $stmt->execute();
 ?>
