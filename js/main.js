@@ -150,7 +150,6 @@ const next = () => {
 next();
 
 // Case Study 1
-document.addEventListener('DOMContentLoaded', function () {
   const gallery = document.querySelector('.gallery');
   const images = gallery.querySelectorAll('img');
   let currentIndex = 0;
@@ -180,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
     nextButton.addEventListener('click', nextImage);
     prevButton.addEventListener('click', prevImage);
   }
-});
+
 
 
 
