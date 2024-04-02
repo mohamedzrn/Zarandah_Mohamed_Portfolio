@@ -45,34 +45,81 @@ echo '<img class="portfolio-image" src="image/'.$images[$i].'" alt="Project Imag
 
 <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            background-color: beige;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 10px;
         }
 
         h1 {
-            font-size: 2rem;
-            color: #333;
-            margin-bottom: 10px;
-            padding: 0.5rem;
+            font-size: 2.2rem;
+            color: brown;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-align: center;
         }
 
         p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #555;
-            margin-bottom: 10px;
-            padding-left: 0.8rem;
-            padding-right: 0.8rem;
+            margin-bottom: 15px;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
-        .portfolio-image {
+        .project-gallery {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            padding: 2rem;
-            height: auto;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .portfolio-image {
+            max-width: calc(50% - 20px);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .portfolio-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+        }
+
+        .go-back {
+            display: inline-block;
+            padding: 10px 15px;
+            color: #fff;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 20px;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+
+        .go-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-image {
+                max-width: 90%;
+            }
         }
     </style>
 
