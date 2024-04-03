@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             // Use prepared statement to avoid SQL injection
             $query = "INSERT INTO contacts (fname, email, message) VALUES (?, ?, ?)";
-            $stmt = $connect->prepare($query);
+            $stmt = $connection->prepare($query);
 
             // Bind parameters
             $stmt->bindParam(1, $full_name, PDO::PARAM_STR);
@@ -46,14 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute();
 
             // Format and send these values in an email
-            $to = 'mohammedzrn13@gmail.com';
+            $to = 'contact@mohzrn.ca';
             $subject = 'Message from your Portfolio site!';
             $message = "You have received a new contact form submission:\n\n";
             $message .= "Name: " . $full_name . "\n";
             $message .= "Email: " . $email . "\n";
             $message .= "Message: " . $msg . "\n";
 
-            echo 'Thank you for contacting us!';
+            echo 'Thank you for contacting me!';
         } catch (PDOException $e) {
             echo 'Error: ' . $e->getMessage();
         }

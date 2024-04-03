@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-require_once('./includes/connect.php');
-$stmt = $connect->prepare('SELECT * FROM projects ORDER BY title ASC');
+require_once('./includes/connect-remote.php');
+$stmt = $connection->prepare('SELECT * FROM projects ORDER BY title ASC');
 $stmt->execute();
 ?>
 
