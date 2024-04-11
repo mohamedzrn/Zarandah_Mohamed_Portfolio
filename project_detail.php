@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
-require_once('./includes/connect.php');
+require_once('./includes/connect-remote.php');
 $query = 'SELECT GROUP_CONCAT(image_filename) AS images, description, title, reviews, about, highlights FROM projects, media WHERE projects.id = project_id AND projects.id = :projectId';
-$stmt = $connect->prepare($query);
+$stmt = $connection->prepare($query);
 $projectId = $_GET['id'];
 $stmt->bindParam(':projectId', $projectId, PDO::PARAM_INT);
 $stmt->execute();
@@ -71,7 +71,8 @@ echo '<img class="portfolio-image" src="image/'.$images[$i].'" alt="Project Imag
         }
 
         p {
-            font-size: 1rem;
+            padding: 1.5rem;
+            font-size: 1.5rem;
             color: #555;
             margin-bottom: 15px;
             text-align: justify;

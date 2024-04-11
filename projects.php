@@ -17,13 +17,12 @@ $stmt->execute();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <title>ZRN - Project Case</title>
     <style>
-      /* Add your common styles here */
       
       /* Flex container setup for the portfolio section */
       .flex-container {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between; /* Adjust alignment */
+        justify-content: center; /* Adjust alignment */
         padding: 4rem !important;
       }
       
@@ -44,10 +43,12 @@ $stmt->execute();
       }
 
       /* Phones */
-      @media only screen and (min-width: 380px) and (max-width: 1020px) {
+      @media only screen and (min-width: 3px) and (max-width: 1020px) {
         .portimage {
-          width: calc(100% - 20px); /* 1 in a row */
-          margin: 10px 0; /* Adjusted margin for vertical spacing */
+          display: block;
+          justify-content: center;
+          max-width: calc(100% - 20px); /* 1 in a row */
+          margin: 10px; /* Adjusted margin for vertical spacing */
         }
       }
     </style>
@@ -80,11 +81,11 @@ $stmt->execute();
   <div class="hero-con col-span-full l-col-start-2 l-col-end-7 flex-container">
     <?php
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo '<div class="portimage" id="portimage'.$row['id'].'">   
+        echo '<div class="portimage" id="portimages'.$row['id'].'">   
             <a href="project_detail.php?id='.$row['id'].'">
                 <div class="img-wrapper">
                     <img class="img-bkg" src="image/'.$row['image_url'].'" alt="'.$row['title'].'">
-                    <div class="content fade">'.$row['description'].'</div>
+                    <div class="content fade" style="font-size: 1.3rem;">'.$row['description'].'</div>
                 </div>
             </a>
         </div>';
