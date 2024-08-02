@@ -24,6 +24,38 @@ $stmt = null;
   </head>
 <body>
 
+      <header class="grid-con" id="main-header">
+        <h2 class="hidden">Top Navigation</h2>
+
+        <a
+          href="index.html"
+          class="col-span-1 col-start-1 col-end-3 l-col-start-1 l-col-end-2"
+        >
+          <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom" />
+        </a>
+
+        <nav
+          class="col-span-1 col-start-12 col-end-13 l-col-start-1 l-col-end-2"
+          role="navigation"
+        >
+          <div id="menuToggle">
+            <input type="checkbox" />
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+              <a href="index.html"><li>Home</li></a>
+              <a href="ABOUT.html"><li>About</li></a>
+              <a href="projects.php"><li>Portfolio</li></a>
+              <a href="contact.php"><li>Contact</li></a>
+              <a href="video-player.html"><li>Video-sec</li></a>
+            </ul>
+          </div>
+        </nav>
+      </header>
+
 <h1><?php echo $row['title']; ?></h1>
 
 <p><?php echo $row['description']; ?></p>
@@ -46,10 +78,6 @@ echo '<img class="portfolio-image" src="image/'.$images[$i].'" alt="Project Imag
 <style>
         body {
             font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: beige;
             color: #333;
         }
 
@@ -73,10 +101,7 @@ echo '<img class="portfolio-image" src="image/'.$images[$i].'" alt="Project Imag
         p {
             padding: 1.5rem;
             font-size: 1.5rem;
-            color: #555;
-            margin-bottom: 15px;
-            text-align: justify;
-            text-justify: inter-word;
+            line-height: 2.2rem;
         }
 
         .project-gallery {

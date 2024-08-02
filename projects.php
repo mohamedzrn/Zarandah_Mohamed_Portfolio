@@ -16,6 +16,7 @@ $stmt->execute();
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <title>ZRN - Project Case</title>
+    
     <style>
       
       /* Flex container setup for the portfolio section */
