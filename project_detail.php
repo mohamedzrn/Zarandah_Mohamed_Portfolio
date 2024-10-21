@@ -20,115 +20,202 @@ $stmt = null;
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <title>ZRN - Project Case</title>
-  </head>
+    <title>ZRN - Project Bootcamp</title>
+</head>
+
 <body>
 
-<h1><?php echo $row['title']; ?></h1>
+<!-- <header class="grid-con" id="main-header">
+    <a href="index.html" class="col-span-1 col-start-1 col-end-3 l-col-start-1 l-col-end-2">
+      <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom" />
+    </a>
 
-<p><?php echo $row['description']; ?></p>
-<p><?php echo $row['reviews']; ?></p>
+    <nav class="col-span-1 col-start-12 col-end-13 l-col-start-1 l-col-end-2" role="navigation">
+      <div id="menuToggle">
+        <input type="checkbox">
+        <span></span>
+        <span></span>
+        <span></span>
 
-<section class="project-gallery">
-<?php 
-for($i =0; $i < count($images); $i++) {
+        <ul id="menu">
+          <a href="index.html"><li>Home</li></a>
+          <a href="ABOUT.html"><li>About</li></a>
+          <a href="projects.php"><li>Portfolio</li></a>
+          <a href="contact.php"><li>Contact</li></a>
+          <a href="video-player.html"><li>Video-sec</li></a>
+        </ul>
+      </div>
+    </nav>
+  </header> -->
 
-echo '<img class="portfolio-image" src="image/'.$images[$i].'" alt="Project Image">';
+<div class="container">
+    <!-- Title Section -->
+    <h1 class="project-title"><?php echo $row['title']; ?></h1>
 
-}
-?>
+        <!-- Gallery Section -->
+    <section class="project-gallery">
+        <?php 
+        for($i = 0; $i < count($images); $i++) {
+            echo '<div class="image-wrapper">';
+            echo '<img class="portfolio-image" src="image/'.$images[$i].'" alt="Project Image">';
+            echo '</div>';
+        }
+        ?>
+    </section>
+
+<!-- Description and Reviews Section -->
+<section class="content">
+    <h2 class="section-title">Description</h2>
+    <p class="description"><?php echo $row['description']; ?></p>
+    
+    <h2 class="section-title">Reviews</h2>
+    <p class="reviews"><?php echo $row['reviews']; ?></p>
 </section>
 
-<p><?php echo $row['about']; ?></p>
-<p><?php echo $row['highlights']; ?></p>
+<!-- About and Highlights Section -->
+<section class="about">
+    <h2 class="section-title">About</h2>
+    <p class="about-text"><?php echo $row['about']; ?></p>
+
+    <h2 class="section-title">Highlights</h2>
+    <p class="highlights"><?php echo $row['highlights']; ?></p>
+</section>
+
+    <!-- Go Back Button -->
+    <a href="projects.php" class="go-back">Go Back</a>
+</div>
 
 
+
+
+
+<!-- Styles -->
 <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: beige;
-            color: #333;
-        }
 
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
-            background: #ffffff;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border-radius: 10px;
-        }
+/* Section Titles */
+.section-title {
+    font-size: 1.5rem;
+    color: #885a5a;
+    margin-bottom: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
-        h1 {
-            font-size: 2.2rem;
-            color: brown;
-            margin-bottom: 20px;
-            font-weight: 700;
-            text-align: center;
-        }
+/* Body Reset and Typography */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Main Container */
+.container {
+    max-width: 1000px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Project Title */
+.project-title {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Content Section */
+.content {
+    align-items: center;
+    text-align: center;
+    margin-bottom: 40px;
+}
 
         p {
-            padding: 1.5rem;
-            font-size: 1.5rem;
+            font-size: 1rem;
             color: #555;
             margin-bottom: 15px;
             text-align: justify;
             text-justify: inter-word;
         }
 
-        .project-gallery {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
+/* Project Gallery */
+.project-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
 
-        .portfolio-image {
-            max-width: calc(50% - 20px);
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease-in-out;
-        }
+.image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
 
-        .portfolio-image:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.12);
-        }
+.portfolio-image {
+    width: 100%;
+    height: 100%;
+    object-fit:  fill;
+    transition: transform 0.3s ease-in-out;
+}
 
-        .go-back {
-            display: inline-block;
-            padding: 10px 15px;
-            color: #fff;
-            border-radius: 5px;
-            text-align: center;
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 20px;
-            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-        }
+.image-wrapper:hover .portfolio-image {
+    transform: scale(1.05);
+}
 
-        .go-back:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-        }
+/* Go Back Button */
+.go-back {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: brown;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    margin-top: 30px;
+}
 
-        @media (max-width: 768px) {
-            .portfolio-image {
-                max-width: 90%;
-            }
-        }
-    </style>
+.go-back:hover {
+    transform: translateY(-3px);
+    background-color: #ff5e39;
+}
 
-<section class="grid-con hero-con">
-    <a href="projects.php" id="explore-btn3" class="box col-span-full l-col-start-6 l-col-end-8">
-        go back
-    </a>
-</section>
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .project-title {
+        font-size: 2rem;
+    }
+
+    .description, .reviews {
+        font-size: 1.1rem;
+    }
+
+    .project-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .project-title {
+        font-size: 2.5rem;
+    }
+
+    .go-back {
+        padding: 10px 20px;
+    }
+}
+</style>
 
 </body>
 </html>
