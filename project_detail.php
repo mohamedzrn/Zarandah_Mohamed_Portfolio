@@ -25,6 +25,38 @@ $stmt = null;
 
 <body>
 
+      <header class="grid-con" id="main-header">
+        <h2 class="hidden">Top Navigation</h2>
+
+        <a
+          href="index.html"
+          class="col-span-1 col-start-1 col-end-3 l-col-start-1 l-col-end-2"
+        >
+          <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom" />
+        </a>
+
+        <nav
+          class="col-span-1 col-start-12 col-end-13 l-col-start-1 l-col-end-2"
+          role="navigation"
+        >
+          <div id="menuToggle">
+            <input type="checkbox" />
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+              <a href="index.html"><li>Home</li></a>
+              <a href="ABOUT.html"><li>About</li></a>
+              <a href="projects.php"><li>Portfolio</li></a>
+              <a href="contact.php"><li>Contact</li></a>
+              <a href="video-player.html"><li>Video-sec</li></a>
+            </ul>
+          </div>
+        </nav>
+      </header>
+
 <!-- <header class="grid-con" id="main-header">
     <a href="index.html" class="col-span-1 col-start-1 col-end-3 l-col-start-1 l-col-end-2">
       <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom" />
@@ -91,28 +123,14 @@ $stmt = null;
 
 <!-- Styles -->
 <style>
-
-/* Section Titles */
-.section-title {
-    font-size: 1.5rem;
-    color: #885a5a;
-    margin-bottom: 10px;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Body Reset and Typography */
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: beige;
+            color: #333;
+        }
 
 /* Main Container */
 .container {
@@ -139,7 +157,8 @@ body {
 }
 
         p {
-            font-size: 1rem;
+            padding: 1.5rem;
+            font-size: 1.5rem;
             color: #555;
             margin-bottom: 15px;
             text-align: justify;
