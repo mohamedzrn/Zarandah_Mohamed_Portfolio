@@ -25,60 +25,36 @@ $stmt = null;
 
 <body>
 
-      <header class="grid-con" id="main-header">
-        <h2 class="hidden">Top Navigation</h2>
+<header class="grid-con" id="main-header">
+    <h2 class="hidden">Top Navigation</h2>
 
-        <a
-          href="index.html"
-          class="col-span-1 col-start-1 col-end-3 l-col-start-1 l-col-end-2"
-        >
-          <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom" />
-        </a>
-
-        <nav
-          class="col-span-1 col-start-12 col-end-13 l-col-start-1 l-col-end-2"
-          role="navigation"
-        >
-          <div id="menuToggle">
+    <!-- Logo -->
+    <a
+        href="index.html"
+        class="col-span-1 col-start-1 col-end-3 l-col-start-1 l-col-end-2"
+    >
+        <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom" />
+            <!-- Navigation -->
+    <nav class="col-span-1 col-start-12 col-end-13 l-col-start-1 l-col-end-2" role="navigation">
+        <div id="menuToggle">
             <input type="checkbox" />
 
             <span></span>
             <span></span>
             <span></span>
 
+            <!-- Menu -->
             <ul id="menu">
-              <a href="index.html"><li>Home</li></a>
-              <a href="ABOUT.html"><li>About</li></a>
-              <a href="projects.php"><li>Portfolio</li></a>
-              <a href="contact.php"><li>Contact</li></a>
-              <a href="video-player.html"><li>Video-sec</li></a>
+                <a href="index.html"><li>Home</li></a>
+                <a href="ABOUT.html"><li>About</li></a>
+                <a href="projects.php"><li>Portfolio</li></a>
+                <a href="contact.php"><li>Contact</li></a>
+                <a href="video-player.html"><li>Video-sec</li></a>
             </ul>
-          </div>
-        </nav>
-      </header>
-
-<!-- <header class="grid-con" id="main-header">
-    <a href="index.html" class="col-span-1 col-start-1 col-end-3 l-col-start-1 l-col-end-2">
-      <img src="image/ZRN-Logo.svg" alt="Logo" class="logo-custom" />
-    </a>
-
-    <nav class="col-span-1 col-start-12 col-end-13 l-col-start-1 l-col-end-2" role="navigation">
-      <div id="menuToggle">
-        <input type="checkbox">
-        <span></span>
-        <span></span>
-        <span></span>
-
-        <ul id="menu">
-          <a href="index.html"><li>Home</li></a>
-          <a href="ABOUT.html"><li>About</li></a>
-          <a href="projects.php"><li>Portfolio</li></a>
-          <a href="contact.php"><li>Contact</li></a>
-          <a href="video-player.html"><li>Video-sec</li></a>
-        </ul>
-      </div>
+        </div>
     </nav>
-  </header> -->
+    </a>
+</header>
 
 <div class="container">
     <!-- Title Section -->
@@ -123,25 +99,30 @@ $stmt = null;
 
 <!-- Styles -->
 <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: beige;
-            color: #333;
-        }
+
+/* General Styling Upgrades */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
 
 /* Main Container */
 .container {
     max-width: 1000px;
-    padding: 40px;
+    padding-top: 55px;
+    padding-right: 40px;
+    padding-left: 40px;
     border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); */
+    margin: 0 auto;
 }
 
 /* Project Title */
 .project-title {
+    font-size: 2.5rem; /* Unified across desktop and mobile */
     color: #333;
     text-align: center;
     margin-bottom: 30px;
@@ -149,26 +130,31 @@ $stmt = null;
     letter-spacing: 1.5px;
 }
 
+/* Section Title */
+.section-title {
+    font-size: 1.8rem;
+    text-align: center;
+}
+
 /* Content Section */
 .content {
     align-items: center;
-    text-align: center;
+    text-align: justify; /* Consistent alignment */
     margin-bottom: 40px;
 }
 
-        p {
-            padding: 1.5rem;
-            font-size: 1.5rem;
-            color: #555;
-            margin-bottom: 15px;
-            text-align: justify;
-            text-justify: inter-word;
-        }
+p {
+    padding: 1.5rem;
+    font-size: 1.2rem; /* Standardized text size */
+    color: #555;
+    margin-bottom: 15px;
+    text-align: left; /* Unified text justification */
+}
 
 /* Project Gallery */
 .project-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Flexible column layout */
     gap: 20px;
     margin-bottom: 40px;
 }
@@ -181,7 +167,7 @@ $stmt = null;
 .portfolio-image {
     width: 100%;
     height: 100%;
-    object-fit:  fill;
+    object-fit: fill;
     transition: transform 0.3s ease-in-out;
 }
 
@@ -191,9 +177,9 @@ $stmt = null;
 
 /* Go Back Button */
 .go-back {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: brown;
+    display: inline-block; /* Allows it to maintain size based on content */
+    padding: 12px 24px; /* Comfortable padding */
+    background-color: #885A5A;
     color: white;
     text-transform: uppercase;
     text-align: center;
@@ -207,7 +193,7 @@ $stmt = null;
 
 .go-back:hover {
     transform: translateY(-3px);
-    background-color: #ff5e39;
+    background-color: #B47E7E;
 }
 
 /* Responsive Styles */
@@ -216,24 +202,42 @@ $stmt = null;
         font-size: 2rem;
     }
 
-    .description, .reviews {
+    p {
         font-size: 1.1rem;
+        text-align: left;
     }
 
     .project-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Smaller columns */
+    }
+    
+    /* Go Back Button */
+    .go-back {
+        display: inline-block; /* Allows it to maintain size based on content */
+        padding: 12px 24px; /* Comfortable padding */
+        background-color: #885A5A;
+        color: white;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 600;
+        border-radius: 8px;
+        text-decoration: none;
+        letter-spacing: 1px;
+        transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+        margin-top: 30px;
     }
 }
 
 @media (max-width: 480px) {
     .project-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .go-back {
         padding: 10px 20px;
     }
 }
+
 </style>
 
 </body>
