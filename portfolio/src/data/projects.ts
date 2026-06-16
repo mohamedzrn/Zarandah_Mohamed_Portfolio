@@ -28,11 +28,12 @@ export const projects: Project[] = [
     about:
       "Crafting an innovative earbuds website for MHZ has been a gratifying endeavor, allowing me to bring my unique vision to life. The website stands as a testament to the fusion of passion for technology and design.",
     highlights:
-      'Immersive Sound Experience. Sleek and Comfortable ergonomic design. Intuitive Touch Controls. Seamless user experience across all devices.',
+      'Interactive 3D model viewer built in Cinema4D — rotate and zoom the earbuds from every angle. X-ray function reveals internal technology hidden inside the design. GSAP scrolling animations that progressively unveil each feature as you scroll. Showcases noise cancellation, touch-sensitive controls, and ergonomic design through immersive UI.',
     review:
       '"Simply put, these MHZ earbuds have elevated my music experience. Clear sound, comfortable fit — a game-changer for daily use!"',
     imageUrl: imgUrl('/images/mhz-banner.png'),
-    tags: ['Web Design', 'HTML', 'CSS', 'GSAP'],
+    tags: ['Web Design', 'HTML', 'CSS', 'GSAP', 'Cinema4D', '3D Modelling'],
+    githubUrl: 'https://github.com/mohamedzrn/Mohamed_Zarandah_EarbudWebsite',
     category: 'web',
   },
   {
@@ -83,6 +84,7 @@ export const projects: Project[] = [
     imageUrl: imgUrl('/images/event-simplified-banner.png'),
     screenshots: [imgUrl('/images/event-simplified-ss1.jpg'), imgUrl('/images/event-simplified-ss2.jpg')],
     tags: ['Web Design', 'HTML', 'CSS/SCSS', 'Responsive'],
+    githubUrl: 'https://github.com/mohamedzrn/Event-Simplified',
     category: 'web',
   },
   {
@@ -211,13 +213,13 @@ export const projects: Project[] = [
     description:
       'A fully automated B2B cold outreach pipeline — discovers jobs, enriches contacts, generates personalised emails with a local AI model, and sends via Gmail. Zero API cost.',
     about:
-      'A self-hosted B2B outreach engine that runs 24/7 on Render. It searches Greenhouse, Lever, Ashby, Wellfound, and LinkedIn every 6 hours across 4 role lanes, scores leads (0–100), generates personalised cold emails + LinkedIn DMs using a local LLaMA 3.1 model via Ollama, builds a lane-specific PDF resume per job, and saves Gmail drafts for review — all at zero ongoing AI cost.',
+      'A self-hosted B2B partner outreach engine built as proof-of-work for Affilial.com. It runs 24/7 on Render, searching Greenhouse, Lever, Ashby, Wellfound, and LinkedIn every 6 hours for Account Manager, Partner Manager, and Affiliate Manager roles. Leads are scored (0–100), enriched via Hunter.io, then personalised emails are generated with Claude Haiku and sent through Gmail SMTP — with full follow-up sequencing and A/B testing baked in.',
     highlights:
-      'Job discovery across 5 boards with 20 targeted queries every 6 hours. Rules-based lead scoring (0–100) with 3 priority tiers. AI email and LinkedIn DM generation using local LLaMA 3.1 via Ollama at zero API cost. Tailored PDF resume built per job attached to every Gmail draft. A/B prompt testing with SQLite tracking and auto-promotion of winning variant. Day 3 and Day 7 follow-up sequences with IMAP reply detection to cancel on response. Google Sheets integration — approve a row and the engine picks it up automatically. Live Express.js dashboard deployed 24/7 on Render.',
+      'Job discovery across 5 boards every 6 hours — Greenhouse, Lever, Ashby, Wellfound, LinkedIn. Rules-based lead scoring (0–100) with 3 priority tiers (skip below 80). Claude Haiku AI generates personalised cold emails and follow-ups per lead. Email enrichment via Hunter.io with web research on top prospects. A/B prompt testing with SQLite tracking — auto-promotes winning variant after 10 sends. Day 3 and Day 7 follow-up sequences with IMAP reply detection to cancel on response. Google Sheets integration — approve a row and the engine picks it up automatically. Express.js dashboard with 30-second auto-refresh deployed 24/7 on Render.',
     review:
       '"Full pipeline in one command. The A/B prompt testing and lead scoring alone saved hours of manual triage every week."',
     imageUrl: imgUrl('/images/lemlist-banner.svg'),
-    tags: ['Node.js', 'Ollama', 'LLaMA 3.1', 'Gmail IMAP', 'Google Sheets', 'SQLite', 'PDFKit', 'Render'],
+    tags: ['Node.js', 'Claude API', 'Gmail SMTP', 'Hunter.io', 'Google Sheets', 'SQLite', 'Express.js', 'Render'],
     liveUrl: 'https://lemlist-partner-engine.onrender.com',
     githubUrl: 'https://github.com/mohamedzrn/lemlist-partner-engine',
     category: 'api',
@@ -253,6 +255,7 @@ export const projects: Project[] = [
       '"Replaced our entire manual content research process. The audio bank alone surfaces trends before they peak."',
     imageUrl: imgUrl('/images/noctura-banner.svg'),
     tags: ['Python', 'Claude API', 'instagrapi', 'SQLite', 'Notion API', 'Flask', 'Residential Proxy'],
+    githubUrl: 'https://github.com/mohamedzrn/noctura-trend-search',
     category: 'api',
   },
 ];
