@@ -1,0 +1,100 @@
+import { SectionTitle } from '../ui/SectionTitle';
+
+interface ExperienceItem {
+  role: string;
+  company: string;
+  period: string;
+  description: string[];
+  type: 'work' | 'freelance';
+}
+
+const experiences: ExperienceItem[] = [
+  {
+    role: 'Creative Developer & Web Designer',
+    company: 'Freelance / Self-Employed',
+    period: '2022 – Present',
+    type: 'freelance',
+    description: [
+      'Designed and developed client websites including Event Simplified and Foundation Sixty6.',
+      'Delivered full-stack web solutions from wireframes to production deployment.',
+      'Produced brand identities, motion graphics, and video productions for small businesses.',
+      'Applied QA testing methodologies to ensure cross-browser and cross-device compatibility.',
+    ],
+  },
+  {
+    role: 'Interactive Media & Web Developer',
+    company: 'Fanshawe College — Academic Projects',
+    period: '2021 – 2024',
+    type: 'work',
+    description: [
+      'Built 10+ projects spanning web development, UX/UI design, API integrations, and video production.',
+      'Developed Bootcamp WebView platform for Industry Night, connecting students with industry professionals.',
+      'Created REST API integrations using PHP/Lumen and JavaScript Fetch API.',
+      'Gained hands-on experience with Selenium automated testing and QA documentation.',
+    ],
+  },
+];
+
+export function Experience() {
+  return (
+    <section
+      id="experience"
+      className="py-24 bg-slate-50 dark:bg-slate-900"
+      aria-labelledby="experience-heading"
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionTitle
+          label="Experience"
+          title="Work History"
+          description="Projects, roles, and experiences that have shaped my skills."
+        />
+
+        <div className="relative max-w-3xl mx-auto">
+          {/* Timeline line */}
+          <div className="absolute left-4 top-0 bottom-0 w-px bg-slate-200 dark:bg-slate-700 md:left-1/2" />
+
+          <div className="space-y-12">
+            {experiences.map((exp, i) => (
+              <div
+                key={i}
+                className={`relative flex items-start gap-8 md:gap-0 ${
+                  i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                }`}
+              >
+                {/* Dot */}
+                <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-violet-500 border-2 border-white dark:border-slate-900 -translate-x-1/2 mt-1.5 z-10" />
+
+                {/* Card */}
+                <div
+                  className={`ml-10 md:ml-0 md:w-[calc(50%-2rem)] bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm ${
+                    i % 2 === 0 ? 'md:mr-8' : 'md:ml-8'
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <div>
+                      <h3 className="font-bold text-slate-900 dark:text-white">{exp.role}</h3>
+                      <p className="text-violet-600 dark:text-violet-400 text-sm font-medium">
+                        {exp.company}
+                      </p>
+                    </div>
+                    <span className="text-xs text-slate-400 dark:text-slate-500 whitespace-nowrap pt-0.5">
+                      {exp.period}
+                    </span>
+                  </div>
+                  <ul className="space-y-1.5">
+                    {exp.description.map((item, j) => (
+                      <li key={j} className="flex items-start gap-2 text-slate-500 dark:text-slate-400 text-sm">
+                        <span className="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-500 shrink-0 mt-1.5" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
