@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode (Tailwind v4 defaults to media query) */
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Cream palette */
   --color-cream: #f5ebe0;

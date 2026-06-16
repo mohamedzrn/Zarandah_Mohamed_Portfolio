@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { Theme } from '../../types';
+import { imgUrl } from '../../utils/assets';
 
 interface NavbarProps {
   theme: Theme;
@@ -43,7 +44,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
             className="flex items-center gap-2 rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mauve"
           >
             <img
-              src="/images/ZRN-Logo.svg"
+              src={imgUrl('/images/ZRN-Logo.svg')}
               alt="ZRN Logo"
               className="h-8 w-auto"
               onError={(e) => {

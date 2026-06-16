@@ -1,4 +1,5 @@
 import type { Project } from '../types';
+import { imgUrl } from '../utils/assets';
 
 export const projects: Project[] = [
   {
@@ -13,7 +14,7 @@ export const projects: Project[] = [
       'Signature Lipstick Collection inspired by vibrant Latin colors. Sultry Eyeshadow Palette with rich earthy tones. Radiance Foundation with lightweight, natural-finish formula.',
     review:
       '"Kavorka\'s products are a true reflection of elegance and quality. I love how they embrace Latin beauty traditions while offering modern choices." — Maria, Makeup Enthusiast',
-    imageUrl: '/images/kavorka-banner.png',
+    imageUrl: imgUrl('/images/kavorka-banner.png'),
     tags: ['Branding', 'UI Design', 'Figma'],
     category: 'design',
   },
@@ -29,7 +30,7 @@ export const projects: Project[] = [
       'Immersive Sound Experience. Sleek and Comfortable ergonomic design. Intuitive Touch Controls. Seamless user experience across all devices.',
     review:
       '"Simply put, these MHZ earbuds have elevated my music experience. Clear sound, comfortable fit — a game-changer for daily use!"',
-    imageUrl: '/images/mhz-banner.png',
+    imageUrl: imgUrl('/images/mhz-banner.png'),
     tags: ['Web Design', 'HTML', 'CSS', 'GSAP'],
     category: 'web',
   },
@@ -45,7 +46,7 @@ export const projects: Project[] = [
       'Strategic diversification into adult beverages. Focus on craft seltzers. Complete contemporary rebranding that speaks to the adult market.',
     review:
       '"Quatro\'s beverage is a taste revolution! A burst of unique flavors that left me craving more." — Emily M., Flavor Explorer',
-    imageUrl: '/images/quatro-banner.png',
+    imageUrl: imgUrl('/images/quatro-banner.png'),
     tags: ['Branding', 'Web Design', 'UI/UX'],
     category: 'design',
   },
@@ -61,7 +62,7 @@ export const projects: Project[] = [
       '3D model and video demonstration support. Virtual business card exchanges. Scheduled one-on-one video meetings. Real-time feedback from industry professionals.',
     review:
       '"I recently had the pleasure of using the innovative digital platform developed for Fanshawe College\'s Industry Night, and it exceeded all my expectations!"',
-    imageUrl: '/images/bootcamp-banner.png',
+    imageUrl: imgUrl('/images/bootcamp-banner.png'),
     tags: ['React', 'UI/UX', 'WebView', 'Fanshawe'],
     category: 'web',
   },
@@ -77,7 +78,7 @@ export const projects: Project[] = [
       'Collaborated directly with the founder. Comprehensive audience research. Consistent color scheme and cohesive design. Fully responsive across all devices.',
     review:
       '"After participating in the Event Simplified website design project, I am thoroughly impressed with the comprehensive learning experience it provided." ',
-    imageUrl: '/images/event-simplified-banner.png',
+    imageUrl: imgUrl('/images/event-simplified-banner.png'),
     tags: ['Web Design', 'HTML', 'CSS/SCSS', 'Responsive'],
     category: 'web',
   },
@@ -93,7 +94,7 @@ export const projects: Project[] = [
       'Intuitive resource navigation. Community support systems. Educational workshops and content. Destigmatizing mental health through design.',
     review:
       '"I stumbled upon Foundation Sixty 6\'s website during a difficult time, and it was a beacon of hope."',
-    imageUrl: '/images/foundation-sixty6-banner.png',
+    imageUrl: imgUrl('/images/foundation-sixty6-banner.png'),
     tags: ['Web Design', 'HTML', 'CSS', 'Accessibility'],
     category: 'web',
   },
@@ -109,7 +110,7 @@ export const projects: Project[] = [
       'Compelling visual narratives on human rights. Bridge connecting diverse communities. Artistic activism through design.',
     review:
       '"I recently came across this series of posters designed to reflect on the profound effects of human rights, and I was deeply moved."',
-    imageUrl: '/images/fundraising-campaign-banner.png',
+    imageUrl: imgUrl('/images/fundraising-campaign-banner.png'),
     tags: ['Poster Design', 'Adobe Illustrator', 'Adobe Photoshop'],
     category: 'design',
   },
@@ -125,7 +126,7 @@ export const projects: Project[] = [
       'Innovative cinematography techniques. Blend of real-world and digital artistry. Collaborative filmmaking process documented.',
     review:
       '"Fragments of Reality is a mesmerizing journey through the complexities of human emotion and perception."',
-    imageUrl: '/images/fragments-banner.png',
+    imageUrl: imgUrl('/images/fragments-banner.png'),
     tags: ['Video Production', 'Adobe Premiere', 'After Effects'],
     category: 'video',
   },
@@ -141,7 +142,7 @@ export const projects: Project[] = [
       'Lumen JS frontend. RESTful Backend API integration. Optimized queries for minimal response times. Clean, clutter-free UX for manga discovery.',
     review:
       '"Discovering the manga API webstore was an absolute game-changer for how I consume manga. Smooth and intuitive!"',
-    imageUrl: '/images/manga-api-banner.png',
+    imageUrl: imgUrl('/images/manga-api-banner.png'),
     tags: ['PHP', 'Lumen JS', 'REST API', 'MySQL'],
     category: 'api',
   },
@@ -157,7 +158,7 @@ export const projects: Project[] = [
       'Intimate storytelling and dynamic cinematography. Natural lighting and close-up techniques. Tribute to small family businesses and community.',
     review:
       '"The video is nothing short of inspiring. From the moment it begins, you\'re drawn into the heartfelt story of resilience and family bonds."',
-    imageUrl: '/images/mothersun-banner.png',
+    imageUrl: imgUrl('/images/mothersun-banner.png'),
     tags: ['Video Production', 'Cinematography', 'Storytelling'],
     category: 'video',
   },
@@ -173,7 +174,7 @@ export const projects: Project[] = [
       'High-quality automotive photography. Deep-dive articles on iconic models. Personal road trip anecdotes. Community hub for car enthusiasts.',
     review:
       '"Discovering this self-built website dedicated to car enthusiasm was an absolute delight. The passion behind every page is evident from the first click."',
-    imageUrl: '/images/csl-banner.png',
+    imageUrl: imgUrl('/images/csl-banner.png'),
     tags: ['HTML', 'CSS', 'JavaScript', 'Responsive'],
     category: 'web',
   },
@@ -189,7 +190,7 @@ export const projects: Project[] = [
       'Optimized API queries for minimal latency. Structured data retrieval for characters, planets, vehicles. Developer-friendly and well-documented.',
     review:
       '"Exploring this Star Wars API file was enthralling. Its clarity, efficiency, and thoughtful design stood out for developers of all skill levels."',
-    imageUrl: '/images/starwars-banner.png',
+    imageUrl: imgUrl('/images/starwars-banner.png'),
     tags: ['JavaScript', 'REST API', 'Fetch API'],
     category: 'api',
   },

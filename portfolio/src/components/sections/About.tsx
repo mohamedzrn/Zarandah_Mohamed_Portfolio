@@ -1,4 +1,5 @@
 import { SectionTitle } from '../ui/SectionTitle';
+import { imgUrl } from '../../utils/assets';
 
 export function About() {
   return (
@@ -18,13 +19,13 @@ export function About() {
           <div className="relative">
             <div className="grid grid-cols-2 gap-4">
               <img
-                src="/images/me-1.jpg"
+                src={imgUrl('/images/me-1.jpg')}
                 alt="Mohamed Zarandah"
                 className="w-full rounded-2xl object-cover aspect-[3/4] shadow-xl"
                 loading="lazy"
               />
               <img
-                src="/images/me-2.jpg"
+                src={imgUrl('/images/me-2.jpg')}
                 alt="Mohamed Zarandah"
                 className="w-full rounded-2xl object-cover aspect-[3/4] shadow-xl mt-8"
                 loading="lazy"
