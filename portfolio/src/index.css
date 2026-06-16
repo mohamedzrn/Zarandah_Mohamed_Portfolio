@@ -1,5 +1,44 @@
 @import "tailwindcss";
 
+@theme {
+  /* Cream palette */
+  --color-cream: #f5ebe0;
+  --color-cream-dark: #ede3d9;
+  --color-cream-border: #d4c0b0;
+
+  /* Mauve accent palette */
+  --color-mauve: #885a5a;
+  --color-mauve-dark: #6c3f3f;
+  --color-mauve-light: #a87070;
+  --color-mauve-faint: #c49090;
+
+  /* Warm dark palette (for dark mode) */
+  --color-warm-950: #1e1010;
+  --color-warm-900: #2d1a1a;
+  --color-warm-800: #3d2525;
+  --color-warm-700: #4d3030;
+  --color-warm-600: #6e4a4a;
+  --color-warm-400: #c9a898;
+  --color-warm-300: #dcc0b0;
+  --color-warm-200: #e8d5c4;
+}
+
+@font-face {
+  font-family: 'PTSansCaption';
+  src: url('/fonts/PTSansCaption-Regular.woff2') format('woff2'),
+       url('/fonts/PTSansCaption-Regular.woff') format('woff'),
+       url('/fonts/PTSansCaption-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PTSansCaption';
+  src: url('/fonts/PTSansCaption-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 @layer base {
   :root {
     color-scheme: light dark;
@@ -12,8 +51,14 @@
   }
 
   body {
-    @apply bg-white text-slate-700 dark:bg-slate-950 dark:text-slate-300;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #f5ebe0;
+    color: #555;
+    font-family: 'PTSansCaption', 'PT Sans Caption', system-ui, sans-serif;
+  }
+
+  .dark body {
+    background-color: #1e1010;
+    color: #e8d5c4;
   }
 
   * {
@@ -21,7 +66,16 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply text-slate-900 dark:text-white;
+    color: #333;
+  }
+
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    color: #f5ebe0;
   }
 }
 
@@ -30,21 +84,24 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  @apply bg-slate-100 dark:bg-slate-900;
+  background: #ede3d9;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-400 dark:bg-slate-600 rounded-full;
+  background: #885a5a;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-500 dark:bg-slate-500;
+  background: #6c3f3f;
 }
 
 /* Focus ring */
 :focus-visible {
-  @apply outline-2 outline-offset-2 outline-violet-500;
+  outline: 2px solid #885a5a;
+  outline-offset: 2px;
 }
 
 /* Selection */
 ::selection {
-  @apply bg-violet-500/20 text-violet-900 dark:text-violet-200;
+  background-color: rgba(136, 90, 90, 0.2);
+  color: #333;
 }
