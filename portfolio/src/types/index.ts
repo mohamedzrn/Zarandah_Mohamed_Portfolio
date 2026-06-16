@@ -7,6 +7,7 @@ export interface Project {
   highlights: string;
   review: string;
   imageUrl: string;
+  screenshots?: string[];
   tags: string[];
   liveUrl?: string;
   githubUrl?: string;

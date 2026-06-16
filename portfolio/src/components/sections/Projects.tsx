@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { SectionTitle } from '../ui/SectionTitle';
 import { Badge } from '../ui/Badge';
+import { ProjectModal } from '../ui/ProjectModal';
 import { projects } from '../../data/projects';
 import type { Project } from '../../types';
 
@@ -16,6 +17,7 @@ const filters: { label: string; value: FilterCategory }[] = [
 
 export function Projects() {
   const [activeFilter, setActiveFilter] = useState<FilterCategory>('all');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filtered =
     activeFilter === 'all'
@@ -61,17 +63,35 @@ export function Projects() {
         {/* Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onClick={() => setSelectedProject(project)}
+            />
           ))}
         </div>
       </div>
+
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </section>
   );
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
   return (
-    <article className="group bg-cream dark:bg-warm-800 rounded-2xl border border-cream-border dark:border-warm-700 overflow-hidden hover:border-mauve dark:hover:border-mauve hover:shadow-xl hover:shadow-mauve/10 transition-all duration-300">
+    <article
+      className="group bg-cream dark:bg-warm-800 rounded-2xl border border-cream-border dark:border-warm-700 overflow-hidden hover:border-mauve dark:hover:border-mauve hover:shadow-xl hover:shadow-mauve/10 transition-all duration-300 cursor-pointer"
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onClick(); }}
+      aria-label={`View details for ${project.title}`}
+    >
       {/* Image */}
       <div className="relative overflow-hidden aspect-video bg-cream-dark dark:bg-warm-900">
         <img
@@ -86,11 +106,13 @@ function ProjectCard({ project }: { project: Project }) {
             {project.category}
           </span>
         </div>
-        {/* Hover overlay — mirrors old site's mauve image hover */}
-        <div className="absolute inset-0 bg-mauve/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
-          <p className="text-cream text-sm text-center leading-relaxed">
-            {project.description}
-          </p>
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-mauve/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
+          <svg className="w-5 h-5 text-cream" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg>
+          <span className="text-cream text-sm font-medium">View Details</span>
         </div>
       </div>
 
@@ -102,7 +124,7 @@ function ProjectCard({ project }: { project: Project }) {
             <Badge key={tag}>{tag}</Badge>
           ))}
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3" onClick={(e) => e.stopPropagation()}>
           {project.liveUrl && (
             <a
               href={project.liveUrl}

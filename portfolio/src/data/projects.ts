@@ -15,6 +15,7 @@ export const projects: Project[] = [
     review:
       '"Kavorka\'s products are a true reflection of elegance and quality. I love how they embrace Latin beauty traditions while offering modern choices." — Maria, Makeup Enthusiast',
     imageUrl: imgUrl('/images/kavorka-banner.png'),
+    screenshots: [imgUrl('/images/kavorka-ss.jpg')],
     tags: ['Branding', 'UI Design', 'Figma'],
     category: 'design',
   },
@@ -63,6 +64,7 @@ export const projects: Project[] = [
     review:
       '"I recently had the pleasure of using the innovative digital platform developed for Fanshawe College\'s Industry Night, and it exceeded all my expectations!"',
     imageUrl: imgUrl('/images/bootcamp-banner.png'),
+    screenshots: [imgUrl('/images/bootcamp-ss1.jpg'), imgUrl('/images/bootcamp-ss2.JPG')],
     tags: ['React', 'UI/UX', 'WebView', 'Fanshawe'],
     category: 'web',
   },
@@ -79,6 +81,7 @@ export const projects: Project[] = [
     review:
       '"After participating in the Event Simplified website design project, I am thoroughly impressed with the comprehensive learning experience it provided." ',
     imageUrl: imgUrl('/images/event-simplified-banner.png'),
+    screenshots: [imgUrl('/images/event-simplified-ss1.jpg'), imgUrl('/images/event-simplified-ss2.jpg')],
     tags: ['Web Design', 'HTML', 'CSS/SCSS', 'Responsive'],
     category: 'web',
   },
@@ -95,6 +98,7 @@ export const projects: Project[] = [
     review:
       '"I stumbled upon Foundation Sixty 6\'s website during a difficult time, and it was a beacon of hope."',
     imageUrl: imgUrl('/images/foundation-sixty6-banner.png'),
+    screenshots: [imgUrl('/images/foundation-sixty6-ss1.jpg'), imgUrl('/images/foundation-sixty6-ss2.jpg')],
     tags: ['Web Design', 'HTML', 'CSS', 'Accessibility'],
     category: 'web',
   },
@@ -111,6 +115,7 @@ export const projects: Project[] = [
     review:
       '"I recently came across this series of posters designed to reflect on the profound effects of human rights, and I was deeply moved."',
     imageUrl: imgUrl('/images/fundraising-campaign-banner.png'),
+    screenshots: [imgUrl('/images/fundraising-campaign-ss1.jpg'), imgUrl('/images/fundraising-campaign-ss2.jpg')],
     tags: ['Poster Design', 'Adobe Illustrator', 'Adobe Photoshop'],
     category: 'design',
   },
@@ -127,6 +132,7 @@ export const projects: Project[] = [
     review:
       '"Fragments of Reality is a mesmerizing journey through the complexities of human emotion and perception."',
     imageUrl: imgUrl('/images/fragments-banner.png'),
+    screenshots: [imgUrl('/images/fragments-ss1.jpg'), imgUrl('/images/fragments-ss2.jpg')],
     tags: ['Video Production', 'Adobe Premiere', 'After Effects'],
     category: 'video',
   },
@@ -143,6 +149,7 @@ export const projects: Project[] = [
     review:
       '"Discovering the manga API webstore was an absolute game-changer for how I consume manga. Smooth and intuitive!"',
     imageUrl: imgUrl('/images/manga-api-banner.png'),
+    screenshots: [imgUrl('/images/manga-api-ss1.jpg')],
     tags: ['PHP', 'Lumen JS', 'REST API', 'MySQL'],
     category: 'api',
   },
@@ -159,6 +166,7 @@ export const projects: Project[] = [
     review:
       '"The video is nothing short of inspiring. From the moment it begins, you\'re drawn into the heartfelt story of resilience and family bonds."',
     imageUrl: imgUrl('/images/mothersun-banner.png'),
+    screenshots: [imgUrl('/images/mothersun-ss1.jpg'), imgUrl('/images/mothersun-ss2.jpg')],
     tags: ['Video Production', 'Cinematography', 'Storytelling'],
     category: 'video',
   },
@@ -175,6 +183,7 @@ export const projects: Project[] = [
     review:
       '"Discovering this self-built website dedicated to car enthusiasm was an absolute delight. The passion behind every page is evident from the first click."',
     imageUrl: imgUrl('/images/csl-banner.png'),
+    screenshots: [imgUrl('/images/csl-ss1.JPG'), imgUrl('/images/csl-ss2.JPG')],
     tags: ['HTML', 'CSS', 'JavaScript', 'Responsive'],
     category: 'web',
   },
@@ -191,6 +200,7 @@ export const projects: Project[] = [
     review:
       '"Exploring this Star Wars API file was enthralling. Its clarity, efficiency, and thoughtful design stood out for developers of all skill levels."',
     imageUrl: imgUrl('/images/starwars-banner.png'),
+    screenshots: [imgUrl('/images/starwars-ss1.jpg'), imgUrl('/images/starwars-ss2.jpg')],
     tags: ['JavaScript', 'REST API', 'Fetch API'],
     category: 'api',
   },
