@@ -25,7 +25,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="py-24 bg-white dark:bg-slate-950"
+      className="py-24 bg-cream-dark dark:bg-warm-900"
       aria-labelledby="projects-heading"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,7 +36,11 @@ export function Projects() {
         />
 
         {/* Filter tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12" role="tablist" aria-label="Filter projects by category">
+        <div
+          className="flex flex-wrap justify-center gap-2 mb-12"
+          role="tablist"
+          aria-label="Filter projects by category"
+        >
           {filters.map((f) => (
             <button
               key={f.value}
@@ -45,8 +49,8 @@ export function Projects() {
               onClick={() => setActiveFilter(f.value)}
               className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${
                 activeFilter === f.value
-                  ? 'bg-violet-600 text-white shadow-md shadow-violet-500/20'
-                  : 'text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 bg-slate-100 dark:bg-slate-800 hover:bg-violet-50 dark:hover:bg-violet-900/20'
+                  ? 'bg-mauve text-cream shadow-md shadow-mauve/20'
+                  : 'text-[#555] dark:text-warm-300 hover:text-mauve dark:hover:text-mauve-faint bg-cream dark:bg-warm-800 hover:bg-mauve/10 dark:hover:bg-mauve/10'
               }`}
             >
               {f.label}
@@ -67,9 +71,9 @@ export function Projects() {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="group bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-violet-300 dark:hover:border-violet-700 hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-300">
+    <article className="group bg-cream dark:bg-warm-800 rounded-2xl border border-cream-border dark:border-warm-700 overflow-hidden hover:border-mauve dark:hover:border-mauve hover:shadow-xl hover:shadow-mauve/10 transition-all duration-300">
       {/* Image */}
-      <div className="relative overflow-hidden aspect-video bg-slate-200 dark:bg-slate-800">
+      <div className="relative overflow-hidden aspect-video bg-cream-dark dark:bg-warm-900">
         <img
           src={project.imageUrl}
           alt={project.title}
@@ -78,36 +82,33 @@ function ProjectCard({ project }: { project: Project }) {
         />
         {/* Category pill */}
         <div className="absolute top-3 right-3">
-          <span className="px-2.5 py-1 text-xs font-medium rounded-full bg-black/60 text-white backdrop-blur-sm capitalize">
+          <span className="px-2 py-1 text-xs font-medium rounded-full bg-cream/90 dark:bg-warm-900/90 text-mauve border border-mauve/20 capitalize">
             {project.category}
           </span>
+        </div>
+        {/* Hover overlay — mirrors old site's mauve image hover */}
+        <div className="absolute inset-0 bg-mauve/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+          <p className="text-cream text-sm text-center leading-relaxed">
+            {project.description}
+          </p>
         </div>
       </div>
 
       {/* Content */}
       <div className="p-5">
-        <h3 className="font-bold text-slate-900 dark:text-white mb-2 text-lg leading-tight">
-          {project.title}
-        </h3>
-        <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4 line-clamp-2">
-          {project.description}
-        </p>
-
-        {/* Tags */}
+        <h3 className="font-bold text-[#333] dark:text-cream mb-2">{project.title}</h3>
         <div className="flex flex-wrap gap-1.5 mb-4">
-          {project.tags.slice(0, 3).map((tag) => (
+          {project.tags.map((tag) => (
             <Badge key={tag}>{tag}</Badge>
           ))}
         </div>
-
-        {/* Links */}
-        <div className="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
+        <div className="flex items-center gap-3">
           {project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-xs font-medium text-violet-600 dark:text-violet-400 hover:underline"
+              className="flex items-center gap-1.5 text-xs font-medium text-mauve hover:text-mauve-dark transition-colors"
             >
               Live Demo
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -120,7 +121,7 @@ function ProjectCard({ project }: { project: Project }) {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-white"
+              className="flex items-center gap-1.5 text-xs font-medium text-[#555] dark:text-warm-400 hover:text-mauve dark:hover:text-mauve-faint transition-colors"
             >
               GitHub
               <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
@@ -129,7 +130,7 @@ function ProjectCard({ project }: { project: Project }) {
             </a>
           )}
           {!project.liveUrl && !project.githubUrl && (
-            <span className="text-xs text-slate-400 dark:text-slate-500 italic">
+            <span className="text-xs text-[#777] dark:text-warm-400 italic">
               College / Client project
             </span>
           )}

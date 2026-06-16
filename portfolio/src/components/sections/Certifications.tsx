@@ -27,7 +27,7 @@ export function Certifications() {
   return (
     <section
       id="certifications"
-      className="py-24 bg-slate-50 dark:bg-slate-900"
+      className="py-24 bg-cream dark:bg-warm-950"
       aria-labelledby="certifications-heading"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,21 +41,21 @@ export function Certifications() {
           {certifications.map((cert, i) => (
             <article
               key={i}
-              className="flex items-start gap-5 bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-violet-300 dark:hover:border-violet-600 transition-colors shadow-sm"
+              className="flex items-start gap-5 bg-cream-dark dark:bg-warm-800 rounded-2xl p-6 border border-cream-border dark:border-warm-700 hover:border-mauve dark:hover:border-mauve transition-colors shadow-sm"
             >
-              <div className="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center shrink-0">
-                <svg className="w-6 h-6 text-violet-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="w-12 h-12 rounded-xl bg-mauve/10 flex items-center justify-center shrink-0">
+                <svg className="w-6 h-6 text-mauve" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                 </svg>
               </div>
               <div className="min-w-0">
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm leading-tight">
+                <h3 className="font-bold text-[#333] dark:text-cream text-sm leading-tight">
                   {cert.name}
                 </h3>
-                <p className="text-violet-600 dark:text-violet-400 text-sm font-medium mt-1">
+                <p className="text-mauve text-sm font-medium mt-1">
                   {cert.issuer}
                 </p>
-                <p className="text-slate-400 text-xs mb-3">{cert.year}</p>
+                <p className="text-[#777] dark:text-warm-400 text-xs mb-3">{cert.year}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {cert.tags.map((tag) => (
                     <Badge key={tag}>{tag}</Badge>

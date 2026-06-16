@@ -25,15 +25,14 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
-  // Close mobile menu on route click
   const handleNavClick = () => setMobileOpen(false);
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/90 dark:bg-slate-950/90 backdrop-blur-md shadow-sm border-b border-slate-200/50 dark:border-slate-800/50'
-          : 'bg-transparent'
+          ? 'bg-cream/95 dark:bg-warm-950/95 backdrop-blur-md shadow-sm border-b border-cream-border/50 dark:border-warm-700/50'
+          : 'bg-cream dark:bg-warm-950'
       }`}
     >
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
@@ -41,18 +40,17 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
           {/* Logo */}
           <a
             href="#hero"
-            className="flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-500 rounded"
+            className="flex items-center gap-2 rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mauve"
           >
             <img
               src="/images/ZRN-Logo.svg"
               alt="ZRN Logo"
               className="h-8 w-auto"
               onError={(e) => {
-                // Fallback if SVG fails
                 (e.target as HTMLImageElement).style.display = 'none';
               }}
             />
-            <span className="font-bold text-lg text-slate-900 dark:text-white tracking-tight">
+            <span className="font-bold text-lg text-[#333] dark:text-cream tracking-tight">
               ZRN
             </span>
           </a>
@@ -63,7 +61,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-colors"
+                  className="px-3 py-2 text-sm font-medium text-[#555] dark:text-warm-300 hover:text-mauve dark:hover:text-mauve-faint hover:bg-mauve/10 dark:hover:bg-mauve/10 rounded-md transition-colors"
                 >
                   {link.label}
                 </a>
@@ -77,7 +75,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
             <button
               onClick={onToggleTheme}
               aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-              className="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="p-2 rounded-lg text-[#777] dark:text-warm-400 hover:text-mauve dark:hover:text-mauve-faint hover:bg-mauve/10 dark:hover:bg-mauve/10 transition-colors"
             >
               {theme === 'dark' ? (
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -90,10 +88,10 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
               )}
             </button>
 
-            {/* Resume link */}
+            {/* Hire Me */}
             <a
               href="#contact"
-              className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium bg-violet-600 hover:bg-violet-700 text-white rounded-lg transition-colors"
+              className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium bg-mauve hover:bg-mauve-dark text-cream rounded-lg transition-colors"
             >
               Hire Me
             </a>
@@ -103,7 +101,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
               onClick={() => setMobileOpen((v) => !v)}
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
-              className="md:hidden p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="md:hidden p-2 rounded-lg text-[#777] dark:text-warm-400 hover:bg-mauve/10 dark:hover:bg-mauve/10 transition-colors"
             >
               {mobileOpen ? (
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -120,14 +118,14 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 pb-4">
+          <div className="md:hidden border-t border-cream-border dark:border-warm-700 bg-cream dark:bg-warm-950 pb-4">
             <ul className="flex flex-col gap-1 pt-3 px-2" role="list">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
                     onClick={handleNavClick}
-                    className="block px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md transition-colors"
+                    className="block px-3 py-2.5 text-sm font-medium text-[#555] dark:text-warm-300 hover:text-mauve dark:hover:text-mauve-faint hover:bg-mauve/10 dark:hover:bg-mauve/10 rounded-md transition-colors"
                   >
                     {link.label}
                   </a>
@@ -137,7 +135,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
                 <a
                   href="#contact"
                   onClick={handleNavClick}
-                  className="block px-3 py-2.5 text-sm font-medium text-center bg-violet-600 hover:bg-violet-700 text-white rounded-lg transition-colors"
+                  className="block px-3 py-2.5 text-sm font-medium text-center bg-mauve hover:bg-mauve-dark text-cream rounded-lg transition-colors"
                 >
                   Hire Me
                 </a>

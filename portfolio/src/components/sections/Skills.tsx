@@ -5,7 +5,7 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="py-24 bg-slate-50 dark:bg-slate-900"
+      className="py-24 bg-cream dark:bg-warm-950"
       aria-labelledby="skills-heading"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,18 +19,18 @@ export function Skills() {
           {skillCategories.map((category) => (
             <div
               key={category.name}
-              className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 hover:border-violet-300 dark:hover:border-violet-600 transition-colors shadow-sm"
+              className="bg-cream-dark dark:bg-warm-800 rounded-2xl p-6 border border-cream-border dark:border-warm-700 hover:border-mauve dark:hover:border-mauve transition-colors shadow-sm"
             >
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-4 pb-3 border-b border-slate-100 dark:border-slate-700 text-sm tracking-wide uppercase">
+              <h3 className="font-semibold text-[#333] dark:text-cream mb-4 pb-3 border-b border-cream-border dark:border-warm-700 text-sm tracking-wide uppercase">
                 {category.name}
               </h3>
               <ul className="space-y-2.5">
                 {category.skills.map((skill) => (
                   <li
                     key={skill.name}
-                    className="flex items-center gap-2.5 text-slate-600 dark:text-slate-300 text-sm"
+                    className="flex items-center gap-2.5 text-[#555] dark:text-warm-300 text-sm"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-mauve shrink-0" />
                     {skill.name}
                   </li>
                 ))}

@@ -5,8 +5,8 @@ export function useTheme(): [Theme, () => void] {
   const [theme, setTheme] = useState<Theme>(() => {
     const stored = localStorage.getItem('theme') as Theme | null;
     if (stored === 'light' || stored === 'dark') return stored;
-    // Default: dark
-    return 'dark';
+    // Default: light (cream)
+    return 'light';
   });
 
   useEffect(() => {
