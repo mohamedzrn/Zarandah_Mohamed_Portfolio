@@ -204,4 +204,55 @@ export const projects: Project[] = [
     tags: ['JavaScript', 'REST API', 'Fetch API'],
     category: 'api',
   },
+  {
+    id: 13,
+    title: 'AI Outreach Engine',
+    slug: 'lemlist',
+    description:
+      'A fully automated B2B cold outreach pipeline — discovers jobs, enriches contacts, generates personalised emails with a local AI model, and sends via Gmail. Zero API cost.',
+    about:
+      'A self-hosted B2B outreach engine that runs 24/7 on Render. It searches Greenhouse, Lever, Ashby, Wellfound, and LinkedIn every 6 hours across 4 role lanes, scores leads (0–100), generates personalised cold emails + LinkedIn DMs using a local LLaMA 3.1 model via Ollama, builds a lane-specific PDF resume per job, and saves Gmail drafts for review — all at zero ongoing AI cost.',
+    highlights:
+      'Job discovery across 5 boards with 20 targeted queries every 6 hours. Rules-based lead scoring (0–100) with 3 priority tiers. AI email and LinkedIn DM generation using local LLaMA 3.1 via Ollama at zero API cost. Tailored PDF resume built per job attached to every Gmail draft. A/B prompt testing with SQLite tracking and auto-promotion of winning variant. Day 3 and Day 7 follow-up sequences with IMAP reply detection to cancel on response. Google Sheets integration — approve a row and the engine picks it up automatically. Live Express.js dashboard deployed 24/7 on Render.',
+    review:
+      '"Full pipeline in one command. The A/B prompt testing and lead scoring alone saved hours of manual triage every week."',
+    imageUrl: imgUrl('/images/lemlist-banner.svg'),
+    tags: ['Node.js', 'Ollama', 'LLaMA 3.1', 'Gmail IMAP', 'Google Sheets', 'SQLite', 'PDFKit', 'Render'],
+    liveUrl: 'https://lemlist-partner-engine.onrender.com',
+    githubUrl: 'https://github.com/mohamedzrn/lemlist-partner-engine',
+    category: 'api',
+  },
+  {
+    id: 14,
+    title: 'Notion → Discord Bot',
+    slug: 'notion-discord',
+    description:
+      'A real-time automation bot that bridges Notion and Discord — DMing team members on task creation, reassignment, updates, and overdue alerts so nothing falls through the cracks.',
+    about:
+      'A full-stack bot deployed on Railway that keeps async teams accountable without micromanaging. It runs a dual notification system — 10-second polling loop plus real-time Notion webhooks (HMAC-SHA256 verified) — and automatically DMs team members for every meaningful task event. Auto-discovers Notion databases so no manual config is needed.',
+    highlights:
+      'Dual notification system: 10-second polling plus real-time Notion webhooks with HMAC-SHA256 verification. 5 automated DM types: new task, reassignment, due date change, status change, overdue alerts. Daily digest every morning with all open assigned tasks. Hourly overdue scanner with daily deduplication to prevent spam. Auto-discovery of Notion databases with graceful catch-up for newly connected ones. 7 slash commands: /mytasks, /teamtasks, /recentupdates, /status, /linknotion, /remind, /forceremind. Notion to Discord user mapping with persistent JSON storage.',
+    review:
+      '"Eliminated the need for manual check-ins entirely. The /teamtasks command alone changed how we run standups."',
+    imageUrl: imgUrl('/images/notion-discord-banner.svg'),
+    tags: ['Node.js', 'Discord.js v14', 'Notion API', 'Express.js', 'Winston', 'Railway'],
+    githubUrl: 'https://github.com/mohamedzrn/notion-discord-bot',
+    category: 'api',
+  },
+  {
+    id: 15,
+    title: 'Noctura Pulse',
+    slug: 'noctura',
+    description:
+      'An AI-powered Instagram trend bot that turns creator behaviour into content intelligence — silently. Creators forward reels and posts; the bot profiles, analyses, and surfaces trend signals.',
+    about:
+      'Noctura Pulse is a stealth Instagram DM bot built for a creator management agency. Creators forward reels, carousels, stories, and clips — the bot analyses each piece with Claude Vision AI and syncs intelligence to per-creator Notion databases automatically. It builds a rolling behavioral content profile per creator, tracking niche drift, audio trends, hook strength, and shareability over time.',
+    highlights:
+      'Adaptive DM polling (45s to 1hr backoff) waking within 30s on activity. Supports 5 content types: Reels, Carousels, Static posts, Stories, and xma_clip format. Claude Vision AI generates visual summaries from thumbnails. 9 signals extracted per submission: niche, trend signals, content style, audio score, hook strength, shareability, engagement pattern, keywords, and actionable content recommendation. Per-creator Notion database routing with auto-set thumbnail gallery covers. Story media captured before 24-hour expiry. Audio bank and keyword bank ranked by cross-creator frequency and reach. Human-paced reply delays (12–50s randomised) with residential proxy for account safety. Live web dashboard with 5 views and 4 API endpoints.',
+    review:
+      '"Replaced our entire manual content research process. The audio bank alone surfaces trends before they peak."',
+    imageUrl: imgUrl('/images/noctura-banner.svg'),
+    tags: ['Python', 'Claude API', 'instagrapi', 'SQLite', 'Notion API', 'Flask', 'Residential Proxy'],
+    category: 'api',
+  },
 ];
