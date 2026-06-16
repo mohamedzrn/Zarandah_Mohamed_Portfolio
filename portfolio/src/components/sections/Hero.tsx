@@ -1,4 +1,5 @@
 import { Button } from '../ui/Button';
+import { imgUrl } from '../../utils/assets';
 
 export function Hero() {
   return (
@@ -11,7 +12,7 @@ export function Hero() {
       <div
         className="absolute right-0 top-0 bottom-0 w-1/2 opacity-[0.07] dark:opacity-[0.04] pointer-events-none"
         style={{
-          backgroundImage: 'url(/images/homepage-bkg.png)',
+          backgroundImage: `url(${imgUrl('/images/homepage-bkg.png')})`,
           backgroundSize: '50rem',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'right center',
