@@ -46,12 +46,12 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
             <img
               src={imgUrl('/images/ZRN-Logo.svg')}
               alt="ZRN Logo"
-              className="h-8 w-auto"
+              className="h-8 w-auto dark:invert dark:opacity-90"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none';
               }}
             />
-            <span className="font-bold text-lg text-[#333] dark:text-cream tracking-tight">
+            <span className="font-bold text-lg text-[#333] dark:text-white tracking-tight">
               ZRN
             </span>
           </a>
