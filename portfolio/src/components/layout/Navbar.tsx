@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import type { Theme } from '../../types';
-import { imgUrl } from '../../utils/assets';
 
 interface NavbarProps {
   theme: Theme;
@@ -41,18 +40,11 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
           {/* Logo */}
           <a
             href="#hero"
-            className="flex items-center gap-2 rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mauve"
+            className="flex items-center rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mauve"
           >
-            <img
-              src={imgUrl('/images/ZRN-Logo.svg')}
-              alt="ZRN Logo"
-              className="h-8 w-auto dark:invert dark:opacity-90"
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = 'none';
-              }}
-            />
-            <span className="font-bold text-lg text-[#333] dark:text-white tracking-tight">
-              ZRN
+            <span className="font-bold text-xl tracking-tight">
+              <span className="text-mauve">Z</span>
+              <span className="text-[#333] dark:text-white">RN</span>
             </span>
           </a>
 

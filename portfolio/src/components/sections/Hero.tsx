@@ -1,5 +1,4 @@
 import { Button } from '../ui/Button';
-import { imgUrl } from '../../utils/assets';
 
 export function Hero() {
   return (
@@ -8,16 +7,9 @@ export function Hero() {
       className="relative min-h-screen flex items-center overflow-hidden bg-cream dark:bg-warm-950"
       aria-label="Hero"
     >
-      {/* Decorative background image — right side, subtle */}
-      <div
-        className="absolute right-0 top-0 bottom-0 w-1/2 opacity-[0.07] dark:opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage: `url(${imgUrl('/images/homepage-bkg.png')})`,
-          backgroundSize: '50rem',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'right center',
-        }}
-      />
+      {/* Decorative blobs */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-mauve/5 dark:bg-mauve/8 blur-3xl pointer-events-none -translate-y-1/4 translate-x-1/4" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-mauve/5 dark:bg-mauve/5 blur-3xl pointer-events-none translate-y-1/3 -translate-x-1/3" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
         {/* Available badge */}
