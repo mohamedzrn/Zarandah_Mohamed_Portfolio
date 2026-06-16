@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Event-Simplified</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="wrapper">
+  <header>
+    <div class="logo"><a href="index.html"><img id="logo-img" src="assets/icons/ES-logo-1-white.png" alt="Event-Simplified"></a></div>
+    <div class="nav-container">
+      <nav id="nav-header">
+        <a href="index.html">Home</a>
+        <a href="events.html">Events</a>
+        <a href="history.html">History</a>
+        <a href="about-me.html">About</a>
+      </nav>
+      <nav><a class="nav-contact-btn" href="contact.html">Contact Us</a></nav>
+    </div>
+    <button class="hamburger" aria-label="Toggle menu"><div class="bar"></div></button>
+  </header>
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="history.html">History</a>
+    <a href="about-me.html">About</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <div class="page-hero">
+    <span class="section-tag">Get In Touch</span>
+    <h1>Let's talk about your next event</h1>
+    <p>Our team is ready to help you plan, manage, and deliver exceptional events. Reach out and we'll get back to you within one business day.</p>
+  </div>
+
+  <div class="contact-section">
+    <div class="contact-info">
+      <h2>We'd love to hear from you</h2>
+      <p>Whether you're exploring the platform for the first time or you're an existing client needing support — we're here to help.</p>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📍</div>
+        <div class="contact-detail-text">
+          <label>Location</label>
+          <span>Toronto, Ontario, Canada</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">✉️</div>
+        <div class="contact-detail-text">
+          <label>Email</label>
+          <span>hello@event-simplified.com</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📞</div>
+        <div class="contact-detail-text">
+          <label>Phone</label>
+          <span>+1 (416) 555-0192</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">⏰</div>
+        <div class="contact-detail-text">
+          <label>Business Hours</label>
+          <span>Mon–Fri, 9am–6pm EST</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h2>Send us a message</h2>
+      <form>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" placeholder="Jane">
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" placeholder="Smith">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="jane@company.com">
+        </div>
+        <div class="form-group">
+          <label for="company">Company / Organization</label>
+          <input type="text" id="company" placeholder="Acme Corp">
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <select id="subject">
+            <option value="">Select a topic...</option>
+            <option>General Inquiry</option>
+            <option>Demo Request</option>
+            <option>Pricing &amp; Plans</option>
+            <option>Technical Support</option>
+            <option>Partnership</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us about your event or what you're looking for..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/icons/ES-logo-1-white.png" alt="Event-Simplified">
+        <p>The all-in-one event management platform for modern teams.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="history.html">History</a></li>
+          <li><a href="about-me.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2024 Event-Simplified. All rights reserved.</span></div>
+  </footer>
+</div>
+<script>document.querySelector('.hamburger')?.addEventListener('click',()=>document.getElementById('mobile-nav')?.classList.toggle('open'));</script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event-Simplified — AI-Powered Event Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+</head>
+<body>
+<div id="wrapper">
+
+  <!-- ── HEADER ── -->
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img id="logo-img" src="assets/icons/ES-logo-1-white.png" alt="Event-Simplified Logo">
+      </a>
+    </div>
+    <div class="nav-container">
+      <nav id="nav-header">
+        <a href="index.html" class="active">Home</a>
+        <a href="events.html">Events</a>
+        <a href="history.html">History</a>
+        <a href="about-me.html">About</a>
+      </nav>
+      <nav>
+        <a class="nav-contact-btn" href="contact.html">Contact Us</a>
+      </nav>
+    </div>
+    <button class="hamburger" aria-label="Toggle menu">
+      <div class="bar"></div>
+    </button>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="history.html">History</a>
+    <a href="about-me.html">About</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="carousel-section">
+    <div class="main-container">
+      <div class="text-content">
+        <div class="section-tag" style="margin-bottom:20px">AI-Powered Platform</div>
+        <h1>Grow your business &amp; deliver<br><em>unforgettable events</em></h1>
+        <p>Event-Simplified helps teams plan, manage, and execute world-class events — faster and smarter than ever before.</p>
+        <div class="hero-cta">
+          <a href="contact.html" class="btn-primary">Get Started Free</a>
+          <a href="events.html" class="btn-secondary">Browse Events</a>
+        </div>
+      </div>
+      <div class="image-carousel">
+        <div class="carousel" data-carousel>
+          <button class="carousel-button prev" data-carousel-button="prev">&#8592;</button>
+          <button class="carousel-button next" data-carousel-button="next">&#8594;</button>
+          <ul data-slides>
+            <li class="slide" data-active>
+              <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="Event conference hall">
+            </li>
+            <li class="slide">
+              <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80" alt="Event gathering">
+            </li>
+            <li class="slide">
+              <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80" alt="Corporate event">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS ── -->
+  <div class="stats-bar">
+    <div class="stats-bar-inner">
+      <div class="stat-item">
+        <span class="stat-value">12,000+</span>
+        <span class="stat-label">Events Managed</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">98%</span>
+        <span class="stat-label">Client Satisfaction</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">40+</span>
+        <span class="stat-label">Countries Served</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">3x</span>
+        <span class="stat-label">Faster Planning</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SERVICES ── -->
+  <section class="services-section">
+    <div class="section-header">
+      <span class="section-tag">What We Offer</span>
+      <h2>Everything you need to run great events</h2>
+      <p>From intimate workshops to large-scale conferences — our platform handles it all.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📅</div>
+        <h3>Smart Scheduling</h3>
+        <p>AI-powered scheduling that finds the perfect time slots and avoids conflicts across your entire team's calendars.</p>
+        <a href="#" class="learn-more">Learn more →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎟️</div>
+        <h3>Ticketing &amp; Registration</h3>
+        <p>Seamless attendee registration with custom forms, payment processing, and real-time capacity tracking.</p>
+        <a href="#" class="learn-more">Learn more →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Analytics &amp; Insights</h3>
+        <p>Deep event analytics to understand attendee engagement, ROI, and what drives your most successful events.</p>
+        <a href="#" class="learn-more">Learn more →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <h3>Vendor Management</h3>
+        <p>Coordinate venues, caterers, AV teams, and every supplier from one unified dashboard.</p>
+        <a href="#" class="learn-more">Learn more →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h3>Event Mobile App</h3>
+        <p>Give attendees a branded app with agenda, networking tools, and live updates — branded to your event.</p>
+        <a href="#" class="learn-more">Learn more →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔗</div>
+        <h3>Integrations</h3>
+        <p>Connect with Salesforce, HubSpot, Zoom, Slack, and 50+ tools you already use every day.</p>
+        <a href="#" class="learn-more">Learn more →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ── -->
+  <section class="features-section">
+    <div class="features-inner">
+      <div class="section-header" style="margin-bottom:40px">
+        <span class="section-tag">Platform Features</span>
+        <h2>Built for event professionals</h2>
+      </div>
+      <div class="feature-panel">
+        <div class="feature-panel-text">
+          <h2>Intelligent event planning powered by AI</h2>
+          <p>Our platform uses machine learning to analyze your past events, predict attendance, and recommend the best formats, venues, and timing for your next event.</p>
+          <ul class="feature-list">
+            <li>Automated run-of-show generation</li>
+            <li>Real-time budget tracking and alerts</li>
+            <li>Speaker and session management</li>
+            <li>Post-event sentiment analysis</li>
+          </ul>
+          <a href="events.html" class="btn-primary" style="margin-top:28px;display:inline-flex">Explore Events</a>
+        </div>
+        <div class="feature-panel-image">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80" alt="Event planning dashboard">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PARTNERS ── -->
+  <section class="partners-section">
+    <p class="partners-label">Trusted by teams at</p>
+    <div class="partners-row">
+      <img src="assets/logos/partner1.png" alt="Partner">
+      <img src="assets/logos/partner2.png" alt="Partner">
+      <img src="assets/logos/partner3.png" alt="Partner">
+      <img src="assets/logos/partner4.png" alt="Partner">
+      <img src="assets/logos/partner5.png" alt="Partner">
+    </div>
+  </section>
+
+  <!-- ── NEWS ── -->
+  <section class="news-section">
+    <div class="section-header">
+      <span class="section-tag">Latest News</span>
+      <h2>From the Event-Simplified blog</h2>
+      <p>Tips, trends, and insights to help you run better events.</p>
+    </div>
+    <div class="news-grid">
+      <article class="news-card">
+        <div class="news-card-image">
+          <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&q=80" alt="Hybrid events">
+        </div>
+        <div class="news-card-body">
+          <span class="news-tag">Trends</span>
+          <h3>How hybrid events are reshaping the industry in 2024</h3>
+          <p>The future of events isn't fully virtual or fully in-person — it's both. Here's how to do hybrid right.</p>
+          <span class="news-date">June 10, 2024</span>
+        </div>
+      </article>
+      <article class="news-card">
+        <div class="news-card-image">
+          <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=600&q=80" alt="Event tech">
+        </div>
+        <div class="news-card-body">
+          <span class="news-tag">Technology</span>
+          <h3>Top 10 event tech tools every planner needs this year</h3>
+          <p>We tested 50+ tools so you don't have to. Here are the ones that actually make a difference.</p>
+          <span class="news-date">May 28, 2024</span>
+        </div>
+      </article>
+      <article class="news-card">
+        <div class="news-card-image">
+          <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80" alt="Sustainability">
+        </div>
+        <div class="news-card-body">
+          <span class="news-tag">Sustainability</span>
+          <h3>Running a greener event: practical sustainability tips</h3>
+          <p>Attendees and sponsors increasingly care about environmental impact. Here's how to deliver on that.</p>
+          <span class="news-date">May 14, 2024</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta-section">
+    <h2>Ready to simplify your next event?</h2>
+    <p>Join thousands of event professionals who trust Event-Simplified to deliver exceptional experiences.</p>
+    <div class="hero-cta" style="justify-content:center">
+      <a href="contact.html" class="btn-primary">Start for free</a>
+      <a href="about-me.html" class="btn-secondary">Learn about us</a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/icons/ES-logo-1-white.png" alt="Event-Simplified">
+        <p>The all-in-one event management platform for modern teams and organizations.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
+          <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+          <a href="#" class="social-link" aria-label="Instagram">ig</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Integrations</a></li>
+          <li><a href="#">Changelog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about-me.html">About Us</a></li>
+          <li><a href="history.html">Our History</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Stay Updated</h4>
+        <p style="font-size:.875rem;margin-bottom:0">Get the latest event industry insights in your inbox.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2024 Event-Simplified. All rights reserved.</span>
+      <span>Privacy Policy · Terms of Service</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+// Carousel
+const carousel = document.querySelector('[data-carousel]');
+if (carousel) {
+  const buttons = carousel.querySelectorAll('[data-carousel-button]');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const offset = btn.dataset.carouselButton === 'next' ? 1 : -1;
+      const slides = carousel.querySelector('[data-slides]');
+      const active = slides.querySelector('[data-active]');
+      let idx = [...slides.children].indexOf(active);
+      slides.children[idx].removeAttribute('data-active');
+      idx = (idx + offset + slides.children.length) % slides.children.length;
+      slides.children[idx].setAttribute('data-active', '');
+    });
+  });
+  // Auto-advance
+  setInterval(() => {
+    const slides = carousel.querySelector('[data-slides]');
+    const active = slides.querySelector('[data-active]');
+    let idx = [...slides.children].indexOf(active);
+    slides.children[idx].removeAttribute('data-active');
+    slides.children[(idx + 1) % slides.children.length].setAttribute('data-active', '');
+  }, 4000);
+}
+
+// Mobile nav
+const hamburger = document.querySelector('.hamburger');
+const mobileNav = document.getElementById('mobile-nav');
+if (hamburger && mobileNav) {
+  hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
+}
+</script>
+</body>
+</html>

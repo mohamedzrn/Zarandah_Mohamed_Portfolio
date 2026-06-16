@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}Overview{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <h1>Overview</h1>
+  <p class="subtitle">Live trend intelligence across all creators</p>
+</div>
+
+<!-- Stats row -->
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.total_creators }}</div>
+    <div class="stat-label">Creators Tracked</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.total_reels }}</div>
+    <div class="stat-label">Reels Analyzed</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.total_analyses }}</div>
+    <div class="stat-label">Total Analyses</div>
+  </div>
+  <div class="stat-card accent">
+    <div class="stat-value">{{ stats.top_niche }}</div>
+    <div class="stat-label">Dominant Niche</div>
+  </div>
+</div>
+
+<div class="grid-2">
+  <!-- Top creators -->
+  <div class="card">
+    <div class="card-header">
+      <h2>Top Creators</h2>
+      <a href="/creators" class="link-btn">View all →</a>
+    </div>
+    {% if creators %}
+    <table class="data-table">
+      <thead><tr><th>Creator</th><th>Reels</th><th>Top Niche</th></tr></thead>
+      <tbody>
+        {% for c in creators %}
+        <tr>
+          <td><a href="/creators/{{ c.username }}" class="creator-link">@{{ c.username }}</a></td>
+          <td>{{ c.total_reels }}</td>
+          <td><span class="tag">{{ c.top_niche if c.top_niche else '—' }}</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="empty">No creators yet. Forward a reel to the bot to get started.</p>
+    {% endif %}
+  </div>
+
+  <!-- Top audio -->
+  <div class="card">
+    <div class="card-header">
+      <h2>Trending Audio</h2>
+      <a href="/bank" class="link-btn">Data bank →</a>
+    </div>
+    {% if top_audio %}
+    <div class="audio-list">
+      {% for a in top_audio %}
+      <div class="audio-item">
+        <div class="audio-info">
+          <div class="audio-name">{{ a.audio_name }}</div>
+          <div class="audio-artist">{{ a.audio_artist or 'Unknown artist' }}</div>
+        </div>
+        <div class="audio-meta">
+          <span class="badge">{{ a.usage_count }}x</span>
+          <span class="score">{{ "%.1f"|format(a.avg_trending_score) }}/10</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="empty">No audio data yet.</p>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Top keywords -->
+<div class="card">
+  <div class="card-header">
+    <h2>Top Keywords</h2>
+  </div>
+  <div class="keyword-cloud">
+    {% for k in top_keywords %}
+    <span class="kw-tag" style="font-size: {{ [0.75 + k.usage_count * 0.1, 1.4]|min }}rem">
+      {{ k.keyword }}
+      <span class="kw-count">{{ k.usage_count }}</span>
+    </span>
+    {% endfor %}
+    {% if not top_keywords %}
+    <p class="empty">No keywords yet.</p>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Recent analyses -->
+<div class="card">
+  <div class="card-header">
+    <h2>Recent Analyses</h2>
+    <a href="/analyses" class="link-btn">View all →</a>
+  </div>
+  {% if recent_analyses %}
+  <div class="analysis-feed">
+    {% for a in recent_analyses %}
+    <div class="analysis-item">
+      <div class="analysis-left">
+        <a href="/creators/{{ a.creator_username }}" class="creator-chip">@{{ a.creator_username or '—' }}</a>
+        <div class="analysis-niche">{{ a.niche or '—' }} {% if a.sub_niche %}<span class="dim">/ {{ a.sub_niche }}</span>{% endif %}</div>
+        <div class="analysis-keywords">
+          {% for kw in (a.keywords or [])[:5] %}
+          <span class="kw-mini">{{ kw }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="analysis-right">
+        <div class="audio-score-bar" title="Audio trending score: {{ a.trending_audio_score }}/10">
+          {% for i in range(10) %}
+          <span class="bar-block {% if i < a.trending_audio_score %}filled{% endif %}"></span>
+          {% endfor %}
+        </div>
+        <div class="analysis-time">{{ (a.analyzed_at or '')[:10] }}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="empty">No analyses yet. Forward a reel to the bot to get started.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Event-Simplified</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="wrapper">
+  <header>
+    <div class="logo"><a href="index.html"><img id="logo-img" src="assets/icons/ES-logo-1-white.png" alt="Event-Simplified"></a></div>
+    <div class="nav-container">
+      <nav id="nav-header">
+        <a href="index.html">Home</a>
+        <a href="events.html">Events</a>
+        <a href="history.html">History</a>
+        <a href="about-me.html" class="active">About</a>
+      </nav>
+      <nav><a class="nav-contact-btn" href="contact.html">Contact Us</a></nav>
+    </div>
+    <button class="hamburger" aria-label="Toggle menu"><div class="bar"></div></button>
+  </header>
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="index.html">Home</a><a href="events.html">Events</a>
+    <a href="history.html">History</a><a href="about-me.html">About</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <div class="page-hero">
+    <span class="section-tag">About Us</span>
+    <h1>We're on a mission to make<br>events effortless</h1>
+    <p>A passionate team of event professionals and technologists building the future of event management.</p>
+  </div>
+
+  <div class="about-section">
+    <div class="about-grid">
+      <div class="about-image-col">
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80" alt="Our team">
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="section-tag">Our Mission</span>
+        <h2 style="margin-top:14px">Building technology that puts people first</h2>
+        <p>Event-Simplified was born from a simple belief: organizing great events shouldn't require a PhD in logistics. We've built a platform that takes the chaos out of event management — so you can focus on what matters: delivering incredible experiences.</p>
+        <p>We work with everyone from solo consultants running intimate workshops to enterprise teams orchestrating conferences for thousands. Whatever your scale, our platform grows with you.</p>
+        <p>Based in Toronto, our team of 80+ spans engineers, designers, and event professionals who've collectively planned over 5,000 events. We eat our own cooking — Event-Simplified runs every internal event we host.</p>
+
+        <div style="margin-top:40px">
+          <h2>Meet the team</h2>
+          <p>The people behind the platform.</p>
+        </div>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-avatar">AS</div>
+            <h3>Alex Singh</h3>
+            <div class="role">CEO &amp; Co-Founder</div>
+            <p>Former event planner turned tech entrepreneur. Has personally organized 300+ events.</p>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">MC</div>
+            <h3>Maya Chen</h3>
+            <div class="role">CTO</div>
+            <p>10+ years in enterprise software. Leads our AI and infrastructure teams.</p>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">JR</div>
+            <h3>Jordan Reeves</h3>
+            <div class="role">Head of Design</div>
+            <p>Obsessed with making complex workflows feel simple and intuitive.</p>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">PL</div>
+            <h3>Priya Lal</h3>
+            <div class="role">VP of Customer Success</div>
+            <p>Dedicated to ensuring every client gets maximum value from the platform.</p>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">TM</div>
+            <h3>Tom Marchand</h3>
+            <div class="role">Head of Sales</div>
+            <p>Helps teams of all sizes find the right plan for their event goals.</p>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">SK</div>
+            <h3>Sara Kim</h3>
+            <div class="role">Lead Engineer</div>
+            <p>Architect of our real-time collaboration features and mobile app.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="cta-section">
+    <h2>Want to join our team?</h2>
+    <p>We're always looking for talented people who care about building great products.</p>
+    <a href="contact.html" class="btn-primary" style="display:inline-flex">View Open Roles</a>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/icons/ES-logo-1-white.png" alt="Event-Simplified">
+        <p>The all-in-one event management platform.</p>
+      </div>
+      <div class="footer-col"><h4>Pages</h4><ul>
+        <li><a href="index.html">Home</a></li><li><a href="events.html">Events</a></li>
+        <li><a href="history.html">History</a></li><li><a href="contact.html">Contact</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2024 Event-Simplified. All rights reserved.</span></div>
+  </footer>
+</div>
+<script>document.querySelector('.hamburger')?.addEventListener('click',()=>document.getElementById('mobile-nav')?.classList.toggle('open'));</script>
+</body>
+</html>

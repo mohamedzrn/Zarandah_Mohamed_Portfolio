@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Creators{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <h1>Creators</h1>
+  <p class="subtitle">{{ creators|length }} creator{{ 's' if creators|length != 1 }} tracked</p>
+</div>
+
+{% if creators %}
+<div class="creators-grid">
+  {% for c in creators %}
+  <a href="/creators/{{ c.username }}" class="creator-card">
+    <div class="creator-card-header">
+      <div class="creator-avatar">{{ c.username[0]|upper }}</div>
+      <div class="creator-identity">
+        <div class="creator-username">@{{ c.username }}</div>
+        <div class="creator-fullname">{{ c.full_name or '' }}</div>
+      </div>
+      <div class="creator-reels-count">{{ c.total_reels }}<span>reels</span></div>
+    </div>
+    {% if c.follower_count %}
+    <div class="creator-followers">{{ "{:,}".format(c.follower_count) }} followers</div>
+    {% endif %}
+    <div class="creator-niche-tag">{{ c.top_niche }}</div>
+    {% if c.top_keywords_str %}
+    <div class="creator-keywords">{{ c.top_keywords_str }}</div>
+    {% endif %}
+    {% if c.profile_summary %}
+    <p class="creator-summary">{{ c.profile_summary[:120] }}{% if c.profile_summary|length > 120 %}…{% endif %}</p>
+    {% endif %}
+    <div class="creator-last-seen">Last seen {{ (c.last_seen_at or '')[:10] }}</div>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+  <p>No creators tracked yet.</p>
+  <p class="dim">Forward a reel to the bot's Instagram DM inbox to start building profiles.</p>
+</div>
+{% endif %}
+
+{% endblock %}

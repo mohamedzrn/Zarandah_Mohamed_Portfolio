@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>MHZ Earbuds — 3D Experience</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/main.css" rel="stylesheet">
+</head>
+
+<header>
+  <a href="index.html">
+    <img src="images/LOGO.svg" class="logo-img" alt="MHZ Logo">
+  </a>
+  <div id="burger-con">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="animation.html">Experience</a></li>
+    </ul>
+  </div>
+  <button id="button" aria-label="Menu">☰</button>
+</header>
+
+<body>
+  <h1 class="hidden">MHZ Earbuds 3D Experience</h1>
+
+  <!-- Hero -->
+  <div style="position:relative;min-height:calc(100vh - var(--nav-h));overflow:hidden;background:var(--bg2);display:flex;align-items:center;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(200,169,110,0.07) 0%,transparent 65%);pointer-events:none;"></div>
+    <div style="max-width:var(--max-w);margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;width:100%;position:relative;z-index:1;">
+      <div>
+        <div class="section-tag">MHZ Experience</div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,5rem);font-weight:800;line-height:1.05;letter-spacing:-0.02em;margin:12px 0 24px;color:var(--text);">
+          M·usic<br>H·aven<br>Z·one
+        </h2>
+        <p style="color:var(--muted);font-size:1.0625rem;line-height:1.75;max-width:420px;margin-bottom:32px;">The MHZ earbud — engineered for audiophiles. Explore the X-ray view and interactive 3D model below.</p>
+        <a href="#xray" class="button" style="display:inline-flex;align-items:center;gap:8px;">Discover the tech ↓</a>
+      </div>
+      <div style="position:relative;">
+        <img src="images/renders6.jpg" alt="MHZ Earbud" style="width:100%;border-radius:var(--radius-xl);border:1px solid var(--border);box-shadow:0 24px 80px rgba(0,0,0,0.7);">
+        <div style="position:absolute;top:20px;right:20px;background:rgba(8,8,8,0.8);backdrop-filter:blur(8px);border:1px solid var(--border-l);border-radius:var(--radius);padding:10px 16px;">
+          <div class="section-tag" style="margin:0">Premium Audio</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Everything in the box -->
+  <div class="box-section">
+    <div style="text-align:center;margin-bottom:0">
+      <div class="section-tag">In The Box</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.75rem,2.5vw,2.25rem);margin:10px 0 8px;color:var(--text);">Everything You Need</h2>
+      <p style="color:var(--muted)">Every MHZ earbud ships with the full premium kit.</p>
+    </div>
+    <div class="box-grid">
+      <div class="box-item">
+        <img src="images/book.svg" alt="MHZ Earbuds">
+        <p>MHZ Earbuds</p>
+      </div>
+      <div class="box-item">
+        <img src="images/case1.svg" alt="Charging Case">
+        <p>Charging Case</p>
+      </div>
+      <div class="box-item">
+        <img src="images/book.svg" alt="User Manual">
+        <p>User Manual</p>
+      </div>
+      <div class="box-item">
+        <img src="images/silicone-tips.svg" alt="Silicone Tips">
+        <p>Silicone Tips (S/M/L)</p>
+      </div>
+      <div class="box-item">
+        <img src="images/charger.svg" alt="USB-C Cable">
+        <p>USB-C Cable</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- X-Ray Zone -->
+  <div class="xray-section" id="xray">
+    <div class="xray-inner">
+      <div>
+        <div class="section-tag">X-Ray Zone</div>
+        <h2 id="xray-title">See inside the MHZ</h2>
+        <p id="xray-desc" style="margin-top:16px">Drag the revealer to see the difference between the premium external finish and the sophisticated engineering inside. Every component is precision-placed for optimal acoustic performance.</p>
+      </div>
+      <div>
+        <div id="mobile-tablet-view" style="display:block;">
+          <img src="images/earbud-x-ray.jpg" alt="X-Ray view" style="margin-bottom:16px;border-radius:var(--radius-lg);border:1px solid var(--border);">
+          <img src="images/earbud.jpg" alt="Standard view" style="border-radius:var(--radius-lg);border:1px solid var(--border);">
+        </div>
+        <div id="outerShell" style="display:none;">
+          <div id="imageCon">
+            <div class="slideImage image-right"></div>
+            <div class="slideImage image-left"></div>
+            <div class="slideImage image-drag"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3D Model Viewer -->
+  <div class="model-section">
+    <div class="model-inner">
+      <div>
+        <div class="section-tag">3D Model Viewer</div>
+        <h2 id="mdl-title">Explore every angle</h2>
+        <p id="mdl-desc" style="margin-top:16px">Step into the future of product exploration. Rotate, zoom, and inspect the MHZ earbud in stunning 3D detail — powered by WebXR. You can even place it in your real environment with AR.</p>
+        <ul style="margin-top:24px;display:flex;flex-direction:column;gap:10px;">
+          <li style="display:flex;gap:10px;align-items:center;font-size:0.9rem;color:var(--muted)"><span style="color:var(--gold);">↺</span> Drag to rotate</li>
+          <li style="display:flex;gap:10px;align-items:center;font-size:0.9rem;color:var(--muted)"><span style="color:var(--gold);">⌖</span> Pinch or scroll to zoom</li>
+          <li style="display:flex;gap:10px;align-items:center;font-size:0.9rem;color:var(--muted)"><span style="color:var(--gold);">⊕</span> Tap the AR button to place in space</li>
+        </ul>
+      </div>
+      <div style="position:relative;">
+        <model-viewer
+          id="model"
+          src="model/Earbuds.gltf"
+          ar ar-modes="webxr scene-viewer quick-look"
+          ios-src="model/earbuds.usdz"
+          camera-controls
+          poster="images/poster.webp"
+          shadow-intensity="1"
+          environment-image="images/aircraft_workshop_01_1k.hdr"
+          exposure="1.7"
+          camera-orbit="52.34deg 88.29deg 874.8m"
+          field-of-view="30deg"
+          style="width:100%;height:500px;border-radius:var(--radius-lg);border:1px solid var(--border);overflow:hidden;">
+          <button slot="ar-button" id="ar-button">View in your space</button>
+          <div id="ar-prompt"><img src="images/ar_hand_prompt.png" alt="AR prompt"></div>
+        </model-viewer>
+      </div>
+    </div>
+  </div>
+</body>
+
+<footer class="grid-con">
+  <section class="footerNav">
+    <h2 class="hidden">Footer</h2>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Back to Top</a></li>
+      </ul>
+    </nav>
+  </section>
+</footer>
+<h3 id="copyright">MHZ.ca 2024 &copy; All Rights Reserved</h3>
+
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.2.0/model-viewer.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+const btn = document.getElementById('button');
+const nav = document.getElementById('burger-con');
+if(btn&&nav) btn.addEventListener('click',()=>nav.classList.toggle('slide-toggle'));
+
+// X-Ray drag (desktop)
+const outerShell = document.getElementById('outerShell');
+const mobileView = document.getElementById('mobile-tablet-view');
+if(window.innerWidth >= 1024 && outerShell) {
+  outerShell.style.display = 'block';
+  if(mobileView) mobileView.style.display = 'none';
+  const drag = document.querySelector('.image-drag');
+  const imageLeft = document.querySelector('.image-left');
+  const imageCon = document.getElementById('imageCon');
+  let dragging = false;
+  drag.addEventListener('mousedown',()=>dragging=true);
+  document.addEventListener('mouseup',()=>dragging=false);
+  document.addEventListener('mousemove',e=>{
+    if(!dragging) return;
+    const rect = imageCon.getBoundingClientRect();
+    const x = Math.min(Math.max(0, e.clientX - rect.left), rect.width);
+    const pct = (x / rect.width * 100) + '%';
+    imageLeft.style.width = pct;
+    drag.style.left = pct;
+  });
+}
+</script>
+</html>

@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block title %}Data Bank{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <h1>Data Bank</h1>
+  <p class="subtitle">Cross-creator trend intelligence — audio, keywords, and patterns</p>
+</div>
+
+{% if audio_labels %}
+<div class="grid-2">
+  <div class="card">
+    <h2>Audio — Usage Count</h2>
+    <div class="chart-wrap">
+      <canvas id="audioUsageChart"></canvas>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Audio — Avg Trend Score</h2>
+    <div class="chart-wrap">
+      <canvas id="audioScoreChart"></canvas>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<div class="grid-2">
+  <!-- Audio bank table -->
+  <div class="card">
+    <div class="card-header">
+      <h2>Audio Bank</h2>
+      <span class="count-badge">{{ audio|length }}</span>
+    </div>
+    {% if audio %}
+    <div class="scroll-table">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Track</th>
+            <th>Artist</th>
+            <th>Uses</th>
+            <th>Score</th>
+            <th>Creators</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for a in audio %}
+          <tr>
+            <td class="dim">{{ loop.index }}</td>
+            <td class="bold">{{ a.audio_name }}</td>
+            <td class="dim">{{ a.audio_artist or '—' }}</td>
+            <td><span class="badge">{{ a.usage_count }}</span></td>
+            <td>
+              <div class="mini-bar">
+                <div class="mini-bar-fill" style="width: {{ (a.avg_trending_score or 0) * 10 }}%"></div>
+              </div>
+              <span class="score-num">{{ "%.1f"|format(a.avg_trending_score or 0) }}</span>
+            </td>
+            <td>{{ a.creator_count }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="empty">No audio tracked yet.</p>
+    {% endif %}
+  </div>
+
+  <!-- Keyword bank table -->
+  <div class="card">
+    <div class="card-header">
+      <h2>Keyword Bank</h2>
+      <span class="count-badge">{{ keywords|length }}</span>
+    </div>
+    {% if keywords %}
+    <div class="scroll-table">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Keyword</th>
+            <th>Uses</th>
+            <th>Creators</th>
+            <th>Niches</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for k in keywords %}
+          <tr>
+            <td class="dim">{{ loop.index }}</td>
+            <td><span class="kw-tag-sm">{{ k.keyword }}</span></td>
+            <td><span class="badge">{{ k.usage_count }}</span></td>
+            <td>{{ k.creator_count }}</td>
+            <td class="dim small">{{ (k.niches or [])[:2]|join(', ') }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="empty">No keywords tracked yet.</p>
+    {% endif %}
+  </div>
+</div>
+
+{% if audio_labels %}
+<script>
+const opts = {
+  indexAxis: 'y',
+  plugins: { legend: { display: false } },
+  scales: {
+    x: { ticks: { color: '#888' }, grid: { color: '#2a2a2a' } },
+    y: { ticks: { color: '#ccc', font: { size: 11 } }, grid: { color: '#2a2a2a' } }
+  }
+};
+new Chart(document.getElementById('audioUsageChart'), {
+  type: 'bar',
+  data: {
+    labels: {{ audio_labels | tojson }},
+    datasets: [{
+      data: {{ audio_counts | tojson }},
+      backgroundColor: 'rgba(250, 204, 21, 0.7)',
+      borderColor: 'rgba(250, 204, 21, 1)',
+      borderWidth: 1, borderRadius: 4
+    }]
+  },
+  options: opts
+});
+new Chart(document.getElementById('audioScoreChart'), {
+  type: 'bar',
+  data: {
+    labels: {{ audio_labels | tojson }},
+    datasets: [{
+      data: {{ audio_scores | tojson }},
+      backgroundColor: 'rgba(168, 85, 247, 0.7)',
+      borderColor: 'rgba(168, 85, 247, 1)',
+      borderWidth: 1, borderRadius: 4
+    }]
+  },
+  options: { ...opts, scales: { ...opts.scales, x: { ...opts.scales.x, max: 10 } } }
+});
+</script>
+{% endif %}
+
+{% endblock %}

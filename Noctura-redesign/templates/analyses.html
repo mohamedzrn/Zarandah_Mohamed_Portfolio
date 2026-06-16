@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Analyses{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <h1>Analyses</h1>
+  <p class="subtitle">{{ filter_label }} — {{ analyses|length }} results</p>
+</div>
+
+<!-- Creator filter pills -->
+{% if creators %}
+<div class="filter-pills">
+  <a href="/analyses" class="pill {% if not active_creator %}active{% endif %}">All</a>
+  {% for c in creators %}
+  <a href="/analyses?creator={{ c.username }}" class="pill {% if active_creator == c.username %}active{% endif %}">
+    @{{ c.username }}
+  </a>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% if analyses %}
+<div class="analyses-list">
+  {% for a in analyses %}
+  <div class="analysis-card">
+    <div class="analysis-card-top">
+      <a href="/creators/{{ a.creator_username }}" class="creator-chip">@{{ a.creator_username or '—' }}</a>
+      <div class="analysis-meta">
+        <span class="niche-pill">{{ a.niche or '—' }}</span>
+        {% if a.sub_niche %}<span class="sub-niche-pill">{{ a.sub_niche }}</span>{% endif %}
+      </div>
+      <div class="analysis-date">{{ (a.analyzed_at or '')[:10] }}</div>
+    </div>
+
+    <div class="analysis-card-body">
+      <div class="analysis-detail">
+        <div class="detail-label">Content Style</div>
+        <div class="detail-value">{{ a.content_style or '—' }}</div>
+      </div>
+      {% if a.niche_fit %}
+      <div class="analysis-detail">
+        <div class="detail-label">Niche Fit</div>
+        <div class="detail-value">{{ a.niche_fit }}</div>
+      </div>
+      {% endif %}
+      {% if a.recommendation %}
+      <div class="analysis-detail highlight">
+        <div class="detail-label">Recommendation</div>
+        <div class="detail-value">{{ a.recommendation }}</div>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="analysis-card-footer">
+      <div class="analysis-keywords">
+        {% for kw in (a.keywords or [])[:8] %}
+        <span class="kw-mini">{{ kw }}</span>
+        {% endfor %}
+      </div>
+      <div class="analysis-audio">
+        <span class="audio-label">Audio score</span>
+        <div class="audio-score-bar">
+          {% for i in range(10) %}
+          <span class="bar-block {% if i < (a.trending_audio_score or 0) %}filled{% endif %}"></span>
+          {% endfor %}
+        </div>
+        <span class="score-num">{{ a.trending_audio_score or 0 }}/10</span>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+  <p>No analyses yet.</p>
+  <p class="dim">Forward a reel to the bot's DM inbox or run <code>python main.py analyze &lt;url&gt;</code></p>
+</div>
+{% endif %}
+
+{% endblock %}

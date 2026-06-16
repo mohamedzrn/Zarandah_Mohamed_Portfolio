@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% block title %}@{{ creator.username }}{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <a href="/creators" class="back-link">← Creators</a>
+  <div class="creator-hero">
+    <div class="creator-avatar large">{{ creator.username[0]|upper }}</div>
+    <div>
+      <h1>@{{ creator.username }}</h1>
+      {% if creator.full_name %}<p class="subtitle">{{ creator.full_name }}</p>{% endif %}
+      <div class="creator-stats-row">
+        {% if creator.follower_count %}<span class="stat-pill">{{ "{:,}".format(creator.follower_count) }} followers</span>{% endif %}
+        {% if creator.following_count %}<span class="stat-pill">{{ "{:,}".format(creator.following_count) }} following</span>{% endif %}
+        <span class="stat-pill accent">{{ creator.total_reels }} reels analyzed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if profile.profile_summary %}
+<div class="card summary-card">
+  <div class="summary-label">Niche Profile Summary</div>
+  <p class="summary-text">{{ profile.profile_summary }}</p>
+  <div class="summary-meta">Updated {{ (profile.updated_at or '')[:10] }}</div>
+</div>
+{% endif %}
+
+<div class="grid-2">
+  <!-- Niche breakdown chart -->
+  <div class="card">
+    <h2>Top Niches</h2>
+    {% if niche_labels %}
+    <div class="chart-wrap">
+      <canvas id="nicheChart"></canvas>
+    </div>
+    {% else %}
+    <p class="empty">No niche data yet.</p>
+    {% endif %}
+  </div>
+
+  <!-- Keyword chart -->
+  <div class="card">
+    <h2>Top Keywords</h2>
+    {% if kw_labels %}
+    <div class="chart-wrap">
+      <canvas id="kwChart"></canvas>
+    </div>
+    {% else %}
+    <p class="empty">No keyword data yet.</p>
+    {% endif %}
+  </div>
+</div>
+
+<div class="grid-2">
+  <!-- Top audio -->
+  <div class="card">
+    <h2>Audio Tracks Used</h2>
+    {% if profile.top_audio %}
+    <div class="audio-list">
+      {% for a in profile.top_audio %}
+      <div class="audio-item">
+        <div class="audio-info">
+          <div class="audio-name">{{ a.value }}</div>
+        </div>
+        <span class="badge">{{ a.count }}x</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="empty">No audio data yet.</p>
+    {% endif %}
+  </div>
+
+  <!-- Trend momentum -->
+  <div class="card">
+    <h2>Trend Momentum</h2>
+    {% if profile.trend_momentum %}
+    <div class="momentum-list">
+      {% for niche, direction in profile.trend_momentum.items() %}
+      <div class="momentum-item">
+        <span class="momentum-arrow {{ direction }}">
+          {% if direction == 'rising' %}↑{% elif direction == 'falling' %}↓{% else %}→{% endif %}
+        </span>
+        <span class="momentum-niche">{{ niche }}</span>
+        <span class="momentum-label {{ direction }}">{{ direction }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="empty">Need 10+ reels for momentum tracking.</p>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Recent analyses for this creator -->
+<div class="card">
+  <div class="card-header">
+    <h2>Recent Analyses</h2>
+    <a href="/analyses?creator={{ creator.username }}" class="link-btn">View all →</a>
+  </div>
+  {% if analyses %}
+  <div class="analysis-feed">
+    {% for a in analyses[:10] %}
+    <div class="analysis-item">
+      <div class="analysis-left">
+        <div class="analysis-niche">{{ a.niche or '—' }} {% if a.sub_niche %}<span class="dim">/ {{ a.sub_niche }}</span>{% endif %}</div>
+        {% if a.recommendation %}
+        <div class="analysis-rec">💡 {{ a.recommendation }}</div>
+        {% endif %}
+        <div class="analysis-keywords">
+          {% for kw in (a.keywords or [])[:6] %}
+          <span class="kw-mini">{{ kw }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="analysis-right">
+        <div class="audio-score-bar" title="{{ a.trending_audio_score }}/10">
+          {% for i in range(10) %}
+          <span class="bar-block {% if i < a.trending_audio_score %}filled{% endif %}"></span>
+          {% endfor %}
+        </div>
+        <div class="analysis-time">{{ (a.analyzed_at or '')[:10] }}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="empty">No analyses yet.</p>
+  {% endif %}
+</div>
+
+{% if niche_labels or kw_labels %}
+<script>
+const chartDefaults = {
+  plugins: { legend: { display: false } },
+  scales: {
+    x: { ticks: { color: '#888' }, grid: { color: '#2a2a2a' } },
+    y: { ticks: { color: '#888' }, grid: { color: '#2a2a2a' } }
+  }
+};
+{% if niche_labels %}
+new Chart(document.getElementById('nicheChart'), {
+  type: 'bar',
+  data: {
+    labels: {{ niche_labels | tojson }},
+    datasets: [{
+      data: {{ niche_counts | tojson }},
+      backgroundColor: 'rgba(168, 85, 247, 0.7)',
+      borderColor: 'rgba(168, 85, 247, 1)',
+      borderWidth: 1,
+      borderRadius: 4,
+    }]
+  },
+  options: chartDefaults
+});
+{% endif %}
+{% if kw_labels %}
+new Chart(document.getElementById('kwChart'), {
+  type: 'bar',
+  data: {
+    labels: {{ kw_labels | tojson }},
+    datasets: [{
+      data: {{ kw_counts | tojson }},
+      backgroundColor: 'rgba(34, 211, 238, 0.7)',
+      borderColor: 'rgba(34, 211, 238, 1)',
+      borderWidth: 1,
+      borderRadius: 4,
+    }]
+  },
+  options: { ...chartDefaults, indexAxis: 'y' }
+});
+{% endif %}
+</script>
+{% endif %}
+
+{% endblock %}
