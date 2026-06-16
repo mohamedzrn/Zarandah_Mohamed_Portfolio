@@ -1,0 +1,147 @@
+h2,
+h3 {
+    color: #333;
+}
+
+p {
+    color: #555;
+}
+
+#photo1,
+#photo2 {
+    width: 20vw;
+    height: max-content;
+}
+
+.gallery {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.product-carousel {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.product-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.product {
+    width: 300px;
+    margin-right: 20px;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+}
+
+.review {
+    margin-top: 20px;
+}
+
+/* Media query for mobile screens */
+@media only screen and (max-width: 600px) {
+
+    .description,
+    .media,
+    .latin-roots,
+    .natural-ingredients,
+    .traditional-beauty,
+    .product-highlights,
+    .customer-reviews {
+        max-width: 100%;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #photo1,
+    #photo2 {
+        width: 100%;
+        height: auto;
+        margin: 1rem;
+    }
+
+    .gallery {
+        flex-direction: column;
+    }
+
+    .product-carousel {
+        overflow-x: auto;
+        margin-bottom: 20px;
+    }
+
+    .product {
+        width: 100%;
+        margin: 0.25rem;
+    }
+
+    footer {
+        position: relative;
+    }
+
+    #bottom-nav ul li {
+        margin-bottom: 10px;
+    }
+
+    #social-bottom img {
+        margin-bottom: 10px;
+    }
+}
+
+/* Media query for desktop screens */
+@media only screen and (min-width: 601px) {
+
+    .description,
+    .reviews,
+    .about-text,
+    .highlights,
+    .media,
+    .latin-roots,
+    .natural-ingredients,
+    .traditional-beauty,
+    .product-highlights,
+    .customer-reviews {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    #photo1,
+    #photo2 {
+        width: 100%;
+        height: max-content;
+        margin: 1rem;
+    }
+
+    .gallery {
+        justify-content: space-between;
+    }
+
+    .product-carousel {
+        overflow-x: auto;
+        margin-bottom: 0;
+    }
+
+    .product {
+        width: 300px;
+        margin-right: 20px;
+    }
+
+    footer {
+        position: fixed;
+    }
+
+    #bottom-nav ul li {
+        margin-bottom: 23px;
+    }
+
+    #social-bottom img {
+        margin-bottom: 20px;
+    }
+}

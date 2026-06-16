@@ -1,0 +1,248 @@
+@media screen and (min-width: 1200px) {
+
+  #portfolio h1 {
+    font-size: 6rem;
+    margin-top: 6rem;
+    line-height: 8rem;
+  }
+
+  #portfoliodesc p {
+    font-size: 1.7rem;
+    margin-top: 1rem;
+    line-height: 2rem;
+  }
+
+
+  /* Add styles for the button */
+  button {
+    background-color: #885a5a;
+    border: none;
+    color: #f5ebe0;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 4rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #6c3f3f;
+  }
+
+  .img-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .img-wrapper>img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .img-wrapper>.content {
+    position: absolute;
+    width: fit-content;
+    inset: 0;
+    font-size: 2rem;
+    padding: 1rem;
+    background: rgba(121, 82, 82, 0.604);
+    color: #f5ebe0;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+  }
+
+  .img-wrapper>img,
+  .img-wrapper>.content {
+    transition: 200ms ease-in-out;
+  }
+
+  .img-wrapper:hover>img.blur {
+    filter: blur(5px);
+  }
+
+  .img-wrapper>.content.fade {
+    opacity: 0;
+  }
+
+  .img-wrapper:hover>.content.fade {
+    opacity: 1;
+  }
+
+  #portimage1,
+  #portimage2 {
+    height: 500px;
+    width: fit-content;
+    padding-top: 100px;
+    height: auto;
+  }
+
+  #portimage3,
+  #portimage4 {
+    height: 500px;
+    width: fit-content;
+    margin-top: 100px;
+    height: auto;
+  }
+
+  #aboutmetitle {
+    text-align: center;
+    margin-top: 15rem;
+    font-size: 5rem;
+  }
+
+  #aboutmedesc {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+
+  #explore-btn3 {
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 30px;
+    height: 3rem;
+    background-color: #885a5a;
+    color: #f5ebe0;
+    text-decoration: none;
+  }
+}
+
+@media screen and (min-width: 380px) and (max-width: 1199px) {
+
+  .logo-custom {
+    padding: 10px;
+    width: 50%;
+  }
+
+  #portfolio {
+    font-size: 3.5rem;
+  }
+
+  #portfoliodesc {
+    line-height: 1.8rem;
+    font-size: 1.6rem;
+  }
+
+
+  a button {
+    background-color: #885a5a;
+    border: none;
+    color: #f5ebe0;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 4rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+  }
+
+  a button:hover {
+    background-color: #6c3f3f;
+  }
+
+  .img-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .img-wrapper>img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .img-wrapper>.content {
+    position: absolute;
+    width: fit-content;
+    inset: 0;
+    font-size: 2rem;
+    padding: 1rem;
+    background: rgba(121, 82, 82, 0.604);
+    color: #f5ebe0;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+  }
+
+  .img-wrapper>img,
+  .img-wrapper>.content {
+    transition: 200ms ease-in-out;
+  }
+
+  .img-wrapper:hover>img.blur {
+    filter: blur(5px);
+  }
+
+  .img-wrapper>.content.fade {
+    opacity: 0;
+  }
+
+  .img-wrapper:hover>.content.fade {
+    opacity: 1;
+  }
+
+  #portimage1 {
+    width: fit-content;
+    justify-self: center;
+    padding-top: 10rem;
+    height: auto;
+  }
+
+  #portimage2 {
+    width: fit-content;
+    justify-self: center;
+    margin-top: 5rem;
+    height: auto;
+  }
+
+  #portimage3 {
+    width: fit-content;
+    justify-self: center;
+    margin-top: 5rem;
+    height: auto;
+  }
+
+  #portimage4 {
+    width: fit-content;
+    justify-self: center;
+    margin-top: 5rem;
+    height: auto;
+  }
+
+  #aboutmetitle {
+    justify-self: center;
+    font-size: 3rem;
+    margin-top: 164px;
+  }
+
+  #aboutmedesc {
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+    margin-top: 1rem;
+  }
+
+  #explore-btn3 {
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    width: 20vw;
+    font-size: 1.1rem;
+    margin-top: 30px;
+    height: 3rem;
+    background-color: #885a5a;
+    color: #f5ebe0;
+    text-decoration: none;
+  }
+}
