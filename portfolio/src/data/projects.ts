@@ -22,7 +22,7 @@ export const projects: Project[] = [
     title: 'MHZ Earbuds',
     slug: 'mhz',
     description:
-      'An innovative earbuds website for MHZ — a personal vision brought to life with immersive UI design.',
+      'An innovative earbuds website for MHZ — a personal vision brought to life with immersive UI design and GSAP scroll animations.',
     about:
       "Crafting an innovative earbuds website for MHZ has been a gratifying endeavor, allowing me to bring my unique vision to life. The website stands as a testament to the fusion of passion for technology and design.",
     highlights:
@@ -31,6 +31,7 @@ export const projects: Project[] = [
       '"Simply put, these MHZ earbuds have elevated my music experience. Clear sound, comfortable fit — a game-changer for daily use!"',
     imageUrl: '/images/mhz-banner.png',
     tags: ['Web Design', 'HTML', 'CSS', 'GSAP'],
+    githubUrl: 'https://github.com/mohamedzrn/Mohamed_Zarandah_EarbudWebsite',
     category: 'web',
   },
   {
@@ -70,7 +71,7 @@ export const projects: Project[] = [
     title: 'Event Simplified',
     slug: 'event-simplified',
     description:
-      'A business website for Event Simplified with a consistent color scheme designed to capture attention and communicate value.',
+      'A business website for Event Simplified — redesigned with a modern dark navy UI, AI-powered features section, and fully responsive layout.',
     about:
       'Event Simplified is a forward-thinking digital platform designed to transform the event planning and management landscape. Built on the principles of innovation, ease of use, and connectivity.',
     highlights:
@@ -79,6 +80,7 @@ export const projects: Project[] = [
       '"After participating in the Event Simplified website design project, I am thoroughly impressed with the comprehensive learning experience it provided." ',
     imageUrl: '/images/event-simplified-banner.png',
     tags: ['Web Design', 'HTML', 'CSS/SCSS', 'Responsive'],
+    githubUrl: 'https://github.com/mohamedzrn/Event-Simplified',
     category: 'web',
   },
   {
@@ -192,5 +194,39 @@ export const projects: Project[] = [
     imageUrl: '/images/starwars-banner.png',
     tags: ['JavaScript', 'REST API', 'Fetch API'],
     category: 'api',
+  },
+  {
+    id: 13,
+    title: 'Lemlist Partner Engine',
+    slug: 'lemlist-partner-engine',
+    description:
+      'A fully automated job outreach engine — discovers listings, enriches contacts, generates personalised cold emails with Claude AI, and follows up automatically.',
+    about:
+      'Built as proof-of-work for a role at Affilial.com, the Partner Outreach Engine is a 24/7 automation pipeline deployed on Render. It searches Greenhouse, Lever, Ashby, and LinkedIn for relevant roles, enriches leads via Hunter.io, generates personalised cold emails using Claude AI, and manages follow-ups with reply detection via Gmail IMAP.',
+    highlights:
+      'Claude AI-powered personalised cold email generation. A/B prompt variant testing with auto-promotion. Multi-source job feed scanning every 6 hours. Live Express.js dashboard with lead pipeline status.',
+    review:
+      '"A sophisticated end-to-end outreach automation system demonstrating deep knowledge of APIs, AI integration, and full-stack Node.js development."',
+    imageUrl: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80',
+    tags: ['Node.js', 'Claude AI', 'Express.js', 'Automation'],
+    githubUrl: 'https://github.com/mohamedzrn/lemlist-partner-engine',
+    category: 'api',
+  },
+  {
+    id: 14,
+    title: 'Noctura Trend Search',
+    slug: 'noctura-trend-search',
+    description:
+      'A Python FastAPI web app for tracking social media trends — per-creator profiles, data bank, and an analyses feed with a redesigned dark UI.',
+    about:
+      'Noctura Trend Search is a full-stack Python application built with FastAPI and Jinja2 templates. It tracks trending content across social platforms, maintains per-creator profiles, and surfaces an analyses feed. The front-end was redesigned with a purple/cyan dark design system using CSS custom properties and the Inter typeface.',
+    highlights:
+      'FastAPI backend with Jinja2 server-side rendering. Per-creator profile tracking and data bank. Custom dark design system with CSS variables. Deployed locally via uvicorn with live reload.',
+    review:
+      '"A clean full-stack Python project showcasing FastAPI, templating, and a polished dark-mode UI redesign."',
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+    tags: ['Python', 'FastAPI', 'CSS', 'Jinja2'],
+    githubUrl: 'https://github.com/mohamedzrn/noctura-trend-search',
+    category: 'web',
   },
 ];
