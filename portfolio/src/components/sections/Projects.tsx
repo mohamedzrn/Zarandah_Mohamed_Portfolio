@@ -28,7 +28,7 @@ export function Projects() {
     <>
       <section
         id="projects"
-        className="py-24 bg-white dark:bg-slate-950"
+        className="py-24 bg-white dark:bg-[#06030f]"
         aria-labelledby="projects-heading"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
