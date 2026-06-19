@@ -11,7 +11,7 @@ export function Hero() {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-mauve/5 dark:bg-mauve/8 blur-3xl pointer-events-none -translate-y-1/4 translate-x-1/4" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-mauve/5 dark:bg-mauve/5 blur-3xl pointer-events-none translate-y-1/3 -translate-x-1/3" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-32 animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
         {/* Available badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 rounded-full border border-mauve/30 bg-mauve/10 text-mauve text-sm font-medium">
           <span className="w-2 h-2 rounded-full bg-mauve animate-pulse" />
@@ -27,7 +27,7 @@ export function Hero() {
 
         {/* Role */}
         <p className="text-xl sm:text-2xl text-[#555] dark:text-warm-300 font-light mb-4">
-          Creative Developer &amp; QA Engineer
+          Full-Cycle Developer &amp; Business Growth Partner
         </p>
 
         {/* Location */}
@@ -41,10 +41,12 @@ export function Hero() {
 
         {/* Description */}
         <p className="max-w-2xl text-[#555] dark:text-warm-300 text-lg leading-relaxed mb-12">
-          I bridge the gap between design and development, building interactive,
-          efficient, and visually compelling web experiences. Graduate of{' '}
+          I help teams grow through better systems — whether that's building the product,
+          testing it, or creating the outreach pipeline that fills the funnel. Double{' '}
+          <span className="text-[#333] dark:text-cream font-medium">Fanshawe</span> grad in{' '}
           <span className="text-[#333] dark:text-cream font-medium">Interactive Media Design</span> and{' '}
-          <span className="text-[#333] dark:text-cream font-medium">Software Testing (SST3)</span> at Fanshawe College.
+          <span className="text-[#333] dark:text-cream font-medium">Software Testing</span>, with
+          hands-on B2B partnership experience.
         </p>
 
         {/* CTA buttons */}
@@ -52,7 +54,13 @@ export function Hero() {
           <Button as="a" href="#projects" variant="primary" className="px-8 py-3 text-base">
             View My Work
           </Button>
-          <Button as="a" href="#contact" variant="outline" className="px-8 py-3 text-base">
+          <Button as="a" href="/Mohamed_Zarandah_Resume.pdf" download variant="outline" className="px-8 py-3 text-base">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17v3a2 2 0 002 2h14a2 2 0 002-2v-3" />
+            </svg>
+            Download Resume
+          </Button>
+          <Button as="a" href="#contact" variant="ghost" className="px-8 py-3 text-base">
             Get In Touch
           </Button>
         </div>

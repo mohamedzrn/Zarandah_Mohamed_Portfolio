@@ -110,7 +110,7 @@ const themes: Record<string, BannerTheme> = {
 };
 
 const defaultTheme: BannerTheme = {
-  overlay: 'from-black/95 via-slate-900/80 to-transparent',
+  overlay: 'from-black/95 via-warm-800/80 to-transparent',
   accent: '#818cf8',
   titleColor: '#e0e7ff',
 };
@@ -162,7 +162,7 @@ export function ProjectModal({ project, onClose }: Props) {
       />
 
       {/* ── Modal panel ─────────────────────────────────── */}
-      <div className="relative z-10 w-full max-w-2xl my-8 mx-4 bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+      <div className="relative z-10 w-full max-w-2xl my-8 mx-4 bg-cream dark:bg-warm-900 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
 
         {/* ╔══════════════════════════════╗
             ║   CUSTOM BANNER AREA         ║
@@ -181,7 +181,7 @@ export function ProjectModal({ project, onClose }: Props) {
           <div className={`absolute inset-0 bg-gradient-to-t ${theme.overlay}`} />
 
           {/* Bottom feather — blends into the panel background */}
-          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white dark:from-slate-900 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-cream dark:from-warm-900 to-transparent" />
 
           {/* Banner content */}
           <div className="absolute inset-0 flex flex-col justify-end px-6 sm:px-8 pb-6">
@@ -225,7 +225,7 @@ export function ProjectModal({ project, onClose }: Props) {
 
           {/* Description */}
           <p
-            className="text-sm leading-relaxed text-slate-500 dark:text-slate-400 italic pl-4 border-l-2"
+            className="text-sm leading-relaxed text-[#555] dark:text-warm-300 italic pl-4 border-l-2"
             style={{ borderColor: theme.accent }}
           >
             {project.description}
@@ -240,10 +240,10 @@ export function ProjectModal({ project, onClose }: Props) {
 
           {/* About */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2">
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-[#777] dark:text-warm-400 mb-2">
               About
             </h3>
-            <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+            <p className="text-sm leading-relaxed text-[#555] dark:text-warm-300">
               {project.about}
             </p>
           </div>
@@ -251,12 +251,12 @@ export function ProjectModal({ project, onClose }: Props) {
           {/* Highlights */}
           {bullets.length > 0 && (
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3">
+              <h3 className="text-xs font-semibold uppercase tracking-widest text-[#777] dark:text-warm-400 mb-3">
                 Highlights
               </h3>
               <ul className="space-y-2">
                 {bullets.map((point, i) => (
-                  <li key={i} className="flex gap-3 text-sm text-slate-700 dark:text-slate-300">
+                  <li key={i} className="flex gap-3 text-sm text-[#555] dark:text-warm-300">
                     <span
                       className="mt-[7px] flex-shrink-0 w-1.5 h-1.5 rounded-full"
                       style={{ backgroundColor: theme.accent }}
@@ -271,8 +271,8 @@ export function ProjectModal({ project, onClose }: Props) {
 
           {/* Review / reflection quote */}
           {project.review && (
-            <blockquote className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 p-4">
-              <p className="text-sm italic leading-relaxed text-slate-600 dark:text-slate-300">
+            <blockquote className="rounded-xl border border-cream-border dark:border-warm-700 bg-cream-dark dark:bg-warm-800/50 p-4">
+              <p className="text-sm italic leading-relaxed text-[#555] dark:text-warm-300">
                 "{project.review}"
               </p>
             </blockquote>
@@ -281,7 +281,7 @@ export function ProjectModal({ project, onClose }: Props) {
           {/* Screenshots carousel (if present) */}
           {project.screenshots && project.screenshots.length > 0 && (
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3">
+              <h3 className="text-xs font-semibold uppercase tracking-widest text-[#777] dark:text-warm-400 mb-3">
                 Screenshots
               </h3>
               <div className="flex gap-3 overflow-x-auto pb-1 snap-x snap-mandatory">
@@ -290,7 +290,7 @@ export function ProjectModal({ project, onClose }: Props) {
                     key={i}
                     src={src}
                     alt={`${project.title} screenshot ${i + 1}`}
-                    className="flex-shrink-0 w-56 sm:w-72 rounded-lg object-cover aspect-video snap-start border border-slate-200 dark:border-slate-700"
+                    className="flex-shrink-0 w-56 sm:w-72 rounded-lg object-cover aspect-video snap-start border border-cream-border dark:border-warm-700"
                     loading="lazy"
                   />
                 ))}
@@ -320,7 +320,7 @@ export function ProjectModal({ project, onClose }: Props) {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold bg-cream-dark dark:bg-warm-800 text-[#555] dark:text-warm-300 hover:bg-cream-border dark:hover:bg-warm-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mauve"
                 >
                   View on GitHub
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -332,7 +332,7 @@ export function ProjectModal({ project, onClose }: Props) {
           )}
 
           {!project.liveUrl && !project.githubUrl && (
-            <p className="text-xs text-slate-400 dark:text-slate-500 italic pt-2">
+            <p className="text-xs text-[#777] dark:text-warm-400 italic pt-2">
               College / Client project — not publicly available.
             </p>
           )}

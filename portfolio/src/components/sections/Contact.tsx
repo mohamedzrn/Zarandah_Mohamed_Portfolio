@@ -2,12 +2,14 @@ import { useState, useRef, type FormEvent } from 'react';
 import emailjs from '@emailjs/browser';
 import { SectionTitle } from '../ui/SectionTitle';
 import { Button } from '../ui/Button';
+import { useInView } from '../../hooks/useInView';
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error';
 
 export function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<FormStatus>('idle');
+  const { ref, inView } = useInView();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -35,7 +37,7 @@ export function Contact() {
       className="py-24 bg-cream-dark dark:bg-warm-900"
       aria-labelledby="contact-heading"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div ref={ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`}>
         <SectionTitle
           label="Contact"
           title="Let's Work Together"

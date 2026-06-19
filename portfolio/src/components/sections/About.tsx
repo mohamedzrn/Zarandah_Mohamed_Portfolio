@@ -1,17 +1,20 @@
 import { SectionTitle } from '../ui/SectionTitle';
 import { imgUrl } from '../../utils/assets';
+import { useInView } from '../../hooks/useInView';
 
 export function About() {
+  const { ref, inView } = useInView();
+
   return (
     <section
       id="about"
       className="py-24 bg-cream-dark dark:bg-warm-900"
       aria-labelledby="about-heading"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div ref={ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`}>
         <SectionTitle
           label="About Me"
-          title="Creative Developer &amp; QA Engineer"
+          title="Full-Cycle Builder"
         />
 
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -37,35 +40,39 @@ export function About() {
           {/* Content */}
           <div className="space-y-6">
             <p className="text-[#555] dark:text-warm-300 text-lg leading-relaxed">
-              Welcome to the intersection of artistry and technology. I'm a Creative Developer
-              based in London, Ontario, blending innovative development with imaginative design
-              to build memorable web experiences.
+              I help teams grow through better systems — whether that's building the
+              product, testing it, or creating the outreach pipeline that fills the funnel.
+              I've shipped a full-stack event planning platform, built automation workflows
+              for B2B lead generation, and delivered production-level QA documentation.
             </p>
             <p className="text-[#555] dark:text-warm-300 leading-relaxed">
-              With a diploma in{' '}
+              I'm a double Fanshawe grad with a diploma in{' '}
               <span className="text-mauve font-medium">
                 Interactive Media Design and Production
               </span>{' '}
               and a certificate in{' '}
               <span className="text-mauve font-medium">
                 Software and Information Systems Testing (SST3)
+              </span>
+              , plus a foundation in{' '}
+              <span className="text-mauve font-medium">
+                Mechanical Engineering
               </span>{' '}
-              from Fanshawe College, I bring both the creative vision and the technical rigour
-              that modern development demands.
+              from Conestoga College.
             </p>
             <p className="text-[#555] dark:text-warm-300 leading-relaxed">
-              I've worked on projects spanning interactive websites, enterprise solutions,
-              mobile WebViews, 3D modelling, and video production — always pushing to explore
-              what's next.
+              I work across the full cycle — design, development, testing, and outreach.
+              From wireframes to deployed products to cold email pipelines, I've delivered
+              at every stage.
             </p>
 
             {/* Services grid */}
             <div className="grid grid-cols-2 gap-3 pt-4">
               {[
-                'Front-End Development',
-                'Back-End Development',
-                'UI / UX Design',
+                'Full-Stack Development',
                 'QA & Testing',
+                'UI / UX Design',
+                'B2B Outreach & Lead Gen',
                 'Creative Development',
                 'Video Production',
               ].map((service) => (
@@ -82,9 +89,9 @@ export function About() {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 pt-4 border-t border-cream-border dark:border-warm-700">
               {[
-                { value: '12+', label: 'Projects' },
-                { value: '2', label: 'Credentials' },
-                { value: '4+', label: 'Years Learning' },
+                { value: '15+', label: 'Projects' },
+                { value: '3', label: 'Credentials' },
+                { value: '5+', label: 'Years Learning' },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
                   <div className="text-2xl font-bold text-mauve">

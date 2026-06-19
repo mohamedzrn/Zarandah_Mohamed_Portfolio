@@ -1,4 +1,5 @@
 import { SectionTitle } from '../ui/SectionTitle';
+import { useInView } from '../../hooks/useInView';
 
 interface ExperienceItem {
   role: string;
@@ -9,6 +10,40 @@ interface ExperienceItem {
 }
 
 const experiences: ExperienceItem[] = [
+  {
+    role: 'Business Development and Relations',
+    company: 'Uobo.ca',
+    period: 'Aug 2025 – Feb 2026',
+    type: 'work',
+    description: [
+      'Identified and outreached B2B partners across multiple verticals to grow affiliate network.',
+      'Managed dealer communication pipelines and coordinated partnership discussions.',
+      'Built and maintained lead qualification systems for inbound and outbound prospects.',
+      'Contributed to affiliate growth strategy resulting in expanded partner base.',
+    ],
+  },
+  {
+    role: 'UX Designer (Internship)',
+    company: 'The Door Face Panels — Riipen LevelUP',
+    period: 'Feb 2025 – Mar 2025',
+    type: 'work',
+    description: [
+      'Designed a smart home control interface through the Riipen LevelUP program.',
+      'Delivered wireframes, user flows, and comprehensive UX documentation.',
+      'Conducted user research to inform interface decisions for smart home controls.',
+    ],
+  },
+  {
+    role: 'Full Stack Developer',
+    company: 'Event Simplified',
+    period: 'Feb 2024 – May 2024',
+    type: 'work',
+    description: [
+      'Built a React/Node.js event planning platform from concept to production.',
+      'Developed responsive UI components and integrated backend services.',
+      'Independently delivered the full project lifecycle without a team.',
+    ],
+  },
   {
     role: 'Creative Developer & Web Designer',
     company: 'Freelance / Self-Employed',
@@ -24,7 +59,7 @@ const experiences: ExperienceItem[] = [
   {
     role: 'Interactive Media & Web Developer',
     company: 'Fanshawe College — Academic Projects',
-    period: '2021 – 2024',
+    period: '2022 – 2024',
     type: 'work',
     description: [
       'Built 10+ projects spanning web development, UX/UI design, API integrations, and video production.',
@@ -36,13 +71,15 @@ const experiences: ExperienceItem[] = [
 ];
 
 export function Experience() {
+  const { ref, inView } = useInView();
+
   return (
     <section
       id="experience"
       className="py-24 bg-cream dark:bg-warm-950"
       aria-labelledby="experience-heading"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div ref={ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`}>
         <SectionTitle
           label="Experience"
           title="Work History"

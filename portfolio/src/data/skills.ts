@@ -42,6 +42,29 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Adobe Premiere' },
       { name: 'After Effects' },
       { name: 'Git / GitHub' },
+      { name: 'Logo Design' },
+      { name: '3D Design' },
+    ],
+  },
+  {
+    name: 'Business & Outreach',
+    skills: [
+      { name: 'Business Development' },
+      { name: 'B2B Partnerships' },
+      { name: 'Lead Generation' },
+      { name: 'Cold Outreach' },
+      { name: 'CRM Management' },
+    ],
+  },
+  {
+    name: 'UX & Research',
+    skills: [
+      { name: 'UX Research' },
+      { name: 'Wireframing' },
+      { name: 'Design Thinking' },
+      { name: 'WordPress' },
+      { name: 'Webflow' },
+      { name: 'Cinema 4D' },
     ],
   },
 ];

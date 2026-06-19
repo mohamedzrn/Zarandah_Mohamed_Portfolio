@@ -1,5 +1,6 @@
 import { SectionTitle } from '../ui/SectionTitle';
 import { Badge } from '../ui/Badge';
+import { useInView } from '../../hooks/useInView';
 
 interface Cert {
   name: string;
@@ -24,13 +25,15 @@ const certifications: Cert[] = [
 ];
 
 export function Certifications() {
+  const { ref, inView } = useInView();
+
   return (
     <section
       id="certifications"
       className="py-24 bg-cream dark:bg-warm-950"
       aria-labelledby="certifications-heading"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div ref={ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`}>
         <SectionTitle
           label="Certifications"
           title="Credentials"

@@ -1,21 +1,24 @@
 import { SectionTitle } from '../ui/SectionTitle';
 import { skillCategories } from '../../data/skills';
+import { useInView } from '../../hooks/useInView';
 
 export function Skills() {
+  const { ref, inView } = useInView();
+
   return (
     <section
       id="skills"
       className="py-24 bg-cream dark:bg-warm-950"
       aria-labelledby="skills-heading"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div ref={ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`}>
         <SectionTitle
           label="Skills"
           title="My Toolbox"
           description="Technologies and tools I use to bring ideas to life."
         />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category) => (
             <div
               key={category.name}

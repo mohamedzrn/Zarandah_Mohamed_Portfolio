@@ -1,4 +1,5 @@
 import { SectionTitle } from '../ui/SectionTitle';
+import { useInView } from '../../hooks/useInView';
 
 interface EducationItem {
   degree: string;
@@ -10,9 +11,23 @@ interface EducationItem {
 
 const education: EducationItem[] = [
   {
+    degree: 'Certificate — Software and Information Systems Testing (SST3)',
+    institution: 'Fanshawe College',
+    period: 'Jan 2025 – Aug 2025',
+    description:
+      'Specialized certificate focused on industry-standard QA testing methodologies, test planning, defect tracking, and automated testing with Selenium.',
+    highlights: [
+      'Test planning and strategy documentation',
+      'Selenium WebDriver for automated testing',
+      'Defect tracking and regression testing',
+      'Black-box and white-box testing techniques',
+      'Agile QA integration',
+    ],
+  },
+  {
     degree: 'Diploma — Interactive Media Design and Production',
     institution: 'Fanshawe College',
-    period: '2021 – 2024',
+    period: 'Sep 2022 – Apr 2024',
     description:
       'A comprehensive program covering web development, UX/UI design, motion graphics, video production, and interactive media across full-stack technologies.',
     highlights: [
@@ -24,36 +39,37 @@ const education: EducationItem[] = [
     ],
   },
   {
-    degree: 'Certificate — Software and Information Systems Testing (SST3)',
-    institution: 'Fanshawe College',
-    period: '2023 – 2024',
+    degree: 'Advanced Diploma — Mechanical Engineering',
+    institution: 'Conestoga College',
+    period: 'Sep 2021 – Apr 2022',
     description:
-      'Specialized certificate focused on industry-standard QA testing methodologies, test planning, defect tracking, and automated testing with Selenium.',
+      'Advanced diploma program in mechanical engineering, building foundational engineering principles, technical problem-solving, and systematic analytical skills.',
     highlights: [
-      'Test planning and strategy documentation',
-      'Selenium WebDriver for automated testing',
-      'Defect tracking and regression testing',
-      'Black-box and white-box testing techniques',
-      'Agile QA integration',
+      'Engineering fundamentals and applied mathematics',
+      'Technical drawing and CAD modelling',
+      'Systematic problem-solving methodology',
+      'Project-based collaborative learning',
     ],
   },
 ];
 
 export function Education() {
+  const { ref, inView } = useInView();
+
   return (
     <section
       id="education"
       className="py-24 bg-cream-dark dark:bg-warm-900"
       aria-labelledby="education-heading"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div ref={ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`}>
         <SectionTitle
           label="Education"
           title="Academic Background"
           description="Formal training that built my foundation in design and engineering."
         />
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {education.map((item, i) => (
             <article
               key={i}

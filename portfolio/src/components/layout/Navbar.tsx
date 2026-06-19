@@ -64,6 +64,18 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
 
           {/* Right controls */}
           <div className="flex items-center gap-2">
+            {/* Resume download */}
+            <a
+              href="/Mohamed_Zarandah_Resume.pdf"
+              download
+              aria-label="Download resume"
+              className="hidden md:flex p-2 rounded-lg text-[#777] dark:text-warm-400 hover:text-mauve dark:hover:text-mauve-faint hover:bg-mauve/10 dark:hover:bg-mauve/10 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17v3a2 2 0 002 2h14a2 2 0 002-2v-3" />
+              </svg>
+            </a>
+
             {/* Theme toggle */}
             <button
               onClick={onToggleTheme}
@@ -124,6 +136,16 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/Mohamed_Zarandah_Resume.pdf"
+                  download
+                  onClick={handleNavClick}
+                  className="block px-3 py-2.5 text-sm font-medium text-[#555] dark:text-warm-300 hover:text-mauve dark:hover:text-mauve-faint hover:bg-mauve/10 dark:hover:bg-mauve/10 rounded-md transition-colors"
+                >
+                  Download Resume
+                </a>
+              </li>
               <li className="pt-2">
                 <a
                   href="#contact"

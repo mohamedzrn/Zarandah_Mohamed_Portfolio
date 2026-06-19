@@ -3,6 +3,7 @@ import { SectionTitle } from '../ui/SectionTitle';
 import { Badge } from '../ui/Badge';
 import { ProjectModal } from '../ui/ProjectModal';
 import { projects } from '../../data/projects';
+import { useInView } from '../../hooks/useInView';
 import type { Project } from '../../types';
 
 type FilterCategory = 'all' | Project['category'];
@@ -18,6 +19,7 @@ const filters: { label: string; value: FilterCategory }[] = [
 export function Projects() {
   const [activeFilter, setActiveFilter] = useState<FilterCategory>('all');
   const [selected, setSelected] = useState<Project | null>(null);
+  const { ref, inView } = useInView();
 
   const filtered =
     activeFilter === 'all'
@@ -28,10 +30,10 @@ export function Projects() {
     <>
       <section
         id="projects"
-        className="py-24 bg-white dark:bg-[#1a0e0b]"
+        className="py-24 bg-cream-dark dark:bg-warm-900"
         aria-labelledby="projects-heading"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref={ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <SectionTitle
             label="Projects"
             title="Selected Work"
@@ -47,8 +49,8 @@ export function Projects() {
                 onClick={() => setActiveFilter(f.value)}
                 className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${
                   activeFilter === f.value
-                    ? 'bg-violet-600 text-white shadow-md shadow-violet-500/20'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 bg-slate-100 dark:bg-[#2d1a12] hover:bg-violet-50 dark:hover:bg-violet-900/20'
+                    ? 'bg-mauve text-cream shadow-md shadow-mauve/20'
+                    : 'text-[#555] dark:text-warm-300 hover:text-mauve dark:hover:text-mauve-faint bg-cream dark:bg-warm-800 hover:bg-mauve/10 dark:hover:bg-mauve/10'
                 }`}
               >
                 {f.label}
@@ -320,7 +322,7 @@ interface CardProps {
 function ProjectCard({ project, onClick }: CardProps) {
   return (
     <article
-      className="group bg-slate-50 dark:bg-[#231410] rounded-2xl border border-slate-200 dark:border-[#3a2218] overflow-hidden hover:border-violet-300 dark:hover:border-violet-700 hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+      className="group bg-cream dark:bg-warm-800 rounded-2xl border border-cream-border dark:border-warm-700 overflow-hidden hover:border-mauve dark:hover:border-mauve hover:shadow-xl hover:shadow-mauve/10 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mauve"
       onClick={onClick}
       onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onClick()}
       role="button"
@@ -346,10 +348,10 @@ function ProjectCard({ project, onClick }: CardProps) {
 
       {/* Content */}
       <div className="p-5">
-        <h3 className="font-bold text-slate-900 dark:text-white mb-2 text-lg leading-tight">
+        <h3 className="font-bold text-[#333] dark:text-cream mb-2 text-lg leading-tight">
           {project.title}
         </h3>
-        <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4 line-clamp-2">
+        <p className="text-[#555] dark:text-warm-300 text-sm leading-relaxed mb-4 line-clamp-2">
           {project.description}
         </p>
 
@@ -359,14 +361,14 @@ function ProjectCard({ project, onClick }: CardProps) {
           ))}
         </div>
 
-        <div className="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-[#3a2218]">
+        <div className="flex items-center gap-3 pt-4 border-t border-cream-border dark:border-warm-700">
           {project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="flex items-center gap-1.5 text-xs font-medium text-violet-600 dark:text-violet-400 hover:underline"
+              className="flex items-center gap-1.5 text-xs font-medium text-mauve dark:text-mauve-faint hover:underline"
             >
               Live Demo
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -380,7 +382,7 @@ function ProjectCard({ project, onClick }: CardProps) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-white"
+              className="flex items-center gap-1.5 text-xs font-medium text-[#555] dark:text-warm-300 hover:text-mauve dark:hover:text-mauve-faint"
             >
               GitHub
               <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
@@ -389,7 +391,7 @@ function ProjectCard({ project, onClick }: CardProps) {
             </a>
           )}
           {!project.liveUrl && !project.githubUrl && (
-            <span className="text-xs text-slate-400 dark:text-slate-500 italic">
+            <span className="text-xs text-[#777] dark:text-warm-400 italic">
               College / Client project
             </span>
           )}

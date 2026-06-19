@@ -1,19 +1,52 @@
+const navLinks = [
+  { label: 'About', href: '#about' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Education', href: '#education' },
+  { label: 'Contact', href: '#contact' },
+];
+
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="border-t border-cream-border dark:border-warm-700 bg-cream dark:bg-warm-950">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-[#777] dark:text-warm-400">
-            © {year}{' '}
-            <span className="font-medium text-[#333] dark:text-warm-200">
-              Mohamed Zarandah
-            </span>
-            . All rights reserved.
-          </p>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Top section */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-8">
+          {/* Logo + nav */}
+          <div>
+            <a href="#hero" className="inline-block mb-4">
+              <span className="font-bold text-xl tracking-tight">
+                <span className="text-mauve">Z</span>
+                <span className="text-[#333] dark:text-white">RN</span>
+              </span>
+            </a>
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-[#555] dark:text-warm-300 hover:text-mauve dark:hover:text-mauve-faint transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
+          {/* Social + resume */}
           <div className="flex items-center gap-4">
+            <a
+              href="/Mohamed_Zarandah_Resume.pdf"
+              download
+              className="text-sm font-medium text-mauve hover:text-mauve-dark dark:text-mauve-faint dark:hover:text-mauve transition-colors"
+            >
+              Download Resume
+            </a>
+            <span className="w-px h-5 bg-cream-border dark:bg-warm-700" />
             <a
               href="https://github.com/mohamedzrn"
               target="_blank"
@@ -46,6 +79,17 @@ export function Footer() {
               </svg>
             </a>
           </div>
+        </div>
+
+        {/* Bottom copyright */}
+        <div className="pt-6 border-t border-cream-border dark:border-warm-700">
+          <p className="text-sm text-[#777] dark:text-warm-400">
+            &copy; {year}{' '}
+            <span className="font-medium text-[#333] dark:text-warm-200">
+              Mohamed Zarandah
+            </span>
+            . All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
