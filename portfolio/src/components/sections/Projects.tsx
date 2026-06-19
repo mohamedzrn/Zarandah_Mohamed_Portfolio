@@ -48,7 +48,7 @@ export function Projects() {
                 className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${
                   activeFilter === f.value
                     ? 'bg-violet-600 text-white shadow-md shadow-violet-500/20'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 bg-slate-100 dark:bg-slate-800 hover:bg-violet-50 dark:hover:bg-violet-900/20'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 bg-slate-100 dark:bg-[#2d1a12] hover:bg-violet-50 dark:hover:bg-violet-900/20'
                 }`}
               >
                 {f.label}
@@ -320,7 +320,7 @@ interface CardProps {
 function ProjectCard({ project, onClick }: CardProps) {
   return (
     <article
-      className="group bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-violet-300 dark:hover:border-violet-700 hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+      className="group bg-slate-50 dark:bg-[#231410] rounded-2xl border border-slate-200 dark:border-[#3a2218] overflow-hidden hover:border-violet-300 dark:hover:border-violet-700 hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
       onClick={onClick}
       onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onClick()}
       role="button"
@@ -359,7 +359,7 @@ function ProjectCard({ project, onClick }: CardProps) {
           ))}
         </div>
 
-        <div className="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
+        <div className="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-[#3a2218]">
           {project.liveUrl && (
             <a
               href={project.liveUrl}
