@@ -29,4 +29,4 @@ export interface NavLink {
   href: string;
 }
 
-export type 
+export type Theme = 'dark' | 'light';
