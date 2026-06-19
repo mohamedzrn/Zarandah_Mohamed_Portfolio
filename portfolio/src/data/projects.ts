@@ -74,7 +74,7 @@ export const projects: Project[] = [
     title: 'Event Simplified',
     slug: 'event-simplified',
     description:
-      'A business website for Event Simplified with a consistent color scheme designed to capture attention and communicate value.',
+      'A business website for Event Simplified — redesigned with a modern dark navy UI, AI-powered features section, and fully responsive layout.',
     about:
       'Event Simplified is a forward-thinking digital platform designed to transform the event planning and management landscape. Built on the principles of innovation, ease of use, and connectivity.',
     highlights:
@@ -181,81 +181,4 @@ export const projects: Project[] = [
     about:
       "Welcome to my digital garage. This website is the culmination of countless hours of dedication, driven by my deep-rooted love for everything automotive. From sleek classics to cutting-edge supercars.",
     highlights:
-      'High-quality automotive photography. Deep-dive articles on iconic models. Personal road trip anecdotes. Community hub for car enthusiasts.',
-    review:
-      '"Discovering this self-built website dedicated to car enthusiasm was an absolute delight. The passion behind every page is evident from the first click."',
-    imageUrl: imgUrl('/images/csl-banner.png'),
-    screenshots: [imgUrl('/images/csl-ss1.JPG'), imgUrl('/images/csl-ss2.JPG')],
-    tags: ['HTML', 'CSS', 'JavaScript', 'Responsive'],
-    category: 'web',
-  },
-  {
-    id: 12,
-    title: 'Star Wars API',
-    slug: 'starwars',
-    description:
-      'A singular API integration file that fetches data from the Star Wars API — clean, efficient, and developer-friendly.',
-    about:
-      'This API file is a meticulously crafted tool designed to seamlessly fetch data from the extensive Star Wars API. Engineered with precision, it provides streamlined access to characters, planets, starships, and more.',
-    highlights:
-      'Optimized API queries for minimal latency. Structured data retrieval for characters, planets, vehicles. Developer-friendly and well-documented.',
-    review:
-      '"Exploring this Star Wars API file was enthralling. Its clarity, efficiency, and thoughtful design stood out for developers of all skill levels."',
-    imageUrl: imgUrl('/images/starwars-banner.png'),
-    screenshots: [imgUrl('/images/starwars-ss1.jpg'), imgUrl('/images/starwars-ss2.jpg')],
-    tags: ['JavaScript', 'REST API', 'Fetch API'],
-    category: 'api',
-  },
-  {
-    id: 13,
-    title: 'AI Outreach Engine',
-    slug: 'lemlist',
-    description:
-      'A fully automated B2B cold outreach pipeline — discovers jobs, enriches contacts, generates personalised emails with a local AI model, and sends via Gmail. Zero API cost.',
-    about:
-      'A self-hosted B2B partner outreach engine built as proof-of-work for Affilial.com. It runs 24/7 on Render, searching Greenhouse, Lever, Ashby, Wellfound, and LinkedIn every 6 hours for Account Manager, Partner Manager, and Affiliate Manager roles. Leads are scored (0–100), enriched via Hunter.io, then personalised emails are generated with Claude Haiku and sent through Gmail SMTP — with full follow-up sequencing and A/B testing baked in.',
-    highlights:
-      'Job discovery across 5 boards every 6 hours — Greenhouse, Lever, Ashby, Wellfound, LinkedIn. Rules-based lead scoring (0–100) with 3 priority tiers (skip below 80). Claude Haiku AI generates personalised cold emails and follow-ups per lead. Email enrichment via Hunter.io with web research on top prospects. A/B prompt testing with SQLite tracking — auto-promotes winning variant after 10 sends. Day 3 and Day 7 follow-up sequences with IMAP reply detection to cancel on response. Google Sheets integration — approve a row and the engine picks it up automatically. Express.js dashboard with 30-second auto-refresh deployed 24/7 on Render.',
-    review:
-      '"Full pipeline in one command. The A/B prompt testing and lead scoring alone saved hours of manual triage every week."',
-    imageUrl: imgUrl('/images/lemlist-banner.svg'),
-    tags: ['Node.js', 'Claude API', 'Gmail SMTP', 'Hunter.io', 'Google Sheets', 'SQLite', 'Express.js', 'Render'],
-    liveUrl: 'https://lemlist-partner-engine.onrender.com',
-    githubUrl: 'https://github.com/mohamedzrn/lemlist-partner-engine',
-    category: 'api',
-  },
-  {
-    id: 14,
-    title: 'Notion → Discord Bot',
-    slug: 'notion-discord',
-    description:
-      'A real-time automation bot that bridges Notion and Discord — DMing team members on task creation, reassignment, updates, and overdue alerts so nothing falls through the cracks.',
-    about:
-      'A full-stack bot deployed on Railway that keeps async teams accountable without micromanaging. It runs a dual notification system — 10-second polling loop plus real-time Notion webhooks (HMAC-SHA256 verified) — and automatically DMs team members for every meaningful task event. Auto-discovers Notion databases so no manual config is needed.',
-    highlights:
-      'Dual notification system: 10-second polling plus real-time Notion webhooks with HMAC-SHA256 verification. 5 automated DM types: new task, reassignment, due date change, status change, overdue alerts. Daily digest every morning with all open assigned tasks. Hourly overdue scanner with daily deduplication to prevent spam. Auto-discovery of Notion databases with graceful catch-up for newly connected ones. 7 slash commands: /mytasks, /teamtasks, /recentupdates, /status, /linknotion, /remind, /forceremind. Notion to Discord user mapping with persistent JSON storage.',
-    review:
-      '"Eliminated the need for manual check-ins entirely. The /teamtasks command alone changed how we run standups."',
-    imageUrl: imgUrl('/images/notion-discord-banner.svg'),
-    tags: ['Node.js', 'Discord.js v14', 'Notion API', 'Express.js', 'Winston', 'Railway'],
-    githubUrl: 'https://github.com/mohamedzrn/notion-discord-bot',
-    category: 'api',
-  },
-  {
-    id: 15,
-    title: 'Noctura Pulse',
-    slug: 'noctura',
-    description:
-      'An AI-powered Instagram trend bot that turns creator behaviour into content intelligence — silently. Creators forward reels and posts; the bot profiles, analyses, and surfaces trend signals.',
-    about:
-      'Noctura Pulse is a stealth Instagram DM bot built for a creator management agency. Creators forward reels, carousels, stories, and clips — the bot analyses each piece with Claude Vision AI and syncs intelligence to per-creator Notion databases automatically. It builds a rolling behavioral content profile per creator, tracking niche drift, audio trends, hook strength, and shareability over time.',
-    highlights:
-      'Adaptive DM polling (45s to 1hr backoff) waking within 30s on activity. Supports 5 content types: Reels, Carousels, Static posts, Stories, and xma_clip format. Claude Vision AI generates visual summaries from thumbnails. 9 signals extracted per submission: niche, trend signals, content style, audio score, hook strength, shareability, engagement pattern, keywords, and actionable content recommendation. Per-creator Notion database routing with auto-set thumbnail gallery covers. Story media captured before 24-hour expiry. Audio bank and keyword bank ranked by cross-creator frequency and reach. Human-paced reply delays (12–50s randomised) with residential proxy for account safety. Live web dashboard with 5 views and 4 API endpoints.',
-    review:
-      '"Replaced our entire manual content research process. The audio bank alone surfaces trends before they peak."',
-    imageUrl: imgUrl('/images/noctura-banner.svg'),
-    tags: ['Python', 'Claude API', 'instagrapi', 'SQLite', 'Notion API', 'Flask', 'Residential Proxy'],
-    githubUrl: 'https://github.com/mohamedzrn/noctura-trend-search',
-    category: 'api',
-  },
-];
+      'High-quality automotive photography. Deep-dive articles on iconic models. Personal road trip anecdotes. Communit
