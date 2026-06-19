@@ -232,7 +232,7 @@ function ProjectBanner({ slug }: { slug: string }) {
           style={{ background: '#010104' }}>
           {/* star field */}
           {[...Array(30)].map((_, i) => (
-            <div key={i} style={{ position: 'absolute', width: '2px', height: '2px', borderRadius: '50%', background: 'white', opacity: Math.random() * 0.7 + 0.2, left: `${(i * 37 + 11) % 100}%`, top: `${(i * 53 + 7) % 100}%` }} />
+            <div key={i} style={{ position: 'absolute', width: '2px', height: '2px', borderRadius: '50%', background: 'white', opacity: ((i * 17 + 3) % 10) / 10 * 0.7 + 0.2, left: `${(i * 37 + 11) % 100}%`, top: `${(i * 53 + 7) % 100}%` }} />
           ))}
           <span style={{ color: '#fbbf24', fontSize: '1.05rem', fontWeight: 900, letterSpacing: '0.45em', position: 'relative', textShadow: '0 0 20px #fbbf2466' }}>STAR WARS</span>
           <span style={{ color: '#fde68a', fontSize: '0.65rem', fontWeight: 300, letterSpacing: '0.55em', position: 'relative', marginTop: '6px', opacity: 0.75 }}>API</span>

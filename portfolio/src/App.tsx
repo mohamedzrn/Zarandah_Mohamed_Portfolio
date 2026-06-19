@@ -9,6 +9,7 @@ import { Experience } from './components/sections/Experience';
 import { Education } from './components/sections/Education';
 import { Certifications } from './components/sections/Certifications';
 import { Contact } from './components/sections/Contact';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 function App() {
   const [theme, toggleTheme] = useTheme();
@@ -36,6 +37,7 @@ function App() {
       </main>
 
       <Footer />
+      <SpeedInsights />
     </div>
   );
 }
