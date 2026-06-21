@@ -12,17 +12,18 @@ interface EducationItem {
 
 const education: EducationItem[] = [
   {
-    degree: 'Certificate — Software and Information Systems Testing (SST3)',
+    degree: 'Ontario College Graduate Certificate — Software and Information Systems Testing',
     institution: 'Fanshawe College',
-    period: 'Jan 2025 – Aug 2025',
+    period: 'Sep 2024 – Jan 2026',
     description:
-      'Specialized certificate focused on industry-standard QA testing methodologies, test planning, defect tracking, and automated testing with Selenium.',
+      'A two-year graduate certificate covering software quality assurance protocols and test engineering for mobile, web, and cloud-based applications within Agile and DevOps environments.',
     highlights: [
-      'Test planning and strategy documentation',
-      'Selenium WebDriver for automated testing',
+      'Test Methodologies & Test Planning',
+      'Automated Test Tools (Selenium)',
+      'Non-Functional & IS Security Testing',
+      'Coding for Test',
+      'Applied Project Management',
       'Defect tracking and regression testing',
-      'Black-box and white-box testing techniques',
-      'Agile QA integration',
     ],
     activities: [
       'Participated in collaborative usability and functional test simulations',
