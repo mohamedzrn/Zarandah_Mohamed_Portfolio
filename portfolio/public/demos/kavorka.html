@@ -3,62 +3,1393 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kavorka — Brand Identity | Mohamed Zarandah</title>
+<title>Kavorka — Luxury Makeup</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
 <style>
-  :root{--accent:#c9a84c;--accent-bg:rgba(201,168,76,.12)}
-  body{background:#0c0406}
-  .hero-tag{background:var(--accent-bg);color:var(--accent);border:1px solid rgba(201,168,76,.3)}
-  .hero h1{color:#fdf6e3}
-  .section-label{color:var(--accent)}
-  .highlights li::before{background:var(--accent)}
-  .quote{border-color:var(--accent)}
-  .tag{border-color:rgba(201,168,76,.3);color:var(--accent)}
-  .back-link{background:var(--accent);color:#0c0406}
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0a0304;
+  color: #e8e0d8;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ===== UTILITY ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #fdf6e3;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.section-subtext {
+  font-size: 1rem;
+  color: #a89a8a;
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 60px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.gold-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+  margin: 0 auto 24px;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
+}
+
+nav.scrolled {
+  background: rgba(10, 3, 4, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 14px 40px;
+  box-shadow: 0 2px 40px rgba(0,0,0,0.4);
+}
+
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #c9a84c;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #c0b8ae;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #c9a84c;
+  transition: width 0.3s;
+}
+
+.nav-links a:hover { color: #c9a84c; }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #c9a84c;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('/images/kavorka-banner.png') center/cover no-repeat;
+  transform: scale(1.05);
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  0% { transform: scale(1.05); }
+  100% { transform: scale(1.12); }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 3, 4, 0.4) 0%,
+    rgba(10, 3, 4, 0.55) 40%,
+    rgba(10, 3, 4, 0.85) 80%,
+    rgba(10, 3, 4, 1) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 24px;
+  max-width: 800px;
+}
+
+.hero-eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  margin-bottom: 24px;
+  font-weight: 500;
+  opacity: 0;
+  animation: fadeUp 1s 0.3s forwards;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-weight: 700;
+  color: #c9a84c;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-shadow: 0 4px 60px rgba(201, 168, 76, 0.15);
+  opacity: 0;
+  animation: fadeUp 1s 0.5s forwards;
+}
+
+.hero-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: #d8cfc4;
+  margin-bottom: 48px;
+  font-weight: 400;
+  opacity: 0;
+  animation: fadeUp 1s 0.7s forwards;
+}
+
+.hero-cta {
+  display: inline-block;
+  padding: 16px 48px;
+  border: 1.5px solid #c9a84c;
+  color: #c9a84c;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: all 0.4s;
+  opacity: 0;
+  animation: fadeUp 1s 0.9s forwards;
+}
+
+.hero-cta:hover {
+  background: #c9a84c;
+  color: #0a0304;
+  box-shadow: 0 8px 40px rgba(201, 168, 76, 0.25);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeUp 1s 1.2s forwards;
+}
+
+.scroll-indicator span {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #7a6e62;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, #c9a84c, transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== PHILOSOPHY ===== */
+.philosophy {
+  padding: 120px 0;
+  position: relative;
+}
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.philosophy-image {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.philosophy-image img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  filter: brightness(0.9) contrast(1.05);
+  transition: transform 0.6s;
+}
+
+.philosophy-image:hover img {
+  transform: scale(1.03);
+}
+
+.philosophy-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.philosophy-text .gold-divider {
+  margin: 0 0 24px;
+}
+
+.philosophy-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.philosophy-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: #fdf6e3;
+  margin-bottom: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.philosophy-text p {
+  color: #a89a8a;
+  margin-bottom: 20px;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.philosophy-text .signature {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: #c9a84c;
+  font-size: 1.1rem;
+  margin-top: 32px;
+}
+
+/* ===== PRODUCTS ===== */
+.products {
+  padding: 120px 0;
+  background: linear-gradient(180deg, #0a0304 0%, #100508 50%, #0a0304 100%);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.product-card {
+  background: linear-gradient(165deg, rgba(61, 16, 16, 0.3), rgba(20, 4, 6, 0.6));
+  border: 1px solid rgba(201, 168, 76, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(201, 168, 76, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(201, 168, 76, 0.05);
+}
+
+.product-visual {
+  height: 320px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Lipstick visual */
+.product-visual--lipstick {
+  background: linear-gradient(135deg, #2a0808 0%, #3d1010 50%, #1a0505 100%);
+}
+
+.lipstick-shape {
+  position: relative;
+  width: 48px;
+  height: 180px;
+}
+
+.lipstick-cap {
+  width: 48px;
+  height: 50px;
+  background: linear-gradient(180deg, #c9a84c, #a8872e);
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 2px 20px rgba(201, 168, 76, 0.3);
+}
+
+.lipstick-body {
+  width: 44px;
+  height: 90px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #1a0808, #0f0404);
+  border-radius: 0 0 4px 4px;
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-top: none;
+  position: relative;
+}
+
+.lipstick-tip {
+  width: 36px;
+  height: 40px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #8b1a1a, #c42020, #8b1a1a);
+  clip-path: polygon(10% 100%, 90% 100%, 80% 40%, 50% 0%, 20% 40%);
+  position: absolute;
+  top: -38px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 -4px 20px rgba(196, 32, 32, 0.3);
+}
+
+.lipstick-band {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+}
+
+/* Eyeshadow visual */
+.product-visual--eyeshadow {
+  background: linear-gradient(135deg, #1a0a05 0%, #2a1508 50%, #0f0805 100%);
+}
+
+.eyeshadow-palette {
+  width: 200px;
+  height: 160px;
+  background: linear-gradient(145deg, #1a1010, #0f0808);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 10px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  transform: perspective(500px) rotateX(8deg) rotateY(-3deg);
+  transition: transform 0.4s;
+}
+
+.product-card:hover .eyeshadow-palette {
+  transform: perspective(500px) rotateX(4deg) rotateY(0deg);
+}
+
+.shadow-pan {
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.shadow-pan::after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 35%;
+  height: 25%;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  filter: blur(3px);
+}
+
+.shadow-pan:nth-child(1) { background: radial-gradient(circle at 40% 40%, #c9a84c, #8a6e2e); }
+.shadow-pan:nth-child(2) { background: radial-gradient(circle at 40% 40%, #6b3030, #3d1010); }
+.shadow-pan:nth-child(3) { background: radial-gradient(circle at 40% 40%, #d4a017, #8b6914); }
+.shadow-pan:nth-child(4) { background: radial-gradient(circle at 40% 40%, #8b4513, #5c2d0e); }
+.shadow-pan:nth-child(5) { background: radial-gradient(circle at 40% 40%, #2c1a0e, #1a0f08); }
+.shadow-pan:nth-child(6) { background: radial-gradient(circle at 40% 40%, #f5deb3, #c9a84c); }
+
+/* Foundation visual */
+.product-visual--foundation {
+  background: linear-gradient(135deg, #140a06 0%, #1e1008 50%, #0a0604 100%);
+}
+
+.foundation-bottle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.foundation-cap {
+  width: 20px;
+  height: 24px;
+  background: linear-gradient(180deg, #c9a84c, #a8872e);
+  border-radius: 3px 3px 0 0;
+}
+
+.foundation-neck {
+  width: 16px;
+  height: 12px;
+  background: linear-gradient(180deg, rgba(201, 168, 76, 0.4), transparent);
+}
+
+.foundation-body {
+  width: 60px;
+  height: 140px;
+  background: linear-gradient(180deg,
+    rgba(212, 160, 23, 0.15),
+    rgba(201, 168, 76, 0.08) 30%,
+    rgba(201, 168, 76, 0.05) 70%,
+    rgba(212, 160, 23, 0.12)
+  );
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 6px 6px 10px 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.foundation-liquid {
+  position: absolute;
+  bottom: 0;
+  left: 4px;
+  right: 4px;
+  height: 65%;
+  background: linear-gradient(180deg, #d4a868, #c49550, #b8844a);
+  border-radius: 0 0 8px 8px;
+  opacity: 0.7;
+}
+
+.foundation-label-area {
+  position: absolute;
+  top: 20px;
+  left: 8px;
+  right: 8px;
+  text-align: center;
+}
+
+.foundation-label-area span {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.5rem;
+  color: #c9a84c;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.product-shimmer {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 60%);
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: translate(-10%, -10%); }
+  50% { transform: translate(10%, 10%); }
+}
+
+.product-info {
+  padding: 32px 28px;
+}
+
+.product-category {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.product-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: #fdf6e3;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.product-desc {
+  font-size: 0.88rem;
+  color: #8a7d70;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.product-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: #c9a84c;
+}
+
+.product-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  font-weight: 500;
+  transition: gap 0.3s;
+}
+
+.product-link:hover { gap: 14px; }
+
+.product-link .arrow {
+  transition: transform 0.3s;
+}
+
+.product-card:hover .product-link .arrow {
+  transform: translateX(4px);
+}
+
+/* ===== MARQUEE ===== */
+.marquee-section {
+  padding: 60px 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(201, 168, 76, 0.08);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 60px;
+  animation: marqueeScroll 30s linear infinite;
+  white-space: nowrap;
+}
+
+.marquee-item {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: rgba(201, 168, 76, 0.15);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.marquee-dot {
+  color: rgba(201, 168, 76, 0.3);
+  font-size: 0.6rem;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials {
+  padding: 120px 0;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.testimonial-card {
+  background: linear-gradient(165deg, rgba(61, 16, 16, 0.15), rgba(20, 4, 6, 0.3));
+  border: 1px solid rgba(201, 168, 76, 0.08);
+  border-radius: 8px;
+  padding: 40px 32px;
+  transition: border-color 0.4s, transform 0.4s;
+}
+
+.testimonial-card:hover {
+  border-color: rgba(201, 168, 76, 0.2);
+  transform: translateY(-4px);
+}
+
+.testimonial-stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.star {
+  width: 14px;
+  height: 14px;
+  color: #c9a84c;
+}
+
+.testimonial-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #d0c8be;
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.author-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0a0304;
+  flex-shrink: 0;
+}
+
+.author-avatar--1 { background: linear-gradient(135deg, #c9a84c, #d4a017); }
+.author-avatar--2 { background: linear-gradient(135deg, #8b4513, #a0522d); }
+.author-avatar--3 { background: linear-gradient(135deg, #6b3030, #8b1a1a); }
+
+.author-name {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #e8e0d8;
+}
+
+.author-title {
+  font-size: 0.78rem;
+  color: #6e6359;
+  margin-top: 2px;
+}
+
+/* ===== NEWSLETTER ===== */
+.newsletter {
+  padding: 100px 0;
+  background: linear-gradient(180deg, #0a0304 0%, #140406 50%, #0a0304 100%);
+}
+
+.newsletter-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.newsletter-inner h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  color: #fdf6e3;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.newsletter-inner p {
+  color: #8a7d70;
+  margin-bottom: 36px;
+  font-weight: 300;
+  font-size: 0.95rem;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 12px;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 14px 20px;
+  background: rgba(201, 168, 76, 0.06);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 4px;
+  color: #e8e0d8;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.newsletter-form input::placeholder { color: #5a524a; }
+.newsletter-form input:focus { border-color: #c9a84c; }
+
+.newsletter-form button {
+  padding: 14px 32px;
+  background: #c9a84c;
+  border: none;
+  border-radius: 4px;
+  color: #0a0304;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s;
+  white-space: nowrap;
+}
+
+.newsletter-form button:hover {
+  background: #d4a017;
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  border-top: 1px solid rgba(201, 168, 76, 0.08);
+  padding: 60px 0 40px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.footer-brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #c9a84c;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.footer-tagline {
+  font-size: 0.85rem;
+  color: #6e6359;
+  font-weight: 300;
+  max-width: 280px;
+  line-height: 1.6;
+}
+
+.footer-links {
+  display: flex;
+  gap: 60px;
+}
+
+.footer-col h4 {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col a {
+  font-size: 0.85rem;
+  color: #7a6e62;
+  transition: color 0.3s;
+  font-weight: 300;
+}
+
+.footer-col a:hover { color: #c9a84c; }
+
+.footer-social {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.social-icon:hover {
+  border-color: #c9a84c;
+  background: rgba(201, 168, 76, 0.08);
+}
+
+.social-icon svg {
+  width: 14px;
+  height: 14px;
+  fill: #c9a84c;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(201, 168, 76, 0.06);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-copy {
+  font-size: 0.78rem;
+  color: #4a433c;
+  font-weight: 300;
+}
+
+.back-to-portfolio {
+  font-size: 0.78rem;
+  color: #6e6359;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.back-to-portfolio:hover { color: #c9a84c; }
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .products-grid,
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .philosophy-grid {
+    gap: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  nav.scrolled { padding: 12px 20px; }
+
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 3, 4, 0.97);
+    backdrop-filter: blur(20px);
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    z-index: 999;
+  }
+  .nav-links.open a { font-size: 1.2rem; }
+  .nav-hamburger { display: flex; z-index: 1001; }
+
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .philosophy-text .gold-divider {
+    margin: 0 auto 24px;
+    text-align: center;
+  }
+
+  .philosophy-text { text-align: center; }
+
+  .products-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-tagline { margin: 0 auto; }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .footer-col { text-align: center; }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .newsletter-form button {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    letter-spacing: 0.06em;
+  }
+
+  .product-visual {
+    height: 260px;
+  }
+}
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-bg" style="background-image:url('/images/kavorka-banner.png')"></div>
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <a href="#hero" class="nav-brand">Kavorka</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#philosophy" onclick="closeMenu()">Our Story</a></li>
+    <li><a href="#products" onclick="closeMenu()">Collection</a></li>
+    <li><a href="#testimonials" onclick="closeMenu()">Reviews</a></li>
+    <li><a href="#newsletter" onclick="closeMenu()">Subscribe</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <span class="hero-tag">Branding & Design</span>
+    <p class="hero-eyebrow">Luxury Beauty, Rooted in Tradition</p>
     <h1>Kavorka</h1>
-    <p>A makeup brand introducing Kavorka with a twist of its Latin roots, showcasing natural and traditional beauty.</p>
+    <p class="hero-tagline">Where timeless Latin beauty meets modern elegance</p>
+    <a href="#products" class="hero-cta">Discover the Collection</a>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <div class="container">
+    <div class="philosophy-grid">
+      <div class="philosophy-image reveal">
+        <img src="/images/kavorka-ss.jpg" alt="Kavorka brand showcase" loading="lazy">
+      </div>
+      <div class="philosophy-text">
+        <div class="gold-divider reveal"></div>
+        <p class="philosophy-label reveal reveal-delay-1">Our Philosophy</p>
+        <h2 class="reveal reveal-delay-1">Beauty Born from Heritage</h2>
+        <p class="reveal reveal-delay-2">Kavorka draws its soul from the rich beauty traditions of Latin culture, where elegance is not an accessory but a way of life. Every formula, every shade, every texture is crafted to honor the timeless rituals passed down through generations.</p>
+        <p class="reveal reveal-delay-2">We believe in beauty that tells a story. Our ingredients are carefully sourced, our palettes inspired by the warm earth tones of Mediterranean landscapes, and our commitment to quality is absolute.</p>
+        <p class="signature reveal reveal-delay-3">-- The House of Kavorka</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marquee">
+    <span class="marquee-item">Luxury</span>
+    <span class="marquee-dot">&#9670;</span>
+    <span class="marquee-item">Heritage</span>
+    <span class="marquee-dot">&#9670;</span>
+    <span class="marquee-item">Elegance</span>
+    <span class="marquee-dot">&#9670;</span>
+    <span class="marquee-item">Natural Beauty</span>
+    <span class="marquee-dot">&#9670;</span>
+    <span class="marquee-item">Latin Roots</span>
+    <span class="marquee-dot">&#9670;</span>
+    <span class="marquee-item">Timeless</span>
+    <span class="marquee-dot">&#9670;</span>
+    <span class="marquee-item">Crafted with Care</span>
+    <span class="marquee-dot">&#9670;</span>
+    <span class="marquee-item">Radiance</span>
+    <span class="marquee-dot">&#9670;</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="marquee-item">Luxury</span>
+    <span class="marquee-dot">&#9670;</span>
+    <span class="marquee-item">Heritage</span>
+    <span class="marquee-dot">&#9670;</span>
+    <span class="marquee-item">Elegance</span>
+    <span class="marquee-dot">&#9670;</span>
+    <span class="marquee-item">Natural Beauty</span>
+    <span class="marquee-dot">&#9670;</span>
+    <span class="marquee-item">Latin Roots</span>
+    <span class="marquee-dot">&#9670;</span>
+    <span class="marquee-item">Timeless</span>
+    <span class="marquee-dot">&#9670;</span>
+    <span class="marquee-item">Crafted with Care</span>
+    <span class="marquee-dot">&#9670;</span>
+    <span class="marquee-item">Radiance</span>
+    <span class="marquee-dot">&#9670;</span>
   </div>
 </div>
 
-<div class="container">
-  <div class="section-label">About the Project</div>
-  <p class="about-text">Kavorka is a makeup brand that proudly showcases its Latin roots, celebrating natural and traditional beauty. Products are crafted with care, blending modern elegance with the timeless charm of Latin beauty traditions.</p>
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="gold-divider reveal"></div>
+    <h2 class="section-heading reveal">The Collection</h2>
+    <p class="section-subtext reveal">Three signature creations, each a tribute to the art of beauty.</p>
 
-  <div class="section-label">Highlights</div>
-  <ul class="highlights">
-    <li>Signature Lipstick Collection inspired by vibrant Latin colors.</li>
-    <li>Sultry Eyeshadow Palette with rich earthy tones.</li>
-    <li>Radiance Foundation with lightweight, natural-finish formula.</li>
-  </ul>
+    <div class="products-grid">
 
-  <div class="section-label">Tools & Technologies</div>
-  <div class="tags">
-    <span class="tag">Branding</span>
-    <span class="tag">UI Design</span>
-    <span class="tag">Figma</span>
+      <!-- Lipstick -->
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-visual product-visual--lipstick">
+          <div class="product-shimmer"></div>
+          <div class="lipstick-shape">
+            <div class="lipstick-cap"></div>
+            <div class="lipstick-body">
+              <div class="lipstick-tip"></div>
+              <div class="lipstick-band"></div>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Lips</p>
+          <h3 class="product-name">Signature Lipstick Collection</h3>
+          <p class="product-desc">Twelve vibrant shades inspired by Latin sunsets and floral gardens. Velvet-matte finish with all-day hydration.</p>
+          <span class="product-price">$38</span>
+          <a href="#" class="product-link">Explore Shades <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+
+      <!-- Eyeshadow -->
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-visual product-visual--eyeshadow">
+          <div class="product-shimmer"></div>
+          <div class="eyeshadow-palette">
+            <div class="shadow-pan"></div>
+            <div class="shadow-pan"></div>
+            <div class="shadow-pan"></div>
+            <div class="shadow-pan"></div>
+            <div class="shadow-pan"></div>
+            <div class="shadow-pan"></div>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Eyes</p>
+          <h3 class="product-name">Sultry Eyeshadow Palette</h3>
+          <p class="product-desc">Six richly pigmented shades from warm golds to deep burgundy. Blendable, buildable, and buttery-smooth.</p>
+          <span class="product-price">$52</span>
+          <a href="#" class="product-link">View Palette <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+
+      <!-- Foundation -->
+      <div class="product-card reveal reveal-delay-3">
+        <div class="product-visual product-visual--foundation">
+          <div class="product-shimmer"></div>
+          <div class="foundation-bottle">
+            <div class="foundation-cap"></div>
+            <div class="foundation-neck"></div>
+            <div class="foundation-body">
+              <div class="foundation-liquid"></div>
+              <div class="foundation-label-area">
+                <span>Kavorka</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Face</p>
+          <h3 class="product-name">Radiance Foundation</h3>
+          <p class="product-desc">Lightweight, buildable coverage with a luminous, natural finish. Infused with botanical extracts for all-day wear.</p>
+          <span class="product-price">$46</span>
+          <a href="#" class="product-link">Find Your Shade <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+
+    </div>
   </div>
+</section>
 
-  <div class="section-label">Screenshots</div>
-  <div class="gallery">
-    <img src="/images/kavorka-ss.jpg" alt="Kavorka brand showcase">
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="gold-divider reveal"></div>
+    <h2 class="section-heading reveal">What They Say</h2>
+    <p class="section-subtext reveal">Trusted by beauty lovers who value heritage and quality.</p>
+
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">
+          <svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"The Signature Lipstick is unlike anything I have ever tried. The colors are so rich and the formula keeps my lips soft all day. Truly a luxury experience."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar author-avatar--1">M</div>
+          <div>
+            <div class="author-name">Maria Gutierrez</div>
+            <div class="author-title">Beauty Editor</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">
+          <svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"The eyeshadow palette blends like a dream. I love that Kavorka celebrates cultural beauty traditions. It feels personal and intentional."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar author-avatar--2">S</div>
+          <div>
+            <div class="author-name">Sofia Reyes</div>
+            <div class="author-title">Makeup Artist</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-3">
+        <div class="testimonial-stars">
+          <svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"Radiance Foundation finally gave me the natural, luminous look I have been searching for. It feels weightless and the coverage is buildable without caking."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar author-avatar--3">A</div>
+          <div>
+            <div class="author-name">Alejandra Vega</div>
+            <div class="author-title">Content Creator</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
+</section>
 
-  <div class="quote">"Kavorka's products are a true reflection of elegance and quality. I love how they embrace Latin beauty traditions while offering modern choices." — Maria, Makeup Enthusiast</div>
+<!-- NEWSLETTER -->
+<section class="newsletter" id="newsletter">
+  <div class="container">
+    <div class="newsletter-inner reveal">
+      <div class="gold-divider"></div>
+      <h2>Join the Inner Circle</h2>
+      <p>Be the first to discover new collections, exclusive offers, and beauty secrets from the House of Kavorka.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Thank You'; this.querySelector('input').value='';">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
 
-  <a href="/#projects" class="back-link">&larr; Back to Portfolio</a>
-</div>
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Kavorka</div>
+        <p class="footer-tagline">Luxury beauty rooted in Latin tradition. Celebrating the art of natural elegance since our founding.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#philosophy">Our Story</a></li>
+            <li><a href="#products">Collection</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-social">
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Pinterest">
+              <svg viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Kavorka Beauty. All rights reserved. | A concept by Mohamed Zarandah.</span>
+      <a href="/#projects" class="back-to-portfolio">&larr; Back to Portfolio</a>
+    </div>
+  </div>
+</footer>
 
-<div class="footer-bar">&copy; 2026 Mohamed Zarandah. All rights reserved.</div>
+<script>
+// Sticky nav
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Mobile menu
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+  const btn = document.getElementById('hamburger');
+  btn.classList.toggle('active');
+}
+
+function closeMenu() {
+  document.getElementById('navLinks').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('active');
+}
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+revealEls.forEach(el => revealObserver.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
 </body>
 </html>

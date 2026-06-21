@@ -2,66 +2,1310 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Foundation Sixty6 — Mental Health Platform | Mohamed Zarandah</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foundation Sixty6 — Mental Health Platform</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--accent:#c4b5fd;--accent-bg:rgba(196,181,253,.12)}
-  body{background:#0c0618}
-  .hero-tag{background:var(--accent-bg);color:var(--accent);border:1px solid rgba(196,181,253,.3)}
-  .hero h1{color:#f5f3ff}
-  .section-label{color:var(--accent)}
-  .highlights li::before{background:var(--accent)}
-  .quote{border-color:var(--accent)}
-  .tag{border-color:rgba(196,181,253,.3);color:var(--accent)}
-  .back-link{background:var(--accent);color:#0c0618}
+/* ── Reset & Base ───────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0c0618;
+  color: #e2d9f3;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+
+/* ── Back to Portfolio (Fixed) ──────────────────────────── */
+.back-to-portfolio {
+  position: fixed;
+  top: 1.25rem;
+  left: 1.25rem;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: rgba(12, 6, 24, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(196, 181, 253, 0.2);
+  border-radius: 100px;
+  color: #c4b5fd;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.back-to-portfolio:hover {
+  background: rgba(196, 181, 253, 0.15);
+  border-color: rgba(196, 181, 253, 0.4);
+  color: #f5f3ff;
+  transform: translateX(-2px);
+}
+.back-to-portfolio svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+.back-to-portfolio:hover svg {
+  transform: translateX(-3px);
+}
+
+/* ── Navigation ─────────────────────────────────────────── */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(12, 6, 24, 0);
+  backdrop-filter: blur(0px);
+  transition: all 0.4s ease;
+}
+.site-nav.scrolled {
+  background: rgba(12, 6, 24, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(196, 181, 253, 0.08);
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #f5f3ff;
+  margin-left: 10rem;
+}
+.nav-logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #a78bfa, #c4b5fd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.75rem;
+  color: #0c0618;
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #b8a8d9;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #c4b5fd;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { color: #f5f3ff; }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  padding: 0.5rem 1.25rem;
+  background: rgba(196, 181, 253, 0.15);
+  border: 1px solid rgba(196, 181, 253, 0.3);
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #c4b5fd;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.nav-cta:hover {
+  background: #c4b5fd;
+  color: #0c0618;
+}
+
+/* ── Mobile Nav Toggle ──────────────────────────────────── */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #c4b5fd;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* ── Hero ───────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/foundation-sixty6-banner.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(12, 6, 24, 0.3) 0%,
+    rgba(12, 6, 24, 0.5) 40%,
+    rgba(12, 6, 24, 0.85) 80%,
+    #0c0618 100%
+  );
+}
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(167, 139, 250, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(196, 181, 253, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: rgba(196, 181, 253, 0.1);
+  border: 1px solid rgba(196, 181, 253, 0.2);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #c4b5fd;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.hero-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #a78bfa;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  color: #f5f3ff;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+.hero h1 span {
+  background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 300;
+  color: #b8a8d9;
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
+}
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 24px rgba(167, 139, 250, 0.3);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(167, 139, 250, 0.45);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: transparent;
+  color: #c4b5fd;
+  border: 1px solid rgba(196, 181, 253, 0.3);
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+  background: rgba(196, 181, 253, 0.1);
+  border-color: rgba(196, 181, 253, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ── Scroll indicator ───────────────────────────────────── */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(196, 181, 253, 0.5);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-8px); }
+}
+.scroll-mouse {
+  width: 20px;
+  height: 30px;
+  border: 2px solid rgba(196, 181, 253, 0.3);
+  border-radius: 10px;
+  position: relative;
+}
+.scroll-mouse::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 6px;
+  background: #c4b5fd;
+  border-radius: 3px;
+  animation: scroll-wheel 2s ease-in-out infinite;
+}
+@keyframes scroll-wheel {
+  0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(8px); }
+}
+
+/* ── Section Shared ─────────────────────────────────────── */
+.section {
+  padding: 6rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.section-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #a78bfa;
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: #f5f3ff;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+.section-desc {
+  font-size: 1.05rem;
+  color: #9a8bb8;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* ── Divider ────────────────────────────────────────────── */
+.section-divider {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(196, 181, 253, 0.15), transparent);
+}
+
+/* ── Mission / Pillars ──────────────────────────────────── */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.pillar-card {
+  background: linear-gradient(160deg, rgba(38, 13, 82, 0.5), rgba(12, 6, 24, 0.8));
+  border: 1px solid rgba(196, 181, 253, 0.1);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.pillar-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #a78bfa, #c4b5fd);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.pillar-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(196, 181, 253, 0.25);
+  box-shadow: 0 20px 60px rgba(167, 139, 250, 0.1);
+}
+.pillar-card:hover::before { opacity: 1; }
+.pillar-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: rgba(167, 139, 250, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+.pillar-icon svg {
+  width: 28px;
+  height: 28px;
+  color: #c4b5fd;
+}
+.pillar-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f5f3ff;
+  margin-bottom: 0.75rem;
+}
+.pillar-card p {
+  font-size: 0.95rem;
+  color: #9a8bb8;
+  line-height: 1.7;
+}
+
+/* ── Challenges ─────────────────────────────────────────── */
+.challenges-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.challenge-card {
+  background: linear-gradient(160deg, rgba(38, 13, 82, 0.4), rgba(12, 6, 24, 0.6));
+  border: 1px solid rgba(196, 181, 253, 0.08);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+.challenge-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(196, 181, 253, 0.2);
+  box-shadow: 0 20px 60px rgba(167, 139, 250, 0.08);
+}
+.challenge-number {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 3rem;
+  font-weight: 800;
+  color: rgba(167, 139, 250, 0.08);
+  line-height: 1;
+}
+.challenge-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.challenge-icon-wrap svg {
+  width: 24px;
+  height: 24px;
+}
+.challenge-card:nth-child(1) .challenge-icon-wrap {
+  background: rgba(251, 191, 36, 0.12);
+  color: #fbbf24;
+}
+.challenge-card:nth-child(2) .challenge-icon-wrap {
+  background: rgba(96, 165, 250, 0.12);
+  color: #60a5fa;
+}
+.challenge-card:nth-child(3) .challenge-icon-wrap {
+  background: rgba(248, 113, 113, 0.12);
+  color: #f87171;
+}
+.challenge-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #f5f3ff;
+  margin-bottom: 0.75rem;
+}
+.challenge-card p {
+  font-size: 0.95rem;
+  color: #9a8bb8;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+.challenge-stats {
+  display: flex;
+  gap: 1.5rem;
+}
+.challenge-stat {
+  font-size: 0.8rem;
+  color: #7c6e99;
+}
+.challenge-stat strong {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #c4b5fd;
+  margin-bottom: 0.15rem;
+}
+
+/* ── Resources ──────────────────────────────────────────── */
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.resource-card {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  background: linear-gradient(160deg, rgba(38, 13, 82, 0.3), rgba(12, 6, 24, 0.5));
+  border: 1px solid rgba(196, 181, 253, 0.08);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.resource-card:hover {
+  border-color: rgba(196, 181, 253, 0.2);
+  background: linear-gradient(160deg, rgba(38, 13, 82, 0.5), rgba(12, 6, 24, 0.6));
+  transform: translateY(-2px);
+}
+.resource-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(167, 139, 250, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c4b5fd;
+}
+.resource-icon svg {
+  width: 22px;
+  height: 22px;
+}
+.resource-info h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #f5f3ff;
+  margin-bottom: 0.4rem;
+}
+.resource-info p {
+  font-size: 0.9rem;
+  color: #8a7ba8;
+  line-height: 1.6;
+}
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #a78bfa;
+  transition: gap 0.3s ease;
+}
+.resource-card:hover .resource-link { gap: 0.6rem; }
+
+/* ── Screenshots ────────────────────────────────────────── */
+.screenshots-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+.screenshot-wrap {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(196, 181, 253, 0.1);
+  background: rgba(38, 13, 82, 0.3);
+  transition: all 0.4s ease;
+}
+.screenshot-wrap:hover {
+  border-color: rgba(196, 181, 253, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+}
+.screenshot-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s ease;
+}
+.screenshot-wrap:hover img {
+  transform: scale(1.02);
+}
+.screenshot-label {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 0.4rem 1rem;
+  background: rgba(12, 6, 24, 0.75);
+  backdrop-filter: blur(8px);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #c4b5fd;
+  border: 1px solid rgba(196, 181, 253, 0.15);
+}
+
+/* ── CTA Section ────────────────────────────────────────── */
+.cta-section {
+  padding: 6rem 2rem;
+}
+.cta-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  background: linear-gradient(160deg, rgba(38, 13, 82, 0.6), rgba(167, 139, 250, 0.08));
+  border: 1px solid rgba(196, 181, 253, 0.15);
+  border-radius: 28px;
+  padding: 4.5rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.cta-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(167, 139, 250, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+.cta-heart {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(167, 139, 250, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  animation: heartbeat 2.5s ease-in-out infinite;
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.12); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.08); }
+  60% { transform: scale(1); }
+}
+.cta-heart svg {
+  width: 26px;
+  height: 26px;
+  color: #c4b5fd;
+}
+.cta-container h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: #f5f3ff;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.cta-container p {
+  font-size: 1.1rem;
+  color: #9a8bb8;
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
+  position: relative;
+}
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+.cta-stat-row {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(196, 181, 253, 0.1);
+  position: relative;
+}
+.cta-stat {
+  text-align: center;
+}
+.cta-stat strong {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #c4b5fd;
+}
+.cta-stat span {
+  font-size: 0.85rem;
+  color: #7c6e99;
+}
+
+/* ── Footer ─────────────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid rgba(196, 181, 253, 0.08);
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.footer-brand-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #a78bfa, #c4b5fd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.6rem;
+  color: #0c0618;
+}
+.footer-brand-text {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #b8a8d9;
+}
+.footer-note {
+  font-size: 0.85rem;
+  color: #5c4f77;
+}
+.footer-note a {
+  color: #a78bfa;
+  transition: color 0.3s;
+}
+.footer-note a:hover { color: #c4b5fd; }
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+.footer-links a {
+  font-size: 0.85rem;
+  color: #7c6e99;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: #c4b5fd; }
+
+/* ── Animations ─────────────────────────────────────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 968px) {
+  .pillars-grid,
+  .challenges-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .resources-grid {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .screenshots-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .cta-stat-row { gap: 2rem; }
+  .nav-logo { margin-left: 0; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(12, 6, 24, 0.97);
+    backdrop-filter: blur(20px);
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    z-index: 950;
+  }
+  .nav-links.open a { font-size: 1.25rem; }
+  .nav-toggle { display: flex; z-index: 960; }
+  .back-to-portfolio {
+    top: auto;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .section { padding: 4rem 1.25rem; }
+  .cta-container { padding: 3rem 1.5rem; }
+  .cta-stat-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2rem; }
+  .hero-sub { font-size: 0.95rem; }
+  .challenge-stats { flex-direction: column; gap: 0.75rem; }
+}
+
+/* ── Focus Styles / Accessibility ───────────────────────── */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #c4b5fd;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* ── Skip Link ──────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #a78bfa;
+  color: #0c0618;
+  font-weight: 600;
+  border-radius: 0 0 8px 8px;
+  z-index: 9999;
+  transition: top 0.3s;
+}
+.skip-link:focus {
+  top: 0;
+}
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-bg" style="background-image:url('/images/foundation-sixty6-banner.png')"></div>
-  <div class="hero-overlay"></div>
+<!-- Skip Link -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- Back to Portfolio -->
+<a href="/#projects" class="back-to-portfolio" aria-label="Back to Portfolio">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+  Portfolio
+</a>
+
+<!-- Navigation -->
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">F6</div>
+    Foundation Sixty6
+  </div>
+  <div class="nav-links" id="navLinks" role="menubar">
+    <a href="#mission" role="menuitem">Mission</a>
+    <a href="#challenges" role="menuitem">Challenges</a>
+    <a href="#resources" role="menuitem">Resources</a>
+    <a href="#screenshots" role="menuitem">Screenshots</a>
+    <a href="#connect" class="nav-cta" role="menuitem">Get Support</a>
+  </div>
+  <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Hero -->
+<header class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-gradient"></div>
   <div class="hero-content">
-    <span class="hero-tag">Web Design</span>
-    <h1>Foundation Sixty6</h1>
-    <p>A client-based website showcasing the effects of three mental health challenges.</p>
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Mental Health Awareness
+    </div>
+    <h1>Your Mind Matters.<br><span>Foundation Sixty6</span></h1>
+    <p class="hero-sub">
+      A safe space dedicated to understanding, supporting, and empowering individuals through life's mental health challenges.
+    </p>
+    <div class="hero-buttons">
+      <a href="#resources" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        Find Resources
+      </a>
+      <a href="#mission" class="btn-secondary">
+        Learn Our Mission
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+    </div>
   </div>
-</div>
-
-<div class="container">
-  <div class="section-label">About the Project</div>
-  <p class="about-text">Foundation Sixty 6 is a dedicated online platform focused on addressing the complexities of mental health challenges through a comprehensive and accessible approach. Founded on empathy, education, and empowerment.</p>
-
-  <div class="section-label">Highlights</div>
-  <ul class="highlights">
-    <li>Intuitive resource navigation.</li>
-    <li>Community support systems.</li>
-    <li>Educational workshops and content.</li>
-    <li>Destigmatizing mental health through design.</li>
-  </ul>
-
-  <div class="section-label">Tools & Technologies</div>
-  <div class="tags">
-    <span class="tag">Web Design</span>
-    <span class="tag">HTML</span>
-    <span class="tag">CSS</span>
-    <span class="tag">Accessibility</span>
+  <div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-mouse"></div>
+    Scroll
   </div>
+</header>
 
-  <div class="section-label">Screenshots</div>
-  <div class="gallery cols-2">
-    <img src="/images/foundation-sixty6-ss1.jpg" alt="Foundation Sixty6 screenshot 1">
-    <img src="/images/foundation-sixty6-ss2.jpg" alt="Foundation Sixty6 screenshot 2">
+<main id="main-content">
+
+  <!-- Mission Section -->
+  <section class="section" id="mission">
+    <div class="section-header fade-up">
+      <span class="section-tag">Our Foundation</span>
+      <h2 class="section-title">Built on Three Pillars</h2>
+      <p class="section-desc">
+        Foundation Sixty6 was created with a singular purpose: to make mental health support accessible, compassionate, and empowering for everyone.
+      </p>
+    </div>
+    <div class="pillars-grid">
+      <!-- Empathy -->
+      <div class="pillar-card fade-up stagger-1">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Empathy</h3>
+        <p>We listen without judgment. Every experience is valid, every feeling is acknowledged. You are heard here.</p>
+      </div>
+      <!-- Education -->
+      <div class="pillar-card fade-up stagger-2">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <h3>Education</h3>
+        <p>Understanding is the first step to healing. We provide workshops, articles, and guides to help you learn and grow.</p>
+      </div>
+      <!-- Empowerment -->
+      <div class="pillar-card fade-up stagger-3">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/><path d="M12 2v1"/></svg>
+        </div>
+        <h3>Empowerment</h3>
+        <p>We believe in your strength. Our platform equips you with tools and connections to take charge of your wellbeing.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Challenges Section -->
+  <section class="section" id="challenges">
+    <div class="section-header fade-up">
+      <span class="section-tag">What We Address</span>
+      <h2 class="section-title">Understanding the Challenges</h2>
+      <p class="section-desc">
+        Mental health challenges are more common than you think. Recognizing them is the first step toward recovery.
+      </p>
+    </div>
+    <div class="challenges-grid">
+      <!-- Anxiety -->
+      <div class="challenge-card fade-up stagger-1">
+        <span class="challenge-number" aria-hidden="true">01</span>
+        <div class="challenge-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>Anxiety</h3>
+        <p>More than just worry. Anxiety can manifest as persistent dread, physical tension, and overwhelming fear that interferes with daily life. You deserve to feel calm again.</p>
+        <div class="challenge-stats">
+          <div class="challenge-stat">
+            <strong>301M</strong>
+            People affected globally
+          </div>
+          <div class="challenge-stat">
+            <strong>63%</strong>
+            Go untreated
+          </div>
+        </div>
+      </div>
+      <!-- Depression -->
+      <div class="challenge-card fade-up stagger-2">
+        <span class="challenge-number" aria-hidden="true">02</span>
+        <div class="challenge-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h3>Depression</h3>
+        <p>Not just sadness. Depression is a heavy fog that dulls joy, drains energy, and makes each day feel insurmountable. Recovery is possible, and help is available.</p>
+        <div class="challenge-stats">
+          <div class="challenge-stat">
+            <strong>280M</strong>
+            People affected globally
+          </div>
+          <div class="challenge-stat">
+            <strong>75%</strong>
+            In low-income untreated
+          </div>
+        </div>
+      </div>
+      <!-- Burnout -->
+      <div class="challenge-card fade-up stagger-3">
+        <span class="challenge-number" aria-hidden="true">03</span>
+        <div class="challenge-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3>Burnout</h3>
+        <p>When exhaustion becomes the norm. Burnout strips away motivation, creates cynicism, and leaves you feeling empty. Boundaries and rest are not luxuries, they are necessities.</p>
+        <div class="challenge-stats">
+          <div class="challenge-stat">
+            <strong>77%</strong>
+            Of workers affected
+          </div>
+          <div class="challenge-stat">
+            <strong>2.5x</strong>
+            Risk of health issues
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Resources Section -->
+  <section class="section" id="resources">
+    <div class="section-header fade-up">
+      <span class="section-tag">Get Help</span>
+      <h2 class="section-title">Resources for You</h2>
+      <p class="section-desc">
+        Whether you need immediate support or want to learn more, these resources are here to guide your journey.
+      </p>
+    </div>
+    <div class="resources-grid">
+      <!-- Crisis Helpline -->
+      <div class="resource-card fade-up stagger-1" role="article">
+        <div class="resource-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="resource-info">
+          <h4>Crisis Support Line</h4>
+          <p>Free, confidential 24/7 support. Call or text 988 (Suicide & Crisis Lifeline) for immediate help when you need it most.</p>
+          <span class="resource-link">Available 24/7 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </div>
+      <!-- Community -->
+      <div class="resource-card fade-up stagger-2" role="article">
+        <div class="resource-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="resource-info">
+          <h4>Community Support Groups</h4>
+          <p>Connect with others who understand. Our moderated support groups offer a safe, judgment-free space to share and heal together.</p>
+          <span class="resource-link">Join the community <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </div>
+      <!-- Workshops -->
+      <div class="resource-card fade-up stagger-3" role="article">
+        <div class="resource-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="resource-info">
+          <h4>Educational Workshops</h4>
+          <p>Interactive sessions on coping strategies, mindfulness, stress management, and building emotional resilience led by mental health professionals.</p>
+          <span class="resource-link">View upcoming sessions <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </div>
+      <!-- Self-help -->
+      <div class="resource-card fade-up stagger-4" role="article">
+        <div class="resource-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <div class="resource-info">
+          <h4>Self-Help Library</h4>
+          <p>Curated articles, guided exercises, and evidence-based tools to help you understand your mental health and develop coping strategies at your own pace.</p>
+          <span class="resource-link">Browse the library <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Screenshots Section -->
+  <section class="section" id="screenshots">
+    <div class="section-header fade-up">
+      <span class="section-tag">Project Showcase</span>
+      <h2 class="section-title">Design in Detail</h2>
+      <p class="section-desc">
+        A closer look at the Foundation Sixty6 website design, crafted with care and accessibility in mind.
+      </p>
+    </div>
+    <div class="screenshots-grid">
+      <div class="screenshot-wrap fade-up stagger-1">
+        <img src="/images/foundation-sixty6-ss1.jpg" alt="Foundation Sixty6 homepage design showing the hero section with calming purple gradients and supportive messaging" loading="lazy">
+        <span class="screenshot-label">Homepage View</span>
+      </div>
+      <div class="screenshot-wrap fade-up stagger-2">
+        <img src="/images/foundation-sixty6-ss2.jpg" alt="Foundation Sixty6 content section showing mental health resources and educational content layout" loading="lazy">
+        <span class="screenshot-label">Content Section</span>
+      </div>
+    </div>
+
+    <!-- Tech Tags -->
+    <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-top:3rem" class="fade-up">
+      <span style="padding:0.4rem 1rem;border:1px solid rgba(196,181,253,0.2);border-radius:100px;font-size:0.8rem;font-weight:500;color:#a78bfa;background:rgba(167,139,250,0.06)">Web Design</span>
+      <span style="padding:0.4rem 1rem;border:1px solid rgba(196,181,253,0.2);border-radius:100px;font-size:0.8rem;font-weight:500;color:#a78bfa;background:rgba(167,139,250,0.06)">HTML</span>
+      <span style="padding:0.4rem 1rem;border:1px solid rgba(196,181,253,0.2);border-radius:100px;font-size:0.8rem;font-weight:500;color:#a78bfa;background:rgba(167,139,250,0.06)">CSS</span>
+      <span style="padding:0.4rem 1rem;border:1px solid rgba(196,181,253,0.2);border-radius:100px;font-size:0.8rem;font-weight:500;color:#a78bfa;background:rgba(167,139,250,0.06)">Accessibility</span>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- CTA Section -->
+  <section class="cta-section" id="connect">
+    <div class="cta-container fade-up">
+      <div class="cta-heart" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <h2>You Are Not Alone</h2>
+      <p>
+        One in four people experience mental health challenges. Reaching out is not weakness, it is the bravest thing you can do. We are here for you.
+      </p>
+      <div class="cta-buttons">
+        <a href="#resources" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Reach Out Today
+        </a>
+        <a href="#mission" class="btn-secondary">
+          Learn More About Us
+        </a>
+      </div>
+      <div class="cta-stat-row">
+        <div class="cta-stat">
+          <strong>10K+</strong>
+          <span>People supported</span>
+        </div>
+        <div class="cta-stat">
+          <strong>24/7</strong>
+          <span>Resources available</span>
+        </div>
+        <div class="cta-stat">
+          <strong>100%</strong>
+          <span>Free and confidential</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-icon">F6</div>
+      <span class="footer-brand-text">Foundation Sixty6</span>
+    </div>
+    <div class="footer-note">
+      Demo project by <a href="/#projects">Mohamed Zarandah</a>
+    </div>
+    <div class="footer-links">
+      <a href="#top">Back to Top</a>
+      <a href="/#projects">Portfolio</a>
+    </div>
   </div>
+</footer>
 
-  <div class="quote">"I stumbled upon Foundation Sixty 6's website during a difficult time, and it was a beacon of hope."</div>
+<script>
+// ── Navigation scroll effect ──────────────────────────────
+const nav = document.querySelector('.site-nav');
+let lastScroll = 0;
 
-  <a href="/#projects" class="back-link">&larr; Back to Portfolio</a>
-</div>
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  if (scrollY > 80) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+  lastScroll = scrollY;
+}, { passive: true });
 
-<div class="footer-bar">&copy; 2026 Mohamed Zarandah. All rights reserved.</div>
+// ── Mobile nav toggle ─────────────────────────────────────
+function toggleNav() {
+  const links = document.getElementById('navLinks');
+  const toggle = document.querySelector('.nav-toggle');
+  const isOpen = links.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', isOpen);
+
+  if (isOpen) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
+}
+
+// Close mobile nav on link click
+document.querySelectorAll('#navLinks a').forEach(link => {
+  link.addEventListener('click', () => {
+    const links = document.getElementById('navLinks');
+    if (links.classList.contains('open')) {
+      links.classList.remove('open');
+      document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
+});
+
+// ── Intersection Observer for fade-in animations ──────────
+const observerOptions = {
+  threshold: 0.15,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.fade-up').forEach(el => {
+  observer.observe(el);
+});
+
+// ── Smooth scroll for anchor links ────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+    const target = document.querySelector(targetId);
+    if (target) {
+      e.preventDefault();
+      const navHeight = nav.offsetHeight;
+      const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight - 20;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// ── Escape key closes mobile nav ──────────────────────────
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const links = document.getElementById('navLinks');
+    if (links.classList.contains('open')) {
+      links.classList.remove('open');
+      document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      document.querySelector('.nav-toggle').focus();
+    }
+  }
+});
+</script>
+
 </body>
 </html>

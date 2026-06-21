@@ -3,57 +3,754 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Quatro — Rebrand | Mohamed Zarandah</title>
+<title>Quatro | Craft Seltzers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--accent:#a3e635;--accent-bg:rgba(163,230,53,.12)}
-  body{background:#06140a}
-  .hero-tag{background:var(--accent-bg);color:var(--accent);border:1px solid rgba(163,230,53,.3)}
-  .hero h1{color:#ecfccb}
-  .section-label{color:var(--accent)}
-  .highlights li::before{background:var(--accent)}
-  .quote{border-color:var(--accent)}
-  .tag{border-color:rgba(163,230,53,.3);color:var(--accent)}
-  .back-link{background:var(--accent);color:#06140a}
+/* ========== RESET & BASE ========== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Inter',sans-serif;
+  background:#0a1a0d;
+  color:#d4e7d4;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* ========== TYPOGRAPHY ========== */
+.display{font-family:'Space Grotesk',sans-serif}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;color:#ecfccb}
+
+/* ========== NAV ========== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1.25rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(10,26,13,0);
+  transition:background .4s,backdrop-filter .4s,box-shadow .4s;
+}
+.nav.scrolled{
+  background:rgba(10,26,13,.92);
+  backdrop-filter:blur(16px);
+  box-shadow:0 1px 0 rgba(163,230,53,.1);
+}
+.nav-logo{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:1.5rem;
+  color:#a3e635;letter-spacing:-0.02em;
+}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{
+  font-size:.875rem;font-weight:500;color:#94b89e;
+  transition:color .25s;letter-spacing:.02em;text-transform:uppercase;
+}
+.nav-links a:hover{color:#a3e635}
+.nav-cta{
+  background:#a3e635;color:#0a1a0d;
+  padding:.5rem 1.25rem;border-radius:100px;
+  font-weight:700;font-size:.8rem;
+  text-transform:uppercase;letter-spacing:.06em;
+  transition:transform .25s,box-shadow .25s;
+}
+.nav-cta:hover{
+  transform:translateY(-1px);
+  box-shadow:0 4px 20px rgba(163,230,53,.35);
+}
+.mobile-toggle{
+  display:none;background:none;border:none;cursor:pointer;
+  width:28px;height:20px;position:relative;z-index:101;
+}
+.mobile-toggle span{
+  display:block;width:100%;height:2px;
+  background:#a3e635;border-radius:2px;
+  position:absolute;left:0;transition:.3s;
+}
+.mobile-toggle span:nth-child(1){top:0}
+.mobile-toggle span:nth-child(2){top:9px}
+.mobile-toggle span:nth-child(3){top:18px}
+.mobile-toggle.open span:nth-child(1){top:9px;transform:rotate(45deg)}
+.mobile-toggle.open span:nth-child(2){opacity:0}
+.mobile-toggle.open span:nth-child(3){top:9px;transform:rotate(-45deg)}
+
+/* ========== HERO ========== */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('/images/quatro-banner.png') center/cover no-repeat;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    180deg,
+    rgba(10,26,13,.55) 0%,
+    rgba(10,26,13,.78) 50%,
+    rgba(10,26,13,.97) 100%
+  );
+}
+.hero-content{
+  position:relative;z-index:2;
+  text-align:center;max-width:860px;
+  padding:2rem;
+}
+.hero-badge{
+  display:inline-block;
+  background:rgba(163,230,53,.1);
+  border:1px solid rgba(163,230,53,.25);
+  color:#a3e635;
+  font-size:.7rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.14em;
+  padding:.45rem 1.1rem;border-radius:100px;
+  margin-bottom:1.5rem;
+}
+.hero h1{
+  font-size:clamp(4rem,12vw,9rem);
+  font-weight:900;line-height:.9;
+  letter-spacing:-0.04em;
+  color:#ecfccb;
+  margin-bottom:1rem;
+}
+.hero h1 span{
+  display:block;
+  background:linear-gradient(135deg,#a3e635 0%,#84cc16 50%,#65a30d 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{
+  font-size:clamp(1rem,2.5vw,1.35rem);
+  color:#94b89e;line-height:1.5;
+  max-width:580px;margin:0 auto 2.5rem;
+  font-weight:400;
+}
+.hero-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:#a3e635;color:#0a1a0d;
+  padding:.85rem 2rem;border-radius:100px;
+  font-weight:700;font-size:.9rem;
+  text-transform:uppercase;letter-spacing:.06em;
+  transition:transform .25s,box-shadow .25s;
+  border:none;cursor:pointer;
+}
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(163,230,53,.3);
+}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:transparent;color:#a3e635;
+  padding:.85rem 2rem;border-radius:100px;
+  font-weight:600;font-size:.9rem;
+  text-transform:uppercase;letter-spacing:.06em;
+  border:1px solid rgba(163,230,53,.3);
+  transition:all .25s;cursor:pointer;
+}
+.btn-secondary:hover{
+  background:rgba(163,230,53,.08);
+  border-color:rgba(163,230,53,.5);
+}
+.hero-scroll{
+  position:absolute;bottom:2rem;left:50%;
+  transform:translateX(-50%);z-index:2;
+  animation:float 2.5s ease-in-out infinite;
+}
+.hero-scroll svg{width:24px;height:24px;stroke:#94b89e;stroke-width:2;fill:none}
+@keyframes float{
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(8px)}
+}
+
+/* ========== SECTION LAYOUT ========== */
+.section{padding:6rem 2rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{
+  display:inline-block;
+  font-size:.7rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.16em;
+  color:#a3e635;
+  margin-bottom:.75rem;
+}
+.section-heading{
+  font-size:clamp(2rem,5vw,3.2rem);
+  font-weight:800;line-height:1.1;
+  letter-spacing:-0.03em;
+  margin-bottom:1.5rem;
+}
+.section-text{
+  font-size:1.05rem;color:#8faa8f;line-height:1.7;
+  max-width:640px;
+}
+
+/* ========== STORY ========== */
+.story{background:#0d1f10}
+.story-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:center;
+  margin-top:3rem;
+}
+.story-visual{
+  position:relative;
+  aspect-ratio:1;
+  border-radius:24px;
+  overflow:hidden;
+  background:linear-gradient(145deg,#1a3d1a 0%,#0d2010 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.story-visual-inner{
+  width:200px;height:200px;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,#a3e635 0%,#65a30d 60%,#3f6212 100%);
+  opacity:.7;
+  animation:pulse 4s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1);opacity:.7}
+  50%{transform:scale(1.08);opacity:.9}
+}
+.story-visual::before{
+  content:'';position:absolute;
+  width:120px;height:120px;
+  border-radius:50%;
+  background:radial-gradient(circle,#84cc16 0%,transparent 70%);
+  top:15%;right:15%;opacity:.3;
+}
+.story-timeline{display:flex;flex-direction:column;gap:2rem}
+.timeline-item{
+  padding-left:2rem;
+  border-left:2px solid rgba(163,230,53,.15);
+  position:relative;
+}
+.timeline-item::before{
+  content:'';position:absolute;
+  left:-6px;top:6px;
+  width:10px;height:10px;
+  border-radius:50%;
+  background:#a3e635;
+}
+.timeline-year{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.85rem;font-weight:700;
+  color:#a3e635;margin-bottom:.25rem;
+}
+.timeline-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.15rem;font-weight:700;
+  color:#ecfccb;margin-bottom:.35rem;
+}
+.timeline-desc{font-size:.9rem;color:#8faa8f;line-height:1.6}
+
+/* ========== PRODUCTS ========== */
+.products{background:#0a1a0d}
+.products-header{text-align:center;margin-bottom:4rem}
+.products-header .section-text{margin:0 auto}
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.5rem;
+}
+.product-card{
+  background:linear-gradient(165deg,rgba(26,61,26,.5) 0%,rgba(13,32,16,.8) 100%);
+  border:1px solid rgba(163,230,53,.08);
+  border-radius:20px;
+  padding:2rem 1.5rem;
+  text-align:center;
+  transition:transform .35s,border-color .35s,box-shadow .35s;
+  position:relative;
+  overflow:hidden;
+}
+.product-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(163,230,53,.25);
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+.product-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,transparent,var(--can-color),transparent);
+  opacity:0;transition:opacity .35s;
+}
+.product-card:hover::before{opacity:1}
+.can{
+  width:100px;height:160px;
+  border-radius:12px;
+  margin:0 auto 1.5rem;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 8px 30px rgba(0,0,0,.4);
+}
+.can-body{
+  width:100%;height:100%;
+  background:var(--can-gradient);
+  position:relative;
+}
+.can-body::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:16px;
+  background:linear-gradient(180deg,rgba(255,255,255,.15),transparent);
+  border-radius:12px 12px 0 0;
+}
+.can-body::after{
+  content:'';position:absolute;
+  left:8px;top:0;bottom:0;width:20px;
+  background:linear-gradient(90deg,rgba(255,255,255,.08),transparent);
+}
+.can-label{
+  position:absolute;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:.7rem;
+  color:rgba(255,255,255,.9);
+  text-transform:uppercase;letter-spacing:.1em;
+  text-align:center;
+  line-height:1.3;
+  text-shadow:0 1px 4px rgba(0,0,0,.4);
+}
+.can-label small{
+  display:block;font-size:.5rem;
+  font-weight:500;letter-spacing:.08em;
+  opacity:.75;margin-top:2px;
+}
+.product-name{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.2rem;font-weight:700;
+  color:#ecfccb;margin-bottom:.35rem;
+}
+.product-desc{font-size:.85rem;color:#8faa8f;margin-bottom:1rem;line-height:1.5}
+.product-abv{
+  display:inline-block;
+  font-size:.7rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.1em;
+  color:var(--can-color);
+  background:rgba(163,230,53,.06);
+  padding:.3rem .8rem;border-radius:100px;
+  border:1px solid rgba(163,230,53,.12);
+}
+
+/* ========== AGE BANNER ========== */
+.age-banner{
+  background:linear-gradient(135deg,#1a3d1a 0%,#0d2010 100%);
+  border-top:1px solid rgba(163,230,53,.1);
+  border-bottom:1px solid rgba(163,230,53,.1);
+  padding:3rem 2rem;
+  text-align:center;
+}
+.age-banner-inner{
+  max-width:700px;margin:0 auto;
+  display:flex;align-items:center;justify-content:center;
+  gap:2rem;flex-wrap:wrap;
+}
+.age-badge{
+  width:80px;height:80px;
+  border-radius:50%;
+  border:3px solid #a3e635;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;
+  flex-shrink:0;
+}
+.age-badge-number{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.8rem;font-weight:900;
+  color:#a3e635;line-height:1;
+}
+.age-badge-plus{
+  font-size:.7rem;font-weight:700;
+  color:#a3e635;line-height:1;
+  margin-top:-2px;
+}
+.age-text h3{
+  font-size:1.4rem;font-weight:700;
+  margin-bottom:.35rem;
+}
+.age-text p{
+  font-size:.9rem;color:#8faa8f;line-height:1.5;
+}
+.age-text{text-align:left}
+
+/* ========== CTA / NEWSLETTER ========== */
+.cta-section{
+  padding:6rem 2rem;
+  background:radial-gradient(ellipse at 50% 100%,rgba(163,230,53,.06) 0%,transparent 60%),#0a1a0d;
+  text-align:center;
+}
+.cta-inner{max-width:600px;margin:0 auto}
+.cta-inner .section-heading{margin-bottom:1rem}
+.cta-inner .section-text{margin:0 auto 2rem;text-align:center}
+.email-row{
+  display:flex;gap:.75rem;
+  max-width:440px;margin:0 auto;
+}
+.email-input{
+  flex:1;
+  background:rgba(26,61,26,.5);
+  border:1px solid rgba(163,230,53,.15);
+  border-radius:100px;
+  padding:.8rem 1.25rem;
+  color:#d4e7d4;
+  font-size:.9rem;font-family:'Inter',sans-serif;
+  outline:none;
+  transition:border-color .25s;
+}
+.email-input::placeholder{color:#5a7a5a}
+.email-input:focus{border-color:rgba(163,230,53,.4)}
+
+/* ========== FOOTER ========== */
+.footer{
+  background:#071209;
+  border-top:1px solid rgba(163,230,53,.06);
+  padding:3rem 2rem 2rem;
+}
+.footer-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  gap:3rem;
+  align-items:start;
+}
+.footer-brand{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.4rem;font-weight:700;
+  color:#a3e635;margin-bottom:.5rem;
+}
+.footer-tagline{font-size:.85rem;color:#5a7a5a;max-width:280px}
+.footer-col h4{
+  font-size:.7rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.14em;
+  color:#a3e635;margin-bottom:.75rem;
+}
+.footer-col a{
+  display:block;
+  font-size:.85rem;color:#8faa8f;
+  padding:.2rem 0;transition:color .2s;
+}
+.footer-col a:hover{color:#a3e635}
+.footer-bottom{
+  max-width:1100px;margin:2rem auto 0;
+  padding-top:1.5rem;
+  border-top:1px solid rgba(163,230,53,.06);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1rem;
+}
+.footer-copy{font-size:.75rem;color:#3f5a3f}
+.footer-legal{display:flex;gap:1.5rem}
+.footer-legal a{font-size:.75rem;color:#3f5a3f;transition:color .2s}
+.footer-legal a:hover{color:#8faa8f}
+.back-to-portfolio{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.8rem;color:#5a7a5a;
+  transition:color .25s;
+  margin-top:.5rem;
+}
+.back-to-portfolio:hover{color:#a3e635}
+.back-to-portfolio svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* ========== ANIMATIONS ========== */
+.reveal{
+  opacity:0;transform:translateY(30px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ========== MOBILE MENU ========== */
+.mobile-menu{
+  position:fixed;inset:0;z-index:99;
+  background:rgba(10,26,13,.97);
+  backdrop-filter:blur(20px);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:2rem;
+  opacity:0;pointer-events:none;
+  transition:opacity .35s;
+}
+.mobile-menu.open{opacity:1;pointer-events:auto}
+.mobile-menu a{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.5rem;font-weight:600;
+  color:#d4e7d4;transition:color .2s;
+}
+.mobile-menu a:hover{color:#a3e635}
+
+/* ========== RESPONSIVE ========== */
+@media(max-width:900px){
+  .story-grid{grid-template-columns:1fr;gap:2.5rem}
+  .story-visual{max-width:400px;margin:0 auto}
+  .footer-inner{grid-template-columns:1fr;gap:2rem}
+}
+@media(max-width:680px){
+  .nav-links{display:none}
+  .mobile-toggle{display:block}
+  .hero h1{font-size:clamp(3rem,14vw,5.5rem)}
+  .section{padding:4rem 1.25rem}
+  .products-grid{grid-template-columns:1fr 1fr;gap:1rem}
+  .email-row{flex-direction:column}
+  .age-banner-inner{flex-direction:column;gap:1rem}
+  .age-text{text-align:center}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+@media(max-width:420px){
+  .products-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-bg" style="background-image:url('/images/quatro-banner.png')"></div>
+<!-- ========== NAV ========== -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">Quatro</a>
+  <div class="nav-links">
+    <a href="#story">Our Story</a>
+    <a href="#products">Products</a>
+    <a href="#subscribe">Subscribe</a>
+    <a href="#products" class="nav-cta">Shop Now</a>
+  </div>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#story">Our Story</a>
+  <a href="#products">Products</a>
+  <a href="#subscribe">Subscribe</a>
+  <a href="#products">Shop Now</a>
+</div>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <span class="hero-tag">Branding & Design</span>
-    <h1>Quatro</h1>
-    <p>Rebranding a classic juice company into a modern adult beverage company with a bold new identity.</p>
+    <div class="hero-badge">All grown up. Still refreshing.</div>
+    <h1><span>Quatro</span></h1>
+    <p class="hero-sub">From the juice box to the cooler. Craft seltzers born from a brand you grew up with, made for the adult you became.</p>
+    <div class="hero-buttons">
+      <a href="#products" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Explore Flavors
+      </a>
+      <a href="#story" class="btn-secondary">Our Story</a>
+    </div>
+  </div>
+  <a href="#story" class="hero-scroll" aria-label="Scroll down">
+    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </a>
+</section>
+
+<!-- ========== OUR STORY ========== -->
+<section class="section story" id="story">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">Our Story</span>
+      <h2 class="section-heading">From lunch boxes<br>to happy hours.</h2>
+      <p class="section-text">For over a decade, Quatro was the juice brand that fueled recess and road trips. When our original fans grew up, so did we. We traded sugar rushes for craft seltzer and reimagined everything -- same bold spirit, whole new vibe.</p>
+    </div>
+    <div class="story-grid">
+      <div class="story-visual reveal">
+        <div class="story-visual-inner"></div>
+      </div>
+      <div class="story-timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-year">2009</div>
+          <div class="timeline-title">The Juice Era</div>
+          <p class="timeline-desc">Quatro launches as a bold, four-fruit juice blend beloved by kids and parents alike. The colorful cans become a lunchbox staple.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2019</div>
+          <div class="timeline-title">The Pivot</div>
+          <p class="timeline-desc">Research shows our original fans are now in their twenties. We ask: what if we grew up with them? The seltzer project begins.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2021</div>
+          <div class="timeline-title">Quatro Reborn</div>
+          <p class="timeline-desc">The first craft seltzer line drops. Same bold flavors, zero sugar, all grown up. The rebrand is instant -- and the cooler is never the same.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">Today</div>
+          <div class="timeline-title">Bold by Nature</div>
+          <p class="timeline-desc">Four core flavors, a cult following, and a mission: make the most refreshing seltzer on the planet. No shortcuts. No compromise.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRODUCTS ========== -->
+<section class="section products" id="products">
+  <div class="section-inner">
+    <div class="products-header reveal">
+      <span class="section-label">The Lineup</span>
+      <h2 class="section-heading">Four bold flavors. Zero sugar.</h2>
+      <p class="section-text">Each can is crafted with real fruit essence, sparkling water, and just enough edge. 100 calories. Naturally gluten-free.</p>
+    </div>
+    <div class="products-grid">
+
+      <!-- Citrus Crush -->
+      <div class="product-card reveal" style="--can-color:#facc15;--can-gradient:linear-gradient(180deg,#facc15 0%,#ca8a04 40%,#a16207 100%)">
+        <div class="can">
+          <div class="can-body">
+            <div class="can-label">Quatro<small>Citrus Crush</small></div>
+          </div>
+        </div>
+        <div class="product-name">Citrus Crush</div>
+        <p class="product-desc">Sun-ripened lemon, tangerine, and a hint of grapefruit. Bright, tart, and unapologetically bold.</p>
+        <span class="product-abv">5% ABV</span>
+      </div>
+
+      <!-- Lime Surge -->
+      <div class="product-card reveal" style="--can-color:#a3e635;--can-gradient:linear-gradient(180deg,#a3e635 0%,#65a30d 40%,#3f6212 100%)">
+        <div class="can">
+          <div class="can-body">
+            <div class="can-label">Quatro<small>Lime Surge</small></div>
+          </div>
+        </div>
+        <div class="product-name">Lime Surge</div>
+        <p class="product-desc">Key lime meets agave and a whisper of mint. Crisp, clean, and dangerously drinkable.</p>
+        <span class="product-abv">5% ABV</span>
+      </div>
+
+      <!-- Berry Drift -->
+      <div class="product-card reveal" style="--can-color:#c084fc;--can-gradient:linear-gradient(180deg,#c084fc 0%,#9333ea 40%,#581c87 100%)">
+        <div class="can">
+          <div class="can-body">
+            <div class="can-label">Quatro<small>Berry Drift</small></div>
+          </div>
+        </div>
+        <div class="product-name">Berry Drift</div>
+        <p class="product-desc">Wild blackberry layered with acai and dark cherry. Deep, smooth, and effortlessly cool.</p>
+        <span class="product-abv">5% ABV</span>
+      </div>
+
+      <!-- Tropical Fade -->
+      <div class="product-card reveal" style="--can-color:#fb923c;--can-gradient:linear-gradient(180deg,#fb923c 0%,#ea580c 40%,#9a3412 100%)">
+        <div class="can">
+          <div class="can-body">
+            <div class="can-label">Quatro<small>Tropical Fade</small></div>
+          </div>
+        </div>
+        <div class="product-name">Tropical Fade</div>
+        <p class="product-desc">Passionfruit, mango, and a splash of guava. Like a sunset in a can.</p>
+        <span class="product-abv">5% ABV</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== AGE VERIFIED BANNER ========== -->
+<div class="age-banner">
+  <div class="age-banner-inner reveal">
+    <div class="age-badge">
+      <span class="age-badge-number">21</span>
+      <span class="age-badge-plus">+</span>
+    </div>
+    <div class="age-text">
+      <h3>Made for Adults. Seriously.</h3>
+      <p>Quatro craft seltzers are intended for responsible adults of legal drinking age. Please enjoy responsibly. Never drink and drive.</p>
+    </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="section-label">About the Project</div>
-  <p class="about-text">Quatro, a company with roots in children's beverages, has undergone a remarkable metamorphosis into a trailblazer in the adult beverage landscape. The brand pivoted toward crafting beverage seltzers for grown-up consumers.</p>
-
-  <div class="section-label">Highlights</div>
-  <ul class="highlights">
-    <li>Strategic diversification into adult beverages.</li>
-    <li>Focus on craft seltzers.</li>
-    <li>Complete contemporary rebranding that speaks to the adult market.</li>
-  </ul>
-
-  <div class="section-label">Tools & Technologies</div>
-  <div class="tags">
-    <span class="tag">Branding</span>
-    <span class="tag">Web Design</span>
-    <span class="tag">UI/UX</span>
+<!-- ========== CTA ========== -->
+<section class="cta-section" id="subscribe">
+  <div class="cta-inner reveal">
+    <span class="section-label">Stay Refreshed</span>
+    <h2 class="section-heading">Be first to know.</h2>
+    <p class="section-text">New flavors, limited drops, and events. Join the list and never miss a release.</p>
+    <div class="email-row">
+      <input type="email" class="email-input" placeholder="your@email.com" aria-label="Email address">
+      <button class="btn-primary" onclick="handleSubscribe(event)">Subscribe</button>
+    </div>
+    <p id="subscribeMsg" style="margin-top:1rem;font-size:.85rem;color:#a3e635;opacity:0;transition:opacity .4s"></p>
   </div>
+</section>
 
-  <div class="quote">"Quatro's beverage is a taste revolution! A burst of unique flavors that left me craving more." — Emily M., Flavor Explorer</div>
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Quatro</div>
+      <p class="footer-tagline">All grown up. Still refreshing. Craft seltzers made with bold flavor and zero compromise.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="#story">Our Story</a>
+      <a href="#products">Products</a>
+      <a href="#subscribe">Newsletter</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Accessibility</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2026 Quatro Beverage Co. All rights reserved. This is a demo site.</span>
+    <div class="footer-legal">
+      <a href="/#projects" class="back-to-portfolio">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to Portfolio
+      </a>
+    </div>
+  </div>
+</footer>
 
-  <a href="/#projects" class="back-link">&larr; Back to Portfolio</a>
-</div>
+<script>
+// ---- Nav scroll effect ----
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive:true});
 
-<div class="footer-bar">&copy; 2026 Mohamed Zarandah. All rights reserved.</div>
+// ---- Mobile menu ----
+const mobileToggle = document.getElementById('mobileToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+mobileToggle.addEventListener('click', () => {
+  mobileToggle.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileToggle.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// ---- Scroll reveal ----
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.15, rootMargin:'0px 0px -40px 0px'});
+reveals.forEach(el => observer.observe(el));
+
+// ---- Subscribe handler ----
+function handleSubscribe(e) {
+  e.preventDefault();
+  const msg = document.getElementById('subscribeMsg');
+  msg.textContent = "You're on the list. Welcome to Quatro.";
+  msg.style.opacity = '1';
+  setTimeout(() => { msg.style.opacity = '0'; }, 4000);
+}
+</script>
 </body>
 </html>

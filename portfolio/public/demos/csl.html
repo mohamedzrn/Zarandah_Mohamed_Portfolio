@@ -5,63 +5,1040 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CSL — Car Enthusiast Website | Mohamed Zarandah</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root{--accent:#60a5fa;--accent-bg:rgba(96,165,250,.12)}
-  body{background:#030810}
-  .hero-tag{background:var(--accent-bg);color:var(--accent);border:1px solid rgba(96,165,250,.3)}
-  .hero h1{color:#eff6ff}
-  .section-label{color:var(--accent)}
-  .highlights li::before{background:var(--accent)}
-  .quote{border-color:var(--accent)}
-  .tag{border-color:rgba(96,165,250,.3);color:var(--accent)}
-  .back-link{background:var(--accent);color:#030810}
+/* ===== Reset & Base ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg-deep:#030810;
+  --bg-dark:#071a30;
+  --bg-card:#0a1e38;
+  --bg-card-hover:#0d2544;
+  --accent:#60a5fa;
+  --accent-glow:rgba(96,165,250,.25);
+  --accent-dim:rgba(96,165,250,.08);
+  --text-primary:#e2e8f0;
+  --text-secondary:#94a3b8;
+  --text-muted:#64748b;
+  --border:rgba(96,165,250,.12);
+  --border-hover:rgba(96,165,250,.3);
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--font);
+  background:var(--bg-deep);
+  color:var(--text-primary);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent);text-decoration:none;transition:color .2s}
+a:hover{color:#93c5fd}
+img{max-width:100%;display:block}
+
+/* ===== Utility ===== */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:100px 0}
+.section-label{
+  font-size:.75rem;
+  font-weight:700;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:12px;
+}
+.section-title{
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:800;
+  color:#f1f5f9;
+  line-height:1.15;
+  margin-bottom:20px;
+}
+.section-desc{
+  font-size:1.1rem;
+  color:var(--text-secondary);
+  max-width:600px;
+  line-height:1.7;
+}
+.section-header{margin-bottom:60px}
+
+/* ===== Back to Portfolio (top nav) ===== */
+.top-nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:100;
+  padding:16px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:background .3s,backdrop-filter .3s;
+}
+.top-nav.scrolled{
+  background:rgba(3,8,16,.85);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-size:1.25rem;
+  font-weight:800;
+  color:#f1f5f9;
+  letter-spacing:.05em;
+}
+.nav-logo span{color:var(--accent)}
+.back-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 18px;
+  border-radius:8px;
+  font-size:.85rem;
+  font-weight:600;
+  color:var(--text-primary);
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--border);
+  transition:all .25s;
+}
+.back-btn:hover{
+  background:rgba(96,165,250,.12);
+  border-color:var(--accent);
+  color:var(--accent);
+}
+.back-btn svg{width:16px;height:16px}
+
+/* ===== Hero ===== */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background:url('/images/csl-banner.png') center/cover no-repeat;
+  transform:scale(1.05);
+  transition:transform 8s ease-out;
+}
+.hero.loaded .hero-bg{transform:scale(1)}
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg,
+      rgba(3,8,16,.4) 0%,
+      rgba(3,8,16,.6) 40%,
+      rgba(3,8,16,.85) 75%,
+      var(--bg-deep) 100%),
+    linear-gradient(90deg,
+      rgba(3,8,16,.7) 0%,
+      transparent 50%,
+      rgba(3,8,16,.7) 100%);
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  padding:0 24px;
+  max-width:900px;
+}
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 20px;
+  border-radius:100px;
+  background:var(--accent-dim);
+  border:1px solid rgba(96,165,250,.2);
+  color:var(--accent);
+  font-size:.8rem;
+  font-weight:600;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  margin-bottom:32px;
+  animation:fadeUp .8s ease .2s both;
+}
+.hero-badge::before{
+  content:'';
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 8px var(--accent);
+  animation:pulse 2s infinite;
+}
+.hero h1{
+  font-size:clamp(3.5rem,10vw,8rem);
+  font-weight:900;
+  letter-spacing:-.02em;
+  color:#ffffff;
+  line-height:1;
+  margin-bottom:8px;
+  text-shadow:0 0 60px rgba(96,165,250,.2);
+  animation:fadeUp .8s ease .35s both;
+}
+.hero-sub{
+  font-size:clamp(1rem,2.5vw,1.35rem);
+  color:var(--text-secondary);
+  font-weight:300;
+  letter-spacing:.02em;
+  margin-bottom:48px;
+  animation:fadeUp .8s ease .5s both;
+}
+.hero-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 36px;
+  border-radius:12px;
+  background:var(--accent);
+  color:var(--bg-deep);
+  font-weight:700;
+  font-size:1rem;
+  letter-spacing:.02em;
+  transition:all .3s;
+  animation:fadeUp .8s ease .65s both;
+}
+.hero-cta:hover{
+  background:#93c5fd;
+  color:var(--bg-deep);
+  transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(96,165,250,.35);
+}
+.hero-scroll{
+  position:absolute;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:3;
+  animation:fadeUp .8s ease .8s both;
+}
+.hero-scroll-inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  color:var(--text-muted);
+  font-size:.75rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.scroll-line{
+  width:1px;height:40px;
+  background:linear-gradient(180deg,var(--accent),transparent);
+  animation:scrollPulse 2s infinite;
+}
+
+/* ===== Featured Cars ===== */
+.cars-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.car-card{
+  position:relative;
+  border-radius:20px;
+  overflow:hidden;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  transition:all .4s cubic-bezier(.25,.46,.45,.94);
+  cursor:default;
+}
+.car-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--border-hover);
+  box-shadow:0 20px 50px rgba(0,0,0,.5),0 0 30px var(--accent-glow);
+}
+.car-visual{
+  position:relative;
+  height:220px;
+  overflow:hidden;
+}
+.car-gradient{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.car-gradient-1{
+  background:linear-gradient(135deg,#0c1829 0%,#152a4a 40%,#1e3a5f 70%,#0f2038 100%);
+}
+.car-gradient-2{
+  background:linear-gradient(135deg,#0a0f1a 0%,#1a1a2e 40%,#16213e 70%,#0f0f23 100%);
+}
+.car-gradient-3{
+  background:linear-gradient(135deg,#0d1117 0%,#161b22 40%,#21262d 70%,#0d1117 100%);
+}
+.car-silhouette{
+  font-size:5rem;
+  opacity:.15;
+  filter:blur(1px);
+  user-select:none;
+}
+.car-speed-lines{
+  position:absolute;
+  top:50%;left:0;right:0;
+  transform:translateY(-50%);
+  height:2px;
+  opacity:.08;
+}
+.car-speed-lines::before,
+.car-speed-lines::after{
+  content:'';
+  position:absolute;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+}
+.car-speed-lines::before{top:-20px;left:10%;right:30%;animation:speedLine 3s infinite}
+.car-speed-lines::after{top:20px;left:25%;right:15%;animation:speedLine 3s infinite .5s}
+.car-badge{
+  position:absolute;
+  top:16px;right:16px;
+  padding:4px 12px;
+  border-radius:6px;
+  background:rgba(96,165,250,.15);
+  backdrop-filter:blur(8px);
+  color:var(--accent);
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.car-info{padding:24px}
+.car-name{
+  font-size:1.3rem;
+  font-weight:700;
+  color:#f1f5f9;
+  margin-bottom:4px;
+}
+.car-spec{
+  font-size:.85rem;
+  color:var(--text-muted);
+  margin-bottom:16px;
+}
+.car-stats{
+  display:flex;
+  gap:20px;
+}
+.car-stat{
+  display:flex;
+  flex-direction:column;
+}
+.car-stat-value{
+  font-size:1.1rem;
+  font-weight:700;
+  color:var(--accent);
+}
+.car-stat-label{
+  font-size:.7rem;
+  color:var(--text-muted);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+/* ===== Screenshots Gallery ===== */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
+}
+.gallery-item{
+  position:relative;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  transition:all .4s;
+  cursor:pointer;
+}
+.gallery-item:hover{
+  border-color:var(--border-hover);
+  transform:translateY(-4px);
+  box-shadow:0 16px 40px rgba(0,0,0,.4),0 0 20px var(--accent-glow);
+}
+.gallery-item img{
+  width:100%;
+  height:auto;
+  display:block;
+  transition:transform .6s;
+}
+.gallery-item:hover img{transform:scale(1.03)}
+.gallery-item-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent 60%,rgba(3,8,16,.8) 100%);
+  opacity:0;
+  transition:opacity .3s;
+  display:flex;
+  align-items:flex-end;
+  padding:24px;
+}
+.gallery-item:hover .gallery-item-overlay{opacity:1}
+.gallery-item-label{
+  font-size:.85rem;
+  font-weight:600;
+  color:var(--text-primary);
+}
+
+/* ===== Lightbox ===== */
+.lightbox{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  background:rgba(3,8,16,.95);
+  backdrop-filter:blur(20px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s;
+}
+.lightbox.active{opacity:1;pointer-events:all}
+.lightbox img{
+  max-width:90vw;
+  max-height:85vh;
+  border-radius:12px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+  transform:scale(.9);
+  transition:transform .3s;
+}
+.lightbox.active img{transform:scale(1)}
+.lightbox-close{
+  position:absolute;
+  top:24px;right:24px;
+  width:48px;height:48px;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  color:#fff;
+  font-size:1.5rem;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all .2s;
+}
+.lightbox-close:hover{background:rgba(255,255,255,.15)}
+
+/* ===== Road Stories ===== */
+.stories-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.story-card{
+  border-radius:20px;
+  overflow:hidden;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  transition:all .4s;
+  cursor:default;
+  display:flex;
+  flex-direction:column;
+}
+.story-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--border-hover);
+  box-shadow:0 16px 40px rgba(0,0,0,.4);
+}
+.story-header{
+  height:8px;
+  background:linear-gradient(90deg,var(--accent),#3b82f6,#1d4ed8);
+}
+.story-body{padding:28px;flex:1;display:flex;flex-direction:column}
+.story-meta{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:16px;
+  font-size:.75rem;
+  color:var(--text-muted);
+}
+.story-category{
+  padding:3px 10px;
+  border-radius:100px;
+  background:var(--accent-dim);
+  color:var(--accent);
+  font-weight:600;
+  font-size:.7rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.story-title{
+  font-size:1.2rem;
+  font-weight:700;
+  color:#f1f5f9;
+  margin-bottom:12px;
+  line-height:1.35;
+}
+.story-excerpt{
+  font-size:.9rem;
+  color:var(--text-secondary);
+  line-height:1.7;
+  flex:1;
+}
+.story-footer{
+  padding:0 28px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.story-read{
+  font-size:.85rem;
+  font-weight:600;
+  color:var(--accent);
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  transition:gap .2s;
+}
+.story-card:hover .story-read{gap:10px}
+.story-time{
+  font-size:.75rem;
+  color:var(--text-muted);
+}
+
+/* ===== Tech Stack ===== */
+.tech-bar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:32px;
+}
+.tech-tag{
+  padding:10px 22px;
+  border-radius:12px;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  color:var(--text-primary);
+  font-size:.85rem;
+  font-weight:600;
+  transition:all .25s;
+}
+.tech-tag:hover{
+  border-color:var(--accent);
+  background:var(--accent-dim);
+  color:var(--accent);
+}
+
+/* ===== CTA Section ===== */
+.cta-section{
+  position:relative;
+  padding:100px 0;
+  text-align:center;
+  overflow:hidden;
+}
+.cta-glow{
+  position:absolute;
+  width:600px;height:600px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(96,165,250,.08) 0%,transparent 70%);
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.cta-content{position:relative;z-index:2;max-width:640px;margin:0 auto}
+.cta-title{
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:800;
+  color:#f1f5f9;
+  margin-bottom:16px;
+}
+.cta-text{
+  font-size:1.1rem;
+  color:var(--text-secondary);
+  margin-bottom:40px;
+  line-height:1.7;
+}
+.cta-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:16px 40px;
+  border-radius:14px;
+  background:var(--accent);
+  color:var(--bg-deep);
+  font-weight:700;
+  font-size:1.05rem;
+  letter-spacing:.02em;
+  transition:all .3s;
+  border:none;
+  cursor:pointer;
+}
+.cta-btn:hover{
+  background:#93c5fd;
+  transform:translateY(-2px);
+  box-shadow:0 10px 35px rgba(96,165,250,.3);
+}
+.cta-features{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  margin-top:48px;
+}
+.cta-feature{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+}
+.cta-feature-icon{
+  width:48px;height:48px;
+  border-radius:12px;
+  background:var(--accent-dim);
+  border:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.2rem;
+  color:var(--accent);
+}
+.cta-feature-text{
+  font-size:.8rem;
+  color:var(--text-muted);
+  font-weight:500;
+}
+
+/* ===== Footer ===== */
+.footer{
+  border-top:1px solid var(--border);
+  padding:40px 0;
+}
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:16px;
+}
+.footer-brand{
+  font-weight:700;
+  font-size:1.1rem;
+  color:var(--text-secondary);
+}
+.footer-brand span{color:var(--accent)}
+.footer-links{
+  display:flex;
+  gap:24px;
+}
+.footer-links a{
+  font-size:.85rem;
+  color:var(--text-muted);
+  transition:color .2s;
+}
+.footer-links a:hover{color:var(--accent)}
+.footer-copy{
+  font-size:.8rem;
+  color:var(--text-muted);
+}
+.footer-divider{
+  width:100%;
+  height:1px;
+  background:var(--border);
+  margin:24px 0;
+}
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:16px;
+}
+
+/* ===== Divider Line ===== */
+.section-divider{
+  width:60px;height:3px;
+  background:linear-gradient(90deg,var(--accent),transparent);
+  border-radius:2px;
+  margin:0 0 32px;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes pulse{
+  0%,100%{opacity:1}
+  50%{opacity:.4}
+}
+@keyframes scrollPulse{
+  0%{opacity:.4;transform:scaleY(.6)}
+  50%{opacity:1;transform:scaleY(1)}
+  100%{opacity:.4;transform:scaleY(.6)}
+}
+@keyframes speedLine{
+  0%{opacity:0;transform:translateX(-30px)}
+  50%{opacity:1}
+  100%{opacity:0;transform:translateX(30px)}
+}
+
+/* Scroll reveal */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===== Responsive ===== */
+@media(max-width:1024px){
+  .cars-grid,.stories-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .section{padding:70px 0}
+  .cars-grid,.stories-grid,.gallery-grid{grid-template-columns:1fr}
+  .cta-features{flex-direction:column;align-items:center;gap:20px}
+  .footer-inner,.footer-bottom{flex-direction:column;text-align:center}
+  .hero h1{font-size:clamp(3rem,12vw,5rem)}
+}
+@media(max-width:480px){
+  .container{padding:0 16px}
+  .car-stats{gap:12px}
+}
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-bg" style="background-image:url('/images/csl-banner.png')"></div>
+<!-- Top Navigation -->
+<nav class="top-nav" id="topNav">
+  <div class="nav-logo">C<span>S</span>L</div>
+  <a href="/#projects" class="back-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    Back to Portfolio
+  </a>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <span class="hero-tag">Web Development</span>
-    <h1>CSL — Car Enthusiast</h1>
-    <p>My first self-built website, a passion project for car enthusiasts — one webpage, all heart.</p>
+    <div class="hero-badge">Passion Project</div>
+    <h1>CSL</h1>
+    <p class="hero-sub">Where speed meets soul. A car enthusiast's digital garage built with raw code and pure passion.</p>
+    <a href="#featured" class="hero-cta">
+      Explore the Garage
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+    </a>
   </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-inner">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Cars -->
+<section class="section" id="featured">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">The Collection</div>
+      <h2 class="section-title">Featured Cars</h2>
+      <p class="section-desc">Iconic machines that define the art of automotive engineering. Each one a masterpiece of speed and design.</p>
+    </div>
+    <div class="cars-grid">
+      <!-- Car 1 -->
+      <div class="car-card reveal">
+        <div class="car-visual">
+          <div class="car-gradient car-gradient-1">
+            <div class="car-silhouette">&#9670;</div>
+            <div class="car-speed-lines"></div>
+          </div>
+          <span class="car-badge">Legend</span>
+        </div>
+        <div class="car-info">
+          <div class="car-name">BMW E46 M3 CSL</div>
+          <div class="car-spec">3.2L Inline-6 &bull; 360 HP &bull; 2003</div>
+          <div class="car-stats">
+            <div class="car-stat">
+              <span class="car-stat-value">4.9s</span>
+              <span class="car-stat-label">0-100 km/h</span>
+            </div>
+            <div class="car-stat">
+              <span class="car-stat-value">1,385 kg</span>
+              <span class="car-stat-label">Curb Weight</span>
+            </div>
+            <div class="car-stat">
+              <span class="car-stat-value">1,383</span>
+              <span class="car-stat-label">Units Made</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Car 2 -->
+      <div class="car-card reveal">
+        <div class="car-visual">
+          <div class="car-gradient car-gradient-2">
+            <div class="car-silhouette">&#9672;</div>
+            <div class="car-speed-lines"></div>
+          </div>
+          <span class="car-badge">Supercar</span>
+        </div>
+        <div class="car-info">
+          <div class="car-name">Porsche 911 GT3 RS</div>
+          <div class="car-spec">4.0L Flat-6 &bull; 518 HP &bull; 2023</div>
+          <div class="car-stats">
+            <div class="car-stat">
+              <span class="car-stat-value">3.2s</span>
+              <span class="car-stat-label">0-100 km/h</span>
+            </div>
+            <div class="car-stat">
+              <span class="car-stat-value">1,450 kg</span>
+              <span class="car-stat-label">Curb Weight</span>
+            </div>
+            <div class="car-stat">
+              <span class="car-stat-value">9,000</span>
+              <span class="car-stat-label">Redline RPM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Car 3 -->
+      <div class="car-card reveal">
+        <div class="car-visual">
+          <div class="car-gradient car-gradient-3">
+            <div class="car-silhouette">&#9674;</div>
+            <div class="car-speed-lines"></div>
+          </div>
+          <span class="car-badge">JDM Icon</span>
+        </div>
+        <div class="car-info">
+          <div class="car-name">Nissan Skyline R34 GT-R</div>
+          <div class="car-spec">2.6L Twin-Turbo I6 &bull; 280 HP &bull; 1999</div>
+          <div class="car-stats">
+            <div class="car-stat">
+              <span class="car-stat-value">4.8s</span>
+              <span class="car-stat-label">0-100 km/h</span>
+            </div>
+            <div class="car-stat">
+              <span class="car-stat-value">AWD</span>
+              <span class="car-stat-label">ATTESA E-TS</span>
+            </div>
+            <div class="car-stat">
+              <span class="car-stat-value">RB26</span>
+              <span class="car-stat-label">Engine Code</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Screenshots Gallery -->
+<section class="section" style="padding-top:40px" id="gallery">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Behind the Build</div>
+      <h2 class="section-title">Screenshots</h2>
+      <p class="section-desc">A look at the original CSL website -- my very first web project, built from scratch with HTML, CSS, and JavaScript.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal" onclick="openLightbox(this)">
+        <img src="/images/csl-ss1.JPG" alt="CSL website screenshot showing the homepage" loading="lazy">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label">Homepage View</span>
+        </div>
+      </div>
+      <div class="gallery-item reveal" onclick="openLightbox(this)">
+        <img src="/images/csl-ss2.JPG" alt="CSL website screenshot showing car details" loading="lazy">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label">Content Section</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Tags -->
+    <div class="reveal" style="margin-top:60px">
+      <div class="section-label">Built With</div>
+      <div class="section-divider"></div>
+      <div class="tech-bar">
+        <span class="tech-tag">HTML5</span>
+        <span class="tech-tag">CSS3</span>
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">Responsive Design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Road Stories -->
+<section class="section" style="background:linear-gradient(180deg,var(--bg-deep) 0%,rgba(7,26,48,.3) 50%,var(--bg-deep) 100%)" id="stories">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">The Blog</div>
+      <h2 class="section-title">Road Stories</h2>
+      <p class="section-desc">Tales from the tarmac. Every drive tells a story, and every car has a legacy.</p>
+    </div>
+    <div class="stories-grid">
+      <!-- Story 1 -->
+      <article class="story-card reveal">
+        <div class="story-header"></div>
+        <div class="story-body">
+          <div class="story-meta">
+            <span class="story-category">Culture</span>
+            <span>&middot;</span>
+            <span>March 2024</span>
+          </div>
+          <h3 class="story-title">Why the E46 M3 CSL Is the Ultimate Driving Machine</h3>
+          <p class="story-excerpt">BMW stripped 110 kg from the standard M3 and created a legend. Carbon roof, titanium exhaust, and a naturally aspirated inline-six that sings to 8,000 RPM. This is the story of automotive perfection.</p>
+        </div>
+        <div class="story-footer">
+          <span class="story-read">Read more <span>&rarr;</span></span>
+          <span class="story-time">6 min read</span>
+        </div>
+      </article>
+      <!-- Story 2 -->
+      <article class="story-card reveal">
+        <div class="story-header" style="background:linear-gradient(90deg,#1d4ed8,var(--accent),#38bdf8)"></div>
+        <div class="story-body">
+          <div class="story-meta">
+            <span class="story-category">Road Trip</span>
+            <span>&middot;</span>
+            <span>January 2024</span>
+          </div>
+          <h3 class="story-title">Midnight Run: Coast to Coast Under the Stars</h3>
+          <p class="story-excerpt">Nothing but open road, a full tank, and the hum of a flat-six behind you. We chased the dawn from one coast to the other, stopping only for fuel and photographs of the empty highway stretching ahead.</p>
+        </div>
+        <div class="story-footer">
+          <span class="story-read">Read more <span>&rarr;</span></span>
+          <span class="story-time">8 min read</span>
+        </div>
+      </article>
+      <!-- Story 3 -->
+      <article class="story-card reveal">
+        <div class="story-header" style="background:linear-gradient(90deg,#0f172a,#334155,var(--accent))"></div>
+        <div class="story-body">
+          <div class="story-meta">
+            <span class="story-category">Heritage</span>
+            <span>&middot;</span>
+            <span>November 2023</span>
+          </div>
+          <h3 class="story-title">JDM Legends: The Cars That Shaped a Generation</h3>
+          <p class="story-excerpt">From the Skyline GT-R to the Supra and the RX-7, Japanese performance cars rewrote the rules of what an affordable sports car could be. A deep dive into the golden era of JDM engineering.</p>
+        </div>
+        <div class="story-footer">
+          <span class="story-read">Read more <span>&rarr;</span></span>
+          <span class="story-time">10 min read</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Join the Community CTA -->
+<section class="cta-section" id="community">
+  <div class="cta-glow"></div>
+  <div class="container">
+    <div class="cta-content reveal">
+      <div class="section-label">Get Involved</div>
+      <h2 class="cta-title">Join the Community</h2>
+      <p class="cta-text">Connect with fellow enthusiasts, share your builds, swap stories from the road, and fuel your passion for everything on four wheels.</p>
+      <button class="cta-btn" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">
+        Start Your Engine
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </button>
+      <div class="cta-features">
+        <div class="cta-feature">
+          <div class="cta-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <span class="cta-feature-text">Community</span>
+        </div>
+        <div class="cta-feature">
+          <div class="cta-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <span class="cta-feature-text">Photography</span>
+        </div>
+        <div class="cta-feature">
+          <div class="cta-feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <span class="cta-feature-text">Performance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">C<span>S</span>L <span style="color:var(--text-muted);font-weight:400">| Car Enthusiast</span></div>
+      <div class="footer-links">
+        <a href="#featured">Cars</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#stories">Stories</a>
+        <a href="#community">Community</a>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Mohamed Zarandah. All rights reserved.</span>
+      <a href="/#projects" class="back-btn" style="font-size:.8rem;padding:6px 14px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        Back to Portfolio
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img id="lightboxImg" src="" alt="Expanded screenshot">
 </div>
 
-<div class="container">
-  <div class="section-label">About the Project</div>
-  <p class="about-text">Welcome to my digital garage. This website is the culmination of countless hours of dedication, driven by my deep-rooted love for everything automotive. From sleek classics to cutting-edge supercars.</p>
+<script>
+// Nav scroll effect
+const topNav = document.getElementById('topNav');
+window.addEventListener('scroll', () => {
+  topNav.classList.toggle('scrolled', window.scrollY > 50);
+});
 
-  <div class="section-label">Highlights</div>
-  <ul class="highlights">
-    <li>High-quality automotive photography.</li>
-    <li>Deep-dive articles on iconic models.</li>
-    <li>Personal road trip anecdotes.</li>
-    <li>Community hub for car enthusiasts.</li>
-  </ul>
+// Hero loaded animation
+window.addEventListener('load', () => {
+  document.querySelector('.hero').classList.add('loaded');
+});
 
-  <div class="section-label">Tools & Technologies</div>
-  <div class="tags">
-    <span class="tag">HTML</span>
-    <span class="tag">CSS</span>
-    <span class="tag">JavaScript</span>
-    <span class="tag">Responsive</span>
-  </div>
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, i * 100);
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
 
-  <div class="section-label">Screenshots</div>
-  <div class="gallery cols-2">
-    <img src="/images/csl-ss1.JPG" alt="CSL website screenshot 1">
-    <img src="/images/csl-ss2.JPG" alt="CSL website screenshot 2">
-  </div>
+// Lightbox
+function openLightbox(el) {
+  const img = el.querySelector('img');
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightboxImg').src = img.src;
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
 
-  <div class="quote">"Discovering this self-built website dedicated to car enthusiasm was an absolute delight. The passion behind every page is evident from the first click."</div>
-
-  <a href="/#projects" class="back-link">&larr; Back to Portfolio</a>
-</div>
-
-<div class="footer-bar">&copy; 2026 Mohamed Zarandah. All rights reserved.</div>
 </body>
 </html>

@@ -3,63 +3,721 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Fragments of Reality — Short Film | Mohamed Zarandah</title>
+<title>Fragments of Reality — Short Film</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{--accent:#94a3b8;--accent-bg:rgba(148,163,184,.12)}
-  body{background:#030305}
-  .hero-tag{background:var(--accent-bg);color:var(--accent);border:1px solid rgba(148,163,184,.3)}
-  .hero h1{color:#f1f5f9}
-  .section-label{color:var(--accent)}
-  .highlights li::before{background:var(--accent)}
-  .quote{border-color:var(--accent)}
-  .tag{border-color:rgba(148,163,184,.3);color:var(--accent)}
-  .back-link{background:var(--accent);color:#030305}
+/* ── Reset & Base ─────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:#030305;
+  color:#94a3b8;
+  font-family:'Inter',system-ui,sans-serif;
+  font-weight:300;
+  line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── Film Grain Overlay ───────────────────────── */
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:128px 128px;
+  animation:grain 0.5s steps(6) infinite;
+}
+@keyframes grain{
+  0%,100%{transform:translate(0,0)}
+  10%{transform:translate(-2%,-3%)}
+  30%{transform:translate(3%,2%)}
+  50%{transform:translate(-1%,4%)}
+  70%{transform:translate(2%,-2%)}
+  90%{transform:translate(-3%,1%)}
+}
+
+/* ── Utility ──────────────────────────────────── */
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+
+/* ── Film Strip Decorative Border ─────────────── */
+.film-strip{
+  position:relative;
+}
+.film-strip::before,
+.film-strip::after{
+  content:'';
+  position:absolute;
+  top:0;bottom:0;
+  width:28px;
+  z-index:2;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 6px,
+      #1a1a2e 6px,
+      #1a1a2e 8px,
+      transparent 8px,
+      transparent 18px,
+      rgba(148,163,184,0.12) 18px,
+      rgba(148,163,184,0.12) 30px,
+      transparent 30px,
+      transparent 32px,
+      #1a1a2e 32px,
+      #1a1a2e 34px,
+      transparent 34px,
+      transparent 40px
+    );
+  border-left:2px solid rgba(148,163,184,0.15);
+  border-right:2px solid rgba(148,163,184,0.15);
+}
+.film-strip::before{left:0}
+.film-strip::after{right:0}
+
+/* ── Hero ─────────────────────────────────────── */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background:url('/images/fragments-banner.png') center/cover no-repeat;
+  transform:scale(1.05);
+  animation:heroZoom 20s ease-in-out infinite alternate;
+}
+@keyframes heroZoom{
+  from{transform:scale(1.05)}
+  to{transform:scale(1.12)}
+}
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg,
+      rgba(3,3,5,0.4) 0%,
+      rgba(3,3,5,0.2) 30%,
+      rgba(3,3,5,0.5) 70%,
+      rgba(3,3,5,0.95) 100%
+    );
+  z-index:1;
+}
+.hero-vignette{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  box-shadow:inset 0 0 200px rgba(3,3,5,0.8);
+}
+.hero-content{
+  position:relative;
+  z-index:3;
+  text-align:center;
+  padding:40px 24px;
+  max-width:800px;
+}
+.hero-eyebrow{
+  display:inline-block;
+  font-size:11px;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:rgba(148,163,184,0.7);
+  margin-bottom:28px;
+  font-weight:400;
+  border:1px solid rgba(148,163,184,0.2);
+  padding:8px 20px;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:300;
+  font-size:clamp(2.8rem,7vw,5.5rem);
+  color:#e2e8f0;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  line-height:1.1;
+  margin-bottom:24px;
+}
+.hero h1 span{
+  display:block;
+  font-style:italic;
+  font-size:0.55em;
+  letter-spacing:0.15em;
+  color:rgba(148,163,184,0.6);
+  margin-top:8px;
+  font-weight:300;
+}
+.hero-tagline{
+  font-size:clamp(0.95rem,2vw,1.15rem);
+  color:rgba(148,163,184,0.7);
+  font-weight:300;
+  max-width:520px;
+  margin:0 auto 36px;
+  line-height:1.8;
+}
+.hero-divider{
+  width:60px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(148,163,184,0.4),transparent);
+  margin:0 auto 28px;
+}
+.hero-tags{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.hero-tag{
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(148,163,184,0.5);
+  padding:6px 16px;
+  border:1px solid rgba(148,163,184,0.12);
+}
+.scroll-cue{
+  position:absolute;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  color:rgba(148,163,184,0.3);
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  animation:scrollPulse 2s ease-in-out infinite;
+}
+.scroll-cue-line{
+  width:1px;
+  height:40px;
+  background:linear-gradient(180deg,rgba(148,163,184,0.3),transparent);
+}
+@keyframes scrollPulse{
+  0%,100%{opacity:0.3;transform:translateX(-50%) translateY(0)}
+  50%{opacity:0.6;transform:translateX(-50%) translateY(5px)}
+}
+
+/* ── Section Styling ──────────────────────────── */
+.section{
+  padding:100px 0;
+  position:relative;
+}
+.section-divider{
+  width:100%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(148,163,184,0.1),transparent);
+}
+.section-label{
+  font-size:10px;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:rgba(148,163,184,0.4);
+  margin-bottom:16px;
+  font-weight:400;
+}
+.section-title{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:300;
+  font-size:clamp(2rem,4vw,3rem);
+  color:#cbd5e1;
+  letter-spacing:0.04em;
+  margin-bottom:40px;
+  line-height:1.2;
+}
+
+/* ── Synopsis ─────────────────────────────────── */
+.synopsis{
+  background:linear-gradient(180deg,#030305 0%,#050510 50%,#030305 100%);
+}
+.synopsis-text{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(1.3rem,3vw,1.8rem);
+  line-height:1.9;
+  color:rgba(148,163,184,0.75);
+  max-width:780px;
+  margin:0 auto;
+  text-align:center;
+  font-weight:300;
+  font-style:italic;
+}
+.synopsis-text::before,
+.synopsis-text::after{
+  content:'"';
+  font-size:3em;
+  line-height:0;
+  vertical-align:-0.3em;
+  color:rgba(148,163,184,0.15);
+  font-family:'Cormorant Garamond',Georgia,serif;
+}
+.synopsis-text::after{content:'"'}
+.synopsis-accent{
+  display:block;
+  width:40px;
+  height:1px;
+  background:rgba(148,163,184,0.25);
+  margin:40px auto 0;
+}
+
+/* ── Gallery ──────────────────────────────────── */
+.gallery-section{
+  background:#030305;
+}
+.gallery-grid{
+  display:grid;
+  gap:20px;
+}
+.gallery-item{
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:21/9;
+  border:1px solid rgba(148,163,184,0.08);
+}
+.gallery-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94),filter 0.6s ease;
+  filter:grayscale(30%) contrast(1.1);
+}
+.gallery-item:hover img{
+  transform:scale(1.05);
+  filter:grayscale(0%) contrast(1.05);
+}
+.gallery-item::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent 60%,rgba(3,3,5,0.6) 100%);
+  pointer-events:none;
+}
+.gallery-item .gallery-caption{
+  position:absolute;
+  bottom:16px;
+  left:20px;
+  z-index:2;
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(148,163,184,0.5);
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity 0.4s ease,transform 0.4s ease;
+}
+.gallery-item:hover .gallery-caption{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ── Process Cards ────────────────────────────── */
+.process-section{
+  background:linear-gradient(180deg,#030305 0%,#08081a 50%,#030305 100%);
+}
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.process-card{
+  background:rgba(148,163,184,0.02);
+  border:1px solid rgba(148,163,184,0.06);
+  padding:40px 32px;
+  transition:border-color 0.4s ease,background 0.4s ease;
+  position:relative;
+}
+.process-card:hover{
+  border-color:rgba(148,163,184,0.15);
+  background:rgba(148,163,184,0.04);
+}
+.process-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(148,163,184,0.2),transparent);
+  opacity:0;
+  transition:opacity 0.4s ease;
+}
+.process-card:hover::before{opacity:1}
+.process-number{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:3rem;
+  font-weight:300;
+  color:rgba(148,163,184,0.08);
+  line-height:1;
+  margin-bottom:20px;
+}
+.process-card h3{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:400;
+  font-size:1.4rem;
+  color:#cbd5e1;
+  letter-spacing:0.03em;
+  margin-bottom:16px;
+}
+.process-card p{
+  font-size:0.9rem;
+  color:rgba(148,163,184,0.55);
+  line-height:1.7;
+}
+
+/* ── Credits ──────────────────────────────────── */
+.credits-section{
+  background:#030305;
+}
+.credits-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:0;
+  border:1px solid rgba(148,163,184,0.06);
+}
+.credit-item{
+  padding:28px 32px;
+  border-bottom:1px solid rgba(148,163,184,0.06);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:background 0.3s ease;
+}
+.credit-item:hover{
+  background:rgba(148,163,184,0.02);
+}
+.credit-item:nth-child(odd){
+  border-right:1px solid rgba(148,163,184,0.06);
+}
+.credit-role{
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(148,163,184,0.35);
+}
+.credit-name{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:1.15rem;
+  color:#cbd5e1;
+  font-weight:400;
+}
+
+/* ── Footer ───────────────────────────────────── */
+.footer{
+  padding:80px 0 40px;
+  text-align:center;
+  background:linear-gradient(180deg,#030305 0%,#020204 100%);
+  position:relative;
+}
+.footer::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(148,163,184,0.08),transparent);
+}
+.footer-laurel{
+  font-size:12px;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:rgba(148,163,184,0.25);
+  margin-bottom:12px;
+}
+.footer-festival{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:1rem;
+  color:rgba(148,163,184,0.35);
+  font-style:italic;
+  margin-bottom:40px;
+  letter-spacing:0.05em;
+}
+.footer-stars{
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  margin-bottom:40px;
+}
+.footer-star{
+  width:4px;
+  height:4px;
+  background:rgba(148,163,184,0.2);
+  border-radius:50%;
+}
+.back-link{
+  display:inline-block;
+  font-size:11px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:rgba(148,163,184,0.5);
+  text-decoration:none;
+  padding:14px 32px;
+  border:1px solid rgba(148,163,184,0.15);
+  transition:all 0.4s ease;
+  margin-bottom:60px;
+}
+.back-link:hover{
+  color:#e2e8f0;
+  border-color:rgba(148,163,184,0.4);
+  background:rgba(148,163,184,0.05);
+}
+.footer-copy{
+  font-size:11px;
+  color:rgba(148,163,184,0.2);
+  letter-spacing:2px;
+}
+
+/* ── Scroll Reveal ────────────────────────────── */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94),transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ── Film-Strip Side Bars (page-level) ────────── */
+.page-film-left,
+.page-film-right{
+  position:fixed;
+  top:0;bottom:0;
+  width:20px;
+  z-index:100;
+  pointer-events:none;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 8px,
+      rgba(148,163,184,0.04) 8px,
+      rgba(148,163,184,0.04) 20px,
+      transparent 20px,
+      transparent 24px
+    );
+  border-right:1px solid rgba(148,163,184,0.04);
+}
+.page-film-left{left:0}
+.page-film-right{right:0;border-right:none;border-left:1px solid rgba(148,163,184,0.04)}
+
+/* ── Responsive ───────────────────────────────── */
+@media(max-width:900px){
+  .process-grid{grid-template-columns:1fr}
+  .credits-grid{grid-template-columns:1fr}
+  .credit-item:nth-child(odd){border-right:none}
+  .film-strip::before,.film-strip::after{display:none}
+  .page-film-left,.page-film-right{display:none}
+}
+@media(max-width:600px){
+  .section{padding:70px 0}
+  .hero-content{padding:30px 20px}
+  .process-card{padding:30px 24px}
+  .credit-item{flex-direction:column;align-items:flex-start;gap:4px;padding:20px 24px}
+  .gallery-item{aspect-ratio:16/9}
+}
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-bg" style="background-image:url('/images/fragments-banner.png')"></div>
+<!-- Film-strip side decorations -->
+<div class="page-film-left"></div>
+<div class="page-film-right"></div>
+
+<!-- ════════════════════════════════════════════════
+     HERO
+     ════════════════════════════════════════════════ -->
+<section class="hero film-strip">
+  <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
+  <div class="hero-vignette"></div>
   <div class="hero-content">
-    <span class="hero-tag">Video Production</span>
-    <h1>Fragments of Reality</h1>
-    <p>A behind-the-scenes showcase of how the short film "Fragments of Reality" was conceived and produced.</p>
+    <div class="hero-eyebrow">A Short Film</div>
+    <h1>Fragments<br>of Reality<span>Where Perception Dissolves</span></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">An immersive cinematic journey blending innovative cinematography and cutting-edge visual effects to shatter the boundary between the seen and the felt.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">Video Production</span>
+      <span class="hero-tag">Adobe Premiere</span>
+      <span class="hero-tag">After Effects</span>
+    </div>
   </div>
-</div>
-
-<div class="container">
-  <div class="section-label">About the Project</div>
-  <p class="about-text">Fragments of Reality showcases an intricate blend of innovative cinematography and cutting-edge visual effects. This behind-the-scenes look reveals the meticulous care and creativity infused into every aspect of production.</p>
-
-  <div class="section-label">Highlights</div>
-  <ul class="highlights">
-    <li>Innovative cinematography techniques.</li>
-    <li>Blend of real-world and digital artistry.</li>
-    <li>Collaborative filmmaking process documented.</li>
-  </ul>
-
-  <div class="section-label">Tools & Technologies</div>
-  <div class="tags">
-    <span class="tag">Video Production</span>
-    <span class="tag">Adobe Premiere</span>
-    <span class="tag">After Effects</span>
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-cue-line"></div>
   </div>
+</section>
 
-  <div class="section-label">Behind the Scenes</div>
-  <div class="gallery cols-2">
-    <img src="/images/fragments-ss1.jpg" alt="Fragments of Reality production 1">
-    <img src="/images/fragments-ss2.jpg" alt="Fragments of Reality production 2">
+<!-- ════════════════════════════════════════════════
+     SYNOPSIS
+     ════════════════════════════════════════════════ -->
+<div class="section-divider"></div>
+<section class="section synopsis">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">Synopsis</div>
+      <div class="section-title serif" style="margin-bottom:48px">The Story</div>
+    </div>
+    <div class="reveal">
+      <p class="synopsis-text">In the liminal space between memory and imagination, a solitary figure confronts fragmented echoes of a life once lived. As the boundaries of time and perception dissolve, each fragment reveals a deeper truth about the nature of reality itself &mdash; and the courage it takes to see it whole.</p>
+      <div class="synopsis-accent"></div>
+    </div>
   </div>
+</section>
 
-  <div class="quote">"Fragments of Reality is a mesmerizing journey through the complexities of human emotion and perception."</div>
+<!-- ════════════════════════════════════════════════
+     GALLERY — BEHIND THE SCENES
+     ════════════════════════════════════════════════ -->
+<div class="section-divider"></div>
+<section class="section gallery-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:60px">
+      <div class="section-label">Behind the Scenes</div>
+      <div class="section-title serif">The Making Of</div>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item">
+        <img src="/images/fragments-ss1.jpg" alt="Behind the scenes production still showing the cinematography setup">
+        <span class="gallery-caption">Production &mdash; On Set</span>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/fragments-ss2.jpg" alt="Behind the scenes post-production visual effects work">
+        <span class="gallery-caption">Post-Production &mdash; VFX Compositing</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <a href="/#projects" class="back-link">&larr; Back to Portfolio</a>
-</div>
+<!-- ════════════════════════════════════════════════
+     THE PROCESS
+     ════════════════════════════════════════════════ -->
+<div class="section-divider"></div>
+<section class="section process-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:60px">
+      <div class="section-label">The Process</div>
+      <div class="section-title serif">From Vision to Screen</div>
+    </div>
+    <div class="process-grid">
+      <div class="process-card reveal">
+        <div class="process-number">01</div>
+        <h3>Pre-Production</h3>
+        <p>Months of conceptual development, storyboarding each fragmented sequence, and scouting locations that embodied the liminal spaces central to the narrative. Every detail was mapped before a single frame was captured.</p>
+      </div>
+      <div class="process-card reveal">
+        <div class="process-number">02</div>
+        <h3>Production</h3>
+        <p>Shot over an intensive period using innovative camera techniques &mdash; including in-camera reflections, controlled lens distortion, and choreographed lighting shifts &mdash; to capture reality as something perpetually in flux.</p>
+      </div>
+      <div class="process-card reveal">
+        <div class="process-number">03</div>
+        <h3>Post-Production</h3>
+        <p>Assembled in Adobe Premiere and refined with After Effects compositing. Layered VFX work merged practical footage with digital artistry, creating the seamless fragmentation effect that defines the film's visual identity.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="footer-bar">&copy; 2026 Mohamed Zarandah. All rights reserved.</div>
+<!-- ════════════════════════════════════════════════
+     CAST & CREW
+     ════════════════════════════════════════════════ -->
+<div class="section-divider"></div>
+<section class="section credits-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:60px">
+      <div class="section-label">Cast &amp; Crew</div>
+      <div class="section-title serif">The Team</div>
+    </div>
+    <div class="credits-grid reveal">
+      <div class="credit-item">
+        <span class="credit-role">Director</span>
+        <span class="credit-name">Mohamed Zarandah</span>
+      </div>
+      <div class="credit-item">
+        <span class="credit-role">Producer</span>
+        <span class="credit-name">Layla Nasri</span>
+      </div>
+      <div class="credit-item">
+        <span class="credit-role">Cinematographer</span>
+        <span class="credit-name">Darian Cole</span>
+      </div>
+      <div class="credit-item">
+        <span class="credit-role">Editor</span>
+        <span class="credit-name">Mohamed Zarandah</span>
+      </div>
+      <div class="credit-item">
+        <span class="credit-role">VFX Supervisor</span>
+        <span class="credit-name">Rena Mitsuki</span>
+      </div>
+      <div class="credit-item">
+        <span class="credit-role">Sound Design</span>
+        <span class="credit-name">Omar Hadid</span>
+      </div>
+      <div class="credit-item">
+        <span class="credit-role">Lead Actor</span>
+        <span class="credit-name">Yara Sabbagh</span>
+      </div>
+      <div class="credit-item">
+        <span class="credit-role">Original Score</span>
+        <span class="credit-name">Elias Khattar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="reveal">
+      <div class="footer-laurel">&#9733; Official Selection &#9733;</div>
+      <div class="footer-festival">Independent Vision Film Festival 2026</div>
+      <div class="footer-stars">
+        <div class="footer-star"></div>
+        <div class="footer-star"></div>
+        <div class="footer-star"></div>
+      </div>
+      <a href="/#projects" class="back-link">&larr;&ensp;Back to Portfolio</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mohamed Zarandah. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════
+     JAVASCRIPT — Scroll Reveal
+     ════════════════════════════════════════════════ -->
+<script>
+(function(){
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.15,rootMargin:'0px 0px -40px 0px'});
+  reveals.forEach(function(el){observer.observe(el)});
+
+  // Parallax on hero background
+  var heroBg = document.querySelector('.hero-bg');
+  if(heroBg && window.innerWidth > 768){
+    window.addEventListener('scroll',function(){
+      var scrolled = window.pageYOffset;
+      if(scrolled < window.innerHeight * 1.5){
+        heroBg.style.transform = 'scale('+(1.05 + scrolled * 0.0001)+') translateY('+scrolled*0.3+'px)';
+      }
+    },{passive:true});
+  }
+})();
+</script>
 </body>
 </html>

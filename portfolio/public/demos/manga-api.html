@@ -5,62 +5,601 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Manga API Webstore | Mohamed Zarandah</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root{--accent:#ef4444;--accent-bg:rgba(239,68,68,.12)}
-  body{background:#080808}
-  .hero-tag{background:var(--accent-bg);color:var(--accent);border:1px solid rgba(239,68,68,.3)}
-  .hero h1{color:#fef2f2}
-  .section-label{color:var(--accent)}
-  .highlights li::before{background:var(--accent)}
-  .quote{border-color:var(--accent)}
-  .tag{border-color:rgba(239,68,68,.3);color:var(--accent)}
-  .back-link{background:var(--accent);color:#fff}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080808;--surface:#0f0f0f;--surface-2:#161616;--surface-3:#1a1a1a;
+  --red:#ef4444;--red-dark:#9f0712;--red-glow:rgba(239,68,68,.15);
+  --text:#e4e4e7;--text-muted:#a1a1aa;--text-dim:#71717a;
+  --border:rgba(255,255,255,.06);--border-red:rgba(239,68,68,.25);
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+  --max-w:1140px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ── Back to Portfolio ── */
+.back-bar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(8,8,8,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);padding:0 24px;height:52px;
+  display:flex;align-items:center;
+}
+.back-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:600;color:var(--text-muted);
+  transition:color .2s;
+}
+.back-link:hover{color:var(--red)}
+.back-link svg{width:18px;height:18px;transition:transform .2s}
+.back-link:hover svg{transform:translateX(-3px)}
+
+/* ── Hero ── */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;
+  justify-content:center;overflow:hidden;padding:52px 24px 0;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('/images/manga-api-banner.png') center/cover no-repeat;
+  filter:brightness(.3) saturate(.7);
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(135deg,rgba(8,8,8,.95) 0%,rgba(8,8,8,.6) 40%,rgba(159,7,18,.15) 100%),
+    linear-gradient(to bottom,transparent 60%,var(--bg) 100%);
+}
+/* Diagonal stripe */
+.hero-stripe{
+  position:absolute;top:-20%;right:-10%;width:45%;height:140%;
+  background:linear-gradient(135deg,transparent 40%,rgba(239,68,68,.06) 40%,rgba(239,68,68,.06) 42%,transparent 42%,transparent 46%,rgba(239,68,68,.04) 46%,rgba(239,68,68,.04) 47%,transparent 47%);
+  transform:rotate(-8deg);pointer-events:none;
+}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:800px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--red-glow);color:var(--red);
+  border:1px solid var(--border-red);border-radius:100px;
+  padding:6px 16px;font-size:12px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;margin-bottom:28px;
+}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--red);border-radius:50%;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-title{
+  font-size:clamp(3.5rem,10vw,7rem);font-weight:900;
+  line-height:.95;letter-spacing:-3px;
+  color:#fef2f2;margin-bottom:8px;
+}
+.hero-title span{
+  display:block;font-size:clamp(1.2rem,3vw,1.8rem);
+  font-weight:600;letter-spacing:4px;text-transform:uppercase;
+  color:var(--red);margin-top:8px;
+}
+.hero-desc{
+  font-size:clamp(1rem,2vw,1.15rem);color:var(--text-muted);
+  max-width:540px;margin:24px auto 36px;line-height:1.7;
+}
+/* Search bar (decorative) */
+.hero-search{
+  display:flex;max-width:480px;margin:0 auto;
+  background:var(--surface-2);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;transition:border-color .3s;
+}
+.hero-search:focus-within{border-color:var(--border-red)}
+.hero-search input{
+  flex:1;background:transparent;border:none;outline:none;
+  padding:14px 18px;font-size:15px;color:var(--text);font-family:var(--font);
+}
+.hero-search input::placeholder{color:var(--text-dim)}
+.hero-search button{
+  background:var(--red);border:none;cursor:pointer;
+  padding:14px 22px;display:flex;align-items:center;
+  transition:background .2s;
+}
+.hero-search button:hover{background:var(--red-dark)}
+.hero-search button svg{width:20px;height:20px;color:#fff}
+.hero-scroll{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;
+  animation:float 3s ease-in-out infinite;
+}
+.hero-scroll svg{width:28px;height:28px;color:var(--text-dim);opacity:.5}
+@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* ── Section commons ── */
+.section{padding:100px 24px}
+.section-inner{max-width:var(--max-w);margin:0 auto}
+.section-label{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--red);margin-bottom:16px;
+}
+.section-label::before{content:'';width:24px;height:2px;background:var(--red);border-radius:2px}
+.section-title{
+  font-size:clamp(2rem,5vw,3rem);font-weight:800;
+  letter-spacing:-1.5px;line-height:1.1;color:#fafafa;margin-bottom:20px;
+}
+.section-subtitle{
+  font-size:1.05rem;color:var(--text-muted);max-width:560px;line-height:1.7;margin-bottom:48px;
+}
+
+/* ── Featured Manga Grid ── */
+.manga-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+  gap:20px;
+}
+.manga-card{
+  position:relative;border-radius:12px;overflow:hidden;
+  background:var(--surface);border:1px solid var(--border);
+  transition:transform .3s,border-color .3s,box-shadow .3s;cursor:pointer;
+}
+.manga-card:hover{
+  transform:translateY(-6px);border-color:var(--border-red);
+  box-shadow:0 20px 40px rgba(0,0,0,.4),0 0 30px var(--red-glow);
+}
+.manga-cover{
+  aspect-ratio:2/3;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:20px 16px;
+  position:relative;overflow:hidden;
+}
+.manga-cover::before{
+  content:'';position:absolute;inset:0;opacity:.12;
+  background:repeating-linear-gradient(45deg,transparent,transparent 8px,rgba(255,255,255,.03) 8px,rgba(255,255,255,.03) 9px);
+}
+.manga-jp{
+  font-size:2.8rem;font-weight:900;opacity:.12;
+  position:absolute;top:12px;right:12px;line-height:1;writing-mode:vertical-rl;
+}
+.manga-en-title{
+  font-size:1.1rem;font-weight:800;text-align:center;line-height:1.2;
+  position:relative;z-index:1;text-shadow:0 2px 8px rgba(0,0,0,.5);
+}
+.manga-vol{
+  font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  opacity:.5;margin-top:8px;position:relative;z-index:1;
+}
+.manga-info{padding:14px 16px}
+.manga-info-title{font-size:.85rem;font-weight:700;color:#fafafa;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.manga-info-meta{display:flex;align-items:center;justify-content:space-between}
+.manga-info-genre{font-size:.72rem;color:var(--text-dim);font-weight:500}
+.manga-info-rating{display:flex;align-items:center;gap:3px;font-size:.75rem;font-weight:700}
+.manga-info-rating svg{width:12px;height:12px}
+
+/* Card color schemes */
+.manga-card[data-scheme="red"] .manga-cover{background:linear-gradient(145deg,#1a0505,#2d0a0a)}
+.manga-card[data-scheme="red"] .manga-en-title{color:#fca5a5}
+.manga-card[data-scheme="red"] .manga-info-rating{color:#ef4444}
+
+.manga-card[data-scheme="blue"] .manga-cover{background:linear-gradient(145deg,#050a1a,#0a142d)}
+.manga-card[data-scheme="blue"] .manga-en-title{color:#93c5fd}
+.manga-card[data-scheme="blue"] .manga-info-rating{color:#3b82f6}
+
+.manga-card[data-scheme="purple"] .manga-cover{background:linear-gradient(145deg,#120520,#1e0a33)}
+.manga-card[data-scheme="purple"] .manga-en-title{color:#d8b4fe}
+.manga-card[data-scheme="purple"] .manga-info-rating{color:#a855f7}
+
+.manga-card[data-scheme="green"] .manga-cover{background:linear-gradient(145deg,#051a0a,#0a2d14)}
+.manga-card[data-scheme="green"] .manga-en-title{color:#86efac}
+.manga-card[data-scheme="green"] .manga-info-rating{color:#22c55e}
+
+.manga-card[data-scheme="orange"] .manga-cover{background:linear-gradient(145deg,#1a0f05,#2d1a0a)}
+.manga-card[data-scheme="orange"] .manga-en-title{color:#fdba74}
+.manga-card[data-scheme="orange"] .manga-info-rating{color:#f97316}
+
+.manga-card[data-scheme="cyan"] .manga-cover{background:linear-gradient(145deg,#051519,#0a2830)}
+.manga-card[data-scheme="cyan"] .manga-en-title{color:#67e8f9}
+.manga-card[data-scheme="cyan"] .manga-info-rating{color:#06b6d4}
+
+/* ── Screenshot ── */
+.screenshot-wrap{
+  position:relative;border-radius:16px;overflow:hidden;
+  border:1px solid var(--border);background:var(--surface);
+  box-shadow:0 24px 60px rgba(0,0,0,.5);
+}
+.screenshot-wrap img{width:100%;display:block}
+.screenshot-glow{
+  position:absolute;inset:-1px;border-radius:16px;
+  background:linear-gradient(135deg,rgba(239,68,68,.1),transparent 50%);
+  pointer-events:none;
+}
+
+/* ── How It Works ── */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative}
+.steps::before{
+  content:'';position:absolute;top:48px;left:calc(16.66% + 12px);
+  right:calc(16.66% + 12px);height:2px;
+  background:linear-gradient(90deg,var(--red),var(--red-dark),var(--red));opacity:.2;
+}
+.step{
+  text-align:center;padding:36px 24px;border-radius:16px;
+  background:var(--surface);border:1px solid var(--border);
+  position:relative;transition:border-color .3s,transform .3s;
+}
+.step:hover{border-color:var(--border-red);transform:translateY(-4px)}
+.step-icon{
+  width:64px;height:64px;border-radius:16px;margin:0 auto 20px;
+  background:var(--red-glow);border:1px solid var(--border-red);
+  display:flex;align-items:center;justify-content:center;
+}
+.step-icon svg{width:28px;height:28px;color:var(--red)}
+.step-num{
+  position:absolute;top:16px;right:20px;
+  font-size:3rem;font-weight:900;color:rgba(255,255,255,.03);line-height:1;
+}
+.step h3{font-size:1.1rem;font-weight:700;color:#fafafa;margin-bottom:8px}
+.step p{font-size:.9rem;color:var(--text-muted);line-height:1.6}
+
+/* ── Categories ── */
+.categories{display:flex;flex-wrap:wrap;gap:12px}
+.cat-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 24px;border-radius:100px;
+  background:var(--surface);border:1px solid var(--border);
+  font-size:.9rem;font-weight:600;color:var(--text-muted);
+  cursor:pointer;transition:all .3s;user-select:none;
+}
+.cat-pill:hover,.cat-pill.active{
+  background:var(--red-glow);border-color:var(--border-red);color:var(--red);
+  box-shadow:0 0 20px var(--red-glow);
+}
+.cat-pill svg{width:18px;height:18px;opacity:.6}
+.cat-pill:hover svg,.cat-pill.active svg{opacity:1}
+
+/* ── Tech Stack ── */
+.tech-bar{
+  display:flex;flex-wrap:wrap;gap:12px;padding:32px 0;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  margin-top:48px;
+}
+.tech-tag{
+  padding:8px 20px;border-radius:8px;
+  background:var(--surface-2);border:1px solid var(--border);
+  font-size:.82rem;font-weight:600;color:var(--text-dim);
+  letter-spacing:.5px;
+}
+
+/* ── Footer ── */
+.footer{
+  padding:48px 24px;text-align:center;
+  border-top:1px solid var(--border);
+}
+.footer p{font-size:.85rem;color:var(--text-dim)}
+.footer-red{color:var(--red)}
+
+/* ── Animations ── */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* ── Responsive ── */
+@media(max-width:768px){
+  .hero{min-height:90vh;padding-top:52px}
+  .hero-title{letter-spacing:-2px}
+  .steps{grid-template-columns:1fr;max-width:400px;margin:0 auto}
+  .steps::before{display:none}
+  .manga-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px}
+  .section{padding:64px 20px}
+  .categories{justify-content:center}
+}
+@media(max-width:480px){
+  .manga-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .hero-search{flex-direction:column}
+  .hero-search button{padding:12px;justify-content:center}
+}
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-bg" style="background-image:url('/images/manga-api-banner.png')"></div>
+<!-- Back Bar -->
+<div class="back-bar">
+  <a href="/#projects" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    Back to Portfolio
+  </a>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <span class="hero-tag">API / Backend</span>
-    <h1>Manga API Webstore</h1>
-    <p>A manga webstore showcasing Lumen JS and a Backend API framework — clean, fast, and user-focused.</p>
+  <div class="hero-stripe"></div>
+  <div class="hero-content fade-up">
+    <div class="hero-badge">Live Demo</div>
+    <h1 class="hero-title">
+      MANGA
+      <span>API Webstore</span>
+    </h1>
+    <p class="hero-desc">A clean, fast, and user-focused manga discovery platform built with Lumen JS frontend and a PHP/MySQL backend API.</p>
+    <div class="hero-search">
+      <input type="text" placeholder="Search manga titles, genres, authors...">
+      <button aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </button>
+    </div>
   </div>
-</div>
-
-<div class="container">
-  <div class="section-label">About the Project</div>
-  <p class="about-text">The Manga API Webstore is a testament to seamless blend of simplicity and innovation, built with Lumen JS on the frontend and a robust Backend API for data management. Focused on accessibility and performance.</p>
-
-  <div class="section-label">Highlights</div>
-  <ul class="highlights">
-    <li>Lumen JS frontend.</li>
-    <li>RESTful Backend API integration.</li>
-    <li>Optimized queries for minimal response times.</li>
-    <li>Clean, clutter-free UX for manga discovery.</li>
-  </ul>
-
-  <div class="section-label">Tools & Technologies</div>
-  <div class="tags">
-    <span class="tag">PHP</span>
-    <span class="tag">Lumen JS</span>
-    <span class="tag">REST API</span>
-    <span class="tag">MySQL</span>
+  <div class="hero-scroll">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M19 12l-7 7-7-7"/></svg>
   </div>
+</section>
 
-  <div class="section-label">Screenshots</div>
-  <div class="gallery">
-    <img src="/images/manga-api-ss1.jpg" alt="Manga API Webstore screenshot">
+<!-- Featured Manga -->
+<section class="section" id="featured">
+  <div class="section-inner">
+    <div class="section-label">Collection</div>
+    <h2 class="section-title fade-up">Featured Manga</h2>
+    <p class="section-subtitle fade-up">Handpicked titles from our curated library, served fresh via the REST API.</p>
+    <div class="manga-grid">
+
+      <div class="manga-card fade-up" data-scheme="red">
+        <div class="manga-cover">
+          <span class="manga-jp">鬼滅</span>
+          <div class="manga-en-title">Demon<br>Slayer</div>
+          <div class="manga-vol">Vol. 23</div>
+        </div>
+        <div class="manga-info">
+          <div class="manga-info-title">Demon Slayer</div>
+          <div class="manga-info-meta">
+            <span class="manga-info-genre">Action</span>
+            <span class="manga-info-rating" style="color:#ef4444">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.9
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="manga-card fade-up" data-scheme="blue">
+        <div class="manga-cover">
+          <span class="manga-jp">呪術</span>
+          <div class="manga-en-title">Jujutsu<br>Kaisen</div>
+          <div class="manga-vol">Vol. 26</div>
+        </div>
+        <div class="manga-info">
+          <div class="manga-info-title">Jujutsu Kaisen</div>
+          <div class="manga-info-meta">
+            <span class="manga-info-genre">Dark Fantasy</span>
+            <span class="manga-info-rating" style="color:#3b82f6">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.8
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="manga-card fade-up" data-scheme="purple">
+        <div class="manga-cover">
+          <span class="manga-jp">進撃</span>
+          <div class="manga-en-title">Attack<br>on Titan</div>
+          <div class="manga-vol">Vol. 34</div>
+        </div>
+        <div class="manga-info">
+          <div class="manga-info-title">Attack on Titan</div>
+          <div class="manga-info-meta">
+            <span class="manga-info-genre">Action</span>
+            <span class="manga-info-rating" style="color:#a855f7">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.9
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="manga-card fade-up" data-scheme="green">
+        <div class="manga-cover">
+          <span class="manga-jp">緑谷</span>
+          <div class="manga-en-title">My Hero<br>Academia</div>
+          <div class="manga-vol">Vol. 40</div>
+        </div>
+        <div class="manga-info">
+          <div class="manga-info-title">My Hero Academia</div>
+          <div class="manga-info-meta">
+            <span class="manga-info-genre">Superhero</span>
+            <span class="manga-info-rating" style="color:#22c55e">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.7
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="manga-card fade-up" data-scheme="orange">
+        <div class="manga-cover">
+          <span class="manga-jp">炎拳</span>
+          <div class="manga-en-title">Chainsaw<br>Man</div>
+          <div class="manga-vol">Vol. 16</div>
+        </div>
+        <div class="manga-info">
+          <div class="manga-info-title">Chainsaw Man</div>
+          <div class="manga-info-meta">
+            <span class="manga-info-genre">Horror</span>
+            <span class="manga-info-rating" style="color:#f97316">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.8
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="manga-card fade-up" data-scheme="cyan">
+        <div class="manga-cover">
+          <span class="manga-jp">海賊</span>
+          <div class="manga-en-title">One<br>Piece</div>
+          <div class="manga-vol">Vol. 108</div>
+        </div>
+        <div class="manga-info">
+          <div class="manga-info-title">One Piece</div>
+          <div class="manga-info-meta">
+            <span class="manga-info-genre">Adventure</span>
+            <span class="manga-info-rating" style="color:#06b6d4">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              5.0
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
+</section>
 
-  <div class="quote">"Discovering the manga API webstore was an absolute game-changer for how I consume manga. Smooth and intuitive!"</div>
+<!-- Screenshot -->
+<section class="section" style="padding-top:40px">
+  <div class="section-inner">
+    <div class="section-label">Preview</div>
+    <h2 class="section-title fade-up">See It in Action</h2>
+    <p class="section-subtitle fade-up">A glimpse at the live webstore interface powered by the API backend.</p>
+    <div class="screenshot-wrap fade-up">
+      <img src="/images/manga-api-ss1.jpg" alt="Manga API Webstore - application screenshot showing the storefront interface" loading="lazy">
+      <div class="screenshot-glow"></div>
+    </div>
+  </div>
+</section>
 
-  <a href="/#projects" class="back-link">&larr; Back to Portfolio</a>
-</div>
+<!-- How It Works -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-label">Architecture</div>
+    <h2 class="section-title fade-up">How It Works</h2>
+    <p class="section-subtitle fade-up">Three-layer architecture that keeps things clean, fast, and scalable.</p>
+    <div class="steps">
 
-<div class="footer-bar">&copy; 2026 Mohamed Zarandah. All rights reserved.</div>
+      <div class="step fade-up">
+        <span class="step-num">01</span>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <h3>Browse</h3>
+        <p>Users search and filter manga by title, genre, or author through the Lumen JS frontend interface.</p>
+      </div>
+
+      <div class="step fade-up">
+        <span class="step-num">02</span>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+        </div>
+        <h3>Fetch</h3>
+        <p>The PHP REST API queries the MySQL database and returns optimized JSON responses in milliseconds.</p>
+      </div>
+
+      <div class="step fade-up">
+        <span class="step-num">03</span>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+        </div>
+        <h3>Display</h3>
+        <p>Data is rendered into dynamic, responsive manga cards with cover art, ratings, and detail views.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="section" style="padding-top:40px">
+  <div class="section-inner">
+    <div class="section-label">Genres</div>
+    <h2 class="section-title fade-up">Browse by Category</h2>
+    <p class="section-subtitle fade-up">Filter the library using genre-based API endpoints.</p>
+    <div class="categories fade-up">
+
+      <div class="cat-pill active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+        Action
+      </div>
+
+      <div class="cat-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+        Romance
+      </div>
+
+      <div class="cat-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        Comedy
+      </div>
+
+      <div class="cat-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg>
+        Horror
+      </div>
+
+      <div class="cat-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 8h12"/><path d="M18.3 17.7a2.5 2.5 0 0 1-3.16 3.83 2.53 2.53 0 0 1-2.64 0A2.5 2.5 0 0 1 9.5 18"/><path d="M12 12v9"/></svg>
+        Sci-Fi
+      </div>
+
+      <div class="cat-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4V2"/><path d="M15 16v-2"/><path d="M8 9h2"/><path d="M20 9h2"/><path d="M17.8 11.8 19 13"/><path d="M15 9h.01"/><path d="M17.8 6.2 19 5"/><path d="m3 21 9-9"/><path d="M12.2 6.2 11 5"/></svg>
+        Fantasy
+      </div>
+
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="tech-bar fade-up">
+      <div class="tech-tag">PHP</div>
+      <div class="tech-tag">Lumen JS</div>
+      <div class="tech-tag">REST API</div>
+      <div class="tech-tag">MySQL</div>
+      <div class="tech-tag">JSON</div>
+      <div class="tech-tag">Responsive Design</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>&copy; 2026 Mohamed Zarandah. Built with <span class="footer-red">passion</span> and clean code.</p>
+</footer>
+
+<script>
+// Intersection Observer for fade-up animations
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Category pill toggle
+  document.querySelectorAll('.cat-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+
+  // Decorative search — prevent form submission, add subtle feedback
+  const searchInput = document.querySelector('.hero-search input');
+  const searchBtn = document.querySelector('.hero-search button');
+  if (searchBtn) {
+    searchBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      searchInput.setAttribute('placeholder', 'This is a demo — browse the titles below!');
+      searchInput.value = '';
+      setTimeout(() => {
+        searchInput.setAttribute('placeholder', 'Search manga titles, genres, authors...');
+      }, 2500);
+    });
+  }
+  if (searchInput) {
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        searchBtn.click();
+      }
+    });
+  }
+});
+</script>
 </body>
 </html>

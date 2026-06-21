@@ -5,61 +5,802 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mothersun & The Captain — Documentary | Mohamed Zarandah</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <style>
-  :root{--accent:#f59e0b;--accent-bg:rgba(245,158,11,.12)}
-  body{background:#160a02}
-  .hero-tag{background:var(--accent-bg);color:var(--accent);border:1px solid rgba(245,158,11,.3)}
-  .hero h1{color:#fffbeb}
-  .section-label{color:var(--accent)}
-  .highlights li::before{background:var(--accent)}
-  .quote{border-color:var(--accent)}
-  .tag{border-color:rgba(245,158,11,.3);color:var(--accent)}
-  .back-link{background:var(--accent);color:#160a02}
+/* ── Reset & Base ─────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Inter',sans-serif;
+  background:#160a02;
+  color:#e8d5c4;
+  line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* ── CSS Variables ────────────────────────────────── */
+:root{
+  --umber-deep:#160a02;
+  --umber:#3d2008;
+  --umber-mid:#5a3510;
+  --amber:#f59e0b;
+  --amber-dark:#d97706;
+  --amber-glow:rgba(245,158,11,.15);
+  --cream:#fffbeb;
+  --warm-gray:#a89585;
+  --warm-gray-light:#c4b5a5;
+  --text-body:#e8d5c4;
+  --section-gap:7rem;
+}
+
+/* ── Back to Portfolio Link ───────────────────────── */
+.back-nav{
+  position:fixed;
+  top:1.5rem;left:1.5rem;
+  z-index:100;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.6rem 1.2rem;
+  background:rgba(22,10,2,.85);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(245,158,11,.2);
+  border-radius:99px;
+  font-size:.8rem;
+  font-weight:500;
+  color:var(--amber);
+  letter-spacing:.04em;
+  transition:all .3s ease;
+}
+.back-nav:hover{
+  background:var(--amber);
+  color:var(--umber-deep);
+  border-color:var(--amber);
+}
+.back-nav svg{width:16px;height:16px;transition:transform .3s ease}
+.back-nav:hover svg{transform:translateX(-3px)}
+
+/* ── Hero Section ─────────────────────────────────── */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('/images/mothersun-banner.png') center/cover no-repeat;
+  transform:scale(1.05);
+  transition:transform 8s ease-out;
+}
+.hero.loaded .hero-bg{transform:scale(1)}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,
+      rgba(22,10,2,.3) 0%,
+      rgba(22,10,2,.55) 40%,
+      rgba(22,10,2,.85) 75%,
+      #160a02 100%
+    );
+}
+.hero-vignette{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,transparent 40%,rgba(22,10,2,.6) 100%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  text-align:center;
+  max-width:800px;
+  padding:2rem;
+  opacity:0;
+  transform:translateY(30px);
+  animation:fadeUp 1.2s ease forwards;
+  animation-delay:.3s;
+}
+.hero-label{
+  display:inline-block;
+  font-size:.7rem;
+  font-weight:600;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--amber);
+  background:var(--amber-glow);
+  border:1px solid rgba(245,158,11,.25);
+  padding:.45rem 1.4rem;
+  border-radius:99px;
+  margin-bottom:2rem;
+}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-weight:700;
+  font-size:clamp(2.8rem,7vw,5.5rem);
+  color:var(--cream);
+  line-height:1.1;
+  margin-bottom:1.5rem;
+  text-shadow:0 4px 40px rgba(0,0,0,.5);
+}
+.hero h1 .ampersand{
+  display:inline-block;
+  color:var(--amber);
+  font-size:0.85em;
+}
+.hero-tagline{
+  font-size:clamp(1rem,2.5vw,1.25rem);
+  color:var(--warm-gray-light);
+  font-weight:300;
+  max-width:550px;
+  margin:0 auto 2.5rem;
+  line-height:1.6;
+}
+.hero-scroll{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.6rem;
+  color:var(--warm-gray);
+  font-size:.7rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:color .3s;
+  margin-top:1rem;
+}
+.hero-scroll:hover{color:var(--amber)}
+.hero-scroll-line{
+  width:1px;height:50px;
+  background:linear-gradient(180deg,var(--amber),transparent);
+  animation:scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes scrollPulse{
+  0%,100%{opacity:.3;transform:scaleY(.7)}
+  50%{opacity:1;transform:scaleY(1)}
+}
+
+/* ── Shared Section Styles ────────────────────────── */
+.section{
+  padding:var(--section-gap) 2rem;
+  max-width:1100px;
+  margin:0 auto;
+}
+.section-eyebrow{
+  font-size:.7rem;
+  font-weight:600;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--amber);
+  margin-bottom:1rem;
+}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:clamp(2rem,4vw,3rem);
+  color:var(--cream);
+  line-height:1.2;
+  margin-bottom:2rem;
+}
+.section-divider{
+  width:60px;height:2px;
+  background:linear-gradient(90deg,var(--amber),transparent);
+  margin-bottom:2.5rem;
+}
+
+/* ── The Story Section ────────────────────────────── */
+.story{
+  position:relative;
+}
+.story-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:start;
+}
+.story-text p{
+  font-size:1.05rem;
+  color:var(--text-body);
+  margin-bottom:1.5rem;
+  line-height:1.8;
+}
+.story-text p:first-of-type::first-letter{
+  font-family:'Playfair Display',serif;
+  font-size:3.5rem;
+  float:left;
+  line-height:1;
+  margin-right:.6rem;
+  margin-top:.1rem;
+  color:var(--amber);
+  font-weight:700;
+}
+.story-aside{
+  padding:2.5rem;
+  background:linear-gradient(135deg,rgba(61,32,8,.5),rgba(22,10,2,.8));
+  border:1px solid rgba(245,158,11,.1);
+  border-radius:16px;
+  position:sticky;
+  top:2rem;
+}
+.story-aside-title{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:1.3rem;
+  color:var(--cream);
+  margin-bottom:1.2rem;
+}
+.story-detail{
+  display:flex;
+  align-items:baseline;
+  gap:.8rem;
+  padding:.8rem 0;
+  border-bottom:1px solid rgba(245,158,11,.08);
+}
+.story-detail:last-child{border-bottom:none}
+.story-detail-label{
+  font-size:.7rem;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--warm-gray);
+  min-width:80px;
+}
+.story-detail-value{
+  color:var(--text-body);
+  font-size:.95rem;
+}
+
+/* ── Gallery Section ──────────────────────────────── */
+.gallery-section{
+  background:linear-gradient(180deg,var(--umber-deep),rgba(61,32,8,.2),var(--umber-deep));
+  padding:var(--section-gap) 0;
+}
+.gallery-inner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 2rem;
+}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.5rem;
+  margin-top:1rem;
+}
+.gallery-item{
+  position:relative;
+  border-radius:12px;
+  overflow:hidden;
+  aspect-ratio:16/10;
+  cursor:pointer;
+  group:true;
+}
+.gallery-item img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform .6s ease, filter .6s ease;
+  filter:brightness(.9) saturate(1.1);
+}
+.gallery-item:hover img{
+  transform:scale(1.05);
+  filter:brightness(1) saturate(1.2);
+}
+.gallery-item::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(22,10,2,.7) 100%);
+  pointer-events:none;
+}
+.gallery-caption{
+  position:absolute;
+  bottom:1.2rem;left:1.2rem;
+  z-index:2;
+  font-size:.8rem;
+  color:var(--warm-gray-light);
+  letter-spacing:.05em;
+  opacity:0;
+  transform:translateY(8px);
+  transition:all .4s ease;
+}
+.gallery-item:hover .gallery-caption{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ── The Family Section ───────────────────────────── */
+.family-cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2rem;
+  margin-top:1rem;
+}
+.family-card{
+  background:linear-gradient(160deg,rgba(61,32,8,.4),rgba(22,10,2,.6));
+  border:1px solid rgba(245,158,11,.08);
+  border-radius:16px;
+  padding:2.5rem 2rem;
+  text-align:center;
+  transition:all .4s ease;
+  position:relative;
+  overflow:hidden;
+}
+.family-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:50%;
+  transform:translateX(-50%);
+  width:60px;height:3px;
+  background:var(--amber);
+  border-radius:0 0 4px 4px;
+  opacity:0;
+  transition:opacity .4s ease;
+}
+.family-card:hover{
+  border-color:rgba(245,158,11,.2);
+  transform:translateY(-4px);
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+.family-card:hover::before{opacity:1}
+.family-card-icon{
+  width:64px;height:64px;
+  margin:0 auto 1.5rem;
+  border-radius:50%;
+  background:var(--amber-glow);
+  border:1px solid rgba(245,158,11,.15);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.6rem;
+}
+.family-card h3{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:1.4rem;
+  color:var(--cream);
+  margin-bottom:.8rem;
+}
+.family-card p{
+  font-size:.92rem;
+  color:var(--warm-gray-light);
+  line-height:1.7;
+}
+
+/* ── Music Staff Decoration ───────────────────────── */
+.music-staff{
+  padding:4rem 2rem;
+  max-width:1100px;
+  margin:0 auto;
+  position:relative;
+}
+.staff-lines{
+  position:relative;
+  height:80px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.staff-line{
+  width:100%;
+  height:1px;
+  background:linear-gradient(90deg,
+    transparent 0%,
+    rgba(245,158,11,.08) 10%,
+    rgba(245,158,11,.15) 30%,
+    rgba(245,158,11,.2) 50%,
+    rgba(245,158,11,.15) 70%,
+    rgba(245,158,11,.08) 90%,
+    transparent 100%
+  );
+}
+.staff-notes{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+.staff-note{
+  position:absolute;
+  width:12px;height:10px;
+  background:var(--amber);
+  border-radius:50%;
+  opacity:.3;
+  transform:rotate(-15deg);
+}
+.staff-note:nth-child(1){left:12%;top:10%}
+.staff-note:nth-child(2){left:28%;top:55%;opacity:.2}
+.staff-note:nth-child(3){left:45%;top:25%;opacity:.25}
+.staff-note:nth-child(4){left:62%;top:70%;opacity:.15}
+.staff-note:nth-child(5){left:78%;top:35%;opacity:.2}
+.staff-note:nth-child(6){left:90%;top:60%;opacity:.1}
+.staff-note::after{
+  content:'';
+  position:absolute;
+  right:-1px;top:-22px;
+  width:1.5px;height:22px;
+  background:var(--amber);
+  opacity:.5;
+  border-radius:1px;
+}
+.staff-text{
+  text-align:center;
+  margin-top:2rem;
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:1rem;
+  color:rgba(245,158,11,.3);
+  letter-spacing:.1em;
+}
+
+/* ── Pull Quote Section ───────────────────────────── */
+.quote-section{
+  padding:var(--section-gap) 2rem;
+  position:relative;
+}
+.quote-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at center,rgba(245,158,11,.04),transparent 70%);
+}
+.quote-inner{
+  max-width:800px;
+  margin:0 auto;
+  text-align:center;
+  position:relative;
+}
+.quote-mark{
+  font-family:'Playfair Display',serif;
+  font-size:8rem;
+  line-height:1;
+  color:var(--amber);
+  opacity:.15;
+  position:absolute;
+  top:-2rem;left:50%;
+  transform:translateX(-50%);
+  user-select:none;
+}
+.quote-text{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:clamp(1.3rem,3vw,1.8rem);
+  color:var(--cream);
+  line-height:1.6;
+  margin-bottom:2rem;
+  position:relative;
+}
+.quote-author{
+  font-size:.85rem;
+  font-weight:500;
+  color:var(--warm-gray);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.quote-author span{
+  color:var(--amber);
+}
+
+/* ── Tags ─────────────────────────────────────────── */
+.tags-row{
+  display:flex;
+  gap:.8rem;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:2rem;
+}
+.tag-pill{
+  font-size:.75rem;
+  font-weight:500;
+  letter-spacing:.08em;
+  padding:.5rem 1.2rem;
+  border:1px solid rgba(245,158,11,.2);
+  border-radius:99px;
+  color:var(--amber);
+  background:var(--amber-glow);
+  transition:all .3s ease;
+}
+.tag-pill:hover{
+  background:var(--amber);
+  color:var(--umber-deep);
+}
+
+/* ── Footer ───────────────────────────────────────── */
+.footer{
+  border-top:1px solid rgba(245,158,11,.08);
+  padding:3rem 2rem;
+  text-align:center;
+}
+.footer-text{
+  font-size:.8rem;
+  color:var(--warm-gray);
+  letter-spacing:.05em;
+}
+.footer-link{
+  color:var(--amber);
+  transition:opacity .3s;
+}
+.footer-link:hover{opacity:.7}
+
+/* ── Scroll Reveal Animation ──────────────────────── */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity .8s ease, transform .8s ease;
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ── Ambient Particles ────────────────────────────── */
+.particles{
+  position:fixed;inset:0;
+  pointer-events:none;
+  z-index:0;
+  overflow:hidden;
+}
+.particle{
+  position:absolute;
+  width:2px;height:2px;
+  background:var(--amber);
+  border-radius:50%;
+  opacity:0;
+  animation:float linear infinite;
+}
+
+@keyframes float{
+  0%{opacity:0;transform:translateY(100vh) scale(0)}
+  10%{opacity:.4}
+  90%{opacity:.4}
+  100%{opacity:0;transform:translateY(-10vh) scale(1)}
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media(max-width:900px){
+  .story-grid{grid-template-columns:1fr;gap:2.5rem}
+  .story-aside{position:static}
+  .family-cards{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  :root{--section-gap:4.5rem}
+  .section{padding:var(--section-gap) 1.2rem}
+  .gallery-grid{grid-template-columns:1fr;gap:1rem}
+  .family-cards{grid-template-columns:1fr}
+  .hero h1{font-size:2.4rem}
+  .back-nav{top:1rem;left:1rem;padding:.5rem 1rem;font-size:.75rem}
+  .gallery-inner{padding:0 1.2rem}
+  .music-staff{padding:3rem 1.2rem}
+  .staff-lines{height:50px}
+  .staff-note{width:9px;height:7px}
+  .staff-note::after{height:16px;top:-16px}
+}
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-bg" style="background-image:url('/images/mothersun-banner.png')"></div>
-  <div class="hero-overlay"></div>
+<!-- Ambient Particles -->
+<div class="particles" id="particles" aria-hidden="true"></div>
+
+<!-- Back Navigation -->
+<a href="/#projects" class="back-nav" aria-label="Back to Portfolio">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+  Back to Portfolio
+</a>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-vignette" aria-hidden="true"></div>
   <div class="hero-content">
-    <span class="hero-tag">Video Production</span>
-    <h1>Mothersun & The Captain</h1>
-    <p>A video production showcasing the story of a small family business — a mother and her family building a dream.</p>
+    <span class="hero-label">A Documentary Film</span>
+    <h1>Mothersun <span class="ampersand">&amp;</span> The Captain</h1>
+    <p class="hero-tagline">A story of love, labor, and legacy — one family's journey to build something that lasts.</p>
+    <a href="#story" class="hero-scroll">
+      <span>Discover the Story</span>
+      <span class="hero-scroll-line" aria-hidden="true"></span>
+    </a>
   </div>
+</section>
+
+<!-- ═══════════════ THE STORY ═══════════════ -->
+<section class="section story" id="story">
+  <div class="reveal">
+    <span class="section-eyebrow">Chapter One</span>
+    <h2 class="section-title">The Story</h2>
+    <div class="section-divider" aria-hidden="true"></div>
+  </div>
+  <div class="story-grid">
+    <div class="story-text reveal reveal-delay-1">
+      <p>In the quiet warmth of a kitchen that smells like cardamom and hard work, a mother builds an empire with her bare hands. This is not a story of boardrooms and business plans. It is a story of flour-dusted counters, of early mornings before the sun, of a woman who turned a family recipe into a family legacy.</p>
+      <p>Her children grew up watching her hands move — kneading, shaping, perfecting. They learned that greatness does not arrive overnight. It is built, slowly and deliberately, with the kind of patience only a mother can teach. The Captain, her eldest, took the helm when the waters got rough, steering the family through seasons of doubt and moments of grace.</p>
+      <p>Together, they are proof that the most powerful businesses are not built on capital — they are built on love, on sacrifice, and on the quiet stubbornness of people who refuse to give up on a dream.</p>
+    </div>
+    <div class="story-aside reveal reveal-delay-2">
+      <h3 class="story-aside-title">Production Details</h3>
+      <div class="story-detail">
+        <span class="story-detail-label">Type</span>
+        <span class="story-detail-value">Short Documentary</span>
+      </div>
+      <div class="story-detail">
+        <span class="story-detail-label">Focus</span>
+        <span class="story-detail-value">Family Business & Legacy</span>
+      </div>
+      <div class="story-detail">
+        <span class="story-detail-label">Style</span>
+        <span class="story-detail-value">Intimate Cinematography</span>
+      </div>
+      <div class="story-detail">
+        <span class="story-detail-label">Lighting</span>
+        <span class="story-detail-value">Natural & Warm Tones</span>
+      </div>
+      <div class="story-detail">
+        <span class="story-detail-label">Approach</span>
+        <span class="story-detail-value">Observational Storytelling</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ GALLERY ═══════════════ -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-inner">
+    <div class="reveal">
+      <span class="section-eyebrow">Behind the Lens</span>
+      <h2 class="section-title">Behind the Scenes</h2>
+      <div class="section-divider" aria-hidden="true"></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="/images/mothersun-ss1.jpg" alt="Behind the scenes of the Mothersun documentary - production shot 1" loading="lazy">
+        <span class="gallery-caption">On set with the family</span>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2">
+        <img src="/images/mothersun-ss2.jpg" alt="Behind the scenes of the Mothersun documentary - production shot 2" loading="lazy">
+        <span class="gallery-caption">Capturing the details</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ THE FAMILY ═══════════════ -->
+<section class="section" id="family">
+  <div class="reveal">
+    <span class="section-eyebrow">The Cast</span>
+    <h2 class="section-title">The Family</h2>
+    <div class="section-divider" aria-hidden="true"></div>
+  </div>
+  <div class="family-cards">
+    <div class="family-card reveal reveal-delay-1">
+      <div class="family-card-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <h3>The Mother</h3>
+      <p>The heart of everything. Her hands built this dream from nothing — with recipes passed down through generations and a will that never wavered. She is the sun the family orbits around.</p>
+    </div>
+    <div class="family-card reveal reveal-delay-2">
+      <div class="family-card-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+      </div>
+      <h3>The Captain</h3>
+      <p>Firstborn and fearless navigator. When the family business hit rough waters, he took the wheel. Part dreamer, part strategist, all heart — steering toward a horizon only he could see.</p>
+    </div>
+    <div class="family-card reveal reveal-delay-3">
+      <div class="family-card-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <h3>The Dream</h3>
+      <p>Bigger than any one person. The dream is the family itself — the late nights, the shared laughter, the belief that something made with love will always find its people. This is their legacy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ MUSIC STAFF ═══════════════ -->
+<div class="music-staff reveal" aria-hidden="true">
+  <div class="staff-lines">
+    <div class="staff-line"></div>
+    <div class="staff-line"></div>
+    <div class="staff-line"></div>
+    <div class="staff-line"></div>
+    <div class="staff-line"></div>
+    <div class="staff-notes">
+      <div class="staff-note"></div>
+      <div class="staff-note"></div>
+      <div class="staff-note"></div>
+      <div class="staff-note"></div>
+      <div class="staff-note"></div>
+      <div class="staff-note"></div>
+    </div>
+  </div>
+  <div class="staff-text">every family has its own melody</div>
 </div>
 
-<div class="container">
-  <div class="section-label">About the Project</div>
-  <p class="about-text">This video is a captivating portrayal of a small family business, rooted in hard work, resilience, and the strength of family ties. It highlights a dedicated mother's leadership and vision.</p>
-
-  <div class="section-label">Highlights</div>
-  <ul class="highlights">
-    <li>Intimate storytelling and dynamic cinematography.</li>
-    <li>Natural lighting and close-up techniques.</li>
-    <li>Tribute to small family businesses and community.</li>
-  </ul>
-
-  <div class="section-label">Tools & Technologies</div>
-  <div class="tags">
-    <span class="tag">Video Production</span>
-    <span class="tag">Cinematography</span>
-    <span class="tag">Storytelling</span>
+<!-- ═══════════════ PULL QUOTE ═══════════════ -->
+<section class="quote-section" id="review">
+  <div class="quote-inner reveal">
+    <span class="quote-mark" aria-hidden="true">"</span>
+    <p class="quote-text">The video is nothing short of inspiring. From the moment it begins, you are drawn into the heartfelt story of resilience and family bonds. A beautifully crafted tribute to the strength of small family businesses.</p>
+    <div class="quote-author"><span>&#9733;</span> Viewer Review</div>
   </div>
-
-  <div class="section-label">Behind the Scenes</div>
-  <div class="gallery cols-2">
-    <img src="/images/mothersun-ss1.jpg" alt="Mothersun production 1">
-    <img src="/images/mothersun-ss2.jpg" alt="Mothersun production 2">
+  <div class="tags-row reveal reveal-delay-1">
+    <span class="tag-pill">Video Production</span>
+    <span class="tag-pill">Cinematography</span>
+    <span class="tag-pill">Storytelling</span>
   </div>
+</section>
 
-  <div class="quote">"The video is nothing short of inspiring. From the moment it begins, you're drawn into the heartfelt story of resilience and family bonds."</div>
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="footer">
+  <p class="footer-text">&copy; 2026 <a href="/#projects" class="footer-link">Mohamed Zarandah</a>. All rights reserved.</p>
+</footer>
 
-  <a href="/#projects" class="back-link">&larr; Back to Portfolio</a>
-</div>
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script>
+// Hero load animation
+window.addEventListener('load', () => {
+  document.querySelector('.hero').classList.add('loaded');
+});
 
-<div class="footer-bar">&copy; 2026 Mohamed Zarandah. All rights reserved.</div>
+// Scroll reveal observer
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+revealEls.forEach(el => revealObserver.observe(el));
+
+// Ambient floating particles
+(function createParticles() {
+  const container = document.getElementById('particles');
+  const count = window.innerWidth < 640 ? 12 : 25;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (12 + Math.random() * 18) + 's';
+    p.style.animationDelay = (Math.random() * 15) + 's';
+    p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
+    container.appendChild(p);
+  }
+})();
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Subtle parallax on hero background
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const scrolled = window.pageYOffset;
+      const heroBg = document.querySelector('.hero-bg');
+      if (heroBg && scrolled < window.innerHeight) {
+        heroBg.style.transform = 'scale(' + (1 + scrolled * 0.0001) + ') translateY(' + (scrolled * 0.3) + 'px)';
+      }
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+</script>
 </body>
 </html>
