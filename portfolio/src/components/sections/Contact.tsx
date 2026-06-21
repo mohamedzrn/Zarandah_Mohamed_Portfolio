@@ -18,14 +18,21 @@ export function Contact() {
     setStatus('sending');
 
     try {
-      await emailjs.sendForm(
+      const form = formRef.current;
+      const templateParams = {
+        from_name: (form.elements.namedItem('from_name') as HTMLInputElement).value,
+        from_email: (form.elements.namedItem('from_email') as HTMLInputElement).value,
+        subject: (form.elements.namedItem('subject') as HTMLInputElement).value,
+        message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+      };
+      await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID as string,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string,
-        formRef.current,
+        templateParams,
         { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string }
       );
       setStatus('success');
-      formRef.current.reset();
+      form.reset();
     } catch {
       setStatus('error');
     }
