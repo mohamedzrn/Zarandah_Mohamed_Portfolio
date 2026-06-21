@@ -7,6 +7,7 @@ interface EducationItem {
   period: string;
   description: string;
   highlights: string[];
+  activities?: string[];
 }
 
 const education: EducationItem[] = [
@@ -22,6 +23,12 @@ const education: EducationItem[] = [
       'Defect tracking and regression testing',
       'Black-box and white-box testing techniques',
       'Agile QA integration',
+    ],
+    activities: [
+      'Participated in collaborative usability and functional test simulations',
+      'Engaged in mock interviews and career development workshops focused on QA roles',
+      'Contributed to team-based test case creation and execution exercises',
+      'Actively involved in group discussions on Agile testing methodologies and real-world bug reporting',
     ],
   },
   {
@@ -106,6 +113,22 @@ export function Education() {
                   </li>
                 ))}
               </ul>
+
+              {item.activities && (
+                <div className="mt-5 pt-4 border-t border-cream-border dark:border-warm-700">
+                  <p className="text-xs font-semibold tracking-widest uppercase text-mauve mb-3">
+                    Activities
+                  </p>
+                  <ul className="space-y-2">
+                    {item.activities.map((a, j) => (
+                      <li key={j} className="flex items-start gap-2 text-sm text-[#555] dark:text-warm-300">
+                        <span className="w-1.5 h-1.5 rounded-full bg-mauve/50 shrink-0 mt-1.5" />
+                        {a}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </article>
           ))}
         </div>

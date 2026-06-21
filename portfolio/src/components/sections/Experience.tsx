@@ -16,10 +16,10 @@ const experiences: ExperienceItem[] = [
     period: 'Aug 2025 – Feb 2026',
     type: 'work',
     description: [
-      'Identified and outreached B2B partners across multiple verticals to grow affiliate network.',
-      'Managed dealer communication pipelines and coordinated partnership discussions.',
-      'Built and maintained lead qualification systems for inbound and outbound prospects.',
-      'Contributed to affiliate growth strategy resulting in expanded partner base.',
+      'Conducted dealer outreach to identify potential partners.',
+      'Managed communication with B2B clients and prospects.',
+      'Supported partnership discussions and relationship building.',
+      'Assisted with outreach campaigns and affiliate growth.',
     ],
   },
   {
@@ -28,9 +28,10 @@ const experiences: ExperienceItem[] = [
     period: 'Feb 2025 – Mar 2025',
     type: 'work',
     description: [
-      'Designed a smart home control interface through the Riipen LevelUP program.',
-      'Delivered wireframes, user flows, and comprehensive UX documentation.',
-      'Conducted user research to inform interface decisions for smart home controls.',
+      'Designed mobile and dashboard interfaces for a smart home system.',
+      'Created wireframes and user flows for device control features.',
+      'Collaborated with the client remotely to refine the product design.',
+      'Delivered UX documentation and interface prototypes.',
     ],
   },
   {
@@ -39,9 +40,10 @@ const experiences: ExperienceItem[] = [
     period: 'Feb 2024 – May 2024',
     type: 'work',
     description: [
-      'Built a React/Node.js event planning platform from concept to production.',
-      'Developed responsive UI components and integrated backend services.',
-      'Independently delivered the full project lifecycle without a team.',
+      'Developed a web platform using React and Node.js.',
+      'Designed responsive UI and frontend components.',
+      'Integrated backend logic and APIs.',
+      'Delivered the project independently from planning to launch.',
     ],
   },
   {
