@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Notion → Discord Bot | Mohamed Zarandah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root{--accent:#818cf8;--accent-bg:rgba(129,140,248,.12)}
+  body{background:#040210}
+  .hero-tag{background:var(--accent-bg);color:var(--accent);border:1px solid rgba(129,140,248,.3)}
+  .hero h1{color:#eef2ff}
+  .section-label{color:var(--accent)}
+  .highlights li::before{background:var(--accent)}
+  .quote{border-color:var(--accent)}
+  .tag{border-color:rgba(129,140,248,.3);color:var(--accent)}
+  .back-link{background:var(--accent);color:#040210}
+  .arch-diagram{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:32px;margin-bottom:40px;font-family:monospace;font-size:.85rem;line-height:2;color:var(--accent);text-align:center}
+  .arch-diagram .dim{opacity:.4}
+  .slash-cmd{display:inline-block;background:var(--accent-bg);border:1px solid rgba(129,140,248,.25);border-radius:6px;padding:4px 12px;margin:4px;font-family:monospace;font-size:.8rem;color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-bg" style="background-image:url('/images/notion-discord-banner.svg')"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Automation / Bot</span>
+    <h1>Notion &rarr; Discord Bot</h1>
+    <p>A real-time automation bot that bridges Notion and Discord — DMing team members on task creation, reassignment, updates, and overdue alerts.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section-label">About the Project</div>
+  <p class="about-text">A full-stack bot deployed on Railway that keeps async teams accountable without micromanaging. It runs a dual notification system — 10-second polling loop plus real-time Notion webhooks (HMAC-SHA256 verified) — and automatically DMs team members for every meaningful task event.</p>
+
+  <div class="section-label">Architecture</div>
+  <div class="arch-diagram">
+    <span class="dim">┌──────────┐</span>     <span class="dim">┌──────────┐</span>     <span class="dim">┌──────────┐</span><br>
+    <span class="dim">│</span>  Notion  <span class="dim">│</span> ──→ <span class="dim">│</span>   Bot    <span class="dim">│</span> ──→ <span class="dim">│</span> Discord  <span class="dim">│</span><br>
+    <span class="dim">│</span> Database <span class="dim">│</span>     <span class="dim">│</span> (Node.js)<span class="dim">│</span>     <span class="dim">│</span>   DMs    <span class="dim">│</span><br>
+    <span class="dim">└──────────┘</span>     <span class="dim">└──────────┘</span>     <span class="dim">└──────────┘</span><br>
+    <span class="dim">Polling every 10s + Notion Webhooks (HMAC-SHA256)</span>
+  </div>
+
+  <div class="section-label">Slash Commands</div>
+  <div style="margin-bottom:40px">
+    <span class="slash-cmd">/mytasks</span>
+    <span class="slash-cmd">/teamtasks</span>
+    <span class="slash-cmd">/recentupdates</span>
+    <span class="slash-cmd">/status</span>
+    <span class="slash-cmd">/linknotion</span>
+    <span class="slash-cmd">/remind</span>
+    <span class="slash-cmd">/forceremind</span>
+  </div>
+
+  <div class="section-label">Highlights</div>
+  <ul class="highlights">
+    <li>5 automated DM types: new task, reassignment, due date change, status change, overdue alerts.</li>
+    <li>Daily digest every morning with all open assigned tasks.</li>
+    <li>Hourly overdue scanner with daily deduplication to prevent spam.</li>
+    <li>Auto-discovery of Notion databases with graceful catch-up.</li>
+    <li>Notion to Discord user mapping with persistent JSON storage.</li>
+  </ul>
+
+  <div class="section-label">Tools & Technologies</div>
+  <div class="tags">
+    <span class="tag">Node.js</span>
+    <span class="tag">Discord.js v14</span>
+    <span class="tag">Notion API</span>
+    <span class="tag">Express.js</span>
+    <span class="tag">Winston</span>
+    <span class="tag">Railway</span>
+  </div>
+
+  <div class="quote">"Eliminated the need for manual check-ins entirely. The /teamtasks command alone changed how we run standups."</div>
+
+  <a href="https://github.com/mohamedzrn/notion-discord-bot" target="_blank" rel="noopener noreferrer" class="back-link">View on GitHub &rarr;</a>
+  <br>
+  <a href="/#projects" class="back-link" style="background:transparent;border:1px solid var(--accent);color:var(--accent)">&larr; Back to Portfolio</a>
+</div>
+
+<div class="footer-bar">&copy; 2026 Mohamed Zarandah. All rights reserved.</div>
+</body>
+</html>

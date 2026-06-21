@@ -17,6 +17,7 @@ export const projects: Project[] = [
     imageUrl: imgUrl('/images/kavorka-banner.png'),
     screenshots: [imgUrl('/images/kavorka-ss.jpg')],
     tags: ['Branding', 'UI Design', 'Figma'],
+    liveUrl: '/demos/kavorka.html',
     category: 'design',
   },
   {
@@ -51,6 +52,7 @@ export const projects: Project[] = [
       '"Quatro\'s beverage is a taste revolution! A burst of unique flavors that left me craving more." — Emily M., Flavor Explorer',
     imageUrl: imgUrl('/images/quatro-banner.png'),
     tags: ['Branding', 'Web Design', 'UI/UX'],
+    liveUrl: '/demos/quatro.html',
     category: 'design',
   },
   {
@@ -68,6 +70,7 @@ export const projects: Project[] = [
     imageUrl: imgUrl('/images/bootcamp-banner.png'),
     screenshots: [imgUrl('/images/bootcamp-ss1.jpg'), imgUrl('/images/bootcamp-ss2.JPG')],
     tags: ['React', 'UI/UX', 'WebView', 'Fanshawe'],
+    liveUrl: '/demos/bootcamp.html',
     category: 'web',
   },
   {
@@ -104,6 +107,7 @@ export const projects: Project[] = [
     imageUrl: imgUrl('/images/foundation-sixty6-banner.png'),
     screenshots: [imgUrl('/images/foundation-sixty6-ss1.jpg'), imgUrl('/images/foundation-sixty6-ss2.jpg')],
     tags: ['Web Design', 'HTML', 'CSS', 'Accessibility'],
+    liveUrl: '/demos/foundation-sixty6.html',
     category: 'web',
   },
   {
@@ -121,6 +125,7 @@ export const projects: Project[] = [
     imageUrl: imgUrl('/images/fundraising-campaign-banner.png'),
     screenshots: [imgUrl('/images/fundraising-campaign-ss1.jpg'), imgUrl('/images/fundraising-campaign-ss2.jpg')],
     tags: ['Poster Design', 'Adobe Illustrator', 'Adobe Photoshop'],
+    liveUrl: '/demos/art-for-rights.html',
     category: 'design',
   },
   {
@@ -138,6 +143,7 @@ export const projects: Project[] = [
     imageUrl: imgUrl('/images/fragments-banner.png'),
     screenshots: [imgUrl('/images/fragments-ss1.jpg'), imgUrl('/images/fragments-ss2.jpg')],
     tags: ['Video Production', 'Adobe Premiere', 'After Effects'],
+    liveUrl: '/demos/fragments.html',
     category: 'video',
   },
   {
@@ -155,6 +161,7 @@ export const projects: Project[] = [
     imageUrl: imgUrl('/images/manga-api-banner.png'),
     screenshots: [imgUrl('/images/manga-api-ss1.jpg')],
     tags: ['PHP', 'Lumen JS', 'REST API', 'MySQL'],
+    liveUrl: '/demos/manga-api.html',
     category: 'api',
   },
   {
@@ -172,6 +179,7 @@ export const projects: Project[] = [
     imageUrl: imgUrl('/images/mothersun-banner.png'),
     screenshots: [imgUrl('/images/mothersun-ss1.jpg'), imgUrl('/images/mothersun-ss2.jpg')],
     tags: ['Video Production', 'Cinematography', 'Storytelling'],
+    liveUrl: '/demos/mothersun.html',
     category: 'video',
   },
   {
@@ -189,6 +197,7 @@ export const projects: Project[] = [
     imageUrl: imgUrl('/images/csl-banner.png'),
     screenshots: [imgUrl('/images/csl-ss1.JPG'), imgUrl('/images/csl-ss2.JPG')],
     tags: ['HTML', 'CSS', 'JavaScript', 'Responsive'],
+    liveUrl: '/demos/csl.html',
     category: 'web',
   },
   {
@@ -206,6 +215,7 @@ export const projects: Project[] = [
     imageUrl: imgUrl('/images/starwars-banner.png'),
     screenshots: [imgUrl('/images/starwars-ss1.jpg'), imgUrl('/images/starwars-ss2.jpg')],
     tags: ['JavaScript', 'REST API', 'Fetch API'],
+    liveUrl: '/demos/starwars.html',
     category: 'api',
   },
   {
@@ -240,6 +250,7 @@ export const projects: Project[] = [
       '"Eliminated the need for manual check-ins entirely. The /teamtasks command alone changed how we run standups."',
     imageUrl: imgUrl('/images/notion-discord-banner.svg'),
     tags: ['Node.js', 'Discord.js v14', 'Notion API', 'Express.js', 'Winston', 'Railway'],
+    liveUrl: '/demos/notion-discord.html',
     githubUrl: 'https://github.com/mohamedzrn/notion-discord-bot',
     category: 'api',
   },
@@ -257,6 +268,7 @@ export const projects: Project[] = [
       '"Replaced our entire manual content research process. The audio bank alone surfaces trends before they peak."',
     imageUrl: imgUrl('/images/noctura-banner.svg'),
     tags: ['Python', 'Claude API', 'instagrapi', 'SQLite', 'Notion API', 'Flask', 'Residential Proxy'],
+    liveUrl: '/demos/noctura.html',
     githubUrl: 'https://github.com/mohamedzrn/noctura-trend-search',
     category: 'api',
   },

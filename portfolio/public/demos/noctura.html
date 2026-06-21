@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Noctura Pulse — AI Trend Bot | Mohamed Zarandah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root{--accent:#e879f9;--accent-bg:rgba(232,121,249,.12)}
+  body{background:#0e020e}
+  .hero-tag{background:var(--accent-bg);color:var(--accent);border:1px solid rgba(232,121,249,.3)}
+  .hero h1{color:#fdf4ff}
+  .section-label{color:var(--accent)}
+  .highlights li::before{background:var(--accent)}
+  .quote{border-color:var(--accent)}
+  .tag{border-color:rgba(232,121,249,.3);color:var(--accent)}
+  .back-link{background:var(--accent);color:#0e020e}
+  .signal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:40px}
+  .signal{background:rgba(232,121,249,.06);border:1px solid rgba(232,121,249,.15);border-radius:10px;padding:14px;text-align:center;font-size:.8rem;color:var(--accent)}
+  .signal span{display:block;font-size:.65rem;opacity:.5;margin-top:4px;color:#e0e0e0}
+  .flow{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:32px;margin-bottom:40px;font-family:monospace;font-size:.8rem;line-height:2.2;color:var(--accent);text-align:center}
+  .flow .dim{opacity:.4}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-bg" style="background-image:url('/images/noctura-banner.svg')"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-tag">AI / Automation</span>
+    <h1>Noctura Pulse</h1>
+    <p>An AI-powered Instagram trend bot that turns creator behaviour into content intelligence — silently.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section-label">About the Project</div>
+  <p class="about-text">Noctura Pulse is a stealth Instagram DM bot built for a creator management agency. Creators forward reels, carousels, stories, and clips — the bot analyses each piece with Claude Vision AI and syncs intelligence to per-creator Notion databases automatically.</p>
+
+  <div class="section-label">Pipeline Flow</div>
+  <div class="flow">
+    Creator forwards Reel/Post via DM<br>
+    <span class="dim">↓</span><br>
+    Bot detects & downloads media<br>
+    <span class="dim">↓</span><br>
+    Claude Vision AI analyses content<br>
+    <span class="dim">↓</span><br>
+    9 signals extracted per submission<br>
+    <span class="dim">↓</span><br>
+    Synced to per-creator Notion database
+  </div>
+
+  <div class="section-label">9 Signals Extracted</div>
+  <div class="signal-grid">
+    <div class="signal">Niche<span>Classification</span></div>
+    <div class="signal">Trend Signals<span>Emerging patterns</span></div>
+    <div class="signal">Content Style<span>Visual identity</span></div>
+    <div class="signal">Audio Score<span>Sound trends</span></div>
+    <div class="signal">Hook Strength<span>First 3 seconds</span></div>
+    <div class="signal">Shareability<span>Viral potential</span></div>
+    <div class="signal">Engagement<span>Pattern analysis</span></div>
+    <div class="signal">Keywords<span>Topic extraction</span></div>
+    <div class="signal">Recommendation<span>Actionable next step</span></div>
+  </div>
+
+  <div class="section-label">Highlights</div>
+  <ul class="highlights">
+    <li>Adaptive DM polling (45s to 1hr backoff) waking within 30s on activity.</li>
+    <li>Supports 5 content types: Reels, Carousels, Static posts, Stories, and xma_clip format.</li>
+    <li>Per-creator Notion database routing with auto-set thumbnail gallery covers.</li>
+    <li>Story media captured before 24-hour expiry.</li>
+    <li>Audio bank and keyword bank ranked by cross-creator frequency and reach.</li>
+    <li>Human-paced reply delays (12–50s randomised) with residential proxy for account safety.</li>
+  </ul>
+
+  <div class="section-label">Tools & Technologies</div>
+  <div class="tags">
+    <span class="tag">Python</span>
+    <span class="tag">Claude API</span>
+    <span class="tag">instagrapi</span>
+    <span class="tag">SQLite</span>
+    <span class="tag">Notion API</span>
+    <span class="tag">Flask</span>
+    <span class="tag">Residential Proxy</span>
+  </div>
+
+  <div class="quote">"Replaced our entire manual content research process. The audio bank alone surfaces trends before they peak."</div>
+
+  <a href="https://github.com/mohamedzrn/noctura-trend-search" target="_blank" rel="noopener noreferrer" class="back-link">View on GitHub &rarr;</a>
+  <br>
+  <a href="/#projects" class="back-link" style="background:transparent;border:1px solid var(--accent);color:var(--accent)">&larr; Back to Portfolio</a>
+</div>
+
+<div class="footer-bar">&copy; 2026 Mohamed Zarandah. All rights reserved.</div>
+</body>
+</html>
