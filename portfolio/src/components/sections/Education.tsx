@@ -45,6 +45,12 @@ const education: EducationItem[] = [
       '3D modelling and animation',
       'Client-facing project delivery',
     ],
+    activities: [
+      'Collaborated on team-based web development and multimedia projects',
+      'Participated in client-facing presentations and design critiques',
+      'Engaged in industry events and portfolio showcases',
+      'Worked with cross-disciplinary teams on interactive media productions',
+    ],
   },
   {
     degree: 'Advanced Diploma — Mechanical Engineering',
@@ -57,6 +63,11 @@ const education: EducationItem[] = [
       'Technical drawing and CAD modelling',
       'Systematic problem-solving methodology',
       'Project-based collaborative learning',
+    ],
+    activities: [
+      'Completed hands-on lab work in materials testing and manufacturing processes',
+      'Participated in team-based engineering design projects',
+      'Applied mathematical modelling to solve real-world engineering problems',
     ],
   },
 ];
