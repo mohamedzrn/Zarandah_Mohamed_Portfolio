@@ -15,14 +15,37 @@ const navLinks = [
   { label: 'Contact', href: '#contact' },
 ];
 
+const sectionIds = navLinks.map((l) => l.href.slice(1));
+
 export function Navbar({ theme, onToggleTheme }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handler, { passive: true });
     return () => window.removeEventListener('scroll', handler);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length > 0) {
+          visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { rootMargin: '-30% 0px -60% 0px', threshold: 0 },
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const handleNavClick = () => setMobileOpen(false);
@@ -50,16 +73,23 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
 
           {/* Desktop nav */}
           <ul className="hidden md:flex items-center gap-1" role="list">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="px-3 py-2 text-sm font-medium text-[#555] dark:text-warm-300 hover:text-mauve dark:hover:text-mauve-faint hover:bg-mauve/10 dark:hover:bg-mauve/10 rounded-md transition-colors"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.slice(1);
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                      isActive
+                        ? 'text-mauve dark:text-mauve-faint bg-mauve/10 dark:bg-mauve/10'
+                        : 'text-[#555] dark:text-warm-300 hover:text-mauve dark:hover:text-mauve-faint hover:bg-mauve/10 dark:hover:bg-mauve/10'
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Right controls */}
@@ -123,19 +153,26 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-cream-border dark:border-warm-700 bg-cream dark:bg-warm-950 pb-4">
+          <div className="md:hidden border-t border-cream-border dark:border-warm-700 bg-cream dark:bg-warm-950 pb-4 animate-fade-in-up" style={{ animationDuration: '0.18s' }}>
             <ul className="flex flex-col gap-1 pt-3 px-2" role="list">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={handleNavClick}
-                    className="block px-3 py-2.5 text-sm font-medium text-[#555] dark:text-warm-300 hover:text-mauve dark:hover:text-mauve-faint hover:bg-mauve/10 dark:hover:bg-mauve/10 rounded-md transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.slice(1);
+                return (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      onClick={handleNavClick}
+                      className={`block px-3 py-2.5 text-sm font-medium rounded-md transition-colors ${
+                        isActive
+                          ? 'text-mauve dark:text-mauve-faint bg-mauve/10 dark:bg-mauve/10'
+                          : 'text-[#555] dark:text-warm-300 hover:text-mauve dark:hover:text-mauve-faint hover:bg-mauve/10 dark:hover:bg-mauve/10'
+                      }`}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                );
+              })}
               <li>
                 <a
                   href="/Mohamed_Zarandah_Resume.pdf"

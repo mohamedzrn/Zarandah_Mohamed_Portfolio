@@ -91,7 +91,7 @@ export function About() {
               {[
                 { value: '15+', label: 'Projects' },
                 { value: '3', label: 'Credentials' },
-                { value: '5+', label: 'Years Learning' },
+                { value: '5+', label: 'Years Experience' },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
                   <div className="text-2xl font-bold text-mauve">

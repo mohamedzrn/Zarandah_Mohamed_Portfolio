@@ -1,4 +1,4 @@
-import { useState, useRef, type FormEvent } from 'react';
+import { useState, useRef, type FormEvent, type ChangeEvent } from 'react';
 import emailjs from '@emailjs/browser';
 import { SectionTitle } from '../ui/SectionTitle';
 import { Button } from '../ui/Button';
@@ -6,29 +6,59 @@ import { useInView } from '../../hooks/useInView';
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error';
 
+interface FieldErrors {
+  from_name?: string;
+  from_email?: string;
+  message?: string;
+}
+
+function validateForm(data: { from_name: string; from_email: string; message: string }): FieldErrors {
+  const errors: FieldErrors = {};
+  if (!data.from_name.trim()) errors.from_name = 'Name is required.';
+  if (!data.from_email.trim()) {
+    errors.from_email = 'Email is required.';
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.from_email)) {
+    errors.from_email = 'Please enter a valid email address.';
+  }
+  if (!data.message.trim()) errors.message = 'Message is required.';
+  return errors;
+}
+
 export function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<FormStatus>('idle');
+  const [errors, setErrors] = useState<FieldErrors>({});
   const { ref, inView } = useInView();
+
+  const clearError = (field: keyof FieldErrors) =>
+    setErrors((prev) => ({ ...prev, [field]: undefined }));
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
 
+    const form = formRef.current;
+    const data = {
+      from_name: (form.elements.namedItem('from_name') as HTMLInputElement).value,
+      from_email: (form.elements.namedItem('from_email') as HTMLInputElement).value,
+      subject: (form.elements.namedItem('subject') as HTMLInputElement).value,
+      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+    };
+
+    const fieldErrors = validateForm(data);
+    if (Object.keys(fieldErrors).length > 0) {
+      setErrors(fieldErrors);
+      return;
+    }
+
     setStatus('sending');
+    setErrors({});
 
     try {
-      const form = formRef.current;
-      const templateParams = {
-        from_name: (form.elements.namedItem('from_name') as HTMLInputElement).value,
-        from_email: (form.elements.namedItem('from_email') as HTMLInputElement).value,
-        subject: (form.elements.namedItem('subject') as HTMLInputElement).value,
-        message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
-      };
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID as string,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string,
-        templateParams,
+        data,
         { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string }
       );
       setStatus('success');
@@ -119,8 +149,25 @@ export function Contact() {
             ) : (
               <form ref={formRef} onSubmit={handleSubmit} noValidate className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-4">
-                  <InputField id="from_name" name="from_name" label="Name" placeholder="Your name" required />
-                  <InputField id="from_email" name="from_email" label="Email" type="email" placeholder="you@email.com" required />
+                  <InputField
+                    id="from_name"
+                    name="from_name"
+                    label="Name"
+                    placeholder="Your name"
+                    required
+                    error={errors.from_name}
+                    onChange={() => clearError('from_name')}
+                  />
+                  <InputField
+                    id="from_email"
+                    name="from_email"
+                    label="Email"
+                    type="email"
+                    placeholder="you@email.com"
+                    required
+                    error={errors.from_email}
+                    onChange={() => clearError('from_email')}
+                  />
                 </div>
                 <InputField id="subject" name="subject" label="Subject" placeholder="Project inquiry..." />
                 <div>
@@ -133,13 +180,22 @@ export function Contact() {
                     rows={5}
                     required
                     placeholder="Tell me about your project..."
-                    className="w-full px-4 py-3 rounded-xl bg-cream-dark dark:bg-warm-900 border border-cream-border dark:border-warm-700 text-[#333] dark:text-cream placeholder:text-[#aaa] dark:placeholder:text-warm-600 text-sm focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent resize-none transition"
+                    onChange={() => clearError('message')}
+                    className={`w-full px-4 py-3 rounded-xl bg-cream-dark dark:bg-warm-900 border text-[#333] dark:text-cream placeholder:text-[#aaa] dark:placeholder:text-warm-600 text-sm focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent resize-none transition ${
+                      errors.message
+                        ? 'border-red-400 dark:border-red-500'
+                        : 'border-cream-border dark:border-warm-700'
+                    }`}
                   />
+                  {errors.message && (
+                    <p className="mt-1 text-xs text-red-500 dark:text-red-400">{errors.message}</p>
+                  )}
                 </div>
 
                 {status === 'error' && (
-                  <p className="text-sm text-mauve-dark">
-                    Something went wrong. Please email me directly at mohammedzrn13@gmail.com.
+                  <p className="text-sm text-red-500 dark:text-red-400">
+                    Something went wrong. Please email me directly at{' '}
+                    <a href="mailto:mohammedzrn13@gmail.com" className="underline">mohammedzrn13@gmail.com</a>.
                   </p>
                 )}
 
@@ -172,9 +228,11 @@ interface InputFieldProps {
   type?: string;
   placeholder?: string;
   required?: boolean;
+  error?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function InputField({ id, name, label, type = 'text', placeholder, required }: InputFieldProps) {
+function InputField({ id, name, label, type = 'text', placeholder, required, error, onChange }: InputFieldProps) {
   return (
     <div>
       <label htmlFor={id} className="block text-sm font-medium text-[#333] dark:text-warm-200 mb-1.5">
@@ -186,8 +244,17 @@ function InputField({ id, name, label, type = 'text', placeholder, required }: I
         type={type}
         placeholder={placeholder}
         required={required}
-        className="w-full px-4 py-3 rounded-xl bg-cream-dark dark:bg-warm-900 border border-cream-border dark:border-warm-700 text-[#333] dark:text-cream placeholder:text-[#aaa] dark:placeholder:text-warm-600 text-sm focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent transition"
+        onChange={onChange}
+        aria-describedby={error ? `${id}-error` : undefined}
+        className={`w-full px-4 py-3 rounded-xl bg-cream-dark dark:bg-warm-900 border text-[#333] dark:text-cream placeholder:text-[#aaa] dark:placeholder:text-warm-600 text-sm focus:outline-none focus:ring-2 focus:ring-mauve focus:border-transparent transition ${
+          error ? 'border-red-400 dark:border-red-500' : 'border-cream-border dark:border-warm-700'
+        }`}
       />
+      {error && (
+        <p id={`${id}-error`} className="mt-1 text-xs text-red-500 dark:text-red-400" role="alert">
+          {error}
+        </p>
+      )}
     </div>
   );
 }

@@ -11,16 +11,40 @@ interface Cert {
 
 const certifications: Cert[] = [
   {
-    name: 'Software and Information Systems Testing (SST3)',
-    issuer: 'Fanshawe College',
+    name: 'ISTQB Certified Tester — Foundation Level (CTFL)',
+    issuer: 'ISTQB',
     year: '2024',
-    tags: ['QA', 'Selenium', 'Test Planning'],
+    tags: ['QA', 'CTFL', 'Test Planning'],
   },
   {
-    name: 'Interactive Media Design and Production',
-    issuer: 'Fanshawe College',
-    year: '2024',
-    tags: ['Web Dev', 'UI/UX', 'React'],
+    name: 'Meta Front-End Developer Certificate',
+    issuer: 'Coursera / Meta',
+    year: '2025',
+    tags: ['React', 'JavaScript', 'Web Dev'],
+  },
+  {
+    name: 'Google UX Design Certificate',
+    issuer: 'Coursera / Google',
+    year: '2025',
+    tags: ['UX Design', 'Figma', 'Research'],
+  },
+  {
+    name: 'Google Analytics 4 Certification',
+    issuer: 'Google',
+    year: '2025',
+    tags: ['Analytics', 'Data', 'Growth'],
+  },
+  {
+    name: 'HubSpot Inbound Marketing',
+    issuer: 'HubSpot Academy',
+    year: '2025',
+    tags: ['Marketing', 'Funnels', 'B2B'],
+  },
+  {
+    name: 'Google AI Essentials',
+    issuer: 'Google',
+    year: '2025',
+    tags: ['AI', 'Automation', 'Prompting'],
   },
 ];
 
@@ -40,7 +64,7 @@ export function Certifications() {
           description="Recognized qualifications from accredited institutions."
         />
 
-        <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {certifications.map((cert, i) => (
             <article
               key={i}

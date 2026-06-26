@@ -8,6 +8,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'CSS3 / SCSS' },
       { name: 'JavaScript (ES6+)' },
       { name: 'TypeScript' },
+      { name: 'Tailwind CSS' },
       { name: 'React' },
       { name: 'Vue.js' },
     ],
