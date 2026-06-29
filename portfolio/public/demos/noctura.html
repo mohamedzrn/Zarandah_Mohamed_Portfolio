@@ -3,97 +3,519 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Noctura Pulse — AI Trend Bot | Mohamed Zarandah</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<title>Noctura Pulse — AI Trend Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root{--accent:#e879f9;--accent-bg:rgba(232,121,249,.12)}
-  body{background:#0e020e}
-  .hero-tag{background:var(--accent-bg);color:var(--accent);border:1px solid rgba(232,121,249,.3)}
-  .hero h1{color:#fdf4ff}
-  .section-label{color:var(--accent)}
-  .highlights li::before{background:var(--accent)}
-  .quote{border-color:var(--accent)}
-  .tag{border-color:rgba(232,121,249,.3);color:var(--accent)}
-  .back-link{background:var(--accent);color:#0e020e}
-  .signal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:40px}
-  .signal{background:rgba(232,121,249,.06);border:1px solid rgba(232,121,249,.15);border-radius:10px;padding:14px;text-align:center;font-size:.8rem;color:var(--accent)}
-  .signal span{display:block;font-size:.65rem;opacity:.5;margin-top:4px;color:#e0e0e0}
-  .flow{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:32px;margin-bottom:40px;font-family:monospace;font-size:.8rem;line-height:2.2;color:var(--accent);text-align:center}
-  .flow .dim{opacity:.4}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:#080010;color:#f0e6ff;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:root{
+  --accent:#e879f9;--accent-2:#a855f7;--accent-bg:rgba(232,121,249,.1);
+  --surface:rgba(232,121,249,.05);--surface-2:rgba(232,121,249,.08);
+  --border:rgba(232,121,249,.15);--border-dim:rgba(232,121,249,.08);
+  --text:#f0e6ff;--text-muted:#9d8aaf;--text-dim:#6b5a7e;
+}
+
+/* ── Back nav ── */
+.back-nav{position:fixed;top:1.25rem;left:1.25rem;z-index:200;display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1.1rem;background:rgba(8,0,16,.8);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:100px;font-size:.8rem;font-weight:500;color:var(--accent);transition:all .3s}
+.back-nav:hover{background:var(--accent-bg);color:#fff}
+.back-nav svg{width:14px;height:14px;transition:transform .3s}
+.back-nav:hover svg{transform:translateX(-3px)}
+
+/* ── Noise overlay ── */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:150px}
+
+/* ── Hero ── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-glow-1{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,.18) 0%,transparent 70%);top:-200px;right:-200px;pointer-events:none}
+.hero-glow-2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(232,121,249,.12) 0%,transparent 70%);bottom:-100px;left:-100px;pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(232,121,249,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,121,249,.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:800px;padding:0 24px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--accent-bg);color:var(--accent);border:1px solid var(--border);border-radius:100px;padding:6px 18px;font-size:.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:32px}
+.hero-badge-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse-dot 1.5s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero h1{font-size:clamp(2.8rem,7vw,5rem);font-weight:900;line-height:1;letter-spacing:-2px;color:#fff;margin-bottom:20px}
+.hero h1 span{background:linear-gradient(135deg,#e879f9,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:clamp(1rem,2vw,1.2rem);color:var(--text-muted);max-width:560px;margin:0 auto 40px;line-height:1.8;font-weight:300}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:linear-gradient(135deg,#e879f9,#a855f7);color:#fff;border:none;border-radius:10px;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .3s;font-family:inherit}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(232,121,249,.35)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:transparent;color:var(--accent);border:1px solid var(--border);border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .3s;font-family:inherit}
+.btn-secondary:hover{background:var(--accent-bg);border-color:var(--accent)}
+.hero-stats{display:flex;gap:48px;justify-content:center;margin-top:60px;padding-top:40px;border-top:1px solid var(--border-dim)}
+.hero-stat-value{font-size:2rem;font-weight:800;color:var(--accent);display:block;line-height:1}
+.hero-stat-label{font-size:.78rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+
+/* ── Section shared ── */
+.section{padding:100px 24px;max-width:1140px;margin:0 auto}
+.section-label{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;color:#fff;letter-spacing:-1px;line-height:1.15;margin-bottom:16px}
+.section-desc{font-size:1rem;color:var(--text-muted);line-height:1.75;max-width:560px}
+
+/* ── LIVE DEMO ── */
+.demo-section{background:linear-gradient(180deg,#080010 0%,#100020 50%,#080010 100%);padding:100px 0}
+.demo-inner{max-width:1140px;margin:0 auto;padding:0 24px}
+.demo-header{text-align:center;margin-bottom:60px}
+.demo-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:24px;min-height:540px}
+
+/* Creator feed panel */
+.panel{background:rgba(255,255,255,.02);border:1px solid var(--border-dim);border-radius:16px;overflow:hidden}
+.panel-header{padding:16px 20px;border-bottom:1px solid var(--border-dim);display:flex;align-items:center;gap:10px}
+.panel-title{font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)}
+.live-dot{width:7px;height:7px;background:#22c55e;border-radius:50%;animation:pulse-dot 1.5s infinite}
+.panel-body{padding:12px}
+
+.creator-card{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;border:1px solid transparent;cursor:pointer;transition:all .25s;margin-bottom:6px;position:relative}
+.creator-card:hover{background:var(--surface);border-color:var(--border)}
+.creator-card.active{background:var(--accent-bg);border-color:var(--border)}
+.creator-card.active .creator-status{background:var(--accent)}
+.creator-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0;border:2px solid var(--border)}
+.creator-info{flex:1;min-width:0}
+.creator-name{font-size:.9rem;font-weight:600;color:#fff;margin-bottom:2px}
+.creator-sub{font-size:.75rem;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.creator-status{width:8px;height:8px;border-radius:50%;background:#4ade80;flex-shrink:0}
+.creator-status.processing{background:var(--accent);animation:pulse-dot 1s infinite}
+.creator-status.idle{background:#334155}
+.creator-badge{font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:rgba(232,121,249,.15);color:var(--accent);margin-top:3px;display:inline-block}
+
+/* Analysis panel */
+.analysis-panel{background:rgba(255,255,255,.02);border:1px solid var(--border-dim);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.analysis-header{padding:16px 20px;border-bottom:1px solid var(--border-dim);display:flex;align-items:center;justify-content:space-between}
+.analysis-title{font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)}
+.analysis-status{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--accent);font-weight:600}
+.analysis-content{flex:1;padding:20px;overflow:hidden}
+
+/* Idle state */
+.analysis-idle{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:40px;opacity:.6}
+.analysis-idle svg{width:48px;height:48px;color:var(--text-dim);margin-bottom:16px}
+.analysis-idle p{font-size:.9rem;color:var(--text-dim)}
+
+/* Processing state */
+.analysis-processing{display:none}
+.analysis-processing.show{display:block}
+.analysis-idle.hide{display:none}
+
+.creator-profile{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border-dim)}
+.profile-avatar{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;border:2px solid var(--border)}
+.profile-name{font-weight:700;color:#fff;font-size:1rem}
+.profile-meta{font-size:.78rem;color:var(--text-dim);margin-top:2px}
+
+.content-preview{background:var(--surface);border:1px solid var(--border-dim);border-radius:10px;padding:14px;margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.content-thumb{width:56px;height:56px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.content-info{flex:1}
+.content-type{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:4px}
+.content-title{font-size:.88rem;font-weight:600;color:#fff;margin-bottom:3px}
+.content-status{font-size:.75rem;color:var(--text-dim)}
+.scan-bar{height:3px;background:var(--border-dim);border-radius:2px;margin-top:10px;overflow:hidden}
+.scan-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:2px;width:0;transition:width 1.5s ease}
+.scan-fill.run{width:100%}
+
+.signals-title{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px}
+.signals-mini{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.signal-mini{background:var(--surface);border:1px solid var(--border-dim);border-radius:8px;padding:10px 12px;opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
+.signal-mini.appear{opacity:1;transform:translateY(0)}
+.signal-mini-label{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dim);margin-bottom:4px}
+.signal-mini-value{font-size:.8rem;font-weight:700;color:var(--accent)}
+
+/* ── SIGNALS GRID ── */
+.signals-section{padding:100px 0;background:linear-gradient(180deg,#080010,#100020,#080010)}
+.signals-inner{max-width:1140px;margin:0 auto;padding:0 24px}
+.signals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.signal-card{background:var(--surface);border:1px solid var(--border-dim);border-radius:14px;padding:24px;transition:all .3s;cursor:default}
+.signal-card:hover{border-color:var(--border);background:var(--surface-2);transform:translateY(-3px)}
+.signal-num{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.signal-name{font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px}
+.signal-desc{font-size:.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:14px}
+.signal-example{font-size:.75rem;padding:6px 12px;background:rgba(232,121,249,.08);border:1px solid rgba(232,121,249,.15);border-radius:6px;color:var(--accent);display:inline-block;font-family:monospace}
+
+/* ── PIPELINE ── */
+.pipeline-section{padding:100px 24px}
+.pipeline-flow{display:flex;align-items:center;gap:0;margin-top:48px;flex-wrap:wrap;justify-content:center}
+.pipeline-step{text-align:center;flex:1;min-width:140px;position:relative}
+.pipeline-step::after{content:'';position:absolute;top:28px;right:-20%;width:40%;height:2px;background:linear-gradient(90deg,var(--border),transparent);pointer-events:none}
+.pipeline-step:last-child::after{display:none}
+.pipeline-icon{width:56px;height:56px;border-radius:14px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:1.4rem;position:relative}
+.pipeline-icon::before{content:'';position:absolute;inset:0;border-radius:14px;background:linear-gradient(135deg,rgba(232,121,249,.1),transparent);pointer-events:none}
+.pipeline-step-label{font-size:.82rem;font-weight:600;color:#fff;margin-bottom:4px}
+.pipeline-step-sub{font-size:.72rem;color:var(--text-dim)}
+
+/* ── AUDIO BANK ── */
+.audio-section{padding:100px 0;background:linear-gradient(180deg,#080010,#0e0018,#080010)}
+.audio-inner{max-width:1140px;margin:0 auto;padding:0 24px}
+.audio-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.audio-card{background:var(--surface);border:1px solid var(--border-dim);border-radius:12px;padding:18px;transition:all .3s;cursor:pointer}
+.audio-card:hover{border-color:var(--border);background:var(--surface-2)}
+.audio-bars{display:flex;align-items:flex-end;gap:3px;height:32px;margin-bottom:12px}
+.audio-bar{flex:1;background:var(--border-dim);border-radius:2px;transition:height .3s}
+.audio-card:hover .audio-bar{background:var(--accent);animation:barBounce var(--d,.6s) ease-in-out infinite alternate}
+@keyframes barBounce{from{transform:scaleY(.4)}to{transform:scaleY(1)}}
+.audio-title{font-size:.85rem;font-weight:700;color:#fff;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.audio-meta{font-size:.72rem;color:var(--text-dim)}
+.audio-trend{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:700;color:#4ade80;margin-top:8px}
+.audio-trend svg{width:12px;height:12px}
+
+/* ── HIGHLIGHTS ── */
+.highlights-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+.highlight-item{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--border-dim);border-radius:12px;padding:20px}
+.highlight-icon{width:40px;height:40px;border-radius:10px;background:var(--accent-bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem}
+.highlight-text h4{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:4px}
+.highlight-text p{font-size:.8rem;color:var(--text-muted);line-height:1.55}
+
+/* ── TECH STACK ── */
+.tech-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.tech-pill{display:flex;align-items:center;gap:8px;padding:8px 16px;background:var(--surface);border:1px solid var(--border-dim);border-radius:8px;font-size:.82rem;font-weight:500;color:var(--text-muted);transition:all .25s}
+.tech-pill:hover{border-color:var(--border);color:#fff}
+
+/* ── FOOTER ── */
+.footer{padding:40px 24px;border-top:1px solid var(--border-dim);text-align:center}
+.footer-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.footer-copy{font-size:.78rem;color:var(--text-dim)}
+
+/* ── Scroll reveal ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .demo-layout{grid-template-columns:1fr}
+  .signals-grid{grid-template-columns:1fr 1fr}
+  .audio-grid{grid-template-columns:1fr 1fr}
+  .highlights-grid{grid-template-columns:1fr}
+  .pipeline-flow{gap:8px}
+}
+@media(max-width:600px){
+  .signals-grid{grid-template-columns:1fr}
+  .audio-grid{grid-template-columns:1fr 1fr}
+  .hero-stats{gap:24px}
+}
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-bg" style="background-image:url('/images/noctura-banner.svg')"></div>
-  <div class="hero-overlay"></div>
+<!-- Back nav -->
+<a href="/#projects" class="back-nav">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+  Portfolio
+</a>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-grid"></div>
   <div class="hero-content">
-    <span class="hero-tag">AI / Automation</span>
-    <h1>Noctura Pulse</h1>
-    <p>An AI-powered Instagram trend bot that turns creator behaviour into content intelligence — silently.</p>
+    <div class="hero-badge"><span class="hero-badge-dot"></span>AI / Automation</div>
+    <h1>Trend Intelligence.<br><span>Silently.</span></h1>
+    <p class="hero-desc">An AI-powered Instagram DM bot built for creator agencies. Creators forward content — Noctura Pulse analyses it, extracts 9 trend signals, and syncs intelligence directly into Notion.</p>
+    <div class="hero-actions">
+      <a href="#demo" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        See It Live
+      </a>
+      <a href="https://github.com/mohamedzrn/noctura-trend-search" target="_blank" rel="noopener" class="btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="hero-stat-value" data-count="9">0</span><span class="hero-stat-label">Signals Extracted</span></div>
+      <div><span class="hero-stat-value" data-count="5">0</span><span class="hero-stat-label">Content Types</span></div>
+      <div><span class="hero-stat-value" data-count="30">0</span><span class="hero-stat-label">Second Wake Time</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     LIVE DEMO
+══════════════════════════════════════ -->
+<div class="demo-section" id="demo">
+  <div class="demo-inner">
+    <div class="demo-header reveal">
+      <div class="section-label">Interactive Demo</div>
+      <div class="section-title">Watch it analyse in real time</div>
+      <p class="section-desc" style="margin:0 auto">Select a creator from the feed to see Noctura Pulse extract trend signals from their latest submission.</p>
+    </div>
+
+    <div class="demo-layout reveal">
+      <!-- Creator Feed -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="live-dot"></div>
+          <span class="panel-title">Active Creator Feed</span>
+        </div>
+        <div class="panel-body" id="creatorFeed">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Analysis Panel -->
+      <div class="analysis-panel" id="analysisPanel">
+        <div class="analysis-header">
+          <span class="analysis-title">Signal Analysis</span>
+          <span class="analysis-status" id="analysisStatus">
+            <span style="width:6px;height:6px;border-radius:50%;background:#6b5a7e;display:inline-block"></span>
+            Waiting
+          </span>
+        </div>
+        <div class="analysis-content">
+          <div class="analysis-idle" id="analysisIdle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            <p>Select a creator from the feed to begin analysis</p>
+          </div>
+          <div class="analysis-processing" id="analysisProcessing">
+            <div class="creator-profile" id="profileArea"></div>
+            <div class="content-preview" id="contentPreview"></div>
+            <div class="signals-title">Extracted Signals</div>
+            <div class="signals-mini" id="signalsMini"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="section-label">About the Project</div>
-  <p class="about-text">Noctura Pulse is a stealth Instagram DM bot built for a creator management agency. Creators forward reels, carousels, stories, and clips — the bot analyses each piece with Claude Vision AI and syncs intelligence to per-creator Notion databases automatically.</p>
-
-  <div class="section-label">Pipeline Flow</div>
-  <div class="flow">
-    Creator forwards Reel/Post via DM<br>
-    <span class="dim">↓</span><br>
-    Bot detects & downloads media<br>
-    <span class="dim">↓</span><br>
-    Claude Vision AI analyses content<br>
-    <span class="dim">↓</span><br>
-    9 signals extracted per submission<br>
-    <span class="dim">↓</span><br>
-    Synced to per-creator Notion database
+<!-- ══════════════════════════════════════
+     9 SIGNALS
+══════════════════════════════════════ -->
+<div class="signals-section">
+  <div class="signals-inner">
+    <div class="reveal">
+      <div class="section-label">Intelligence Layer</div>
+      <div class="section-title">9 Signals Per Submission</div>
+      <p class="section-desc">Every piece of content forwarded to the bot is analysed by Claude Vision AI and returns a structured intelligence report.</p>
+    </div>
+    <div class="signals-grid" id="signalsGrid"></div>
   </div>
-
-  <div class="section-label">9 Signals Extracted</div>
-  <div class="signal-grid">
-    <div class="signal">Niche<span>Classification</span></div>
-    <div class="signal">Trend Signals<span>Emerging patterns</span></div>
-    <div class="signal">Content Style<span>Visual identity</span></div>
-    <div class="signal">Audio Score<span>Sound trends</span></div>
-    <div class="signal">Hook Strength<span>First 3 seconds</span></div>
-    <div class="signal">Shareability<span>Viral potential</span></div>
-    <div class="signal">Engagement<span>Pattern analysis</span></div>
-    <div class="signal">Keywords<span>Topic extraction</span></div>
-    <div class="signal">Recommendation<span>Actionable next step</span></div>
-  </div>
-
-  <div class="section-label">Highlights</div>
-  <ul class="highlights">
-    <li>Adaptive DM polling (45s to 1hr backoff) waking within 30s on activity.</li>
-    <li>Supports 5 content types: Reels, Carousels, Static posts, Stories, and xma_clip format.</li>
-    <li>Per-creator Notion database routing with auto-set thumbnail gallery covers.</li>
-    <li>Story media captured before 24-hour expiry.</li>
-    <li>Audio bank and keyword bank ranked by cross-creator frequency and reach.</li>
-    <li>Human-paced reply delays (12–50s randomised) with residential proxy for account safety.</li>
-  </ul>
-
-  <div class="section-label">Tools & Technologies</div>
-  <div class="tags">
-    <span class="tag">Python</span>
-    <span class="tag">Claude API</span>
-    <span class="tag">instagrapi</span>
-    <span class="tag">SQLite</span>
-    <span class="tag">Notion API</span>
-    <span class="tag">Flask</span>
-    <span class="tag">Residential Proxy</span>
-  </div>
-
-  <div class="quote">"Replaced our entire manual content research process. The audio bank alone surfaces trends before they peak."</div>
-
-  <a href="https://github.com/mohamedzrn/noctura-trend-search" target="_blank" rel="noopener noreferrer" class="back-link">View on GitHub &rarr;</a>
-  <br>
-  <a href="/#projects" class="back-link" style="background:transparent;border:1px solid var(--accent);color:var(--accent)">&larr; Back to Portfolio</a>
 </div>
 
-<div class="footer-bar">&copy; 2026 Mohamed Zarandah. All rights reserved.</div>
+<!-- ══════════════════════════════════════
+     PIPELINE
+══════════════════════════════════════ -->
+<div style="padding:100px 24px;background:#080010" class="reveal">
+  <div style="max-width:1140px;margin:0 auto">
+    <div class="section-label" style="text-align:center">How It Works</div>
+    <div class="section-title" style="text-align:center;margin-bottom:8px">One DM. Nine insights.</div>
+    <p class="section-desc" style="text-align:center;margin:0 auto 48px">The entire pipeline runs invisibly in the background — creators just forward content and the intelligence appears in Notion.</p>
+    <div class="pipeline-flow">
+      <div class="pipeline-step"><div class="pipeline-icon">📲</div><div class="pipeline-step-label">Creator DMs</div><div class="pipeline-step-sub">Any content type</div></div>
+      <div class="pipeline-step"><div class="pipeline-icon">🤖</div><div class="pipeline-step-label">Bot Detects</div><div class="pipeline-step-sub">Polls every 45s</div></div>
+      <div class="pipeline-step"><div class="pipeline-icon">⬇️</div><div class="pipeline-step-label">Media Download</div><div class="pipeline-step-sub">Before expiry</div></div>
+      <div class="pipeline-step"><div class="pipeline-icon">🧠</div><div class="pipeline-step-label">Claude Vision</div><div class="pipeline-step-sub">AI analysis</div></div>
+      <div class="pipeline-step"><div class="pipeline-icon">📊</div><div class="pipeline-step-label">9 Signals</div><div class="pipeline-step-sub">Extracted</div></div>
+      <div class="pipeline-step"><div class="pipeline-icon">🗃️</div><div class="pipeline-step-label">Notion Sync</div><div class="pipeline-step-sub">Auto-routed</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     AUDIO BANK
+══════════════════════════════════════ -->
+<div class="audio-section">
+  <div class="audio-inner">
+    <div class="reveal">
+      <div class="section-label">Trending Insights</div>
+      <div class="section-title">Audio Bank — Top Sounds This Week</div>
+      <p class="section-desc">Cross-creator frequency analysis surfaces trending audio before it peaks. Updated on every submission cycle.</p>
+    </div>
+    <div class="audio-grid reveal" id="audioGrid"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     HIGHLIGHTS
+══════════════════════════════════════ -->
+<div style="padding:100px 24px;background:linear-gradient(180deg,#080010,#100020,#080010)">
+  <div style="max-width:1140px;margin:0 auto">
+    <div class="reveal">
+      <div class="section-label">Technical Highlights</div>
+      <div class="section-title">Built for stealth. Optimised for scale.</div>
+    </div>
+    <div class="highlights-grid reveal">
+      <div class="highlight-item"><div class="highlight-icon">⚡</div><div class="highlight-text"><h4>Adaptive Polling</h4><p>Backoff logic from 45s to 1hr of silence, waking within 30s on new activity.</p></div></div>
+      <div class="highlight-item"><div class="highlight-icon">🔒</div><div class="highlight-text"><h4>Human-Paced Delays</h4><p>12–50s randomised reply delays + residential proxy to keep the account safe.</p></div></div>
+      <div class="highlight-item"><div class="highlight-icon">📁</div><div class="highlight-text"><h4>Per-Creator Routing</h4><p>Each creator gets their own Notion database with auto-set thumbnail gallery covers.</p></div></div>
+      <div class="highlight-item"><div class="highlight-icon">⏱️</div><div class="highlight-text"><h4>Story Capture</h4><p>Stories fetched before the 24-hour expiry window — no intelligence lost.</p></div></div>
+      <div class="highlight-item"><div class="highlight-icon">🎵</div><div class="highlight-text"><h4>Cross-Creator Banks</h4><p>Audio and keyword banks ranked by frequency and reach across all creators.</p></div></div>
+      <div class="highlight-item"><div class="highlight-icon">📦</div><div class="highlight-text"><h4>5 Content Types</h4><p>Reels, Carousels, Static posts, Stories, and xma_clip format all supported.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Tech Stack -->
+<div style="padding:0 24px 80px;max-width:1140px;margin:0 auto" class="reveal">
+  <div class="section-label">Stack</div>
+  <div class="tech-grid">
+    <span class="tech-pill">Python</span>
+    <span class="tech-pill">Claude Vision API</span>
+    <span class="tech-pill">instagrapi</span>
+    <span class="tech-pill">SQLite</span>
+    <span class="tech-pill">Notion API</span>
+    <span class="tech-pill">Flask</span>
+    <span class="tech-pill">Residential Proxy</span>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-actions">
+    <a href="https://github.com/mohamedzrn/noctura-trend-search" target="_blank" rel="noopener" class="btn-primary">View on GitHub →</a>
+    <a href="/#projects" class="btn-secondary">← Back to Portfolio</a>
+  </div>
+  <p class="footer-copy">&copy; 2026 Mohamed Zarandah. All rights reserved.</p>
+</div>
+
+<script>
+// ── Data ──────────────────────────────────────────────────────────
+const creators = [
+  {name:'Sofia R.',handle:'@sofialifts',avatar:'SR',color:'#a855f7',followers:'284K',status:'active',type:'Reel',content:'Morning routine — 5am club',emoji:'🎬',signals:{niche:'Fitness / Wellness',trend:'5AM routine',style:'GRWM',audio:'89/100',hook:'Strong',share:'High',engage:'Peak'}},
+  {name:'Kai M.',handle:'@kaicooks',avatar:'KM',color:'#e879f9',followers:'1.2M',status:'processing',type:'Carousel',content:'10-minute pasta series',emoji:'🍝',signals:{niche:'Food / Recipe',trend:'Quick meals',style:'Tutorial',audio:'72/100',hook:'Moderate',share:'Very High',engage:'High'}},
+  {name:'Zara T.',handle:'@zaratrends',avatar:'ZT',color:'#06b6d4',followers:'620K',status:'active',type:'Story',content:'Studio session BTS',emoji:'📸',signals:{niche:'Fashion / BTS',trend:'Studio aesthetics',style:'Candid',audio:'91/100',hook:'Strong',share:'Moderate',engage:'High'}},
+  {name:'Leo B.',handle:'@leobusiness',avatar:'LB',color:'#f59e0b',followers:'88K',status:'idle',type:'Static',content:'Brand collab announcement',emoji:'📢',signals:{niche:'Business / Branding',trend:'Collab drops',style:'Product',audio:'45/100',hook:'Weak',share:'Low',engage:'Moderate'}},
+  {name:'Mia D.',handle:'@miadances',avatar:'MD',color:'#ef4444',followers:'3.4M',status:'active',type:'Reel',content:'Trending choreo breakdown',emoji:'💃',signals:{niche:'Dance / Entertainment',trend:'Viral choreo',style:'Tutorial',audio:'98/100',hook:'Very Strong',share:'Viral',engage:'Peak'}},
+];
+
+const signals9 = [
+  {num:'01',name:'Niche',desc:'Top-level content category and subcategory classification.',example:'Fitness / Wellness'},
+  {num:'02',name:'Trend Signals',desc:'Emerging patterns identified relative to cross-creator submissions.',example:'5AM Morning Routine'},
+  {num:'03',name:'Content Style',desc:'Visual identity and storytelling method used.',example:'GRWM / Tutorial'},
+  {num:'04',name:'Audio Score',desc:'Sound trend strength ranked 0–100 based on reach data.',example:'Score: 89/100'},
+  {num:'05',name:'Hook Strength',desc:'First 3 seconds rated for attention-capture effectiveness.',example:'Strong — visual cut'},
+  {num:'06',name:'Shareability',desc:'Estimated viral potential based on format and content signals.',example:'High — format match'},
+  {num:'07',name:'Engagement Pattern',desc:'Predicted engagement trajectory from content type analysis.',example:'Peak — first 4 hrs'},
+  {num:'08',name:'Keywords',desc:'Topic tags extracted and ranked by cross-creator frequency.',example:'#routine #morningvibe'},
+  {num:'09',name:'Recommendation',desc:'One actionable next step generated per submission.',example:'Post between 6–8AM EST'},
+];
+
+const audioBank = [
+  {title:'Calm Drive (Slowed)',creator:'@calmbeats',uses:'4,280 uses',trend:'+34%',bars:[60,80,40,90,70,55,85,45,75,65]},
+  {title:'Aesthetic Study',creator:'@lofilab',uses:'2,910 uses',trend:'+51%',bars:[45,70,85,50,90,60,75,40,65,80]},
+  {title:'Sunrise Montage',creator:'@sunriseaudio',uses:'6,100 uses',trend:'+18%',bars:[80,55,90,65,45,85,70,50,88,60]},
+  {title:'Hustle Mode',creator:'@grindbeats',uses:'8,440 uses',trend:'+72%',bars:[90,70,80,95,60,85,75,65,88,92]},
+];
+
+// ── Build creator feed ────────────────────────────────────────────
+const feed = document.getElementById('creatorFeed');
+creators.forEach((c,i) => {
+  const div = document.createElement('div');
+  div.className = 'creator-card';
+  div.dataset.idx = i;
+  div.innerHTML = `
+    <div class="creator-avatar" style="background:${c.color}22;border-color:${c.color}44;color:${c.color}">${c.avatar}</div>
+    <div class="creator-info">
+      <div class="creator-name">${c.name}</div>
+      <div class="creator-sub">${c.handle} · ${c.followers}</div>
+      <span class="creator-badge">${c.type}</span>
+    </div>
+    <div class="creator-status ${c.status === 'processing' ? 'processing' : c.status === 'idle' ? 'idle' : ''}"></div>`;
+  div.addEventListener('click', () => selectCreator(i, div));
+  feed.appendChild(div);
+});
+
+let activeCard = null;
+
+function selectCreator(idx, card) {
+  if (activeCard) activeCard.classList.remove('active');
+  card.classList.add('active');
+  activeCard = card;
+
+  const c = creators[idx];
+  const idle = document.getElementById('analysisIdle');
+  const processing = document.getElementById('analysisProcessing');
+  const status = document.getElementById('analysisStatus');
+
+  idle.classList.add('hide');
+  processing.classList.remove('show');
+  status.innerHTML = `<span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse-dot 1s infinite"></span> Analysing…`;
+
+  setTimeout(() => {
+    processing.classList.add('show');
+    document.getElementById('profileArea').innerHTML = `
+      <div class="profile-avatar" style="background:${c.color}22;border-color:${c.color}44;color:${c.color}">${c.avatar}</div>
+      <div><div class="profile-name">${c.name}</div><div class="profile-meta">${c.handle} · ${c.followers} followers</div></div>`;
+
+    document.getElementById('contentPreview').innerHTML = `
+      <div class="content-thumb" style="background:${c.color}15">${c.emoji}</div>
+      <div class="content-info">
+        <div class="content-type">${c.type} Submitted</div>
+        <div class="content-title">${c.content}</div>
+        <div class="content-status">Claude Vision analysing…</div>
+        <div class="scan-bar"><div class="scan-fill" id="scanFill"></div></div>
+      </div>`;
+
+    setTimeout(() => {
+      const fill = document.getElementById('scanFill');
+      if (fill) fill.classList.add('run');
+    }, 50);
+
+    const signalEntries = Object.entries(c.signals);
+    document.getElementById('signalsMini').innerHTML = signalEntries.map(([k,v]) => `
+      <div class="signal-mini">
+        <div class="signal-mini-label">${k}</div>
+        <div class="signal-mini-value">${v}</div>
+      </div>`).join('');
+
+    setTimeout(() => {
+      document.querySelectorAll('.signal-mini').forEach((el,i) => {
+        setTimeout(() => el.classList.add('appear'), i * 80);
+      });
+      status.innerHTML = `<span style="width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block"></span> Complete`;
+    }, 1600);
+  }, 400);
+}
+
+// ── Build signals grid ────────────────────────────────────────────
+const grid = document.getElementById('signalsGrid');
+signals9.forEach(s => {
+  const d = document.createElement('div');
+  d.className = 'signal-card reveal';
+  d.innerHTML = `<div class="signal-num">Signal ${s.num}</div><div class="signal-name">${s.name}</div><div class="signal-desc">${s.desc}</div><span class="signal-example">${s.example}</span>`;
+  grid.appendChild(d);
+});
+
+// ── Build audio bank ──────────────────────────────────────────────
+const aGrid = document.getElementById('audioGrid');
+audioBank.forEach(a => {
+  const d = document.createElement('div');
+  d.className = 'audio-card';
+  const delays = a.bars.map((_,i) => (i * 0.07).toFixed(2));
+  const barsHtml = a.bars.map((h,i) => `<div class="audio-bar" style="height:${h}%;--d:${delays[i]}s"></div>`).join('');
+  d.innerHTML = `
+    <div class="audio-bars">${barsHtml}</div>
+    <div class="audio-title">${a.title}</div>
+    <div class="audio-meta">${a.creator} · ${a.uses}</div>
+    <div class="audio-trend"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>${a.trend} this week</div>`;
+  aGrid.appendChild(d);
+});
+
+// ── Stat counter ──────────────────────────────────────────────────
+function animateCount(el) {
+  const target = +el.dataset.count;
+  let start = 0;
+  const dur = 1200;
+  const step = (timestamp) => {
+    if (!start) start = timestamp;
+    const p = Math.min((timestamp - start) / dur, 1);
+    el.textContent = Math.floor(p * target);
+    if (p < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  };
+  requestAnimationFrame(step);
+}
+const countEls = document.querySelectorAll('[data-count]');
+const countObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { animateCount(e.target); countObs.unobserve(e.target); }});
+}, {threshold: .5});
+countEls.forEach(el => countObs.observe(el));
+
+// ── Scroll reveal ─────────────────────────────────────────────────
+const reveals = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }});
+}, {threshold: .1, rootMargin: '0px 0px -40px 0px'});
+reveals.forEach(el => revObs.observe(el));
+</script>
 </body>
 </html>

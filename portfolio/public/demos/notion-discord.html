@@ -3,87 +3,507 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Notion → Discord Bot | Mohamed Zarandah</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<title>Notion → Discord Bot — Task Automation</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root{--accent:#818cf8;--accent-bg:rgba(129,140,248,.12)}
-  body{background:#040210}
-  .hero-tag{background:var(--accent-bg);color:var(--accent);border:1px solid rgba(129,140,248,.3)}
-  .hero h1{color:#eef2ff}
-  .section-label{color:var(--accent)}
-  .highlights li::before{background:var(--accent)}
-  .quote{border-color:var(--accent)}
-  .tag{border-color:rgba(129,140,248,.3);color:var(--accent)}
-  .back-link{background:var(--accent);color:#040210}
-  .arch-diagram{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:32px;margin-bottom:40px;font-family:monospace;font-size:.85rem;line-height:2;color:var(--accent);text-align:center}
-  .arch-diagram .dim{opacity:.4}
-  .slash-cmd{display:inline-block;background:var(--accent-bg);border:1px solid rgba(129,140,248,.25);border-radius:6px;padding:4px 12px;margin:4px;font-family:monospace;font-size:.8rem;color:var(--accent)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:#040210;color:#e2e8f0;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:root{
+  --accent:#818cf8;--accent-2:#6366f1;--accent-bg:rgba(129,140,248,.12);
+  --surface:rgba(129,140,248,.06);--surface-2:rgba(129,140,248,.1);
+  --border:rgba(129,140,248,.2);--border-dim:rgba(129,140,248,.08);
+  --discord:#5865F2;--discord-bg:rgba(88,101,242,.12);--discord-border:rgba(88,101,242,.25);
+  --text:#e2e8f0;--text-muted:#94a3b8;--text-dim:#475569;
+  --notion-bg:#1e1e1e;--notion-border:rgba(255,255,255,.1);
+}
+
+.back-nav{position:fixed;top:1.25rem;left:1.25rem;z-index:200;display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1.1rem;background:rgba(4,2,16,.8);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:100px;font-size:.8rem;font-weight:500;color:var(--accent);transition:all .3s}
+.back-nav:hover{background:var(--accent-bg);color:#fff}
+.back-nav svg{width:14px;height:14px;transition:transform .3s}
+.back-nav:hover svg{transform:translateX(-3px)}
+
+/* ── Hero ── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,.15) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(129,140,248,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(129,140,248,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:820px;padding:0 24px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--accent-bg);color:var(--accent);border:1px solid var(--border);border-radius:100px;padding:6px 18px;font-size:.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:32px}
+.live-pulse{width:6px;height:6px;background:#4ade80;border-radius:50%;animation:pulseDot 1.5s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero h1{font-size:clamp(2.8rem,7vw,5rem);font-weight:900;line-height:1;letter-spacing:-2px;color:#fff;margin-bottom:24px}
+.hero h1 .arrow{color:var(--accent);font-weight:900}
+.hero-desc{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-muted);max-width:580px;margin:0 auto 40px;line-height:1.85;font-weight:300}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:linear-gradient(135deg,#818cf8,#6366f1);color:#fff;border:none;border-radius:10px;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .3s;font-family:inherit}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,.35)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:transparent;color:var(--accent);border:1px solid var(--border);border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .3s;font-family:inherit}
+.btn-ghost:hover{background:var(--accent-bg)}
+.hero-meta{display:flex;gap:40px;justify-content:center;margin-top:56px;padding-top:40px;border-top:1px solid var(--border-dim)}
+.hero-meta-item{text-align:center}
+.hero-meta-num{font-size:1.8rem;font-weight:800;color:var(--accent);line-height:1;display:block}
+.hero-meta-label{font-size:.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+
+/* ── Section ── */
+.section{padding:100px 24px;max-width:1140px;margin:0 auto}
+.section-label{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;color:#fff;letter-spacing:-1px;line-height:1.15;margin-bottom:16px}
+.section-desc{font-size:.98rem;color:var(--text-muted);line-height:1.75;max-width:560px}
+
+/* ── INTERACTIVE DEMO ── */
+.demo-section{background:linear-gradient(180deg,#040210 0%,#0a0625 50%,#040210 100%);padding:100px 0}
+.demo-inner{max-width:1140px;margin:0 auto;padding:0 24px}
+.demo-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;margin-top:48px}
+
+/* Notion side */
+.notion-panel{border-radius:16px;overflow:hidden;border:1px solid var(--notion-border);background:#191919}
+.notion-titlebar{display:flex;align-items:center;gap:8px;padding:10px 16px;background:#111;border-bottom:1px solid rgba(255,255,255,.06)}
+.notion-dot{width:10px;height:10px;border-radius:50%}
+.notion-url{flex:1;background:rgba(255,255,255,.05);border-radius:4px;padding:4px 10px;font-size:.72rem;color:#555;font-family:monospace}
+.notion-body{padding:28px}
+.notion-page-icon{font-size:1.8rem;margin-bottom:12px}
+.notion-page-title{font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:24px}
+.notion-field{margin-bottom:14px}
+.notion-field-label{font-size:.75rem;color:#555;font-weight:500;margin-bottom:6px;letter-spacing:.04em}
+.notion-field-value{font-size:.88rem;color:#ccc;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:6px;border:1px solid rgba(255,255,255,.06)}
+.notion-field-value.select{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:4px;font-size:.8rem;font-weight:600}
+.notion-field-value.select.todo{background:rgba(59,130,246,.15);color:#93c5fd}
+.notion-field-value.select.in-prog{background:rgba(245,158,11,.15);color:#fbbf24}
+.notion-field-value.select.done{background:rgba(74,222,128,.15);color:#4ade80}
+.notion-field-value.tag{display:inline-block;background:rgba(129,140,248,.12);color:var(--accent);border:1px solid var(--border);padding:3px 10px;border-radius:4px;font-size:.78rem;margin-right:4px}
+
+/* Create task form */
+.create-task-form{background:rgba(255,255,255,.02);border:1px solid var(--notion-border);border-radius:12px;padding:20px;margin-top:20px}
+.form-row{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.form-label{font-size:.78rem;color:var(--text-dim);font-weight:500}
+.form-input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:9px 12px;font-size:.88rem;color:#fff;font-family:inherit;outline:none;transition:border-color .2s;width:100%}
+.form-input:focus{border-color:var(--border)}
+.form-select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:9px 12px;font-size:.88rem;color:#fff;font-family:inherit;outline:none;cursor:pointer;width:100%}
+.form-select option{background:#1e1e2e}
+.create-btn{width:100%;padding:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border:none;border-radius:8px;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all .3s;margin-top:4px}
+.create-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(99,102,241,.3)}
+.create-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* Arrow connector */
+.connector{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;padding:20px 0;align-self:center}
+.connector-line{width:2px;height:60px;background:linear-gradient(180deg,var(--accent),var(--discord))}
+.connector-arrow{color:var(--discord);animation:bounce .8s ease-in-out infinite alternate}
+@keyframes bounce{from{transform:translateY(-4px)}to{transform:translateY(4px)}}
+.connector-label{font-size:.7rem;color:var(--text-dim);letter-spacing:.06em;text-transform:uppercase;text-align:center;line-height:1.4}
+
+/* Discord side */
+.discord-panel{border-radius:16px;overflow:hidden;border:1px solid var(--discord-border);background:#313338}
+.discord-titlebar{display:flex;align-items:center;gap:10px;padding:12px 16px;background:#2b2d31;border-bottom:1px solid rgba(0,0,0,.2)}
+.discord-icon{width:20px;height:20px;border-radius:50%;background:var(--discord);display:flex;align-items:center;justify-content:center}
+.discord-icon svg{width:12px;height:12px;fill:#fff}
+.discord-name{font-size:.85rem;font-weight:600;color:#fff}
+.discord-status{font-size:.72rem;color:#87929d}
+.discord-body{padding:16px;min-height:320px}
+.discord-messages{display:flex;flex-direction:column;gap:2px}
+.discord-msg{display:flex;gap:12px;padding:8px;border-radius:8px;transition:background .15s}
+.discord-msg:hover{background:rgba(255,255,255,.03)}
+.discord-avatar{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;margin-top:2px}
+.discord-msg-content{flex:1}
+.discord-msg-header{display:flex;align-items:baseline;gap:8px;margin-bottom:3px}
+.discord-msg-name{font-weight:600;font-size:.9rem}
+.discord-msg-name.bot{color:var(--accent)}
+.discord-msg-time{font-size:.72rem;color:#87929d}
+.discord-msg-bot-badge{font-size:.6rem;font-weight:700;background:#5865F2;color:#fff;padding:1px 5px;border-radius:3px;letter-spacing:.03em}
+.discord-embed{background:#2b2d31;border-left:4px solid var(--accent);border-radius:0 6px 6px 0;padding:12px 14px;margin-top:6px;max-width:400px}
+.discord-embed-title{font-size:.9rem;font-weight:700;color:var(--accent);margin-bottom:8px}
+.discord-embed-row{display:flex;justify-content:space-between;margin-bottom:6px;font-size:.8rem}
+.discord-embed-label{color:#87929d}
+.discord-embed-value{color:#fff;font-weight:500}
+.discord-embed-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:4px;font-size:.75rem;font-weight:600}
+.discord-embed-badge.todo{background:rgba(59,130,246,.2);color:#93c5fd}
+.discord-embed-badge.urgent{background:rgba(239,68,68,.2);color:#f87171}
+.discord-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:240px;color:var(--text-dim);text-align:center;gap:8px;font-size:.88rem}
+.discord-empty svg{width:40px;height:40px;opacity:.3}
+.discord-typing{display:none;align-items:center;gap:8px;padding:8px 12px;font-size:.8rem;color:#87929d}
+.discord-typing.show{display:flex}
+.typing-dots{display:flex;gap:3px}
+.typing-dot{width:6px;height:6px;background:#87929d;border-radius:50%;animation:typingBounce .8s ease-in-out infinite}
+.typing-dot:nth-child(2){animation-delay:.15s}
+.typing-dot:nth-child(3){animation-delay:.3s}
+@keyframes typingBounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}}
+
+/* ── Slash Commands ── */
+.commands-section{background:linear-gradient(180deg,#040210,#0a0625,#040210);padding:100px 0}
+.commands-inner{max-width:1140px;margin:0 auto;padding:0 24px}
+.commands-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px}
+.cmd-card{background:var(--surface);border:1px solid var(--border-dim);border-radius:12px;padding:20px 24px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.cmd-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--accent-bg),transparent);opacity:0;transition:opacity .3s}
+.cmd-card:hover{border-color:var(--border);transform:translateY(-2px)}
+.cmd-card:hover::before{opacity:1}
+.cmd-name{font-family:monospace;font-size:1rem;font-weight:700;color:var(--accent);margin-bottom:8px}
+.cmd-desc{font-size:.85rem;color:var(--text-muted);line-height:1.55;margin-bottom:12px}
+.cmd-preview{background:rgba(0,0,0,.3);border-radius:8px;padding:10px 14px;font-size:.8rem;color:#fff;font-family:monospace;line-height:1.7;border:1px solid var(--border-dim)}
+.cmd-preview .dim{color:var(--text-dim)}
+
+/* ── Architecture ── */
+.arch-section{padding:100px 0;background:#040210}
+.arch-inner{max-width:900px;margin:0 auto;padding:0 24px}
+.arch-flow{display:flex;align-items:center;justify-content:center;gap:0;margin-top:48px;flex-wrap:wrap}
+.arch-node{text-align:center;min-width:120px}
+.arch-icon{width:64px;height:64px;border-radius:16px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;border:1px solid var(--border-dim);background:var(--surface)}
+.arch-label{font-size:.8rem;font-weight:600;color:#fff;margin-bottom:3px}
+.arch-sub{font-size:.7rem;color:var(--text-dim)}
+.arch-arrow{padding:0 8px;color:var(--text-dim);font-size:1.2rem;align-self:center;margin-bottom:28px}
+
+/* ── Highlights ── */
+.highlights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.hl-card{background:var(--surface);border:1px solid var(--border-dim);border-radius:12px;padding:20px;transition:all .3s}
+.hl-card:hover{border-color:var(--border);transform:translateY(-2px)}
+.hl-icon{font-size:1.4rem;margin-bottom:12px}
+.hl-title{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:6px}
+.hl-text{font-size:.8rem;color:var(--text-muted);line-height:1.6}
+
+/* ── Tech ── */
+.tech-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.tech-pill{padding:7px 16px;background:var(--surface);border:1px solid var(--border-dim);border-radius:8px;font-size:.82rem;font-weight:500;color:var(--text-muted);transition:all .25s}
+.tech-pill:hover{border-color:var(--border);color:#fff}
+
+.footer{padding:40px 24px;border-top:1px solid var(--border-dim);text-align:center}
+.footer-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.footer-copy{font-size:.78rem;color:var(--text-dim)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .demo-layout{grid-template-columns:1fr}
+  .connector{flex-direction:row;padding:0 20px}
+  .connector-line{width:60px;height:2px;background:linear-gradient(90deg,var(--accent),var(--discord))}
+  .connector-arrow{transform:rotate(-90deg)}
+  .highlights-grid{grid-template-columns:1fr 1fr}
+  .commands-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .highlights-grid{grid-template-columns:1fr}
+  .hero-meta{gap:24px}
+  .arch-flow{gap:8px}
+}
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-bg" style="background-image:url('/images/notion-discord-banner.svg')"></div>
-  <div class="hero-overlay"></div>
+<a href="/#projects" class="back-nav">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+  Portfolio
+</a>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
   <div class="hero-content">
-    <span class="hero-tag">Automation / Bot</span>
-    <h1>Notion &rarr; Discord Bot</h1>
-    <p>A real-time automation bot that bridges Notion and Discord — DMing team members on task creation, reassignment, updates, and overdue alerts.</p>
+    <div class="hero-badge"><span class="live-pulse"></span>Automation / Bot · Live</div>
+    <h1>Notion <span class="arrow">→</span><br>Discord Bot</h1>
+    <p class="hero-desc">A full-stack automation bot that bridges Notion and Discord — DMing team members the moment a task is created, reassigned, updated, or overdue. Zero manual check-ins.</p>
+    <div class="hero-actions">
+      <a href="#demo" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Try the Demo
+      </a>
+      <a href="https://github.com/mohamedzrn/notion-discord-bot" target="_blank" rel="noopener" class="btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-num">5</span><span class="hero-meta-label">DM Event Types</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-num">7</span><span class="hero-meta-label">Slash Commands</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-num">10s</span><span class="hero-meta-label">Polling Interval</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     INTERACTIVE DEMO
+══════════════════════════════════════ -->
+<div class="demo-section" id="demo">
+  <div class="demo-inner">
+    <div class="reveal" style="text-align:center;margin-bottom:8px">
+      <div class="section-label">Live Simulation</div>
+      <div class="section-title">Create a task. Watch the DM arrive.</div>
+      <p class="section-desc" style="margin:0 auto">Fill in the Notion task form and see exactly what Discord DM gets triggered — in real time.</p>
+    </div>
+
+    <div class="demo-layout reveal">
+      <!-- Notion Panel -->
+      <div>
+        <div class="notion-panel">
+          <div class="notion-titlebar">
+            <div class="notion-dot" style="background:#ff5f56"></div>
+            <div class="notion-dot" style="background:#ffbd2e"></div>
+            <div class="notion-dot" style="background:#27c93f"></div>
+            <div class="notion-url">notion.so/workspace/tasks</div>
+          </div>
+          <div class="notion-body">
+            <div class="notion-page-icon">📋</div>
+            <div class="notion-page-title">Team Task Board</div>
+
+            <div class="create-task-form">
+              <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:16px">+ New Task</div>
+              <div class="form-row">
+                <label class="form-label">Task Name</label>
+                <input class="form-input" id="taskName" placeholder="e.g. Update landing page copy" type="text">
+              </div>
+              <div class="form-row">
+                <label class="form-label">Assignee</label>
+                <select class="form-select" id="taskAssignee">
+                  <option value="">Select team member…</option>
+                  <option value="Alex K.">Alex K.</option>
+                  <option value="Sam L.">Sam L.</option>
+                  <option value="Jordan M.">Jordan M.</option>
+                  <option value="Riley T.">Riley T.</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label class="form-label">Priority</label>
+                <select class="form-select" id="taskPriority">
+                  <option value="Normal">Normal</option>
+                  <option value="High">High</option>
+                  <option value="Urgent">Urgent 🔴</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label class="form-label">Due Date</label>
+                <input class="form-input" id="taskDue" type="text" placeholder="e.g. Tomorrow, 5pm">
+              </div>
+              <button class="create-btn" id="createBtn" onclick="simulateTask()">Create Task in Notion</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connector -->
+      <div class="connector">
+        <div class="connector-line"></div>
+        <svg class="connector-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="connector-label">Bot detects<br>new task</div>
+      </div>
+
+      <!-- Discord Panel -->
+      <div>
+        <div class="discord-panel">
+          <div class="discord-titlebar">
+            <div class="discord-icon">
+              <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.11 18.104.12 18.12a19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
+            </div>
+            <div>
+              <div class="discord-name">Noctura Bot</div>
+              <div class="discord-status">DM • Online</div>
+            </div>
+          </div>
+          <div class="discord-body">
+            <div id="discordEmpty" class="discord-empty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+              Create a task to see the DM
+            </div>
+            <div class="discord-messages" id="discordMessages" style="display:none"></div>
+            <div class="discord-typing" id="discordTyping">
+              <div class="typing-dots">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+              </div>
+              <span>Noctura Bot is typing…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="section-label">About the Project</div>
-  <p class="about-text">A full-stack bot deployed on Railway that keeps async teams accountable without micromanaging. It runs a dual notification system — 10-second polling loop plus real-time Notion webhooks (HMAC-SHA256 verified) — and automatically DMs team members for every meaningful task event.</p>
-
-  <div class="section-label">Architecture</div>
-  <div class="arch-diagram">
-    <span class="dim">┌──────────┐</span>     <span class="dim">┌──────────┐</span>     <span class="dim">┌──────────┐</span><br>
-    <span class="dim">│</span>  Notion  <span class="dim">│</span> ──→ <span class="dim">│</span>   Bot    <span class="dim">│</span> ──→ <span class="dim">│</span> Discord  <span class="dim">│</span><br>
-    <span class="dim">│</span> Database <span class="dim">│</span>     <span class="dim">│</span> (Node.js)<span class="dim">│</span>     <span class="dim">│</span>   DMs    <span class="dim">│</span><br>
-    <span class="dim">└──────────┘</span>     <span class="dim">└──────────┘</span>     <span class="dim">└──────────┘</span><br>
-    <span class="dim">Polling every 10s + Notion Webhooks (HMAC-SHA256)</span>
+<!-- ══════════════════════════════════════
+     SLASH COMMANDS
+══════════════════════════════════════ -->
+<div class="commands-section">
+  <div class="commands-inner">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">Discord Commands</div>
+      <div class="section-title">7 Built-in Slash Commands</div>
+      <p class="section-desc" style="margin:0 auto">Every team member gets instant access to their task queue without opening Notion.</p>
+    </div>
+    <div class="commands-grid reveal" id="commandsGrid"></div>
   </div>
-
-  <div class="section-label">Slash Commands</div>
-  <div style="margin-bottom:40px">
-    <span class="slash-cmd">/mytasks</span>
-    <span class="slash-cmd">/teamtasks</span>
-    <span class="slash-cmd">/recentupdates</span>
-    <span class="slash-cmd">/status</span>
-    <span class="slash-cmd">/linknotion</span>
-    <span class="slash-cmd">/remind</span>
-    <span class="slash-cmd">/forceremind</span>
-  </div>
-
-  <div class="section-label">Highlights</div>
-  <ul class="highlights">
-    <li>5 automated DM types: new task, reassignment, due date change, status change, overdue alerts.</li>
-    <li>Daily digest every morning with all open assigned tasks.</li>
-    <li>Hourly overdue scanner with daily deduplication to prevent spam.</li>
-    <li>Auto-discovery of Notion databases with graceful catch-up.</li>
-    <li>Notion to Discord user mapping with persistent JSON storage.</li>
-  </ul>
-
-  <div class="section-label">Tools & Technologies</div>
-  <div class="tags">
-    <span class="tag">Node.js</span>
-    <span class="tag">Discord.js v14</span>
-    <span class="tag">Notion API</span>
-    <span class="tag">Express.js</span>
-    <span class="tag">Winston</span>
-    <span class="tag">Railway</span>
-  </div>
-
-  <div class="quote">"Eliminated the need for manual check-ins entirely. The /teamtasks command alone changed how we run standups."</div>
-
-  <a href="https://github.com/mohamedzrn/notion-discord-bot" target="_blank" rel="noopener noreferrer" class="back-link">View on GitHub &rarr;</a>
-  <br>
-  <a href="/#projects" class="back-link" style="background:transparent;border:1px solid var(--accent);color:var(--accent)">&larr; Back to Portfolio</a>
 </div>
 
-<div class="footer-bar">&copy; 2026 Mohamed Zarandah. All rights reserved.</div>
+<!-- ══════════════════════════════════════
+     ARCHITECTURE
+══════════════════════════════════════ -->
+<div class="arch-section">
+  <div class="arch-inner">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">Architecture</div>
+      <div class="section-title">Dual Notification System</div>
+      <p class="section-desc" style="margin:0 auto">10-second polling loop plus real-time Notion webhooks (HMAC-SHA256 verified) — no task event is ever missed.</p>
+    </div>
+    <div class="arch-flow reveal">
+      <div class="arch-node"><div class="arch-icon">📋</div><div class="arch-label">Notion DB</div><div class="arch-sub">Task source</div></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node"><div class="arch-icon">🔔</div><div class="arch-label">Webhook</div><div class="arch-sub">HMAC verified</div></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node"><div class="arch-icon">⚙️</div><div class="arch-label">Bot (Node.js)</div><div class="arch-sub">Railway hosted</div></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node"><div class="arch-icon">🗺️</div><div class="arch-label">User Map</div><div class="arch-sub">Notion ↔ Discord</div></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node"><div class="arch-icon">💬</div><div class="arch-label">Discord DM</div><div class="arch-sub">Instant delivery</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Highlights -->
+<div style="padding:0 24px 80px;background:#040210">
+  <div style="max-width:1140px;margin:0 auto">
+    <div class="reveal">
+      <div class="section-label">What It Does</div>
+      <div class="section-title">Five automated DM types</div>
+    </div>
+    <div class="highlights-grid reveal">
+      <div class="hl-card"><div class="hl-icon">✅</div><div class="hl-title">New Task Assigned</div><div class="hl-text">DM sent the moment a task is created and assigned to a team member.</div></div>
+      <div class="hl-card"><div class="hl-icon">🔄</div><div class="hl-title">Reassignment Alert</div><div class="hl-text">Both the previous and new assignee are notified when ownership changes.</div></div>
+      <div class="hl-card"><div class="hl-icon">📅</div><div class="hl-title">Due Date Change</div><div class="hl-text">Instant notification when a deadline shifts — no more missed rescheduling.</div></div>
+      <div class="hl-card"><div class="hl-icon">📊</div><div class="hl-title">Status Update</div><div class="hl-text">Todo → In Progress → Done triggers a DM to keep the assignee in sync.</div></div>
+      <div class="hl-card"><div class="hl-icon">🚨</div><div class="hl-title">Overdue Alerts</div><div class="hl-text">Hourly scanner with daily deduplication prevents spam while staying persistent.</div></div>
+      <div class="hl-card"><div class="hl-icon">🌅</div><div class="hl-title">Daily Digest</div><div class="hl-text">Every morning, team members get a DM with all their open assigned tasks.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Tech Stack -->
+<div style="padding:0 24px 80px;max-width:1140px;margin:0 auto" class="reveal">
+  <div class="section-label">Stack</div>
+  <div class="tech-pills">
+    <span class="tech-pill">Node.js</span>
+    <span class="tech-pill">Discord.js v14</span>
+    <span class="tech-pill">Notion API</span>
+    <span class="tech-pill">Express.js</span>
+    <span class="tech-pill">Winston</span>
+    <span class="tech-pill">Railway</span>
+    <span class="tech-pill">HMAC-SHA256 Webhooks</span>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-actions">
+    <a href="https://github.com/mohamedzrn/notion-discord-bot" target="_blank" rel="noopener" class="btn-primary">View on GitHub →</a>
+    <a href="/#projects" class="btn-ghost">← Back to Portfolio</a>
+  </div>
+  <p class="footer-copy">&copy; 2026 Mohamed Zarandah. All rights reserved.</p>
+</div>
+
+<script>
+// ── Slash Commands ────────────────────────────────────────────────
+const commands = [
+  {name:'/mytasks',desc:'Shows all tasks currently assigned to you, grouped by status.',preview:`📋 <strong>Your Tasks</strong>\n<span class="dim">——————————————</span>\n🔵 In Progress (2)\n  • Update landing copy — due <strong>Today</strong>\n  • QA the checkout flow — due <strong>Thu</strong>\n⚪ Todo (3)\n  • Write release notes…`},
+  {name:'/teamtasks',desc:'Displays the full team task board sorted by assignee and priority.',preview:`👥 <strong>Team Overview</strong>\n<span class="dim">——————————————</span>\n<strong>Alex</strong> — 3 tasks (1 overdue 🚨)\n<strong>Sam</strong>  — 5 tasks (2 in progress)\n<strong>Jordan</strong> — 1 task (done ✅)\n<strong>Riley</strong> — 2 tasks`},
+  {name:'/recentupdates',desc:'Lists every task change in the last 24 hours across the workspace.',preview:`🕐 <strong>Last 24 Hours</strong>\n<span class="dim">——————————————</span>\n✏️ "API docs" reassigned → <strong>Sam</strong>\n📅 "Sprint review" due date changed\n✅ "User interviews" marked Done\n➕ "Hotfix deploy" created — <strong>Riley</strong>`},
+  {name:'/remind',desc:'Set a one-off reminder for yourself about any task or deadline.',preview:`⏰ <strong>Reminder Set</strong>\n<span class="dim">——————————————</span>\nI'll remind you about:\n<em>"Submit design files"</em>\nAt: <strong>Tomorrow 9:00 AM</strong>\nChannel: DM only`},
+  {name:'/status',desc:'Check the bot\'s connection status, uptime, and webhook health.',preview:`🟢 <strong>Bot Status: Healthy</strong>\n<span class="dim">——————————————</span>\nUptime: 14d 6h 22m\nWebhook: ✅ Connected\nPolling: ✅ Active (10s)\nLast event: <strong>2 min ago</strong>`},
+  {name:'/linknotion',desc:'Map your Discord user to a Notion account for personalised DMs.',preview:`🔗 <strong>Link Your Account</strong>\n<span class="dim">——————————————</span>\nStep 1: Open Notion settings\nStep 2: Copy your member ID\nStep 3: /linknotion <strong>[id]</strong>\n\n✅ Jordan M. → linked!`},
+  {name:'/forceremind',desc:'Immediately DM a team member about their overdue or priority tasks.',preview:`🚨 <strong>Force Reminder Sent</strong>\n<span class="dim">——————————————</span>\nDM sent to: <strong>@Sam L.</strong>\nAbout: 2 overdue tasks\n\n"API docs" — <strong>3 days late</strong>\n"Sprint notes" — <strong>1 day late</strong>`},
+];
+
+const cmdGrid = document.getElementById('commandsGrid');
+commands.forEach(c => {
+  const d = document.createElement('div');
+  d.className = 'cmd-card';
+  d.innerHTML = `<div class="cmd-name">${c.name}</div><div class="cmd-desc">${c.desc}</div><div class="cmd-preview">${c.preview.replace(/\n/g,'<br>')}</div>`;
+  cmdGrid.appendChild(d);
+});
+
+// ── Task simulation ───────────────────────────────────────────────
+const avatarColors = {
+  'Alex K.':'#818cf8','Sam L.':'#a78bfa','Jordan M.':'#f59e0b','Riley T.':'#34d399'
+};
+
+function simulateTask() {
+  const name = document.getElementById('taskName').value.trim() || 'Update landing page copy';
+  const assignee = document.getElementById('taskAssignee').value || 'Sam L.';
+  const priority = document.getElementById('taskPriority').value || 'Normal';
+  const due = document.getElementById('taskDue').value.trim() || 'Tomorrow';
+  const btn = document.getElementById('createBtn');
+
+  btn.disabled = true;
+  btn.textContent = 'Creating…';
+
+  const isUrgent = priority === 'Urgent 🔴' || priority === 'Urgent';
+  const color = avatarColors[assignee] || '#818cf8';
+  const initials = assignee.split(' ').map(w=>w[0]).join('');
+
+  setTimeout(() => {
+    document.getElementById('discordEmpty').style.display = 'none';
+    document.getElementById('discordMessages').style.display = 'flex';
+    document.getElementById('discordTyping').classList.add('show');
+  }, 600);
+
+  setTimeout(() => {
+    document.getElementById('discordTyping').classList.remove('show');
+    const msgWrap = document.getElementById('discordMessages');
+    const now = new Date();
+    const time = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+
+    msgWrap.innerHTML = `
+      <div class="discord-msg">
+        <div class="discord-avatar" style="background:${color}22;color:${color};border:2px solid ${color}44;font-size:.75rem">🤖</div>
+        <div class="discord-msg-content">
+          <div class="discord-msg-header">
+            <span class="discord-msg-name bot">Noctura Bot</span>
+            <span class="discord-msg-bot-badge">BOT</span>
+            <span class="discord-msg-time">Today at ${time}</span>
+          </div>
+          <div class="discord-embed">
+            <div class="discord-embed-title">📋 New Task Assigned</div>
+            <div class="discord-embed-row"><span class="discord-embed-label">Task</span><span class="discord-embed-value">${name}</span></div>
+            <div class="discord-embed-row"><span class="discord-embed-label">Assigned to</span><span class="discord-embed-value">${assignee}</span></div>
+            <div class="discord-embed-row"><span class="discord-embed-label">Due</span><span class="discord-embed-value">${due}</span></div>
+            <div class="discord-embed-row"><span class="discord-embed-label">Priority</span><span class="discord-embed-badge ${isUrgent ? 'urgent' : 'todo'}">${priority}</span></div>
+            <div class="discord-embed-row" style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.06)"><span class="discord-embed-label" style="font-size:.72rem;opacity:.6">Open in Notion →</span></div>
+          </div>
+        </div>
+      </div>`;
+
+    btn.disabled = false;
+    btn.textContent = '✅ Task Created — Try Another';
+    document.getElementById('taskName').value = '';
+  }, 2200);
+}
+
+// ── Hero meta counter ─────────────────────────────────────────────
+const countEls = document.querySelectorAll('.hero-meta-num');
+const countObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const raw = el.textContent;
+    const num = parseInt(raw);
+    if (isNaN(num)) return;
+    const suffix = raw.replace(String(num),'');
+    let start = 0;
+    const t = performance.now();
+    const step = (now) => {
+      const p = Math.min((now-t)/800,1);
+      el.textContent = Math.floor(p*num)+suffix;
+      if(p<1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+    countObs.unobserve(el);
+  });
+},{threshold:.5});
+countEls.forEach(el => countObs.observe(el));
+
+// ── Scroll reveal ─────────────────────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>

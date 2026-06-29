@@ -942,6 +942,46 @@ footer {
 
 .back-to-portfolio:hover { color: #c9a84c; }
 
+/* ===== CART BADGE ===== */
+.cart-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:100px;border:1px solid rgba(201,168,76,.3);background:rgba(201,168,76,.06);color:#c9a84c;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .3s;letter-spacing:.04em}
+.cart-btn:hover{background:rgba(201,168,76,.12);border-color:#c9a84c}
+.cart-count{background:#c9a84c;color:#0a0304;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700}
+
+/* ===== SHADE PICKER ===== */
+.explore-btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:#c9a84c;font-weight:600;background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:gap .3s;padding:0}
+.explore-btn:hover{gap:14px}
+.explore-btn .arrow{transition:transform .3s}
+.explore-btn:hover .arrow{transform:translateX(4px)}
+
+/* ===== MODAL ===== */
+.modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.8);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s;padding:20px}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:#120406;border:1px solid rgba(201,168,76,.15);border-radius:24px;max-width:700px;width:100%;max-height:90vh;overflow-y:auto;padding:40px;position:relative;transform:translateY(20px);transition:transform .35s;scrollbar-width:thin}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-close{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(201,168,76,.2);background:rgba(201,168,76,.06);color:#c9a84c;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.modal-close:hover{background:rgba(201,168,76,.15)}
+.modal-cat{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:#c9a84c;margin-bottom:8px}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:#fdf6e3;margin-bottom:6px;font-weight:600}
+.modal-price{font-family:'Playfair Display',serif;font-size:1.2rem;color:#c9a84c;margin-bottom:24px}
+.modal-desc{font-size:.9rem;color:#8a7d70;line-height:1.75;margin-bottom:28px;font-weight:300}
+.modal-section-label{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:#6e6359;margin-bottom:12px;font-weight:500}
+.shades-grid{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.shade-swatch{width:36px;height:36px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .25s;position:relative;flex-shrink:0}
+.shade-swatch:hover{transform:scale(1.15)}
+.shade-swatch.selected{border-color:#c9a84c;box-shadow:0 0 0 3px rgba(201,168,76,.25)}
+.shade-swatch::after{content:attr(data-name);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#1e0d0e;color:#c9a84c;font-size:.65rem;padding:3px 8px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(201,168,76,.2)}
+.shade-swatch:hover::after{opacity:1}
+.selected-shade-name{font-size:.85rem;color:#c9a84c;margin-bottom:24px;min-height:1.2em;font-weight:500}
+.qty-row{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.qty-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(201,168,76,.25);background:rgba(201,168,76,.06);color:#c9a84c;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qty-btn:hover{background:rgba(201,168,76,.15)}
+.qty-num{font-size:1rem;font-weight:600;color:#fdf6e3;min-width:20px;text-align:center}
+.add-to-bag{width:100%;padding:16px;background:#c9a84c;border:none;border-radius:8px;color:#0a0304;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.add-to-bag:hover{background:#d4a017;box-shadow:0 6px 24px rgba(201,168,76,.3)}
+.add-to-bag.added{background:#2d6a2d;color:#fff}
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a0f0a;border:1px solid rgba(201,168,76,.3);border-radius:10px;padding:14px 24px;font-size:.85rem;color:#c9a84c;z-index:3000;opacity:0;transition:all .4s;white-space:nowrap;font-weight:500}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
 /* ===== SCROLL REVEAL ===== */
 .reveal {
   opacity: 0;
@@ -1065,9 +1105,15 @@ footer {
     <li><a href="#testimonials" onclick="closeMenu()">Reviews</a></li>
     <li><a href="#newsletter" onclick="closeMenu()">Subscribe</a></li>
   </ul>
-  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
+  <div style="display:flex;align-items:center;gap:12px">
+    <button class="cart-btn" onclick="openCart()" aria-label="View bag">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      Bag <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -1170,7 +1216,7 @@ footer {
           <h3 class="product-name">Signature Lipstick Collection</h3>
           <p class="product-desc">Twelve vibrant shades inspired by Latin sunsets and floral gardens. Velvet-matte finish with all-day hydration.</p>
           <span class="product-price">$38</span>
-          <a href="#" class="product-link">Explore Shades <span class="arrow">&rarr;</span></a>
+          <button onclick="openModal('lipstick')" class="product-link">Explore Shades <span class="arrow">&rarr;</span></button>
         </div>
       </div>
 
@@ -1192,7 +1238,7 @@ footer {
           <h3 class="product-name">Sultry Eyeshadow Palette</h3>
           <p class="product-desc">Six richly pigmented shades from warm golds to deep burgundy. Blendable, buildable, and buttery-smooth.</p>
           <span class="product-price">$52</span>
-          <a href="#" class="product-link">View Palette <span class="arrow">&rarr;</span></a>
+          <button onclick="openModal('eyeshadow')" class="product-link">View Palette <span class="arrow">&rarr;</span></button>
         </div>
       </div>
 
@@ -1216,7 +1262,7 @@ footer {
           <h3 class="product-name">Radiance Foundation</h3>
           <p class="product-desc">Lightweight, buildable coverage with a luminous, natural finish. Infused with botanical extracts for all-day wear.</p>
           <span class="product-price">$46</span>
-          <a href="#" class="product-link">Find Your Shade <span class="arrow">&rarr;</span></a>
+          <button onclick="openModal('foundation')" class="product-link">Find Your Shade <span class="arrow">&rarr;</span></button>
         </div>
       </div>
 
@@ -1389,6 +1435,156 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
+});
+</script>
+
+<!-- ===== PRODUCT MODAL ===== -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">&#x2715;</button>
+    <p class="modal-cat" id="modalCat"></p>
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <p class="modal-price" id="modalPrice"></p>
+    <p class="modal-desc" id="modalDesc"></p>
+    <p class="modal-section-label">Select a Shade</p>
+    <div class="shades-grid" id="shadesGrid"></div>
+    <p class="selected-shade-name" id="selectedShadeName">— choose a shade above —</p>
+    <p class="modal-section-label">Quantity</p>
+    <div class="qty-row">
+      <button class="qty-btn" onclick="changeQty(-1)">&#x2212;</button>
+      <span class="qty-num" id="qtyNum">1</span>
+      <button class="qty-btn" onclick="changeQty(1)">&#x2b;</button>
+    </div>
+    <button class="add-to-bag" id="addToBagBtn" onclick="addToBag()">Add to Bag</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const PRODUCTS = {
+  lipstick: {
+    cat:'Lips', title:'Signature Lipstick Collection', price:'$38',
+    desc:'Twelve vibrant shades inspired by Latin sunsets and floral gardens. Velvet-matte finish with all-day hydration. Formulated without parabens, phthalates, or mineral oils.',
+    shades:[
+      {name:'Sienna Sunset',color:'#c0462e'},{name:'Rose Dusk',color:'#d4607a'},
+      {name:'Merlot Night',color:'#6b1a2a'},{name:'Coral Bloom',color:'#e8795a'},
+      {name:'Berry Kiss',color:'#8b3060'},{name:'Nude Sable',color:'#b07860'},
+      {name:'Ruby Dream',color:'#a81c2a'},{name:'Marigold Bliss',color:'#e0984a'},
+    ]
+  },
+  eyeshadow: {
+    cat:'Eyes', title:'Sultry Eyeshadow Palette', price:'$52',
+    desc:'Six richly pigmented shades from warm golds to deep burgundy. Blendable, buildable, and buttery-smooth formula that lasts 12+ hours without creasing.',
+    shades:[
+      {name:'Champagne',color:'#e8d5a0'},{name:'Warm Sand',color:'#c9a060'},
+      {name:'Burnished Gold',color:'#c9a84c'},{name:'Copper Rose',color:'#b06040'},
+      {name:'Deep Plum',color:'#6b2050'},{name:'Midnight Bordeaux',color:'#3a0d1a'},
+    ]
+  },
+  foundation: {
+    cat:'Face', title:'Radiance Foundation', price:'$46',
+    desc:'Lightweight, buildable coverage with a luminous, natural finish. Infused with botanical extracts and SPF 20 for all-day wear across 40+ inclusive shades.',
+    shades:[
+      {name:'Porcelain 01',color:'#f5e6d5'},{name:'Vanilla 03',color:'#e8ceaa'},
+      {name:'Sand 08',color:'#d4a87a'},{name:'Caramel 14',color:'#b8804a'},
+      {name:'Mocha 22',color:'#8b5a30'},{name:'Espresso 30',color:'#5c3420'},
+      {name:'Ebony 38',color:'#3a1e10'},{name:'Onyx 44',color:'#1e0d06'},
+    ]
+  }
+};
+
+let currentProduct = null;
+let selectedShade = null;
+let qty = 1;
+let cartTotal = 0;
+
+function openModal(productKey) {
+  currentProduct = productKey;
+  selectedShade = null;
+  qty = 1;
+  const p = PRODUCTS[productKey];
+  document.getElementById('modalCat').textContent = p.cat;
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalPrice').textContent = p.price;
+  document.getElementById('modalDesc').textContent = p.desc;
+  document.getElementById('selectedShadeName').textContent = '— choose a shade above —';
+  document.getElementById('qtyNum').textContent = '1';
+  const btn = document.getElementById('addToBagBtn');
+  btn.textContent = 'Add to Bag';
+  btn.className = 'add-to-bag';
+
+  const grid = document.getElementById('shadesGrid');
+  grid.innerHTML = '';
+  p.shades.forEach(shade => {
+    const sw = document.createElement('div');
+    sw.className = 'shade-swatch';
+    sw.style.background = shade.color;
+    sw.setAttribute('data-name', shade.name);
+    sw.setAttribute('title', shade.name);
+    sw.addEventListener('click', () => selectShade(shade, sw));
+    grid.appendChild(sw);
+  });
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function selectShade(shade, el) {
+  document.querySelectorAll('.shade-swatch').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedShade = shade;
+  document.getElementById('selectedShadeName').textContent = shade.name;
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function changeQty(delta) {
+  qty = Math.max(1, Math.min(10, qty + delta));
+  document.getElementById('qtyNum').textContent = qty;
+}
+
+function addToBag() {
+  if (!selectedShade) {
+    document.getElementById('selectedShadeName').textContent = '⚠ Please select a shade first';
+    document.getElementById('selectedShadeName').style.color = '#d4603a';
+    setTimeout(() => {
+      document.getElementById('selectedShadeName').style.color = '';
+      if (!selectedShade) document.getElementById('selectedShadeName').textContent = '— choose a shade above —';
+    }, 2000);
+    return;
+  }
+  cartTotal += qty;
+  document.getElementById('cartCount').textContent = cartTotal;
+  const btn = document.getElementById('addToBagBtn');
+  btn.textContent = '✓ Added!';
+  btn.className = 'add-to-bag added';
+  showToast(`${qty}× ${selectedShade.name} added to your bag`);
+  setTimeout(() => closeModal(), 900);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function openCart() {
+  if (cartTotal === 0) {
+    showToast('Your bag is empty — explore the collection!');
+  } else {
+    showToast(`You have ${cartTotal} item${cartTotal>1?'s':''} in your bag`);
+  }
+}
+
+document.getElementById('modalOverlay').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
 });
 </script>
 </body>

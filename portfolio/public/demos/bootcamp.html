@@ -928,6 +928,38 @@
   </div>
 </section>
 
+<!-- ===== EVENT BROWSER ===== -->
+<section class="section" id="events" style="padding-top:5rem;padding-bottom:5rem">
+  <div class="section-header reveal">
+    <div class="section-label">Schedule</div>
+    <h2 class="section-title">Industry Night Events</h2>
+    <p class="section-desc">Browse upcoming Industry Night sessions and RSVP to secure your spot.</p>
+  </div>
+
+  <!-- Category Tabs -->
+  <div id="eventTabs" class="reveal" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:32px">
+    <button class="ev-tab active" onclick="filterEvents('All')">All</button>
+    <button class="ev-tab" onclick="filterEvents('Design')">Design</button>
+    <button class="ev-tab" onclick="filterEvents('Tech')">Technology</button>
+    <button class="ev-tab" onclick="filterEvents('Innovation')">Innovation</button>
+    <button class="ev-tab" onclick="filterEvents('Networking')">Networking</button>
+  </div>
+
+  <div id="eventsGrid" class="reveal" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;max-width:1000px;margin:0 auto"></div>
+
+  <!-- RSVP Modal -->
+  <div id="rsvpModal" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.7);align-items:center;justify-content:center;padding:20px">
+    <div style="background:#1a0a0a;border:1px solid rgba(248,113,113,.2);border-radius:16px;max-width:420px;width:100%;padding:32px;position:relative">
+      <button onclick="closeRsvp()" style="position:absolute;top:12px;right:12px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.2);border-radius:50%;width:30px;height:30px;color:#f87171;cursor:pointer">✕</button>
+      <div style="font-size:1.5rem;margin-bottom:12px">✅</div>
+      <h3 id="rsvpTitle" style="font-size:1.1rem;color:#fff;font-weight:700;margin-bottom:8px"></h3>
+      <p id="rsvpDate" style="font-size:.82rem;color:#f87171;margin-bottom:16px"></p>
+      <p style="font-size:.88rem;color:#888;line-height:1.65;margin-bottom:24px">You're registered! Check your email for a confirmation link and session details. We'll see you there.</p>
+      <button onclick="closeRsvp()" style="width:100%;padding:12px;border-radius:8px;border:none;background:#f87171;color:#000;font-weight:700;font-size:.85rem;cursor:pointer;font-family:inherit">Done</button>
+    </div>
+  </div>
+</section>
+
 <!-- ===== STATS & TESTIMONIAL ===== -->
 <section class="stats-section" id="stats">
   <div class="section">
@@ -1085,7 +1117,85 @@
   var statsGrid = document.querySelector('.stats-grid');
   if (statsGrid) statsObserver.observe(statsGrid);
 })();
+
+// ── Event Browser ──────────────────────────────
+const EVENTS = [
+  { title:'UX Portfolio Review', category:'Design', date:'Jul 12, 2026 · 6:00 PM', spots:8, desc:'Get your UX/UI portfolio reviewed by senior designers from top studios. Bring your Figma files.', badge:'🎨' },
+  { title:'Industry Panel: Breaking In', category:'Networking', date:'Jul 12, 2026 · 7:30 PM', spots:25, desc:'A panel discussion with 5 industry professionals on landing your first role in tech and design.', badge:'🎤' },
+  { title:'AR/VR Demo Showcase', category:'Tech', date:'Jul 19, 2026 · 5:30 PM', spots:12, desc:'Present your AR or VR prototype to engineers and product leads from gaming and spatial computing companies.', badge:'🥽' },
+  { title:'Rapid Prototyping Challenge', category:'Innovation', date:'Jul 19, 2026 · 7:00 PM', spots:6, desc:'2-hour design sprint challenge. Form teams on the spot, build a working prototype, pitch to judges.', badge:'⚡' },
+  { title:'Motion Design Masterclass', category:'Design', date:'Jul 26, 2026 · 6:00 PM', spots:15, desc:'Live walkthrough of professional motion graphics workflows in After Effects. Bring your laptop.', badge:'🎬' },
+  { title:'Web Dev Speed Networking', category:'Networking', date:'Jul 26, 2026 · 8:00 PM', spots:30, desc:'5-minute rotating 1-on-1s with web development leads. Perfect your elevator pitch before it starts.', badge:'🌐' },
+];
+
+let activeEvFilter = 'All';
+let rsvpdEvents = new Set();
+
+function buildEvents() {
+  const grid = document.getElementById('eventsGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  const filtered = activeEvFilter === 'All' ? EVENTS : EVENTS.filter(e => e.category === activeEvFilter);
+  if (filtered.length === 0) {
+    grid.innerHTML = '<p style="text-align:center;color:#666;grid-column:1/-1;padding:40px">No events in this category yet.</p>';
+    return;
+  }
+  filtered.forEach((ev, i) => {
+    const idx = EVENTS.indexOf(ev);
+    const rsvpd = rsvpdEvents.has(idx);
+    const card = document.createElement('div');
+    card.style.cssText = 'background:rgba(248,113,113,.04);border:1px solid rgba(248,113,113,.12);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;transition:border-color .25s';
+    card.onmouseenter = () => card.style.borderColor = 'rgba(248,113,113,.3)';
+    card.onmouseleave = () => card.style.borderColor = 'rgba(248,113,113,.12)';
+    card.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+        <span style="font-size:1.6rem">${ev.badge}</span>
+        <span style="font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(248,113,113,.1);color:#f87171;font-weight:600;white-space:nowrap">${ev.category}</span>
+      </div>
+      <h3 style="font-size:1rem;font-weight:700;color:#fff;font-family:inherit;margin:0">${ev.title}</h3>
+      <p style="font-size:.8rem;color:#888;line-height:1.6;margin:0">${ev.desc}</p>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="font-size:.75rem;color:#f87171">${ev.date}</span>
+        <span style="font-size:.7rem;color:#555">${ev.spots} spots remaining</span>
+      </div>
+      <button onclick="rsvpEvent(${idx})" id="rsvpBtn-${idx}" style="padding:10px;border-radius:8px;border:${rsvpd?'none':'1px solid rgba(248,113,113,.3)'};background:${rsvpd?'#16a34a':'rgba(248,113,113,.08)'};color:${rsvpd?'#fff':'#f87171'};font-size:.78rem;font-weight:600;cursor:${rsvpd?'default':'pointer'};font-family:inherit;letter-spacing:.04em;text-transform:uppercase;transition:all .25s">${rsvpd?'✓ Registered':'RSVP Now'}</button>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function filterEvents(cat) {
+  activeEvFilter = cat;
+  document.querySelectorAll('.ev-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  buildEvents();
+}
+
+function rsvpEvent(idx) {
+  if (rsvpdEvents.has(idx)) return;
+  rsvpdEvents.add(idx);
+  const ev = EVENTS[idx];
+  document.getElementById('rsvpTitle').textContent = ev.title;
+  document.getElementById('rsvpDate').textContent = ev.date;
+  const modal = document.getElementById('rsvpModal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  buildEvents(); // refresh button state
+}
+
+function closeRsvp() {
+  document.getElementById('rsvpModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('DOMContentLoaded', buildEvents);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeRsvp(); });
 </script>
+
+<style>
+.ev-tab{padding:8px 20px;border-radius:100px;border:1px solid rgba(248,113,113,.2);background:rgba(248,113,113,.04);color:#f87171;font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .25s;letter-spacing:.04em}
+.ev-tab:hover,.ev-tab.active{background:rgba(248,113,113,.15);border-color:rgba(248,113,113,.5)}
+</style>
 
 </body>
 </html>

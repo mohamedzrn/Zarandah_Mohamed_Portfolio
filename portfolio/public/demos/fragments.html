@@ -573,6 +573,38 @@ body::after{
 </section>
 
 <!-- ════════════════════════════════════════════════
+     SCENE NAVIGATOR
+     ════════════════════════════════════════════════ -->
+<div class="section-divider"></div>
+<section class="section" id="scenes" style="padding:70px 0">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:48px">
+      <div class="section-label">The Film</div>
+      <div class="section-title serif" style="font-family:'Playfair Display',serif">Scene by Scene</div>
+      <p style="color:#94a3b8;font-size:.9rem;margin-top:10px">Navigate through each moment. Click any scene to expand the director's notes.</p>
+    </div>
+
+    <!-- Scene Nav Dots -->
+    <div id="sceneNav" class="reveal" style="display:flex;justify-content:center;gap:10px;margin-bottom:36px;flex-wrap:wrap"></div>
+
+    <!-- Active Scene Display -->
+    <div id="sceneDisplay" class="reveal" style="background:rgba(148,163,184,.04);border:1px solid rgba(148,163,184,.08);border-radius:16px;padding:36px;max-width:700px;margin:0 auto;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(148,163,184,0),rgba(148,163,184,.4),rgba(148,163,184,0))"></div>
+      <div style="font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:#94a3b8;margin-bottom:8px;font-weight:500" id="sceneLabel"></div>
+      <h3 id="sceneTitle" style="font-size:1.4rem;font-family:'Playfair Display',serif;color:#f8fafc;margin-bottom:12px;font-weight:600"></h3>
+      <p id="sceneDesc" style="color:#94a3b8;font-size:.9rem;line-height:1.8;margin-bottom:20px"></p>
+      <div style="display:flex;gap:12px">
+        <span id="sceneTech" style="font-size:.72rem;color:#64748b;font-style:italic"></span>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:28px">
+        <button onclick="changeScene(-1)" style="background:none;border:1px solid rgba(148,163,184,.15);border-radius:8px;padding:8px 18px;color:#94a3b8;cursor:pointer;font-size:.78rem;font-family:inherit;transition:all .25s" onmouseover="this.style.borderColor='rgba(148,163,184,.4)'" onmouseout="this.style.borderColor='rgba(148,163,184,.15)'">← Prev Scene</button>
+        <button onclick="changeScene(1)" style="background:none;border:1px solid rgba(148,163,184,.15);border-radius:8px;padding:8px 18px;color:#94a3b8;cursor:pointer;font-size:.78rem;font-family:inherit;transition:all .25s" onmouseover="this.style.borderColor='rgba(148,163,184,.4)'" onmouseout="this.style.borderColor='rgba(148,163,184,.15)'">Next Scene →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
      GALLERY — BEHIND THE SCENES
      ════════════════════════════════════════════════ -->
 <div class="section-divider"></div>
@@ -718,6 +750,62 @@ body::after{
     },{passive:true});
   }
 })();
+
+// ── Scene Navigator ──────────────────────────────
+const SCENES = [
+  { num:'I', title:'The Threshold', desc:'A figure stands at the edge of a doorway — neither inside nor out. The frame is split: one side overexposed, one side dark. This is where the journey begins, before language, before certainty.', tech:'In-camera double exposure · Handheld 16mm lens · Practical lighting' },
+  { num:'II', title:'Echo Chamber', desc:'Voices layer over each other, each carrying a fragment of a memory. The figure moves through a corridor that seems to fold back on itself. Time is not linear here — it spirals.', tech:'Loop editing technique · Reversed reverb sound design · Mirror rig' },
+  { num:'III', title:'The Weight of Things', desc:'Close-ups of objects — a key, a photograph, an empty chair. Each one is both ordinary and freighted with meaning. The camera lingers. Breath. Silence. Then: motion.', tech:'Macro cinematography · Motivated score entry · Static tableau shots' },
+  { num:'IV', title:'Dissolution', desc:'The central sequence. Reality fractures on screen — actual film emulsion distortion layered with digital glitch. The figure becomes several, then none. What remains is an impression.', tech:'After Effects optical distortion · Film grain overlay · VFX composite layer' },
+  { num:'V', title:'Reassembly', desc:'Fragments of the earlier scenes return, but altered. Colours have shifted. Perspectives have changed. The figure gathers what they can carry. Not everything fits back together — and that is the point.', tech:'Colour grading LUT · Jump cut rhythm · Motif callbacks' },
+  { num:'VI', title:'The Return', desc:'The figure stands at the doorway again — the same as the opening, but transformed by everything witnessed. The camera slowly pulls back. The doorway narrows. Cut to black. Silence.', tech:'Mirrored opening composition · Silent final 8 seconds · Fade to black' },
+];
+
+let currentScene = 0;
+
+function buildSceneNav() {
+  const nav = document.getElementById('sceneNav');
+  if (!nav) return;
+  nav.innerHTML = '';
+  SCENES.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.textContent = s.num;
+    btn.style.cssText = 'width:36px;height:36px;border-radius:50%;border:1px solid rgba(148,163,184,.2);background:rgba(148,163,184,.04);color:#94a3b8;cursor:pointer;font-size:.8rem;font-weight:600;font-family:inherit;transition:all .25s';
+    btn.addEventListener('click', () => { currentScene = i; updateScene(); buildSceneNav(); });
+    if (i === currentScene) {
+      btn.style.background = 'rgba(148,163,184,.15)';
+      btn.style.borderColor = 'rgba(148,163,184,.5)';
+      btn.style.color = '#f8fafc';
+    }
+    nav.appendChild(btn);
+  });
+}
+
+function updateScene() {
+  const s = SCENES[currentScene];
+  const disp = document.getElementById('sceneDisplay');
+  if (!disp) return;
+  disp.style.opacity = '0';
+  setTimeout(() => {
+    document.getElementById('sceneLabel').textContent = 'Scene ' + s.num + ' of VI';
+    document.getElementById('sceneTitle').textContent = s.title;
+    document.getElementById('sceneDesc').textContent = s.desc;
+    document.getElementById('sceneTech').textContent = s.tech;
+    disp.style.opacity = '1';
+  }, 200);
+  disp.style.transition = 'opacity .2s';
+}
+
+function changeScene(delta) {
+  currentScene = (currentScene + delta + SCENES.length) % SCENES.length;
+  updateScene();
+  buildSceneNav();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  buildSceneNav();
+  updateScene();
+});
 </script>
 </body>
 </html>

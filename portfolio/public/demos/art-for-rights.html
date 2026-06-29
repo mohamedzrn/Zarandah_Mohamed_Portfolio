@@ -603,6 +603,24 @@ a{text-decoration:none;color:inherit;transition:color .3s}
   <div class="testimonial-block reveal">
     <p class="testimonial-text">"I recently came across this series of posters designed to reflect on the profound effects of human rights, and I was deeply moved. Art like this does not just hang on walls -- it lives in the conversations it sparks."</p>
   </div>
+
+  <!-- Pledge Counter + Share -->
+  <div id="pledgeSection" class="reveal" style="max-width:600px;margin:48px auto 0;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:32px;text-align:center">
+    <div style="font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:#c084fc;margin-bottom:10px;font-weight:600">Join the Movement</div>
+    <h3 style="font-size:1.8rem;font-weight:700;color:#fff;margin-bottom:6px"><span id="pledgeCount">0</span> people have pledged support</h3>
+    <p style="font-size:.88rem;color:#888;margin-bottom:24px;line-height:1.6">Add your voice to those who believe art can change minds and policies.</p>
+    <button id="pledgeBtn" onclick="makePledge()" style="padding:14px 36px;border-radius:8px;border:none;background:#c084fc;color:#fff;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.05em;text-transform:uppercase;transition:all .3s;margin-bottom:24px">I Pledge My Support</button>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+      <button onclick="shareAction('twitter')" style="display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:8px;border:1px solid rgba(29,161,242,.3);background:rgba(29,161,242,.06);color:#1da1f2;font-size:.78rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .25s" onmouseover="this.style.background='rgba(29,161,242,.12)'" onmouseout="this.style.background='rgba(29,161,242,.06)'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg>
+        Share on X
+      </button>
+      <button onclick="shareAction('copy')" id="copyBtn" style="display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#aaa;font-size:.78rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .25s" onmouseover="this.style.background='rgba(255,255,255,.08)'" onmouseout="this.style.background='rgba(255,255,255,.04)'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Link
+      </button>
+    </div>
+  </div>
 </section>
 
 <!-- ─── TOOLS STRIP ─── -->
@@ -690,6 +708,59 @@ function closeLightbox() {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeLightbox();
 });
+
+// ── Pledge Counter ───────────────────────────────
+let pledgeCount = 2847;
+let pledged = false;
+
+function animateCount(el, from, to, duration) {
+  const start = performance.now();
+  function step(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+    el.textContent = Math.round(from + (to - from) * ease).toLocaleString();
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const pledgeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCount(document.getElementById('pledgeCount'), 0, pledgeCount, 1800);
+      pledgeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.4 });
+const ps = document.getElementById('pledgeSection');
+if (ps) pledgeObserver.observe(ps);
+
+function makePledge() {
+  if (pledged) return;
+  pledged = true;
+  pledgeCount++;
+  const el = document.getElementById('pledgeCount');
+  animateCount(el, pledgeCount - 1, pledgeCount, 600);
+  const btn = document.getElementById('pledgeBtn');
+  btn.textContent = '✓ Pledged! Thank you';
+  btn.style.background = '#16a34a';
+  btn.style.cursor = 'default';
+}
+
+function shareAction(type) {
+  if (type === 'twitter') {
+    window.open('https://twitter.com/intent/tweet?text=Art%20for%20Rights%20%E2%80%94%20powerful%20poster%20series%20advocating%20for%20human%20rights%20through%20design.%20%23ArtForRights%20%23HumanRights', '_blank');
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      const btn = document.getElementById('copyBtn');
+      const orig = btn.innerHTML;
+      btn.innerHTML = '✓ Link copied!';
+      btn.style.color = '#22c55e';
+      btn.style.borderColor = 'rgba(34,197,94,.3)';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.color = ''; btn.style.borderColor = ''; }, 2000);
+    });
+  }
+}
 
 // ─── Smooth scroll for hero explore link ───
 document.querySelector('.hero-scroll').addEventListener('click', (e) => {

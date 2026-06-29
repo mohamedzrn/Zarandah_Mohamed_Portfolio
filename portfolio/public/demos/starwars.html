@@ -356,6 +356,11 @@ a:hover{text-decoration:underline}
     <button class="tab-btn" data-endpoint="starships" data-type="starships">Starships</button>
   </div>
 
+  <!-- Search -->
+  <div id="searchWrap" style="display:none;margin:16px 0">
+    <input id="swSearch" type="text" placeholder="Search within results..." style="width:100%;padding:10px 16px;border-radius:8px;border:1px solid rgba(255,232,31,.15);background:rgba(255,232,31,.04);color:#fafafa;font-size:.9rem;font-family:inherit;outline:none;box-sizing:border-box" oninput="filterSwCards()">
+  </div>
+
   <!-- Spinner -->
   <div class="spinner-wrap" id="spinner">
     <div class="spinner"></div>
@@ -483,11 +488,22 @@ a:hover{text-decoration:underline}
     }
   }
 
+  let currentItems=[], currentType='';
+
   function renderCards(items,type){
+    currentItems=items; currentType=type;
+    document.getElementById('searchWrap').style.display='block';
+    document.getElementById('swSearch').value='';
+    renderFiltered(items,type);
+  }
+
+  function renderFiltered(items,type){
     grid.innerHTML='';
-    items.forEach(function(item){
+    items.forEach(function(item,i){
       const card=document.createElement('div');
       card.className='card';
+      card.style.cursor='pointer';
+      card.dataset.idx=i;
       let rows='';
       if(type==='characters'){
         rows=cardRow('Height',formatVal(item.height,'cm'))
@@ -508,7 +524,8 @@ a:hover{text-decoration:underline}
             +cardRow('Speed',formatVal(item.max_atmosphering_speed,''))
             +cardRow('Crew',item.crew);
       }
-      card.innerHTML='<div class="card-name">'+escapeHtml(item.name)+'</div>'+rows;
+      card.innerHTML='<div class="card-name">'+escapeHtml(item.name)+'</div>'+rows+'<div style="margin-top:8px;font-size:.7rem;color:rgba(255,232,31,.4);letter-spacing:.08em">CLICK FOR FULL DATA →</div>';
+      card.addEventListener('click',function(){ openSwModal(item,type); });
       grid.appendChild(card);
     });
   }
@@ -538,6 +555,44 @@ a:hover{text-decoration:underline}
     if(!str) return '';
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
+
+  window.filterSwCards = function(){
+    const q = document.getElementById('swSearch').value.trim().toLowerCase();
+    if(!q){ renderFiltered(currentItems,currentType); return; }
+    const filtered = currentItems.filter(item => item.name.toLowerCase().includes(q));
+    renderFiltered(filtered,currentType);
+  };
+
+  window.openSwModal = function(item, type){
+    let rows='';
+    const allFields={
+      characters:{Height:formatVal(item.height,'cm'),Mass:formatVal(item.mass,'kg'),'Hair Color':capitalize(item.hair_color),'Eye Color':capitalize(item.eye_color),'Skin Color':capitalize(item.skin_color),'Birth Year':item.birth_year,Gender:capitalize(item.gender),'Homeworld':'(loading)'},
+      planets:{Climate:capitalize(item.climate),Terrain:capitalize(item.terrain),Population:formatNumber(item.population),'Diameter':formatVal(item.diameter,'km'),Gravity:item.gravity,'Orbital Period':formatVal(item.orbital_period,'days'),'Rotation Period':formatVal(item.rotation_period,'hours'),'Surface Water':(item.surface_water&&item.surface_water!=='unknown')?item.surface_water+'%':'Unknown'},
+      starships:{Model:item.model,Manufacturer:item.manufacturer,'Class':capitalize(item.starship_class),Speed:formatVal(item.max_atmosphering_speed,''),'Hyperdrive':item.hyperdrive_rating,'Length':formatVal(item.length,'m'),Crew:item.crew,Passengers:item.passengers,Cost:item.cost_in_credits!=='unknown'?Number(item.cost_in_credits).toLocaleString()+' credits':'Unknown'}
+    };
+    const fields=allFields[type]||{};
+    rows=Object.entries(fields).map(([l,v])=>'<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);gap:12px"><span style="color:#888;font-size:.82rem">'+escapeHtml(l)+'</span><span style="color:#e2e8f0;font-weight:600;font-size:.82rem;text-align:right">'+escapeHtml(String(v))+'</span></div>').join('');
+    let modal=document.getElementById('swModal');
+    if(!modal){
+      modal=document.createElement('div');
+      modal.id='swModal';
+      modal.style.cssText='position:fixed;inset:0;z-index:3000;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.85);padding:20px;box-sizing:border-box';
+      modal.addEventListener('click',function(e){if(e.target===modal)closeSwModal()});
+      document.body.appendChild(modal);
+    }
+    const typeEmoji={characters:'👤',planets:'🌍',starships:'🚀'};
+    modal.innerHTML='<div style="background:#0d0d1a;border:1px solid rgba(255,232,31,.2);border-radius:16px;max-width:440px;width:100%;max-height:85vh;overflow-y:auto;padding:32px;position:relative;scrollbar-width:thin"><button onclick="closeSwModal()" style="position:absolute;top:12px;right:12px;background:rgba(255,232,31,.08);border:1px solid rgba(255,232,31,.2);border-radius:50%;width:30px;height:30px;color:#ffe81f;cursor:pointer;font-size:.9rem">✕</button><div style="font-size:2.5rem;margin-bottom:12px">'+typeEmoji[type]+'</div><div style="font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:#ffe81f;margin-bottom:6px;font-weight:600">'+type.charAt(0).toUpperCase()+type.slice(1)+'</div><h2 style="font-size:1.4rem;color:#fff;font-weight:700;margin-bottom:20px;font-family:inherit">'+escapeHtml(item.name)+'</h2>'+rows+'</div>';
+    modal.style.display='flex';
+    document.body.style.overflow='hidden';
+  };
+
+  window.closeSwModal = function(){
+    const m=document.getElementById('swModal');
+    if(m) m.style.display='none';
+    document.body.style.overflow='';
+  };
+
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') window.closeSwModal(); });
 })();
 </script>
 </body>
