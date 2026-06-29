@@ -90,7 +90,7 @@ export function About() {
             <div className="grid grid-cols-3 gap-4 pt-4 border-t border-cream-border dark:border-warm-700">
               {[
                 { value: '15+', label: 'Projects' },
-                { value: '3', label: 'Credentials' },
+                { value: '6', label: 'Credentials' },
                 { value: '5+', label: 'Years Experience' },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
